@@ -7,11 +7,11 @@ package ru.fcl.sdd.services.social
 	 */
 	public interface ISocialNetService 
 	{
-		public function get inited():Boolean;
-		public function init(uid:String):void;
-		public function wallPost(...rest):void;
-		public function friendsGet(...rest):void;
-		public function invite():void;
+		function get inited():Boolean;
+		function init():void;
+		function wallPost(targetID:String, text:String):void;
+		function friendsGet(requestType:int):void;
+		function invite():void;
 	}
 	
 }
