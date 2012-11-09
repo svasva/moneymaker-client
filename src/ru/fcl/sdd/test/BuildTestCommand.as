@@ -8,14 +8,14 @@
 package ru.fcl.sdd.test
 {
 import org.robotlegs.mvcs.SignalCommand;
-import ru.fcl.sdd.services.main.test.TestServerProxyCommand;
+
+import ru.fcl.sdd.services.main.test.PrepareTestServerSendCommand;
 
 public class BuildTestCommand extends SignalCommand
 {
     override public function execute():void
     {
-        commandMap.execute(BuildDebugConsoleCommand);
-        commandMap.execute(TestServerProxyCommand);
+        commandMap.execute(PrepareTestServerSendCommand);
     }
 }
 }

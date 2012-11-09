@@ -1,18 +1,23 @@
-/**
- * Created with IntelliJ IDEA.
- * User: questa_4
- * Date: 07.11.12
- * Time: 19:34
- * To change this template use File | Settings | File Templates.
- */
 package ru.fcl.sdd.services.main
 {
-import com.adobe.serialization.json.JSON;
+import ru.fcl.sdd.log.ILogger;
 
 public interface IServerProxy
 {
     function get connected():Boolean;
-    function connect(url:String, protocol:String):void;
-    function sendData(data:JSON):void;
+
+    /**
+     * Connect to game server api.
+     * @param url - game server url.
+     * @param protocol - protocol (if not need, use "").
+     * @param logger - logger.
+     * @param timeout - try connection timeout.
+     * @param origin - origin, optional.
+     */
+    function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void;
+
+    function disconnect():void
+
+    function sendData(data:String):void;
 }
 }

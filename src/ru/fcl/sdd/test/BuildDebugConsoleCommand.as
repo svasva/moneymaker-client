@@ -7,13 +7,15 @@
  */
 package ru.fcl.sdd.test
 {
+import com.junkbyte.console.Cc;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 public class BuildDebugConsoleCommand extends SignalCommand
 {
     override public function execute():void
     {
-
+        Cc.startOnStage(contextView, '`');
     }
 }
 }

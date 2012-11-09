@@ -3,7 +3,8 @@
  * Date: 07.11.12
  * Time: 12:58
  */
-package ru.fcl.sdd {
+package ru.fcl.sdd
+{
 import flash.display.DisplayObjectContainer;
 
 import org.robotlegs.base.ContextEvent;

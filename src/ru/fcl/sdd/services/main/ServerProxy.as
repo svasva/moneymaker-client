@@ -5,56 +5,53 @@
  */
 package ru.fcl.sdd.services.main
 {
-
-import com.adobe.serialization.json.JSON;
 import com.worlize.websocket.WebSocket;
 import com.worlize.websocket.WebSocketErrorEvent;
 import com.worlize.websocket.WebSocketEvent;
 import com.worlize.websocket.WebSocketMessage;
 
-import flash.utils.ByteArray;
+import flash.events.IOErrorEvent;
+import flash.events.SecurityErrorEvent;
 
-public class ServerProxy  implements IServerProxy
+import org.osflash.signals.ISignal;
+
+import ru.fcl.sdd.log.ILogger;
+
+public class ServerProxy implements IServerProxy
 {
-    private var _webSocket:WebSocket;
+    [Inject(name="main_server_connected")]
+    public var connectedSignal:ISignal;
+
     private var _connected:Boolean;
+    private var _webSocket:WebSocket;
+    private var _socketProtocol:String;
+    private var _logger:ILogger;
 
     [PostConstruct]
     public function init():void
     {
-
     }
 
-    public function connect(url:String, protocol:String):void
+
+    public function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void
     {
-        _webSocket = new WebSocket(url, "*",protocol);
-//        websocket.enableDeflateStream = true;
+        this._logger = logger;
+        _webSocket = new WebSocket(url, origin, protocol, timeout);
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
         _webSocket.addEventListener(WebSocketEvent.OPEN, handleWebSocketOpen);
         _webSocket.addEventListener(WebSocketEvent.MESSAGE, handleWebSocketMessage);
+        _webSocket.addEventListener(IOErrorEvent.IO_ERROR, handleIOError);
+        _webSocket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, handleSecurityError);
         _webSocket.addEventListener(WebSocketErrorEvent.CONNECTION_FAIL, handleConnectionFail);
         _webSocket.connect();
     }
 
-
-    private function handleWebSocketOpen(event:WebSocketEvent):void
+    public function disconnect():void
     {
-        connected = true;
-        _webSocket.sendUTF("Hello World!\n");
-        var binaryData:ByteArray = new ByteArray();
-        binaryData.writeUTF("Hello as Binary Message!");
-        _webSocket.sendBytes(binaryData);
-    }
-
-    private function handleWebSocketClosed(event:WebSocketEvent):void
-    {
-        connected = false;
-    }
-
-    private function handleConnectionFail(event:WebSocketErrorEvent):void
-    {
-        trace("Connection Failure: " +
-                event.text);
+        if (_webSocket.connected)
+        {
+            _webSocket.close();
+        }
     }
 
     private function handleWebSocketMessage(event:WebSocketEvent):void
@@ -62,30 +59,65 @@ public class ServerProxy  implements IServerProxy
         if (event.message.type ===
                 WebSocketMessage.TYPE_UTF8)
         {
-            trace("Got message: " +
-                    event.message.utf8Data);
+            _logger.log(event.message.utf8Data);
         }
         else if (event.message.type ===
                 WebSocketMessage.TYPE_BINARY)
         {
-            trace("Got binary message of length " +
+            WebSocket.logger("Binary message received.  Length: " +
                     event.message.binaryData.length);
         }
     }
+
+
+    private function handleIOError(event:IOErrorEvent):void
+    {
+        _logger.error(this, event.text);
+    }
+
+    private function handleSecurityError(event:SecurityErrorEvent):void
+    {
+        _logger.error(this, event.text);
+    }
+
+    private function handleConnectionFail(event:WebSocketErrorEvent):void
+    {
+        _logger.log(this, "Connection Failure: " +
+                event.text);
+    }
+
+    private function handleWebSocketClosed(event:WebSocketEvent):void
+    {
+        _logger.log(this, "Websocket closed.");
+    }
+
+    private function handleWebSocketOpen(event:WebSocketEvent):void
+    {
+        _logger.log(this, "Websocket Connected");
+        _connected = true;
+        connectedSignal.dispatch();
+    }
+
 
     public function get connected():Boolean
     {
         return _connected;
     }
 
-    public function set connected(value:Boolean):void
+    public function sendData(data:String):void
     {
-        _connected = value;
+        _webSocket.sendUTF(data);
+        //TODO:send data
     }
 
-    public function sendData(data:JSON):void
+    public function get socketProtocol():String
     {
-        //TODO:send data
+        return _socketProtocol;
+    }
+
+    public function set socketProtocol(value:String):void
+    {
+        _socketProtocol = value;
     }
 }
 }
