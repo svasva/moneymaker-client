@@ -7,25 +7,23 @@
  */
 package ru.fcl.sdd.services.main.test
 {
-import ru.fcl.sdd.log.ILogger;
-
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.services.ServicesConfig;
+import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.IServerProxy;
+import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.services.main.WebSocketProtocol;
 
 public class PrepareTestServerSendCommand extends SignalCommand
 {
     [Inject]
     public var logger:ILogger;
+    [Inject] public var serverModel:FlashVarsModel;
 
     override public function execute():void
     {
         var serverProxy:IServerProxy = injector.getInstance(IServerProxy);
-        serverProxy.connect(ServicesConfig.EXTERNAL_DEVELOP_MAIN_SERVER_URL, WebSocketProtocol.DUMB_INCREMENT_PROTOCOL, logger);
-
-
+        serverProxy.connect(serverModel.socketUrl, WebSocketProtocol.DUMB_INCREMENT_PROTOCOL, logger);
     }
 }
 }

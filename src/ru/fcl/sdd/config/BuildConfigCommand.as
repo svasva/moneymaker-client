@@ -7,6 +7,8 @@ package ru.fcl.sdd.config
 {
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.config.FlashVarsModel;
+
 public class BuildConfigCommand extends SignalCommand
 {
     override public function execute():void

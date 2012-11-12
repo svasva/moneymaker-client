@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="raw" type="flex">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/raw" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/raw" />
+    </SOURCES>
+  </library>
+</component>
