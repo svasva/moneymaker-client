@@ -8,6 +8,7 @@ package ru.fcl.sdd.services.main
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.log.ILogger;
 
 public class WhenMainServerConnectedCommand extends SignalCommand
 {
@@ -15,11 +16,13 @@ public class WhenMainServerConnectedCommand extends SignalCommand
     public var sender:ISender;
     [Inject]
     public var flashVarsModel:FlashVarsModel;
+    [Inject]
+    public var logger:ILogger;
 
     override public function execute():void
     {
-        var o:Object = {token:flashVarsModel.token};
-        sender.send(o);
+        var token:Object = {token:flashVarsModel.token};
+        sender.send(token);
     }
 }
 }

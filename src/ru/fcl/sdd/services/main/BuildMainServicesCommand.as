@@ -7,6 +7,7 @@
  */
 package ru.fcl.sdd.services.main
 {
+import org.osflash.signals.AboutString;
 import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
@@ -18,6 +19,10 @@ public class BuildMainServicesCommand extends SignalCommand
         var connected:ISignal = new Signal();
         injector.mapValue(ISignal,connected,"main_server_connected");
         signalCommandMap.mapSignal(connected,WhenMainServerConnectedCommand);
+
+        var serverTalkSignal:ISignal = new AboutString;
+        injector.mapValue(ISignal,serverTalkSignal,"main_server_talk");
+        signalCommandMap.mapSignal(connected,ParseServerTalkCommand);
 
         injector.mapSingletonOf(IServerProxy, ServerProxy);
 

@@ -24,6 +24,9 @@ public class ServerProxy implements IServerProxy
     [Inject(name="main_server_connected")]
     public var connectedSignal:ISignal;
 
+    [Inject(name="main_server_talk")]
+    public var serverTalkSignal:ISignal;
+
     private var _connected:Boolean;
     private var _webSocket:WebSocket;
     private var _socketProtocol:String;
@@ -37,11 +40,7 @@ public class ServerProxy implements IServerProxy
 
     public function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void
     {
-
         Security.allowDomain("*");
-//        Security.allowInsecureDomain("*");
-////        Security.loadPolicyFile("http://app.so14.org:9999/crossdomain.xml");
-//        Security.loadPolicyFile("xmlsocket://10.0.0.102:3000");
         this._logger = logger;
         _webSocket = new WebSocket(url, origin, protocol, timeout);
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
@@ -67,6 +66,7 @@ public class ServerProxy implements IServerProxy
                 WebSocketMessage.TYPE_UTF8)
         {
             _logger.log(event.message.utf8Data);
+           serverTalkSignal.dispatch(event.message.utf8Data);
         }
         else if (event.message.type ===
                 WebSocketMessage.TYPE_BINARY)
@@ -114,7 +114,6 @@ public class ServerProxy implements IServerProxy
     public function sendData(data:String):void
     {
         _webSocket.sendUTF(data);
-        //TODO:send data
     }
 
     public function get socketProtocol():String
