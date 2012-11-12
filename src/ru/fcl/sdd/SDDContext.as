@@ -11,6 +11,8 @@ import org.robotlegs.base.ContextEvent;
 
 import org.robotlegs.mvcs.SignalContext;
 
+import ru.fcl.sdd.buildapplication.BuildApplicationCommand;
+
 public class SDDContext extends SignalContext
 {
     public function SDDContext(contextView:DisplayObjectContainer = null, autoStartup:Boolean = true)
