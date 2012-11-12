@@ -12,6 +12,8 @@ import com.worlize.websocket.WebSocketMessage;
 
 import flash.events.IOErrorEvent;
 import flash.events.SecurityErrorEvent;
+import flash.system.Security;
+import flash.system.System;
 
 import org.osflash.signals.ISignal;
 
@@ -35,6 +37,11 @@ public class ServerProxy implements IServerProxy
 
     public function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void
     {
+
+        Security.allowDomain("*");
+//        Security.allowInsecureDomain("*");
+////        Security.loadPolicyFile("http://app.so14.org:9999/crossdomain.xml");
+//        Security.loadPolicyFile("xmlsocket://10.0.0.102:3000");
         this._logger = logger;
         _webSocket = new WebSocket(url, origin, protocol, timeout);
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
