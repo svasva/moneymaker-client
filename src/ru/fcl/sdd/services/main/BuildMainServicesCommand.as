@@ -20,9 +20,9 @@ public class BuildMainServicesCommand extends SignalCommand
         injector.mapValue(ISignal,connected,"main_server_connected");
         signalCommandMap.mapSignal(connected,WhenMainServerConnectedCommand);
 
-        var serverTalkSignal:ISignal = new AboutString;
+        var serverTalkSignal:ISignal = new AboutString();
         injector.mapValue(ISignal,serverTalkSignal,"main_server_talk");
-        signalCommandMap.mapSignal(connected,ParseServerTalkCommand);
+        signalCommandMap.mapSignal(serverTalkSignal,ParseServerTalkCommand);
 
         injector.mapSingletonOf(IServerProxy, ServerProxy);
 

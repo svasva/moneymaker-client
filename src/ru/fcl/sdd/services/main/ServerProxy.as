@@ -65,8 +65,12 @@ public class ServerProxy implements IServerProxy
         if (event.message.type ===
                 WebSocketMessage.TYPE_UTF8)
         {
+            if(event.message.utf8Data.substr(0,1)=="a")
+            {
+                serverTalkSignal.dispatch(Object(event.message.utf8Data.slice(1,event.message.utf8Data.length)));
+            }
             _logger.log(event.message.utf8Data);
-           serverTalkSignal.dispatch(event.message.utf8Data);
+
         }
         else if (event.message.type ===
                 WebSocketMessage.TYPE_BINARY)
