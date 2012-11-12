@@ -58,39 +58,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WhenMainServerConnectedCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
+      <file leaf-file-name="ServerProxy.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="26" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
+            <state line="61" column="89" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebSocketProtocol.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WebSocketProtocol.as">
+      <file leaf-file-name="Sender.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/Sender.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerProxy.as" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="36" selection-start="2862" selection-end="2862" vertical-scroll-proportion="0.42068157">
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="BuildTestCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildTestCommand.as">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/test/BuildTestCommand.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="17" column="42" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -98,8 +89,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Platform.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/Platform.as">
+      <file leaf-file-name="SDDContext.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDDContext.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding>
@@ -113,9 +104,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildDebugConsoleCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,9 +112,18 @@
       <file leaf-file-name="PrepareTestServerSendCommand.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0">
+            <state line="16" column="13" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WhenMainServerConnectedCommand.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="50" selection-start="448" selection-end="448" vertical-scroll-proportion="0.31962398">
               <folding>
-                <element signature="e#195#235#0" expanded="true" />
+                <element signature="e#92#132#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,9 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="20" column="75" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#86#126#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -146,9 +142,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#85#125#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,9 +151,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="4" column="1" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#96#140#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -174,8 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/BuildMainServicesCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/log/Logger.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/Preloader/Prelates.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/Preloader/Preloader.as" />
@@ -190,6 +180,8 @@
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as" />
       </list>
     </option>
   </component>
@@ -241,12 +233,44 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="SDD" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt;4.1&gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -441,48 +465,24 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="fileTemplates" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -526,6 +526,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -551,22 +567,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="BuildArtifacts" enabled="false" />
         <option name="Make" enabled="true" />
@@ -705,8 +705,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6160714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23995535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2421875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -716,11 +715,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28311965" sideWeight="0.6707589" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28311965" sideWeight="0.7578125" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6160714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -780,27 +780,10 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/Sender.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/log/ILogger.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/log/Logger.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="44" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="-7.8461537">
-          <folding>
-            <marker date="1352713297165" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -816,77 +799,56 @@
         <state line="19" column="49" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#195#235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="75" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#86#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#85#125#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="1" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#96#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildDebugConsoleCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WebSocketProtocol.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildTestCommand.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/Platform.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="26" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WebSocketProtocol.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildDebugConsoleCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="75" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="1" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDDContext.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
@@ -897,8 +859,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="36" selection-start="2862" selection-end="2862" vertical-scroll-proportion="0.42068157">
+        <state line="61" column="89" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/Sender.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/test/BuildTestCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="42" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="50" selection-start="448" selection-end="448" vertical-scroll-proportion="0.31962398">
+          <folding>
+            <element signature="e#92#132#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
