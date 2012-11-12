@@ -5,20 +5,32 @@
  */
 package ru.fcl.sdd.services.main
 {
+
 import com.adobe.serialization.json.JSON;
-import com.junkbyte.console.Cc;
 
 import org.robotlegs.mvcs.SignalCommand;
+
+import ru.fcl.sdd.log.ILogger;
 
 public class ParseServerTalkCommand extends SignalCommand
 {
     [Inject]
     public var response:String;
+    [Inject]
+    public var logger:ILogger;
 
     override public function execute():void
     {
-        var value:Object = JSON.decode(response);
-        Cc.log(value);
+        var slicedString:String = response.slice(2, response.length - 2);
+        while(slicedString.indexOf("\\")!=-1)
+        {
+            slicedString = slicedString.replace("\\", "");
+        }
+        if (slicedString.substr(0, 1) == "{")
+        {
+            var decodedObject:Object = JSON.decode(slicedString);
+            logger.log(this, "decode value: " + decodedObject);
+        }
     }
 }
 }

@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: questa_4
- * Date: 07.11.12
- * Time: 19:20
- * To change this template use File | Settings | File Templates.
- */
 package ru.fcl.sdd.services.main.test
 {
 import org.robotlegs.mvcs.SignalCommand;
@@ -23,7 +16,7 @@ public class PrepareTestServerSendCommand extends SignalCommand
     override public function execute():void
     {
         var serverProxy:IServerProxy = injector.getInstance(IServerProxy);
-        serverProxy.connect(serverModel.socketUrl, WebSocketProtocol.DUMB_INCREMENT_PROTOCOL, logger);
+        serverProxy.connect(serverModel.socketUrl, WebSocketProtocol.FRAGGLE_PROTOCOL, logger);
     }
 }
 }
