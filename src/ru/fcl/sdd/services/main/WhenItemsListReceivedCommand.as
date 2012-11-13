@@ -9,6 +9,7 @@ import org.robotlegs.mvcs.Command;
 
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
+import ru.fcl.sdd.services.main.parser.ParseItemListCommand;
 import ru.fcl.sdd.user.UserDataModel;
 
 public class WhenItemsListReceivedCommand extends Command
@@ -21,6 +22,7 @@ public class WhenItemsListReceivedCommand extends Command
     override public function execute():void
     {
         logger.log(this,"item list received.");
+        commandMap.execute(ParseItemListCommand,items);
     }
 }
 }

@@ -13,6 +13,7 @@ import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
+import ru.fcl.sdd.services.main.parser.ParseServerTalkCommand;
 
 public class BuildMainServicesCommand extends SignalCommand
 {

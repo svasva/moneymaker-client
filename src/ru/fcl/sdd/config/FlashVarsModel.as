@@ -8,7 +8,7 @@ package ru.fcl.sdd.config
 public class FlashVarsModel
 {
     public static const LOCAL_TOKEN:String = "50a24cb51685ff833600000f";
-    public static const LOCAL_SOCKET_URL:String = "ws://10.0.0.102:9999/socket/0/0/websocket";
+    public static const LOCAL_SOCKET_URL:String = "ws://192.168.1.242:9999/socket/0/0/websocket";
     private var _token:String;
     private var _socketUrl:String;
     private var _greeting:String;
