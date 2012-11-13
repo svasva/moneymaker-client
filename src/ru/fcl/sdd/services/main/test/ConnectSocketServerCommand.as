@@ -7,7 +7,7 @@ import ru.fcl.sdd.services.main.IServerProxy;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.services.main.WebSocketProtocol;
 
-public class PrepareTestServerSendCommand extends SignalCommand
+public class ConnectSocketServerCommand extends SignalCommand
 {
     [Inject]
     public var logger:ILogger;

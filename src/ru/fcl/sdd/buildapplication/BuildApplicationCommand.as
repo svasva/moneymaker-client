@@ -11,7 +11,7 @@ import ru.fcl.sdd.log.BuildLoggerCommand;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.services.main.BuildMainServicesCommand;
-import ru.fcl.sdd.services.main.test.PrepareTestServerSendCommand;
+import ru.fcl.sdd.services.main.test.ConnectSocketServerCommand;
 import ru.fcl.sdd.test.BuildDebugConsoleCommand;
 
 
@@ -26,7 +26,7 @@ public class BuildApplicationCommand extends SignalCommand
 
         commandMap.execute(BuildMainServicesCommand);
 
-        commandMap.execute(PrepareTestServerSendCommand);
+        commandMap.execute(ConnectSocketServerCommand);
 
     }
 }

@@ -5,7 +5,6 @@
  */
 package ru.fcl.sdd.user.items
 {
-import com.hurlant.util.der.Integer;
 
 import flash.utils.Dictionary;
 

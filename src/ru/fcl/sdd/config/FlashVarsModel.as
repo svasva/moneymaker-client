@@ -7,6 +7,7 @@ package ru.fcl.sdd.config
 {
 public class FlashVarsModel
 {
+    public static const LOCAL_TOKEN:String = "50a1ffca1685ff8336000001";
     private var _token:String;
     private var _socketUrl:String;
     private var _greeting:String;
