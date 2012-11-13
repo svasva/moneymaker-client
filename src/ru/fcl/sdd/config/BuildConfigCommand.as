@@ -13,8 +13,6 @@ public class BuildConfigCommand extends SignalCommand
 {
     override public function execute():void
     {
-        injector.mapSingleton(FlashVarsModel);
-
         commandMap.execute(ParseFlashVarsCommand);
     }
 }

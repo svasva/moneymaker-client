@@ -24,6 +24,8 @@ public class WhenMainServerConnectedCommand extends SignalCommand
 
     override public function execute():void
     {
+        logger.log(this, "socket server connect initialised, authorization...");
+
         var key:String = callHashMap.addValue(WhenSocketServerAuthorizedCommand);
         var token:Object = {requestId:key, token:flashVarsModel.token};
         sender.send(token);

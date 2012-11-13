@@ -22,9 +22,9 @@ public class ParseFlashVarsCommand extends SignalCommand
             flashVarsModel.socketUrl= FlashVarsModel.LOCAL_SOCKET_URL;
         }
         flashVarsModel.token=contextView.loaderInfo.parameters.token;
-        if(!flashVarsModel.socketUrl)
+        if(!flashVarsModel.token)
         {
-            flashVarsModel.socketUrl= FlashVarsModel.LOCAL_TOKEN;
+            flashVarsModel.token= FlashVarsModel.LOCAL_TOKEN;
         }
 
         flashVarsModel.greeting=contextView.loaderInfo.parameters.greeting;
