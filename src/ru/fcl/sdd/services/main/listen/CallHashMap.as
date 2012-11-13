@@ -18,7 +18,7 @@ public class CallHashMap extends HashMap
      *
      * @return key of value
      */
-    public function addValue(value:CallCommandClassMap):String
+    public function addValue(value:Class):String
     {
         var key:String = MD5.hash(String(new Date()));
         this.set(key, value);

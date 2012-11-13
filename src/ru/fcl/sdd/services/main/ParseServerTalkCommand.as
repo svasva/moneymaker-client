@@ -6,6 +6,8 @@
 package ru.fcl.sdd.services.main
 {
 
+import avmplus.getQualifiedClassName;
+
 import com.adobe.serialization.json.JSON;
 
 import org.robotlegs.mvcs.SignalCommand;
@@ -35,6 +37,12 @@ public class ParseServerTalkCommand extends SignalCommand
         {
             var decodedObject:Object = JSON.decode(slicedString);
             logger.log(this, "decode value: " + decodedObject);
+
+            if(callHashMap.get(decodedObject.requestId))
+            {
+                var o:Object=getQualifiedClassName(callHashMap.get(decodedObject.requestId));
+                commandMap.execute(Class(callHashMap.get(decodedObject.requestId)),decodedObject);
+            }
         }
     }
 }
