@@ -12,10 +12,14 @@ import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.services.main.listen.BuildServerListen;
+
 public class BuildMainServicesCommand extends SignalCommand
 {
     override public function execute():void
     {
+        commandMap.execute(BuildServerListen);
+
         var connected:ISignal = new Signal();
         injector.mapValue(ISignal,connected,"main_server_connected");
         signalCommandMap.mapSignal(connected,WhenMainServerConnectedCommand);
