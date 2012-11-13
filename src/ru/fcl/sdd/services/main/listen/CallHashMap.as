@@ -20,7 +20,9 @@ public class CallHashMap extends HashMap
      */
     public function addValue(value:Class):String
     {
-        var key:String = MD5.hash(String(new Date()));
+        var date:Date = new Date();
+        var time2Hash:String = String(date.time);
+        var key:String = MD5.hash(time2Hash);
         this.set(key, value);
         return key;
     }

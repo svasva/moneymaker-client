@@ -58,10 +58,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WhenSocketServerAuthorizedCommand.as" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="WhenSocketServerAuthorizedCommand.as" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="49" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0">
+            <state line="35" column="60" selection-start="988" selection-end="988" vertical-scroll-proportion="0.519389">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CallHashMap.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="49" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -78,10 +87,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WhenItemsListReceivedCommand.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="WhenItemsListReceivedCommand.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="447" selection-end="447" vertical-scroll-proportion="0.27967098">
+            <state line="22" column="47" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,11 +146,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/IllegalCommandMapError.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAutorizedCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallCommandClassMap.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallCommandClassContainer.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ParseServerTalkCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/MapModelsCommand.as" />
@@ -151,8 +158,10 @@
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseUserDataCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemList.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as" />
       </list>
     </option>
   </component>
@@ -290,6 +299,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="items" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -346,7 +381,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="parser" />
+              <option name="myItemId" value="listen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -660,9 +695,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.116071425" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.3046875" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.8761161" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.6875" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -726,22 +761,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/MapModelsCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="38" selection-start="338" selection-end="359" vertical-scroll-proportion="0.24697337">
-          <folding>
-            <element signature="e#95#135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="40" selection-start="402" selection-end="402" vertical-scroll-proportion="0.27967098">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="59" selection-start="948" selection-end="948" vertical-scroll-proportion="0.37955347">
@@ -762,15 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -825,13 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="49" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseUserDataCommand.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
@@ -841,9 +844,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemList.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="4" selection-start="162" selection-end="162" vertical-scroll-proportion="0.21974148">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="447" selection-end="447" vertical-scroll-proportion="0.27967098">
+        <state line="22" column="47" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="49" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="60" selection-start="988" selection-end="988" vertical-scroll-proportion="0.519389">
           <folding />
         </state>
       </provider>
