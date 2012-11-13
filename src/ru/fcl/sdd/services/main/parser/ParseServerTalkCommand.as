@@ -3,7 +3,7 @@
  * Date: 12.11.12
  * Time: 16:55
  */
-package ru.fcl.sdd.services.main
+package ru.fcl.sdd.services.main.parser
 {
 
 import avmplus.getQualifiedClassName;
@@ -40,7 +40,6 @@ public class ParseServerTalkCommand extends SignalCommand
 
             if(callHashMap.get(decodedObject.requestId))
             {
-                var o:Object=getQualifiedClassName(callHashMap.get(decodedObject.requestId));
                 commandMap.execute(Class(callHashMap.get(decodedObject.requestId)),decodedObject);
             }
         }

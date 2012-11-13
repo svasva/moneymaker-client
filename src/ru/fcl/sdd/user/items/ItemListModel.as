@@ -5,10 +5,10 @@
  */
 package ru.fcl.sdd.user.items
 {
-public class Items
+import de.polygonal.ds.HashMap;
+
+public class ItemListModel extends HashMap
 {
-    public function Items()
-    {
-    }
+
 }
 }
