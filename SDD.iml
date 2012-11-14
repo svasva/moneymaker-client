@@ -11,7 +11,7 @@
             <entry library-name="bin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="preloader" library-level="project">
+            <entry library-name="swc" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -35,6 +35,7 @@
     <orderEntry type="library" name="raw" level="project" />
     <orderEntry type="library" name="bin" level="project" />
     <orderEntry type="library" name="preloader" level="project" />
+    <orderEntry type="library" name="swc" level="project" />
   </component>
 </module>
 
