@@ -17,7 +17,16 @@ public class ParseFlashVarsCommand extends SignalCommand
     override public function execute():void
     {
         flashVarsModel.socketUrl=contextView.loaderInfo.parameters.socket_url;
+        if(!flashVarsModel.socketUrl)
+        {
+            flashVarsModel.socketUrl= FlashVarsModel.LOCAL_SOCKET_URL;
+        }
         flashVarsModel.token=contextView.loaderInfo.parameters.token;
+        if(!flashVarsModel.token)
+        {
+            flashVarsModel.token= FlashVarsModel.LOCAL_TOKEN;
+        }
+
         flashVarsModel.greeting=contextView.loaderInfo.parameters.greeting;
     }
 }

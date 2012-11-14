@@ -8,6 +8,8 @@ package ru.fcl.sdd.services.main
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.log.ILogger;
+import ru.fcl.sdd.services.main.listen.CallHashMap;
 
 public class WhenMainServerConnectedCommand extends SignalCommand
 {
@@ -15,11 +17,18 @@ public class WhenMainServerConnectedCommand extends SignalCommand
     public var sender:ISender;
     [Inject]
     public var flashVarsModel:FlashVarsModel;
+    [Inject]
+    public var logger:ILogger;
+
+    [Inject] public var callHashMap: CallHashMap;
 
     override public function execute():void
     {
-        var o:Object = {token:flashVarsModel.token};
-        sender.send(o);
+        logger.log(this, "socket server connect initialised, authorization...");
+
+        var key:String = callHashMap.addValue(WhenSocketServerAuthorizedCommand);
+        var token:Object = {requestId:key, token:flashVarsModel.token};
+        sender.send(token);
     }
 }
 }

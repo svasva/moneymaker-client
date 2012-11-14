@@ -58,19 +58,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="ParseItemListCommand.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseItemListCommand.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="26" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Preloader.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/preloader/Preloader.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.45350173">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#89#115#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SDD.mxml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="141" selection-start="221" selection-end="221" vertical-scroll-proportion="-1.3076923">
+              <folding>
+                <marker date="1352880214786" expanded="true" signature="348:403" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseServerTalkCommand.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseServerTalkCommand.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="0" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ServerProxy.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="89" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sender.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/Sender.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="94" column="111" selection-start="2884" selection-end="2884" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -78,79 +110,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuildTestCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/test/BuildTestCommand.as">
+      <file leaf-file-name="Item.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="42" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SDDContext.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDDContext.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuildDebugConsoleCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildDebugConsoleCommand.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="23" column="56" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrepareTestServerSendCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as">
+      <file leaf-file-name="FlashVarsModel.as" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WhenMainServerConnectedCommand.as" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="50" selection-start="448" selection-end="448" vertical-scroll-proportion="0.31962398">
-              <folding>
-                <element signature="e#92#132#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParseFlashVarsCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="75" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuildConfigCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuildApplicationCommand.as" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="1" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+            <state line="10" column="95" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -166,22 +138,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/log/Logger.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/Preloader/Prelates.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/Preloader/Preloader.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/BuildSocialServicesCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/social/ISocialNetService.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/ParseFlashVarsCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemList.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/Platform.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/PlatformModel.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemListModel.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/MapModelsCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/BuildApplicationCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/ServicesConfig.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseItemListCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseServerTalkCommand.as" />
         <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as" />
-        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/preloader/Preloader1Controller.as" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml" />
+        <option value="$PROJECT_DIR$/src/ru/fcl/sdd/preloader/Preloader.as" />
       </list>
     </option>
   </component>
@@ -243,6 +215,66 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="preloader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -257,224 +289,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt;4.1&gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="buildapplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="buildapplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="preferences.sourceCode.ActionScript" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -486,17 +310,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\develop\src\mm\src\ru\fcl\sdd\services\main" />
       <recent name="D:\develop\src\mm\src\ru\fcl\sdd\services" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ru.fcl.sdd.services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\develop\src\mm\src\ru\fcl\sdd\buildapplication" />
+      <recent name="D:\develop\src\mm\src\ru\fcl\sdd\services\main\parser" />
       <recent name="D:\develop\src\mm\src\ru\fcl\sdd\config" />
+      <recent name="D:\develop\src\mm\src\ru\fcl\sdd\user\items" />
+      <recent name="D:\develop\src\mm\src\ru\fcl\sdd\buildapplication" />
       <recent name="D:\develop\src\mm\src\ru\fcl\sdd\services\main" />
-      <recent name="D:\develop\src\mm\src" />
-      <recent name="D:\develop\src\SDD\src\ru\fcl\sdd\debug" />
     </key>
   </component>
   <component name="RunManager" selected="Flash App.SDD">
@@ -655,7 +480,7 @@
       <option name="emulatorAdlOptions" value="" />
       <option name="fullScreenHeight" value="0" />
       <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="true" />
+      <option name="launchUrl" value="false" />
       <option name="launcherParameters">
         <LauncherParameters>
           <option name="browserFamily" value="FIREFOX" />
@@ -701,11 +526,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2421875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4564732" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -713,9 +538,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.31026787" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28311965" sideWeight="0.7578125" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.68191963" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -780,120 +605,97 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseUserDataCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="-7.8461537">
-          <folding />
-        </state>
+        <state line="20" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/PlatformModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="10" column="70" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/BuildMainServicesCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/UserDataModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="49" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WebSocketProtocol.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemListModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildTestCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="34" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/Platform.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/test/BuildDebugConsoleCommand.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="53" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="75" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="543" selection-end="543" vertical-scroll-proportion="0.41950646" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/BuildConfigCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="49" selection-start="502" selection-end="502" vertical-scroll-proportion="0.33960047" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/BuildApplicationCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/MapModelsCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="1" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDDContext.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="21" column="43" selection-start="587" selection-end="587" vertical-scroll-proportion="0.4098737" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="89" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/Sender.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="94" column="111" selection-start="2884" selection-end="2884" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/test/BuildTestCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="42" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="23" column="56" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/test/PrepareTestServerSendCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
+        <state line="10" column="95" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseServerTalkCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseItemListCommand.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="26" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/SDD.mxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="50" selection-start="448" selection-end="448" vertical-scroll-proportion="0.31962398">
+        <state line="2" column="141" selection-start="221" selection-end="221" vertical-scroll-proportion="-1.3076923">
           <folding>
-            <element signature="e#92#132#0" expanded="true" />
+            <marker date="1352880214786" expanded="true" signature="348:403" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/preloader/Preloader.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.45350173">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#89#115#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -961,7 +763,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>bin</last-edited>
+          <last-edited>preloader</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

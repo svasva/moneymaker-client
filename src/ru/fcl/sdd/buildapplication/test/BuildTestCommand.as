@@ -9,13 +9,13 @@ package ru.fcl.sdd.buildapplication.test
 {
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.services.main.test.PrepareTestServerSendCommand;
+import ru.fcl.sdd.services.main.test.ConnectSocketServerCommand;
 
 public class BuildTestCommand extends SignalCommand
 {
     override public function execute():void
     {
-        commandMap.execute(PrepareTestServerSendCommand);
+        commandMap.execute(ConnectSocketServerCommand);
     }
 }
 }
