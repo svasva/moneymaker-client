@@ -62,9 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseItemListCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="25" column="26" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#99#133#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -73,9 +71,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseServerTalkCommand.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="42" column="0" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#100#137#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +79,7 @@
       <file leaf-file-name="ServerProxy.as" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.23421355">
+            <state line="72" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.019517796">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -95,9 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="23" column="56" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,9 +100,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
           <provider selected="true" editor-type-id="text-editor">
             <state line="10" column="95" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,16 +182,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -356,6 +338,16 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -386,8 +378,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -432,6 +424,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -457,22 +465,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="BuildArtifacts" enabled="false" />
         <option name="Make" enabled="true" />
@@ -607,26 +599,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6160714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4564732" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.3046875" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.31026787" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.6875" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30608973" sideWeight="0.68191963" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6160714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -688,133 +680,90 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/raw/org/robotlegs/base/CommandMap.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="0" selection-start="5079" selection-end="5079" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="169" column="0" selection-start="5079" selection-end="5079" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenMainServerConnectedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="27" selection-start="839" selection-end="839" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="30" column="27" selection-start="839" selection-end="839" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseUserDataCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#99#133#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="20" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/PlatformModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="70" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="10" column="70" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/UserDataModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/ItemListModel.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="11" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenSocketServerAuthorizedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="34" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/WhenItemsListReceivedCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="53" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="53" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/ParseFlashVarsCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="543" selection-end="543" vertical-scroll-proportion="0.41950646">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="23" column="0" selection-start="543" selection-end="543" vertical-scroll-proportion="0.41950646" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/listen/CallHashMap.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="49" selection-start="502" selection-end="502" vertical-scroll-proportion="0.33960047">
-          <folding />
-        </state>
+        <state line="23" column="49" selection-start="502" selection-end="502" vertical-scroll-proportion="0.33960047" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/buildapplication/MapModelsCommand.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="43" selection-start="587" selection-end="587" vertical-scroll-proportion="0.4098737">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#95#135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="95" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="56" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="21" column="43" selection-start="587" selection-end="587" vertical-scroll-proportion="0.4098737" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseItemListCommand.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="26" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#99#133#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/parser/ParseServerTalkCommand.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="0" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#100#137#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/user/items/Item.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="56" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/config/FlashVarsModel.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="95" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/fcl/sdd/services/main/ServerProxy.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.23421355">
+        <state line="72" column="0" selection-start="2268" selection-end="2268" vertical-scroll-proportion="0.019517796">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
