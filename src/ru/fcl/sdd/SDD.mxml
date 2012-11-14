@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-               creationComplete="addedToStageHandler()">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" width="800" height="800" backgroundColor="#BDBEBD"
+               xmlns:containers="mx.containers.*" xmlns:core="mx.core.*"
+               addedToStage="addedToStageHandler()">
     <fx:Script><![CDATA[
+        import org.osmf.display.ScaleMode;
+
         private var context:SDDContext;
 
         private function addedToStageHandler():void
         {
-            context = new SDDContext(this);
+            this.stage.scaleMode = StageScaleMode.NO_SCALE;
+
+            context = new SDDContext(mainContainer);
         }
         ]]></fx:Script>
+    <s:SpriteVisualElement id="mainContainer"></s:SpriteVisualElement>
 </s:Application>
