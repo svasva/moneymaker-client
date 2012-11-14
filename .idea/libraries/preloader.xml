@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="preloader" type="flex">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/art/bin/ru/fcl/sdd/preloader" />
+      <root url="file://$PROJECT_DIR$/art/bin/ru/fcl/sdd/preloader" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/art/bin/ru/fcl/sdd/preloader" recursive="false" />
+  </library>
+</component>

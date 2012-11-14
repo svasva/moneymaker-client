@@ -11,6 +11,9 @@
             <entry library-name="bin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="preloader" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.1" />
         </dependencies>
@@ -31,6 +34,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="raw" level="project" />
     <orderEntry type="library" name="bin" level="project" />
+    <orderEntry type="library" name="preloader" level="project" />
   </component>
 </module>
 
