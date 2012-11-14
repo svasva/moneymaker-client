@@ -3,3 +3,6 @@
 out
 html-template
 fla
+.*
+.gitignore
+*.iml
