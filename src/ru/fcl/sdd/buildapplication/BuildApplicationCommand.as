@@ -5,10 +5,13 @@
   */
 package ru.fcl.sdd.buildapplication
 {
+import ru.fcl.sdd.buildapplication.buildscreen.BuildDisplayCommand;
 import ru.fcl.sdd.config.BuildConfigCommand;
 import ru.fcl.sdd.log.BuildLoggerCommand;
 
 import org.robotlegs.mvcs.SignalCommand;
+
+import ru.fcl.sdd.scenes.BuildScenesCommand;
 
 import ru.fcl.sdd.services.main.BuildMainServicesCommand;
 import ru.fcl.sdd.services.main.test.ConnectSocketServerCommand;
@@ -34,6 +37,10 @@ public class BuildApplicationCommand extends SignalCommand
         commandMap.execute(BuildMainServicesCommand);
         commandMap.execute(ConnectSocketServerCommand);
         //******servecies**********************************
+
+        //******Display************************************
+        commandMap.execute(BuildScenesCommand);
+        commandMap.execute(BuildDisplayCommand);
     }
 }
 }
