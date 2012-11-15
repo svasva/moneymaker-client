@@ -9,7 +9,7 @@ package ru.fcl.sdd.test
 {
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.services.main.test.ConnectSocketServerCommand;
+import ru.fcl.sdd.services.main.ConnectSocketServerCommand;
 
 public class BuildTestCommand extends SignalCommand
 {

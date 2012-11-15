@@ -5,7 +5,7 @@
  * Time: 19:32
  * To change this template use File | Settings | File Templates.
  */
-package ru.fcl.sdd.services
+package ru.fcl.sdd.services.social
 {
 import org.robotlegs.mvcs.SignalCommand;
 

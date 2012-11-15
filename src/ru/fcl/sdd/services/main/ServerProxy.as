@@ -10,16 +10,19 @@ import com.worlize.websocket.WebSocketErrorEvent;
 import com.worlize.websocket.WebSocketEvent;
 import com.worlize.websocket.WebSocketMessage;
 
-import flash.events.IOErrorEvent;
+import flash.events.EventDispatcher;
 import flash.events.SecurityErrorEvent;
 import flash.system.Security;
-import flash.system.System;
 
 import org.osflash.signals.ISignal;
 
+import ru.fcl.sdd.error.IErrorHandler;
+
+import ru.fcl.sdd.error.IErrorHandler;
+
 import ru.fcl.sdd.log.ILogger;
 
-public class ServerProxy implements IServerProxy
+public class ServerProxy extends EventDispatcher implements IServerProxy
 {
     [Inject(name="main_server_connected")]
     public var connectedSignal:ISignal;
@@ -31,6 +34,7 @@ public class ServerProxy implements IServerProxy
     private var _webSocket:WebSocket;
     private var _socketProtocol:String;
     private var _logger:ILogger;
+    private var _errorHandler:IErrorHandler;
 
     [PostConstruct]
     public function init():void
@@ -38,15 +42,16 @@ public class ServerProxy implements IServerProxy
     }
 
 
-    public function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void
+    public function connect(url:String, protocol:String, logger:ILogger, errorHandler:IErrorHandler, timeout:int = 5000, origin:String = "*"):void
     {
         Security.allowDomain("*");
         this._logger = logger;
+        this._errorHandler = errorHandler;
         _webSocket = new WebSocket(url, origin, protocol, timeout);
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
         _webSocket.addEventListener(WebSocketEvent.OPEN, handleWebSocketOpen);
         _webSocket.addEventListener(WebSocketEvent.MESSAGE, handleWebSocketMessage);
-        _webSocket.addEventListener(IOErrorEvent.IO_ERROR, handleIOError);
+        _webSocket.addEventListener(WebSocketErrorEvent.IO_ERROR, handleIOError);
         _webSocket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, handleSecurityError);
         _webSocket.addEventListener(WebSocketErrorEvent.CONNECTION_FAIL, handleConnectionFail);
         _webSocket.connect();
@@ -80,20 +85,23 @@ public class ServerProxy implements IServerProxy
     }
 
 
-    private function handleIOError(event:IOErrorEvent):void
+    private function handleIOError(event:WebSocketErrorEvent):void
     {
         _logger.error(this, event.text);
+        _errorHandler.handleError(event);
     }
 
     private function handleSecurityError(event:SecurityErrorEvent):void
     {
         _logger.error(this, event.text);
+        _errorHandler.handleError(event);
     }
 
     private function handleConnectionFail(event:WebSocketErrorEvent):void
     {
         _logger.log(this, "Connection Failure: " +
                 event.text);
+        _errorHandler.handleError(event);
     }
 
     private function handleWebSocketClosed(event:WebSocketEvent):void
