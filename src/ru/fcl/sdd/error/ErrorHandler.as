@@ -12,15 +12,8 @@ import flash.events.ErrorEvent;
 import mx.controls.Alert;
 import mx.core.UIComponent;
 
-public class ErrorHandler implements IErrorHandler
+public class ErrorHandler extends ErrorHandleBase implements IErrorHandler
 {
-    private var viewTarget:UIComponent;
-    private var _silentMode:Boolean = false;
-
-    public function init(viewTarget:UIComponent):void
-    {
-        this.viewTarget = viewTarget;
-    }
 
     public function handleError(e:ErrorEvent):void
     {
@@ -38,22 +31,6 @@ public class ErrorHandler implements IErrorHandler
         }
     }
 
-    public function get silentMode():Boolean
-    {
-        return _silentMode;
-    }
 
-    public function set silentMode(value:Boolean):void
-    {
-        _silentMode = value;
-    }
-
-    private function showError(title:String, text:String):void
-    {
-        if(!silentMode)
-        {
-            Alert.show(title, text,4,viewTarget);
-        }
-    }
 }
 }
