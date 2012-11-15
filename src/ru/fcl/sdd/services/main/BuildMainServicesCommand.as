@@ -1,16 +1,19 @@
 /**
- * Created with IntelliJ IDEA.
- * User: questa_4
+ * User: Jessie
  * Date: 07.11.12
  * Time: 19:32
- * To change this template use File | Settings | File Templates.
  */
 package ru.fcl.sdd.services.main
 {
+import flash.events.EventDispatcher;
+import flash.events.IEventDispatcher;
+
 import org.osflash.signals.AboutString;
 import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
+
+import ru.fcl.sdd.error.ServerErrorDispatcher;
 
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
 import ru.fcl.sdd.services.main.parser.ParseServerTalkCommand;

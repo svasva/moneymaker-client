@@ -3,16 +3,13 @@
                xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader"
                addedToStage="addedToStageHandler()">
     <fx:Script><![CDATA[
-        import org.osmf.display.ScaleMode;
-
         private var context:SDDContext;
 
         private function addedToStageHandler():void
         {
             this.stage.scaleMode = StageScaleMode.NO_SCALE;
-
             context = new SDDContext(mainContainer);
         }
         ]]></fx:Script>
-    <s:SpriteVisualElement id="mainContainer"></s:SpriteVisualElement>
+    <core:UIComponent id="mainContainer"/>
 </s:Application>

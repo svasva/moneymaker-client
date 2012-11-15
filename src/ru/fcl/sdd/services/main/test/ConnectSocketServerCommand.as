@@ -11,12 +11,14 @@ public class ConnectSocketServerCommand extends SignalCommand
 {
     [Inject]
     public var logger:ILogger;
-    [Inject] public var serverModel:FlashVarsModel;
+    [Inject]
+    public var serverModel:FlashVarsModel;
 
     override public function execute():void
     {
         var serverProxy:IServerProxy = injector.getInstance(IServerProxy);
         serverProxy.connect(serverModel.socketUrl, WebSocketProtocol.FRAGGLE_PROTOCOL, logger);
+
     }
 }
 }

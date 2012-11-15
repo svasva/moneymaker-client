@@ -10,16 +10,15 @@ import com.worlize.websocket.WebSocketErrorEvent;
 import com.worlize.websocket.WebSocketEvent;
 import com.worlize.websocket.WebSocketMessage;
 
-import flash.events.IOErrorEvent;
+import flash.events.EventDispatcher;
 import flash.events.SecurityErrorEvent;
 import flash.system.Security;
-import flash.system.System;
 
 import org.osflash.signals.ISignal;
 
 import ru.fcl.sdd.log.ILogger;
 
-public class ServerProxy implements IServerProxy
+public class ServerProxy extends EventDispatcher implements IServerProxy
 {
     [Inject(name="main_server_connected")]
     public var connectedSignal:ISignal;
@@ -46,7 +45,7 @@ public class ServerProxy implements IServerProxy
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
         _webSocket.addEventListener(WebSocketEvent.OPEN, handleWebSocketOpen);
         _webSocket.addEventListener(WebSocketEvent.MESSAGE, handleWebSocketMessage);
-        _webSocket.addEventListener(IOErrorEvent.IO_ERROR, handleIOError);
+        _webSocket.addEventListener(WebSocketErrorEvent.IO_ERROR, handleIOError);
         _webSocket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, handleSecurityError);
         _webSocket.addEventListener(WebSocketErrorEvent.CONNECTION_FAIL, handleConnectionFail);
         _webSocket.connect();
@@ -80,20 +79,23 @@ public class ServerProxy implements IServerProxy
     }
 
 
-    private function handleIOError(event:IOErrorEvent):void
+    private function handleIOError(event:WebSocketErrorEvent):void
     {
         _logger.error(this, event.text);
+        dispatchEvent(event.clone());
     }
 
     private function handleSecurityError(event:SecurityErrorEvent):void
     {
         _logger.error(this, event.text);
+        dispatchEvent(event.clone());
     }
 
     private function handleConnectionFail(event:WebSocketErrorEvent):void
     {
         _logger.log(this, "Connection Failure: " +
                 event.text);
+        dispatchEvent(event.clone());
     }
 
     private function handleWebSocketClosed(event:WebSocketEvent):void
