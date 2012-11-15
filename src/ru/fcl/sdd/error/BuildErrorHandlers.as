@@ -15,6 +15,10 @@ public class BuildErrorHandlers extends SignalCommand
     {
         var socketServerErrorHandler:IErrorHandler = new SocketServerErrorHandler();
         injector.mapValue(IErrorHandler,socketServerErrorHandler,"socket_server_error_handler");
+
+        var errorHandler:IErrorHandler = new ErrorHandler();
+        injector.mapValue(IErrorHandler,errorHandler,"unknown_error_handler");
+
         socketServerErrorHandler.init(contextView as UIComponent);
     }
 }

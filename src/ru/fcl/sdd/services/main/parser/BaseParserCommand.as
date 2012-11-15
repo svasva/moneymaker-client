@@ -6,9 +6,9 @@
 package ru.fcl.sdd.services.main.parser
 {
 
-import avmplus.getQualifiedClassName;
-
 import com.adobe.serialization.json.JSON;
+
+import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.SignalCommand;
 
@@ -23,12 +23,14 @@ public class BaseParserCommand extends SignalCommand
     public var logger:ILogger;
     [Inject]
     public var callHashMap:CallHashMap;
+    [Inject(name="error_response_signal")]
+    public var errorResponseSignal:ISignal;
 
     override public function execute():void
     {
         var slicedString:String = response.slice(2, response.length - 2);
 
-        while(slicedString.indexOf("\\")!=-1)
+        while (slicedString.indexOf("\\") != -1)
         {
             slicedString = slicedString.replace("\\", "");
         }
@@ -38,9 +40,13 @@ public class BaseParserCommand extends SignalCommand
             var decodedObject:Object = JSON.decode(slicedString);
             logger.log(this, "decode value: " + decodedObject);
 
-            if(callHashMap.get(decodedObject.requestId))
+            if (decodedObject.response.error)
             {
-                commandMap.execute(Class(callHashMap.get(decodedObject.requestId)),decodedObject);
+                errorResponseSignal.dispatch(decodedObject);
+            } else
+            if (callHashMap.get(decodedObject.requestId))
+            {
+                commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
             }
         }
     }
