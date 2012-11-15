@@ -37,7 +37,6 @@ public class ParseItemListCommand extends Command
         item.size_y = object.size_y;
         item.name = object.name;
         itemListModel.set(item.id,item);
-        trace("cool");
     }
 }
 }
