@@ -13,7 +13,7 @@ import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.error.ServerErrorDispatcher;
+import ru.fcl.sdd.error.SocketServerErrorHandler;
 
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
 import ru.fcl.sdd.services.main.parser.ParseServerTalkCommand;

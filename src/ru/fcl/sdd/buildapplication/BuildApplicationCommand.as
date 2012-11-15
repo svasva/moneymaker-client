@@ -7,6 +7,7 @@ package ru.fcl.sdd.buildapplication
 {
 import ru.fcl.sdd.buildapplication.buildscreen.BuildDisplayCommand;
 import ru.fcl.sdd.config.BuildConfigCommand;
+import ru.fcl.sdd.error.BuildErrorHandlers;
 import ru.fcl.sdd.log.BuildLoggerCommand;
 
 import org.robotlegs.mvcs.SignalCommand;
@@ -28,6 +29,10 @@ public class BuildApplicationCommand extends SignalCommand
         commandMap.execute(BuildDebugConsoleCommand);
         commandMap.execute(BuildLoggerCommand);
         //*******debugger-logger***************************
+
+        //******ERROR-HANDLERS*****************************
+        commandMap.execute(BuildErrorHandlers);
+        //******error-handlers*****************************
 
         //***********CONFIGURE*****************************
         commandMap.execute(BuildConfigCommand);

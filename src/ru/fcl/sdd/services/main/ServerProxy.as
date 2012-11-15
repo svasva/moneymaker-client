@@ -16,6 +16,10 @@ import flash.system.Security;
 
 import org.osflash.signals.ISignal;
 
+import ru.fcl.sdd.error.IErrorHandler;
+
+import ru.fcl.sdd.error.IErrorHandler;
+
 import ru.fcl.sdd.log.ILogger;
 
 public class ServerProxy extends EventDispatcher implements IServerProxy
@@ -30,6 +34,7 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
     private var _webSocket:WebSocket;
     private var _socketProtocol:String;
     private var _logger:ILogger;
+    private var _errorHandler:IErrorHandler;
 
     [PostConstruct]
     public function init():void
@@ -37,10 +42,11 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
     }
 
 
-    public function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void
+    public function connect(url:String, protocol:String, logger:ILogger, errorHandler:IErrorHandler, timeout:int = 5000, origin:String = "*"):void
     {
         Security.allowDomain("*");
         this._logger = logger;
+        this._errorHandler = errorHandler;
         _webSocket = new WebSocket(url, origin, protocol, timeout);
         _webSocket.addEventListener(WebSocketEvent.CLOSED, handleWebSocketClosed);
         _webSocket.addEventListener(WebSocketEvent.OPEN, handleWebSocketOpen);
@@ -82,20 +88,20 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
     private function handleIOError(event:WebSocketErrorEvent):void
     {
         _logger.error(this, event.text);
-        dispatchEvent(event.clone());
+        _errorHandler.handleError(event);
     }
 
     private function handleSecurityError(event:SecurityErrorEvent):void
     {
         _logger.error(this, event.text);
-        dispatchEvent(event.clone());
+        _errorHandler.handleError(event);
     }
 
     private function handleConnectionFail(event:WebSocketErrorEvent):void
     {
         _logger.log(this, "Connection Failure: " +
                 event.text);
-        dispatchEvent(event.clone());
+        _errorHandler.handleError(event);
     }
 
     private function handleWebSocketClosed(event:WebSocketEvent):void

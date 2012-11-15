@@ -5,9 +5,11 @@
  */
 package ru.fcl.sdd.error
 {
+import flash.events.ErrorEvent;
+
 import mx.core.UIComponent;
 
-public interface IErrorDispatcher
+public interface IErrorHandler
 {
     /**
      * must be use if need pop-up message error on screen.
@@ -15,7 +17,7 @@ public interface IErrorDispatcher
      */
     function init(targetView:UIComponent):void
 
-    function handleError(error:Error):void
+    function handleError(error:ErrorEvent):void
 
     function set silentMode(value:Boolean):void
 }

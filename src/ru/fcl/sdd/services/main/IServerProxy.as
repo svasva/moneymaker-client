@@ -1,5 +1,6 @@
 package ru.fcl.sdd.services.main
 {
+import ru.fcl.sdd.error.IErrorHandler;
 import ru.fcl.sdd.log.ILogger;
 
 public interface IServerProxy
@@ -14,7 +15,7 @@ public interface IServerProxy
      * @param timeout - try connection timeout.
      * @param origin - origin, optional.
      */
-    function connect(url:String, protocol:String, logger:ILogger, timeout:int = 5000, origin:String = "*"):void;
+    function connect(url:String, protocol:String, logger:ILogger, errorHandler:IErrorHandler, timeout:int = 5000, origin:String = "*"):void;
 
     function disconnect():void
 
