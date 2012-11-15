@@ -10,6 +10,7 @@ import org.robotlegs.mvcs.Command;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.*;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
+import ru.fcl.sdd.services.main.responsehandlers.WhenItemsListReceivedCommand;
 import ru.fcl.sdd.user.UserDataModel;
 
 public class GetItemListCommand_3 extends Command
@@ -27,6 +28,7 @@ public class GetItemListCommand_3 extends Command
 
     override public function execute():void
     {
+//        callHashMap.remove(GetItemListCommand_3);
         logger.log(this,"getting items table...");
 
         var key:String = callHashMap.addValue(WhenItemsListReceivedCommand);

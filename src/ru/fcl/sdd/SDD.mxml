@@ -1,14 +1,31 @@
 <?xml version="1.0"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" width="800" height="800" backgroundColor="#BDBEBD"
                xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader"
-               addedToStage="addedToStageHandler()">
+              >
     <fx:Script><![CDATA[
         private var context:SDDContext;
+        private var _flashVars:Object;
 
-        private function addedToStageHandler():void
+        public function startInit():void
         {
-            this.stage.scaleMode = StageScaleMode.NO_SCALE;
-            context = new SDDContext(mainContainer);
+//            this.stage.scaleMode = StageScaleMode.NO_SCALE;
+            context = new SDDContext(mainContainer, false);
+            context.startup();
+        }
+
+        public function dispatchInitComplete():void
+        {
+            dispatchEvent(new Event("applicationReady"));
+        }
+
+        public function get flashVars():Object
+        {
+            return _flashVars;
+        }
+
+        public function set flashVars(value:Object):void
+        {
+            _flashVars = value;
         }
         ]]></fx:Script>
     <core:UIComponent id="mainContainer"/>

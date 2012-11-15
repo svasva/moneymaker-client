@@ -13,11 +13,17 @@ import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.utils.getTimer;
+import flash.utils.setTimeout;
+
+import mx.core.FlexGlobals;
 
 import mx.events.RSLEvent;
+import mx.managers.SystemManager;
 import mx.preloaders.SparkDownloadProgressBar;
 
 import ru.fcl.sdd.Preloader1McArt;
+
+import spark.effects.Fade;
 
 public class Preloader extends SparkDownloadProgressBar {
 
@@ -44,10 +50,12 @@ public class Preloader extends SparkDownloadProgressBar {
     private var numberRslTotal:Number = 1;
     private var numberRslCurrent:Number = 1;
     private var preloaderDisplay:Preloader1McArt;
+    public var flashVars:Object;
 
     public function Preloader()
     {
         super();
+        this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
     }
 
     /**
@@ -56,8 +64,20 @@ public class Preloader extends SparkDownloadProgressBar {
      */
     override protected function initCompleteHandler(event:Event):void
     {
+        FlexGlobals.topLevelApplication.flashVars = flashVars;
+        FlexGlobals.topLevelApplication.addEventListener("applicationReady", dispatchInitComplete);
+        FlexGlobals.topLevelApplication.startInit();
+    }
+
+    private function dispatchInitComplete(event:Event):void
+    {
+        SystemManager.getSWFRoot(FlexGlobals.topLevelApplication).visible = true;
         _star.removeEventListener(Event.ENTER_FRAME, rotateStar);
-        dispatchEvent(new Event(Event.COMPLETE));
+        var fade:Fade = new Fade(this);
+        fade.alphaTo = 0;
+        fade.duration = 1000;
+        fade.play();
+        setTimeout(function():void{dispatchEvent(new Event(Event.COMPLETE))},1000);
     }
 
     /**
@@ -220,6 +240,12 @@ public class Preloader extends SparkDownloadProgressBar {
     {
         _text.text = value;
         _text.x = (stage.stageWidth - _text.textWidth) / 2;
+    }
+
+    private function addedToStageHandler(event:Event):void
+    {
+        flashVars = new Object();
+        flashVars = stage.loaderInfo.parameters;
     }
 
 }
