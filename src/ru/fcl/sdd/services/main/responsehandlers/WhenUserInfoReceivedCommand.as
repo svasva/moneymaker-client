@@ -3,8 +3,10 @@
  * Date: 13.11.12
  * Time: 15:50
  */
-package ru.fcl.sdd.services.main
+package ru.fcl.sdd.services.main.responsehandlers
 {
+import ru.fcl.sdd.services.main.*;
+
 import org.robotlegs.mvcs.Command;
 
 import ru.fcl.sdd.buildapplication.init.InitCompeteCommand;
@@ -29,6 +31,7 @@ public class WhenUserInfoReceivedCommand extends Command
 
     override public function execute():void
     {
+//        callHashMap.remove(WhenUserInfoReceivedCommand);
         commandMap.execute(ParseUserDataCommand,userObject);
         logger.log(this,"socket server authorization completed.");
 

@@ -11,7 +11,7 @@ import ru.fcl.sdd.log.ILogger;
 
 import ru.fcl.sdd.services.main.ISender;
 
-import ru.fcl.sdd.services.main.WhenUserInfoReceivedCommand;
+import ru.fcl.sdd.services.main.responsehandlers.WhenUserInfoReceivedCommand;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
 import ru.fcl.sdd.user.UserDataModel;
 

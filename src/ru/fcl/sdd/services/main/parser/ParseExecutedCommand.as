@@ -15,7 +15,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
 
-public class BaseParserCommand extends SignalCommand
+public class ParseExecutedCommand extends SignalCommand
 {
     [Inject]
     public var response:String;
@@ -48,6 +48,8 @@ public class BaseParserCommand extends SignalCommand
             {
                 commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
             }
+            callHashMap.remove(callHashMap.get(decodedObject.requestId));
+            callHashMap.remove(callHashMap.get(decodedObject.requestId+"_error"));
         }
     }
 }

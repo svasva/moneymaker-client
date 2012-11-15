@@ -5,17 +5,17 @@
  */
 package ru.fcl.sdd.buildapplication
 {
+import mx.core.FlexGlobals;
+
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.SDD;
+
 import ru.fcl.sdd.log.ILogger;
-
 import ru.fcl.sdd.services.main.ISender;
-
-import ru.fcl.sdd.services.main.WhenItemsListReceivedCommand;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
-import ru.fcl.sdd.user.UserDataModel;
 
-public class StartApplicationCommand extends SignalCommand
+public class SendServerStartApplicationCommand extends SignalCommand
 {
     [Inject]
     public var logger:ILogger;
@@ -28,7 +28,7 @@ public class StartApplicationCommand extends SignalCommand
     {
         logger.log(this, "sending 2 server star application command...");
 
-        var key:String = callHashMap.addValue(WhenItemsListReceivedCommand);
+        var key:String = callHashMap.addValue(WhenStartApplicationServerResponseCommand);
         var call:Object = {requestId:key, command:"startApplication"};
         sender.send(call);
     }
