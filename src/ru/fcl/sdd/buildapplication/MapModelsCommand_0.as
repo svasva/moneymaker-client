@@ -12,7 +12,7 @@ import ru.fcl.sdd.config.PlatformModel;
 import ru.fcl.sdd.user.UserDataModel;
 import ru.fcl.sdd.user.items.ItemListModel;
 
-public class MapModelsCommand extends SignalCommand
+public class MapModelsCommand_0 extends SignalCommand
 {
     override public function execute():void
     {
