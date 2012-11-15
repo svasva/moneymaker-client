@@ -2,12 +2,9 @@ package ru.fcl.sdd.services.main
 {
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.error.IErrorHandler;
-
-import ru.fcl.sdd.log.ILogger;
-import ru.fcl.sdd.services.main.IServerProxy;
 import ru.fcl.sdd.config.FlashVarsModel;
-import ru.fcl.sdd.services.main.WebSocketProtocol;
+import ru.fcl.sdd.error.IErrorHandler;
+import ru.fcl.sdd.log.ILogger;
 
 public class ConnectSocketServerCommand extends SignalCommand
 {
