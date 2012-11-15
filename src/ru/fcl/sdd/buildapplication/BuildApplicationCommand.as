@@ -15,7 +15,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.scenes.BuildScenesCommand;
 
 import ru.fcl.sdd.services.main.BuildMainServicesCommand;
-import ru.fcl.sdd.services.main.test.ConnectSocketServerCommand;
+import ru.fcl.sdd.services.main.ConnectSocketServerCommand;
 import ru.fcl.sdd.test.BuildDebugConsoleCommand;
 
 

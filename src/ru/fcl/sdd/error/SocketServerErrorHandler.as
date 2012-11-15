@@ -5,7 +5,11 @@
  */
 package ru.fcl.sdd.error
 {
+import com.worlize.websocket.WebSocketErrorEvent;
+
 import flash.events.ErrorEvent;
+
+import mx.controls.Alert;
 import mx.core.UIComponent;
 
 public class SocketServerErrorHandler implements IErrorHandler
@@ -20,7 +24,13 @@ public class SocketServerErrorHandler implements IErrorHandler
 
     public function handleError(e:ErrorEvent):void
     {
-        trace("cool");
+        switch (e.type)
+        {
+            case WebSocketErrorEvent.IO_ERROR:
+            {
+                showError(e.text,"Ошибка подключения к серверу.");
+            }
+        }
     }
 
     public function get silentMode():Boolean
@@ -31,6 +41,14 @@ public class SocketServerErrorHandler implements IErrorHandler
     public function set silentMode(value:Boolean):void
     {
         _silentMode = value;
+    }
+
+    private function showError(title:String, text:String):void
+    {
+        if(!silentMode)
+        {
+            Alert.show(text, title,4,viewTarget);
+        }
     }
 }
 }

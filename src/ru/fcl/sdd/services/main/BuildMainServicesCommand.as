@@ -13,10 +13,8 @@ import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.error.SocketServerErrorHandler;
-
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
-import ru.fcl.sdd.services.main.parser.ParseServerTalkCommand;
+import ru.fcl.sdd.services.main.parser.BaseParserCommand;
 
 public class BuildMainServicesCommand extends SignalCommand
 {
@@ -30,7 +28,7 @@ public class BuildMainServicesCommand extends SignalCommand
 
         var serverTalkSignal:ISignal = new AboutString();
         injector.mapValue(ISignal,serverTalkSignal,"main_server_talk");
-        signalCommandMap.mapSignal(serverTalkSignal,ParseServerTalkCommand);
+        signalCommandMap.mapSignal(serverTalkSignal,BaseParserCommand);
 
         injector.mapSingletonOf(IServerProxy, ServerProxy);
 
