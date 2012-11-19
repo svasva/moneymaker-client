@@ -16,7 +16,7 @@ public class GridScene extends IsoScene
     public function init():void
     {
         grid = new IsoGrid();
-        grid.cellSize = 50;
+        grid.cellSize = 100;
         grid.setGridSize(100,100);
 
         this.addChild(grid);
