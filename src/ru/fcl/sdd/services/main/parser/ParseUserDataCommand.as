@@ -16,6 +16,7 @@ public class ParseUserDataCommand extends Command
     [Inject]
     public var userObject:Object;
 
+
     override public function execute():void
     {
         userData.bank_name = userObject.response.bank_name;
