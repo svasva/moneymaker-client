@@ -9,5 +9,6 @@ import as3isolib.display.scene.IsoScene;
 
 public class MainIsoScene extends IsoScene
 {
+
 }
 }

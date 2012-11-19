@@ -12,7 +12,7 @@ import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
 import ru.fcl.sdd.services.main.parser.ParseItemListCommand;
 
-public class WhenItemsListReceivedCommand extends Command
+public class WhenItemListReceivedCommand extends Command
 {
     [Inject]
     public var logger:ILogger;

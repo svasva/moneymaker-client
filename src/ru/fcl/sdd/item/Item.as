@@ -3,7 +3,7 @@
  * Date: 13.11.12
  * Time: 12:36
  */
-package ru.fcl.sdd.user.items
+package ru.fcl.sdd.item
 {
 
 public class Item
