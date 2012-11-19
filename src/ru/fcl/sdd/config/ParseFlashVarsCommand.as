@@ -28,7 +28,6 @@ public class ParseFlashVarsCommand extends SignalCommand
         {
             flashVarsModel.token= FlashVarsModel.LOCAL_TOKEN;
         }
-
         flashVarsModel.greeting=FlexGlobals.topLevelApplication.flashVars.greeting;
     }
 }

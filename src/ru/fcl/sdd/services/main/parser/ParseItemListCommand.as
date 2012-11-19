@@ -9,8 +9,8 @@ import org.robotlegs.mvcs.Command;
 
 import ru.fcl.sdd.log.ILogger;
 
-import ru.fcl.sdd.user.items.Item;
-import ru.fcl.sdd.user.items.ItemListModel;
+import ru.fcl.sdd.location.item.Item;
+import ru.fcl.sdd.location.item.ItemListModel;
 
 public class ParseItemListCommand extends Command
 {

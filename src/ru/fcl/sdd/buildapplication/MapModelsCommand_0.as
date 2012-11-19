@@ -10,7 +10,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
 import ru.fcl.sdd.user.UserDataModel;
-import ru.fcl.sdd.user.items.ItemListModel;
+import ru.fcl.sdd.location.item.ItemListModel;
 
 public class MapModelsCommand_0 extends SignalCommand
 {
