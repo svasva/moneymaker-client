@@ -9,6 +9,7 @@ import flash.display.Sprite;
 
 public class NorthPanelView extends Sprite implements INorthPanelView
 {
+    private var bg:
 
 }
 }
