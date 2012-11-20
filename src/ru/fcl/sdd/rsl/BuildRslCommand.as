@@ -14,9 +14,10 @@ public class BuildRslCommand extends SignalCommand
     override public function execute():void
     {
         var rslLoaded:ISignal = new Signal();
-        signalCommandMap.mapSignal(rslLoaded,WhenRslLoaded,"rsl_loaded");
+        injector.mapValue(ISignal,rslLoaded,"rsl_loaded");
+        signalCommandMap.mapSignal(rslLoaded,WhenRslLoaded);
 
-        injector.mapSingletonOf(IRslLoader, MainInterfaceRsl,"main_interface_rsl_loader");
+        injector.mapSingleton(MainInterfaceRsl,"main_interface_rsl_loader");
     }
 }
 }

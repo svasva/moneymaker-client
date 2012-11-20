@@ -17,7 +17,7 @@ public class RslLoader implements IRslLoader
     protected var _url:String;
     protected var swfNameStack:Vector.<String>;
     protected var _isReady:Boolean = false;
-    [Inject]
+    [Inject(name="rsl_loaded")]
     public var rslLoadedSignal:ISignal;
 
     public function loadRsl(url:String):void
