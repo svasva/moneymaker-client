@@ -14,6 +14,8 @@ import ru.fcl.sdd.log.BuildLoggerCommand;
 
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.rsl.BuildRslCommand;
+
 import ru.fcl.sdd.scenes.BuildScenesCommand;
 import ru.fcl.sdd.services.main.BuildMainServicesCommand;
 
@@ -41,7 +43,13 @@ public class BuildApplicationCommand extends SignalCommand
         commandMap.execute(BuildErrorHandlers);
         //******error-handlers*****************************
 
+        //*******SERVICES**********************************
         commandMap.execute(BuildMainServicesCommand);
+        //*******services**********************************
+
+        //*******RSL***************************************
+        commandMap.execute(BuildRslCommand);
+        //*******rsl***************************************
 
         //**************DISPLAY****************************
         commandMap.execute(BuildScenesCommand);

@@ -15,12 +15,14 @@ import ru.fcl.sdd.config.FlashVarsModel;
 public class ParseFlashVarsCommand extends SignalCommand
 {
     [Inject] public var flashVarsModel:FlashVarsModel;
+    [Inject] public var platformModel:PlatformModel;
 
     override public function execute():void
     {
         flashVarsModel.socketUrl=FlexGlobals.topLevelApplication.flashVars.socket_url;
         if(!flashVarsModel.socketUrl)
         {
+            flashVarsModel.isLocal = true;
             flashVarsModel.socketUrl= FlashVarsModel.LOCAL_SOCKET_URL;
         }
         flashVarsModel.token=FlexGlobals.topLevelApplication.flashVars.token;
