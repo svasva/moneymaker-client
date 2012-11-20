@@ -10,8 +10,7 @@ public interface IRslLoader
     /**
      * load all rsl.
      * @param url - rsl url for current social net.
-     * @param swfNameStack - stack of names swf files 2 load.
      */
-    function loadRsl(url:String, swfNameStack:Vector.<String>):void;
+    function loadRsl(url:String):void;
 }
 }

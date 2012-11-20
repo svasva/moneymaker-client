@@ -9,9 +9,6 @@ import flash.display.Sprite;
 
 public class MainInterfaceRsl extends RslLoader implements IRsl,IRslLoader
 {
-    public static const UP_INTERFACE:String = "NorthMainInterface.swf";
-    public static const MAIN_CONTROL_PANEL:String = "MainControlPanel.swf";
-
     public function get isReady():Boolean
     {
         return _isReady;

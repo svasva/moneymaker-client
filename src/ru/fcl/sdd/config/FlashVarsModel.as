@@ -12,6 +12,8 @@ public class FlashVarsModel
     private var _token:String;
     private var _socketUrl:String;
     private var _greeting:String;
+    private var _isLocal:Boolean = true;
+
 
     public function get token():String
     {
@@ -41,6 +43,16 @@ public class FlashVarsModel
     public function set greeting(value:String):void
     {
         _greeting = value;
+    }
+
+    public function get isLocal():Boolean
+    {
+        return _isLocal;
+    }
+
+    public function set isLocal(value:Boolean):void
+    {
+        _isLocal = value;
     }
 }
 }

@@ -5,6 +5,7 @@
  */
 package ru.fcl.sdd.services.main.responsehandlers
 {
+import ru.fcl.sdd.buildapplication.init.LoadRSLCommand5;
 import ru.fcl.sdd.services.main.*;
 
 import org.robotlegs.mvcs.Command;
@@ -35,7 +36,7 @@ public class WhenUserInfoReceivedCommand extends Command
         commandMap.execute(ParseUserDataCommand,userObject);
         logger.log(this,"socket server authorization completed.");
 
-        commandMap.execute(InitCompeteCommand);
+        commandMap.execute(LoadRSLCommand5);
     }
 }
 }

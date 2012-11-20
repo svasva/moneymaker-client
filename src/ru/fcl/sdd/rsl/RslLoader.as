@@ -9,24 +9,22 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.net.URLRequest;
 
+import org.osflash.signals.ISignal;
+
 public class RslLoader implements IRslLoader
 {
     protected var _loadedContent:Vector.<Loader>;
     protected var _url:String;
     protected var swfNameStack:Vector.<String>;
     protected var _isReady:Boolean = false;
+    [Inject]
+    public var rslLoadedSignal:ISignal;
 
-    public function loadRsl(url:String, swfNameStack:Vector.<String>):void
+    public function loadRsl(url:String):void
     {
         _url = url;
         _loadedContent = new Vector.<Loader>();
-        this.swfNameStack = swfNameStack;
 
-        if (_url.lastIndexOf("/") != _url.length - 1)
-        {
-            _url += "/";
-        }
-        loadPartRsl(swfNameStack.pop());
     }
 
     private function loadPartRsl(swfName:String):void
@@ -44,6 +42,7 @@ public class RslLoader implements IRslLoader
         } else
         {
             _isReady = true;
+            rslLoadedSignal.dispatch();
         }
     }
 }
