@@ -26,7 +26,7 @@ public class LoadRSLCommand5 extends SignalCommand
         if(flashVars.isLocal)
         {
             logger.log(this,"try load local rsl");
-            rsl.loadRsl("library");
+            rsl.loadRsl("./rsl/local/library.swf");
         }else
         {
             logger.log(this,"try load remote rsl");

@@ -8,44 +8,46 @@ package ru.fcl.sdd.rsl
 import flash.display.Loader;
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
 
 import org.osflash.signals.ISignal;
 
+import ru.fcl.sdd.log.ILogger;
+
 public class MainInterfaceRsl implements IRsl,IRslLoader
 {
-    protected var _loadedContent:Vector.<Loader>;
+    protected var _loadedContent:Loader;
     protected var _url:String;
-    protected var swfNameStack:Vector.<String>;
     protected var _isReady:Boolean = false;
     [Inject(name="rsl_loaded")]
     public var rslLoadedSignal:ISignal;
 
+    [Inject]
+    public var logger:ILogger;
+
     public function loadRsl(url:String):void
     {
         _url = url;
-        _loadedContent = new Vector.<Loader>();
-
-    }
-
-    private function loadPartRsl(swfName:String):void
-    {
-        _loadedContent[swfName] = new Loader();
-        _loadedContent[swfName].contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
-        _loadedContent[swfName].load(new URLRequest(_url + swfName));
+        _loadedContent = new Loader();
+        _loadedContent.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
+        _loadedContent.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
+        _loadedContent.load(new URLRequest(url));
     }
 
     private function loader_completeHandler(event:Event):void
     {
-        if (swfNameStack.length)
-        {
-            loadPartRsl(swfNameStack.pop());
-        } else
-        {
-            _isReady = true;
-            rslLoadedSignal.dispatch();
-        }
+        _isReady = true;
+        logger.log(this, "rsl now is loaded from url: " + _url);
+        rslLoadedSignal.dispatch();
     }
+
+    private function loader_errorHandler(event:Event):void
+    {
+        _isReady = false
+        logger.error(this, "error loading rsl from url: " + _url);
+    }
+
     public function get isReady():Boolean
     {
         return _isReady;
