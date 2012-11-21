@@ -6,10 +6,14 @@
 package ru.fcl.sdd.rsl
 {
 import flash.display.Loader;
+import flash.display.MovieClip;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
+import flash.system.ApplicationDomain;
+import flash.system.LoaderContext;
+import flash.system.SecurityDomain;
 
 import org.osflash.signals.ISignal;
 
@@ -22,7 +26,7 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
     protected var _isReady:Boolean = false;
     [Inject(name="rsl_loaded")]
     public var rslLoadedSignal:ISignal;
-
+    private var rsl:Object;
     [Inject]
     public var logger:ILogger;
 
@@ -30,6 +34,7 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
     {
         _url = url;
         _loadedContent = new Loader();
+        var context:LoaderContext=new LoaderContext(false, new ApplicationDomain( ApplicationDomain.currentDomain ), SecurityDomain.currentDomain);
         _loadedContent.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
         _loadedContent.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loader_errorHandler);
         _loadedContent.load(new URLRequest(url));
@@ -133,9 +138,10 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
         return null;
     }
 
-    public function get barArtInstance():Sprite
+    public function get getBarArtInstance():Sprite
     {
-        return null;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.panels.BarArt") as Class;
+        return  new ClassDefinition();
     }
 
 }

@@ -11,8 +11,8 @@ public class BuildNorthPanel extends SignalCommand
 {
     override public function execute():void
     {
-        injector.mapSingletonOf(INorthPanelView, NorthPanelView);
-        mediatorMap.mapView(INorthPanelView,NorthPanelMediator);
+        injector.mapSingletonOf(NorthPanelView, NorthPanelView);
+        mediatorMap.mapView(NorthPanelView,NorthPanelMediator);
     }
 }
 }
