@@ -9,7 +9,7 @@ public interface ISender
 {
     /**
      * Send object 2 server.
-     * @param value - object 2 send
+     * @param value - object 2 send {command:String, args:Array=null}
      * @param handlerCommandClass - Command/SignalCommand handler class 4 handle server response. Must have inject Object, parsed server response.
      * @example
      * <Listing>
