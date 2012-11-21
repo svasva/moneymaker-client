@@ -21,16 +21,13 @@ public class SendServerStartApplicationCommand extends SignalCommand
     public var logger:ILogger;
     [Inject]
     public var sender:ISender;
-    [Inject]
-    public var callHashMap:CallHashMap;
+
 
     override public function execute():void
     {
         logger.log(this, "sending 2 server star application command...");
-
-        var key:String = callHashMap.addValue(WhenStartApplicationServerResponseCommand);
-        var call:Object = {requestId:key, command:"startApplication"};
-        sender.send(call);
+        var call:Object = {command:"startApplication"};
+        sender.send(call,WhenStartApplicationServerResponseCommand);
     }
 }
 }

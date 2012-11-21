@@ -23,17 +23,14 @@ public class GetItemListCommand_3 extends Command
     public var userObject:Object;
     [Inject]
     public var sender:ISender;
-    [Inject]
-    public var callHashMap:CallHashMap;
 
     override public function execute():void
     {
 //        callHashMap.remove(GetItemListCommand_3);
         logger.log(this,"getting item table...");
 
-        var key:String = callHashMap.addValue(WhenItemListReceivedCommand);
-        var call:Object = {requestId:key, command:"getItems"};
-        sender.send(call);
+        var call:Object = {command:"getItems"};
+        sender.send(call,WhenItemListReceivedCommand);
     }
 }
 }

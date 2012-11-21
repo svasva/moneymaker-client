@@ -18,7 +18,7 @@ public class CallHashMap extends HashMap
      *
      * @return key of value
      */
-    public function addValue(value:Class):String
+    public function addResponseHandler(value:Class):String
     {
         var date:Date = new Date();
         var time2Hash:String = String(date.time);

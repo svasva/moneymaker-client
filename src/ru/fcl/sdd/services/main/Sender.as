@@ -7,14 +7,21 @@ package ru.fcl.sdd.services.main
 {
 import com.adobe.serialization.json.JSON;
 
+import ru.fcl.sdd.buildapplication.WhenStartApplicationServerResponseCommand;
+import ru.fcl.sdd.services.main.listen.CallHashMap;
+
 public class Sender implements ISender
 {
     [Inject]
     public var serverProxy:IServerProxy;
+    [Inject]
+    public var callHashMap:CallHashMap;
 
-    public function send(value:Object):void
+    public function send(value:Object,responseHandleCommand:Class,errorHandlerCommandClass:Class=null):void
     {
-           serverProxy.sendData(JSON.encode(value));
+        var key:String = callHashMap.addResponseHandler(WhenStartApplicationServerResponseCommand);
+        value.requestId = key;
+        serverProxy.sendData(JSON.encode(value));
     }
 
 }

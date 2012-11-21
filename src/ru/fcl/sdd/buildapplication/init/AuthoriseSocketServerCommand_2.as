@@ -22,15 +22,12 @@ public class AuthoriseSocketServerCommand_2 extends SignalCommand
     [Inject]
     public var logger:ILogger;
 
-    [Inject] public var callHashMap: CallHashMap;
-
     override public function execute():void
     {
         logger.log(this, "socket server connect initialised, authorization...");
 
-        var key:String = callHashMap.addValue(GetItemListCommand_3);
-        var token:Object = {requestId:key, token:flashVarsModel.token};
-        sender.send(token);
+        var token:Object = {token:flashVarsModel.token};
+        sender.send(token,GetItemListCommand_3);
     }
 }
 }
