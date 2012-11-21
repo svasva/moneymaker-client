@@ -3,7 +3,8 @@
  * Date: 14.11.12
  * Time: 11:41
  */
-package ru.fcl.sdd.preloader {
+package ru.fcl.sdd.preloader
+{
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;
@@ -16,7 +17,6 @@ import flash.utils.getTimer;
 import flash.utils.setTimeout;
 
 import mx.core.FlexGlobals;
-
 import mx.events.RSLEvent;
 import mx.managers.SystemManager;
 import mx.preloaders.SparkDownloadProgressBar;
@@ -25,14 +25,15 @@ import ru.fcl.sdd.Preloader1McArt;
 
 import spark.effects.Fade;
 
-public class Preloader extends SparkDownloadProgressBar {
+public class Preloader extends SparkDownloadProgressBar
+{
 
-	[Embed(source = "../../../../../art/bin/ru/fcl/sdd/preloader/star.png")]
+    [Embed(source="art/star.png")]
     private static const _starClass:Class;
-	[Embed(source = "../../../../../art/bin/ru/fcl/sdd/preloader/AVA_LL.TTF", fontFamily = "a_AvanteLt", mimeType = "application/x-font", embedAsCFF="false")]
+    [Embed(source="art/AVA_LL.TTF", fontFamily="a_AvanteLt", mimeType="application/x-font", embedAsCFF="false")]
     public var _lightFont:Class;
-	[Embed(source="../../../../../art/bin/ru/fcl/sdd/preloader/AVA_LDB.TTF", fontFamily = "AVA_B", mimeType = "application/x-font", embedAsCFF="false")]
-    public var  _boldFont:Class;
+    [Embed(source="art/AVA_LDB.TTF", fontFamily="AVA_B", mimeType="application/x-font", embedAsCFF="false")]
+    public var _boldFont:Class;
 
     private var _text:TextField = new TextField();
     private var _star:Sprite = new Sprite();
@@ -77,7 +78,10 @@ public class Preloader extends SparkDownloadProgressBar {
         fade.alphaTo = 0;
         fade.duration = 1000;
         fade.play();
-        setTimeout(function():void{dispatchEvent(new Event(Event.COMPLETE))},1000);
+        setTimeout(function ():void
+        {
+            dispatchEvent(new Event(Event.COMPLETE))
+        }, 1000);
     }
 
     /**
@@ -85,7 +89,8 @@ public class Preloader extends SparkDownloadProgressBar {
      */
     override protected function createChildren():void
     {
-        if (!preloaderDisplay) {
+        if (!preloaderDisplay)
+        {
             preloaderDisplay = new Preloader1McArt();
 
             var startX:Number = Math.round((stageWidth - preloaderDisplay.width) / 2) + X_OFFSET;
@@ -125,27 +130,33 @@ public class Preloader extends SparkDownloadProgressBar {
      **/
     override protected function progressHandler(evt:ProgressEvent):void
     {
-        if (preloaderDisplay) {
+        if (preloaderDisplay)
+        {
             var progressApp:int = Math.round((evt.bytesLoaded / evt.bytesLoaded) * 100);
 
             //Main Progress displays the shape of the logo
-           preloaderDisplay.gotoAndStop(progressApp);
+            preloaderDisplay.gotoAndStop(progressApp);
 
-            setPreloaderLoadingText(rslBaseText + Math.round((evt.bytesLoaded / evt.bytesLoaded) * 100).toString() + "%");
-        } else {
+            setPreloaderLoadingText(rslBaseText + Math.round((evt.bytesLoaded / evt.bytesLoaded) * 100).toString() +
+                    "%");
+        } else
+        {
             show();
         }
     }
 
-    private function rotateStar(e:Event):void{
+    private function rotateStar(e:Event):void
+    {
         _star.rotation += 3;
     }
+
     /**
      * Event listener for the <code>RSLEvent.RSL_PROGRESS</code> event.
      **/
     override protected function rslProgressHandler(evt:RSLEvent):void
     {
-        if (evt.rslIndex && evt.rslTotal) {
+        if (evt.rslIndex && evt.rslTotal)
+        {
 
             numberRslTotal = evt.rslTotal;
             numberRslCurrent = evt.rslIndex;
@@ -153,7 +164,8 @@ public class Preloader extends SparkDownloadProgressBar {
 
             var progressRsl:Number = Math.round((evt.bytesLoaded / evt.bytesTotal) * 100);
 
-            preloaderDisplay.setDownloadRSLProgress(Math.round((numberRslCurrent - 1) * 100 / numberRslTotal + progressRsl / numberRslTotal));
+            preloaderDisplay.setDownloadRSLProgress(Math.round((numberRslCurrent - 1) * 100 / numberRslTotal +
+                    progressRsl / numberRslTotal));
 
             //setPreloaderLoadingText(rslBaseText + Math.round((evt.bytesLoaded / evt.bytesTotal) * 100).toString() + "%");
         }
@@ -164,7 +176,8 @@ public class Preloader extends SparkDownloadProgressBar {
      */
     override protected function setDownloadProgress(completed:Number, total:Number):void
     {
-        if (preloaderDisplay) {
+        if (preloaderDisplay)
+        {
             //useless class in my case. I manage the display changes directly in the Progress handlers
         }
     }
@@ -175,14 +188,17 @@ public class Preloader extends SparkDownloadProgressBar {
      */
     override protected function setInitProgress(completed:Number, total:Number):void
     {
-        if (preloaderDisplay) {
+        if (preloaderDisplay)
+        {
             //set the initialization progress : red square fades out
             //preloaderDisplay.setInitAppProgress(Math.round((completed/total)*100));
 
             //set loading text
-            if (completed > total) {
+            if (completed > total)
+            {
                 //setPreloaderLoadingText("ready for action");
-            } else {
+            } else
+            {
                 //setPreloaderLoadingText("initializing " + completed + " of " + total);
             }
         }
@@ -198,16 +214,19 @@ public class Preloader extends SparkDownloadProgressBar {
         var elapsedTime:int = getTimer() - _startTime;
         _initProgressCount++;
 
-        if (!_showingDisplay && showDisplayForInit(elapsedTime, _initProgressCount)) {
+        if (!_showingDisplay && showDisplayForInit(elapsedTime, _initProgressCount))
+        {
             _displayStartCount = _initProgressCount;
             show();
             // If we are showing the progress for the first time here, we need to call setDownloadProgress() once to set the progress bar background.
             setDownloadProgress(100, 100);
         }
 
-        if (_showingDisplay) {
+        if (_showingDisplay)
+        {
             // if show() did not actually show because of SWFObject bug then we may need to set the download bar background here
-            if (!_downloadComplete) {
+            if (!_downloadComplete)
+            {
                 setDownloadProgress(100, 100);
             }
             setInitProgress(_initProgressCount, initProgressTotal);
@@ -218,16 +237,20 @@ public class Preloader extends SparkDownloadProgressBar {
     {
         // swfobject reports 0 sometimes at startup
         // if we get zero, wait and try on next attempt
-        if (stageWidth == 0 && stageHeight == 0) {
-            try {
+        if (stageWidth == 0 && stageHeight == 0)
+        {
+            try
+            {
                 stageWidth = stage.stageWidth;
                 stageHeight = stage.stageHeight
             }
-            catch (e:Error) {
+            catch (e:Error)
+            {
                 stageWidth = loaderInfo.width;
                 stageHeight = loaderInfo.height;
             }
-            if (stageWidth == 0 && stageHeight == 0) {
+            if (stageWidth == 0 && stageHeight == 0)
+            {
                 return;
             }
         }

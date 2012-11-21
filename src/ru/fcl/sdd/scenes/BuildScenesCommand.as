@@ -8,6 +8,8 @@ package ru.fcl.sdd.scenes
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.ApplicationBound;
+import ru.fcl.sdd.scenes.bgScene.BgIsoScene;
+import ru.fcl.sdd.scenes.bgScene.BgIsoScene;
 
 import ru.fcl.sdd.scenes.grid.GridScene;
 
@@ -20,6 +22,9 @@ public class BuildScenesCommand extends SignalCommand
         injector.mapSingleton(MainIsoScene);
         var mainIsoScene:MainIsoScene = injector.getInstance(MainIsoScene);
 
+        injector.mapSingleton(BgIsoScene);
+        var bgIsoScene:BgIsoScene = injector.getInstance(BgIsoScene);
+
         injector.mapSingleton(GridScene);
         var gridScene:GridScene = injector.getInstance(GridScene);
 
@@ -30,8 +35,10 @@ public class BuildScenesCommand extends SignalCommand
 
         mainIsoView.setSize(ApplicationBound.WIDTH,ApplicationBound.HEIGHT);
 
+        mainIsoView.addScene(bgIsoScene);
         mainIsoView.addScene(mainIsoScene);
         mainIsoView.addScene(gridScene);
+        bgIsoScene.render();
         gridScene.render();
     }
 }
