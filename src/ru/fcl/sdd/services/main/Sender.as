@@ -19,7 +19,7 @@ public class Sender implements ISender
 
     public function send(value:Object,responseHandleCommand:Class,errorHandlerCommandClass:Class=null):void
     {
-        var key:String = callHashMap.addResponseHandler(WhenStartApplicationServerResponseCommand);
+        var key:String = callHashMap.addResponseHandler(responseHandleCommand);
         value.requestId = key;
         serverProxy.sendData(JSON.encode(value));
     }

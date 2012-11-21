@@ -11,6 +11,7 @@ import mx.core.FlexGlobals;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.config.SocialNet;
 
 public class ParseFlashVarsCommand extends SignalCommand
 {
@@ -22,7 +23,7 @@ public class ParseFlashVarsCommand extends SignalCommand
         flashVarsModel.social=FlexGlobals.topLevelApplication.flashVars.social;
         if(!flashVarsModel.social)
         {
-            flashVarsModel.socketUrl= FlashVarsModel.LOCAL_SOCIAL_NET;
+            flashVarsModel.social= SocialNet.LOCAL;
         }
 
         flashVarsModel.socketUrl=FlexGlobals.topLevelApplication.flashVars.socket_url;
