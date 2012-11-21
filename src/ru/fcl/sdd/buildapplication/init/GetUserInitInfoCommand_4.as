@@ -21,16 +21,13 @@ public class GetUserInitInfoCommand_4 extends SignalCommand
     public var logger:ILogger;
     [Inject]
     public var sender:ISender;
-    [Inject]
-    public var callHashMap:CallHashMap;
 
     override public function execute():void
     {
         logger.log(this,"getting user init info...");
 
-        var key:String = callHashMap.addValue(WhenUserInfoReceivedCommand);
-        var call:Object = {requestId:key, command:"getUser"};
-        sender.send(call);
+        var call:Object = {command:"getUser"};
+        sender.send(call,WhenUserInfoReceivedCommand);
     }
 }
 }
