@@ -26,7 +26,6 @@ public class GetItemListCommand_3 extends Command
 
     override public function execute():void
     {
-//        callHashMap.remove(GetItemListCommand_3);
         logger.log(this,"getting item table...");
 
         var call:Object = {command:"getItems"};

@@ -6,6 +6,8 @@
 package ru.fcl.sdd.preloader
 {
 
+import com.junkbyte.console.Cc;
+
 import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.events.Event;
@@ -57,6 +59,7 @@ public class Preloader extends SparkDownloadProgressBar
     {
         super();
         this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+
     }
 
     /**
