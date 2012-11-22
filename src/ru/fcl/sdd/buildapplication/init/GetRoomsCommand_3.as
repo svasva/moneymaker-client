@@ -9,7 +9,7 @@ import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.services.main.ISender;
 
-import ru.fcl.sdd.services.main.responsehandlers.WhenRoomListReceivedCommand;
+import ru.fcl.sdd.services.main.responsehandlers.WhenRoomsCatalogReceivedCommand;
 
 public class GetRoomsCommand_3 extends SignalCommand
 {
@@ -19,7 +19,7 @@ public class GetRoomsCommand_3 extends SignalCommand
     override public function execute():void
     {
         var call:Object = {command:"getRooms"};
-        sender.send(call,WhenRoomListReceivedCommand);
+        sender.send(call,WhenRoomsCatalogReceivedCommand);
     }
 }
 }
