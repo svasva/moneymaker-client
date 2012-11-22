@@ -20,6 +20,12 @@ public class ParseUserDataCommand extends Command
     override public function execute():void
     {
         userData.bank_name = userObject.response.bank_name;
+
+        var rooms:Array = userObject.response.user_rooms;
+        commandMap.execute(ParseUserRooms,rooms);
+
+        var items:Array = userObject.response.user_items;
+        commandMap.execute(ParseUserItems,items);
     }
 }
 }

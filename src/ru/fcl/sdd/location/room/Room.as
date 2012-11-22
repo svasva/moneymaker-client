@@ -5,8 +5,6 @@
  */
 package ru.fcl.sdd.location.room
 {
-import de.polygonal.ds.Array2;
-
 import flash.geom.Point;
 
 public class Room
@@ -15,14 +13,9 @@ public class Room
     private var _size:Point;
     private var _id:String;
     private var _type:int;
+    private var _name:String;
+    private var _catalogId:String;
 
-    public function Room(id: String, type:int, offset:Point, size:Point):void
-    {
-        this.id = id;
-        this.type = type;
-        this.offset = offset;
-        this.size = size;
-    }
 
     public function get offset():Point
     {
@@ -62,6 +55,26 @@ public class Room
     public function set type(value:int):void
     {
         _type = value;
+    }
+
+    public function get name():String
+    {
+        return _name;
+    }
+
+    public function set name(value:String):void
+    {
+        _name = value;
+    }
+
+    public function get catalogId():String
+    {
+        return _catalogId;
+    }
+
+    public function set catalogId(value:String):void
+    {
+        _catalogId = value;
     }
 }
 }

@@ -7,7 +7,7 @@ package ru.fcl.sdd.services.main.responsehandlers
 {
 import org.robotlegs.mvcs.Command;
 
-import ru.fcl.sdd.buildapplication.init.GetUserInitInfoCommand_4;
+import ru.fcl.sdd.buildapplication.init.GetUserInitInfoCommand_5;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
 import ru.fcl.sdd.services.main.parser.ParseItemListCommand;
@@ -26,7 +26,7 @@ public class WhenItemListReceivedCommand extends Command
 //        callHashMap.remove(WhenItemsListReceivedCommand);
         logger.log(this,"item list received.");
         commandMap.execute(ParseItemListCommand,items);
-        commandMap.execute(GetUserInitInfoCommand_4);
+        commandMap.execute(GetUserInitInfoCommand_5);
     }
 }
 }
