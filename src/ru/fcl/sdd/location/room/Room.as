@@ -15,7 +15,6 @@ public class Room
     private var _size:Point;
     private var _id:String;
     private var _type:int;
-    private var roomGreed:Array2;
 
     public function Room(id: String, type:int, offset:Point, size:Point):void
     {

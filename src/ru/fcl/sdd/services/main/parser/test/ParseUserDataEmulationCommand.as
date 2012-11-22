@@ -9,10 +9,10 @@ import flash.geom.Point;
 
 import org.robotlegs.mvcs.Command;
 
-import ru.fcl.sdd.user.UserItemListModel;
+import ru.fcl.sdd.item.UserItemListModel;
 import ru.fcl.sdd.location.room.Room;
 
-import ru.fcl.sdd.user.UserRoomListModel;
+import ru.fcl.sdd.location.room.UserRoomListModel;
 
 import ru.fcl.sdd.user.UserDataModel;
 
