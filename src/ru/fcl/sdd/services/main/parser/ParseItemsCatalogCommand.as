@@ -9,7 +9,7 @@ import mx.core.ClassFactory;
 
 import org.robotlegs.mvcs.Command;
 
-import ru.fcl.sdd.IsoConfig;
+import ru.fcl.sdd.config.IsoConfig;
 
 import ru.fcl.sdd.log.ILogger;
 

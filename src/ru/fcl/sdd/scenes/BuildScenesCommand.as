@@ -35,9 +35,11 @@ public class BuildScenesCommand extends SignalCommand
         injector.mapSingleton(MainIsoView);
         mediatorMap.mapView(MainIsoView,MainIsoViewMediator);
         var mainIsoView:MainIsoView = injector.getInstance(MainIsoView);
-        mainIsoView.clipContent = false;
+        mainIsoView.clipContent = true;
 
         _bg = new bgArt() as DisplayObject;
+        _bg.width = 4621;
+        _bg.height = 3093;
         mainIsoView.backgroundContainer.addChild(_bg);
         mainIsoView.rangeOfMotionTarget = _bg;
 

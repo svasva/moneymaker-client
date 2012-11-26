@@ -10,7 +10,7 @@ import mx.core.ClassFactory;
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.IsoConfig;
+import ru.fcl.sdd.config.IsoConfig;
 
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
