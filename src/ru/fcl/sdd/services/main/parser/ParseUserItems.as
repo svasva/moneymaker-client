@@ -6,6 +6,8 @@
 package ru.fcl.sdd.services.main.parser
 {
 
+import de.polygonal.ds.Array2;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.item.Item;
@@ -33,6 +35,9 @@ public class ParseUserItems extends SignalCommand
         item.rotation = object.rotation;
         item.position = Item(itemCatalog.get(item.catalog_id)).position;
         item.enterPoint = Item(itemCatalog.get(item.catalog_id)).enterPoint;
+        item.matrix = Item(itemCatalog.get(item.catalog_id)).matrix;
+        //todo: Решить что делать с такими огромными матрицами (надо как-то увеличивать сетку).
+        //todo: Если реально сделать межкомнатные стены толщиной 100 пикселей, то сделать так.
     }
 }
 }

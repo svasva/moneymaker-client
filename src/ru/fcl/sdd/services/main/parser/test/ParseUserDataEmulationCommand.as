@@ -9,10 +9,10 @@ import flash.geom.Point;
 
 import org.robotlegs.mvcs.Command;
 
-import ru.fcl.sdd.item.UserItemListModel;
+import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.location.room.Room;
 
-import ru.fcl.sdd.location.room.UserRoomListModel;
+import ru.fcl.sdd.location.room.UserRoomList;
 
 import ru.fcl.sdd.user.UserDataModel;
 
@@ -23,10 +23,10 @@ public class ParseUserDataEmulationCommand extends Command
     [Inject]
     public var userObject:Object;
     [Inject]
-    public var userRommList:UserRoomListModel;
+    public var userRommList:UserRoomList;
 
     [Inject]
-    public var userItemList:UserItemListModel;
+    public var userItemList:UserItemList;
 
 
     override public function execute():void

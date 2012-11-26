@@ -5,7 +5,6 @@
  */
 package ru.fcl.sdd.scenes
 {
-import flash.display.Shape;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 
@@ -34,9 +33,11 @@ public class MainIsoViewMediator extends Mediator
 
     private function viewPan(event:MouseEvent):void
     {
+
         view.panBy(panPoint.x - view.stage.mouseX, panPoint.y - view.stage.mouseY);
         panPoint.x = view.stage.mouseX;
         panPoint.y = view.stage.mouseY;
+
     }
 
     private function viewMouseUp(event:MouseEvent):void

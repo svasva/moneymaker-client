@@ -21,7 +21,7 @@ public class NorthPanelView extends Sprite
     [PostConstruct]
     public function init():void
     {
-        _bg = rsl.getBarArtInstance;
+        _bg = rsl.getUpBarArtInstance;
         this.addChild(_bg);
     }
 }

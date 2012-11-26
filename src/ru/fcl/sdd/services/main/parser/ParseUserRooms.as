@@ -10,8 +10,8 @@ import flash.geom.Point;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.location.room.Room;
-import ru.fcl.sdd.location.room.RoomListModel;
-import ru.fcl.sdd.location.room.UserRoomListModel;
+import ru.fcl.sdd.location.room.RoomCatalog;
+import ru.fcl.sdd.location.room.UserRoomList;
 
 public class ParseUserRooms extends SignalCommand
 {
@@ -19,10 +19,10 @@ public class ParseUserRooms extends SignalCommand
     public var rooms:Array;
 
     [Inject]
-    public var userRoomList:UserRoomListModel;
+    public var userRoomList:UserRoomList;
 
     [Inject]
-    public var roomList:RoomListModel;
+    public var roomList:RoomCatalog;
 
     override public function execute():void
     {

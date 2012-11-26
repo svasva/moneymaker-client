@@ -14,7 +14,7 @@ import flash.display.DisplayObject;
 
 public class BgIsoScene extends IsoScene
 {
-    [Embed(source="./art/bg.jpg")]
+    [Embed(source="../art/bg.jpg")]
     private var bgArt:Class;
 
     private var _bg:DisplayObject;

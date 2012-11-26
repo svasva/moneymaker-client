@@ -5,6 +5,8 @@
  */
 package ru.fcl.sdd.item
 {
+import de.polygonal.ds.Array2;
+
 import flash.geom.Point;
 
 public class Item
@@ -22,6 +24,7 @@ public class Item
     private var _catalog_id:String;
     private var _enterPoint:Point;
     private var _rotation:int;
+    private var _matrix:Array2;
 
     public function get id():String
     {
@@ -152,6 +155,16 @@ public class Item
     public function set rotation(value:int):void
     {
         _rotation = value;
+    }
+
+    public function get matrix():Array2
+    {
+        return _matrix;
+    }
+
+    public function set matrix(value:Array2):void
+    {
+        _matrix = value;
     }
 }
 }
