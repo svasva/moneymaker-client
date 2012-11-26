@@ -33,7 +33,6 @@ public class MainIsoViewMediator extends Mediator
 
     private function viewPan(event:MouseEvent):void
     {
-
         view.panBy(panPoint.x - view.stage.mouseX, panPoint.y - view.stage.mouseY);
         panPoint.x = view.stage.mouseX;
         panPoint.y = view.stage.mouseY;
@@ -46,7 +45,7 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
     }
 
-    private function viewZoom(e:MouseEvent)
+    private function viewZoom(e:MouseEvent):void
     {
         if(e.delta > 0)
         {

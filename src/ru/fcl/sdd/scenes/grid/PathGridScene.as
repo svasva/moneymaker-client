@@ -16,8 +16,8 @@ public class PathGridScene extends IsoScene
     public function init():void
     {
         grid = new IsoGrid();
-        grid.cellSize = 10;
-        grid.setGridSize(128,216);
+        grid.cellSize = 100;
+        grid.setGridSize(13,210);
 
         this.addChild(grid);
     }
