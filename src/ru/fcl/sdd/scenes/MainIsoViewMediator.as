@@ -36,7 +36,6 @@ public class MainIsoViewMediator extends Mediator
         view.panBy(panPoint.x - view.stage.mouseX, panPoint.y - view.stage.mouseY);
         panPoint.x = view.stage.mouseX;
         panPoint.y = view.stage.mouseY;
-
     }
 
     private function viewMouseUp(event:MouseEvent):void

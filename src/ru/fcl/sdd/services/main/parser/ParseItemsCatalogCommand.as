@@ -5,11 +5,11 @@
  */
 package ru.fcl.sdd.services.main.parser
 {
-import de.polygonal.ds.Array2;
-
-import flash.geom.Point;
+import mx.core.ClassFactory;
 
 import org.robotlegs.mvcs.Command;
+
+import ru.fcl.sdd.IsoConfig;
 
 import ru.fcl.sdd.log.ILogger;
 
@@ -35,21 +35,11 @@ public class ParseItemsCatalogCommand extends Command
 
     private function parseItem(object:Object, index:int, array:Array):void
     {
-        var item:Item = new Item();
-        item.matrix = new Array2(object.size_x,object.size_y);
-        item.id = object._id;
-        item.size = new Point(object.size_x, object.size_y);
-        item.name = object.name;
-        item.enterPoint = object.enter_point;
-        itemListModel.set(item.id, item);
+        var itemClassFactory:ClassFactory = new ClassFactory(Item);
+        //todo:Запилить здесь высоту айтемов. Пока 100
+        itemClassFactory.properties = {key:object._id,width:object.size_x*IsoConfig.CELL_SIZE,length:object.size_y*IsoConfig.CELL_SIZE,item_name:object.name,height:100};
 
-        for (var iy:int = 0; iy < item.size.y; iy++)
-        {
-            for (var ix:int = 0; ix < item.size.x; ix++)
-            {
-                item.matrix.set(ix,iy,item);
-            }
-        }
+        itemListModel.set(object._id, itemClassFactory);
     }
 }
 }

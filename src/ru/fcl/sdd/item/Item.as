@@ -5,45 +5,39 @@
  */
 package ru.fcl.sdd.item
 {
-import de.polygonal.ds.Array2;
+import as3isolib.display.primitive.IsoBox;
 
-import flash.geom.Point;
-
-public class Item
+public class Item extends IsoBox
 {
-    private var _id:String;
-    private var _name: String;
+    private var _key:String;
+    private var _item_name: String;
     private var _item_type: String;
     private var _money_cost: String;
     private var _coins_cost: String;
     private var _sell_cost:String;
-    private var _size:Point;
-    private var _position:Point;
     private var _reputation_bonus:String;
     private var _room_id:String;
     private var _catalog_id:String;
-    private var _enterPoint:Point;
     private var _rotation:int;
-    private var _matrix:Array2;
 
-    public function get id():String
+    public function get key():String
     {
-        return _id;
+        return _key;
     }
 
-    public function set id(value:String):void
+    public function set key(value:String):void
     {
-        _id = value;
+        _key = value;
     }
 
-    public function get name():String
+    public function get item_name():String
     {
-        return _name;
+        return _item_name;
     }
 
-    public function set name(value:String):void
+    public function set item_name(value:String):void
     {
-        _name = value;
+        _item_name = value;
     }
 
     public function get item_type():String
@@ -107,26 +101,6 @@ public class Item
         _room_id = value;
     }
 
-    public function get size():Point
-    {
-        return _size;
-    }
-
-    public function set size(value:Point):void
-    {
-        _size = value;
-    }
-
-    public function get position():Point
-    {
-        return _position;
-    }
-
-    public function set position(value:Point):void
-    {
-        _position = value;
-    }
-
     public function get catalog_id():String
     {
         return _catalog_id;
@@ -137,15 +111,6 @@ public class Item
         _catalog_id = value;
     }
 
-    public function get enterPoint():Point
-    {
-        return _enterPoint;
-    }
-
-    public function set enterPoint(value:Point):void
-    {
-        _enterPoint = value;
-    }
 
     public function get rotation():int
     {
@@ -157,14 +122,5 @@ public class Item
         _rotation = value;
     }
 
-    public function get matrix():Array2
-    {
-        return _matrix;
-    }
-
-    public function set matrix(value:Array2):void
-    {
-        _matrix = value;
-    }
 }
 }

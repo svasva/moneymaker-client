@@ -10,7 +10,6 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
 import ru.fcl.sdd.item.ItemCatalog;
-import ru.fcl.sdd.location.floors.FloorsList;
 import ru.fcl.sdd.location.room.RoomCatalog;
 import ru.fcl.sdd.user.UserDataModel;
 import ru.fcl.sdd.item.UserItemList;
@@ -24,7 +23,6 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(UserDataModel);
         injector.mapSingleton(UserRoomList);
         injector.mapSingleton(RoomCatalog);
-        injector.mapSingleton(FloorsList);
         injector.mapSingleton(UserItemList);
         injector.mapSingleton(PlatformModel);
         injector.mapSingleton(ItemCatalog);
