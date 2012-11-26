@@ -7,26 +7,26 @@ package ru.fcl.sdd.services.main.responsehandlers
 {
 import org.robotlegs.mvcs.Command;
 
-import ru.fcl.sdd.buildapplication.init.GetUserInitInfoCommand_4;
+import ru.fcl.sdd.buildapplication.init.GetItemsCatalogCommand_4;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
-import ru.fcl.sdd.services.main.parser.ParseItemListCommand;
+import ru.fcl.sdd.services.main.parser.ParseRoomCatalogCommand;
 
-public class WhenItemListReceivedCommand extends Command
+public class WhenRoomsCatalogReceivedCommand extends Command
 {
     [Inject]
     public var logger:ILogger;
     [Inject]
-    public var items:Object;
+    public var rooms:Object;
     [Inject]
     public var callHashMap:CallHashMap;
 
     override public function execute():void
     {
 //        callHashMap.remove(WhenItemsListReceivedCommand);
-        logger.log(this,"item list received.");
-        commandMap.execute(ParseItemListCommand,items);
-        commandMap.execute(GetUserInitInfoCommand_4);
+        logger.log(this, "room list received.");
+        commandMap.execute(ParseRoomCatalogCommand, rooms);
+        commandMap.execute(GetItemsCatalogCommand_4);
     }
 }
 }

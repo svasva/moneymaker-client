@@ -15,7 +15,7 @@ import ru.fcl.sdd.services.main.responsehandlers.WhenUserInfoReceivedCommand;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
 import ru.fcl.sdd.user.UserDataModel;
 
-public class GetUserInitInfoCommand_4 extends SignalCommand
+public class GetUserInitInfoCommand_5 extends SignalCommand
 {
     [Inject]
     public var logger:ILogger;

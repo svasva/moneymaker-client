@@ -7,7 +7,7 @@ package ru.fcl.sdd.item
 {
 import de.polygonal.ds.HashMap;
 
-public class ItemListModel extends HashMap
+public class ItemCatalog extends HashMap
 {
 
 }

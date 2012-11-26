@@ -43,6 +43,10 @@ public interface IRsl
 
     function get reputation4ArtInstance():Sprite;
 
-    function get getBarArtInstance():Sprite;
+    function get getUpBarArtInstance():Sprite;
+
+    function get getCpBarArtInstance():Sprite;
+
+    function get getFriendBarBarArtInstance():Sprite;
 }
 }

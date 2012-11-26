@@ -5,7 +5,7 @@
  */
 package ru.fcl.sdd.services.main.responsehandlers
 {
-import ru.fcl.sdd.buildapplication.init.LoadRSLCommand5;
+import ru.fcl.sdd.buildapplication.init.LoadRSLCommand_6;
 import ru.fcl.sdd.services.main.*;
 
 import org.robotlegs.mvcs.Command;
@@ -32,11 +32,10 @@ public class WhenUserInfoReceivedCommand extends Command
 
     override public function execute():void
     {
-//        callHashMap.remove(WhenUserInfoReceivedCommand);
         commandMap.execute(ParseUserDataCommand,userObject);
         logger.log(this,"socket server authorization completed.");
 
-        commandMap.execute(LoadRSLCommand5);
+        commandMap.execute(LoadRSLCommand_6);
     }
 }
 }

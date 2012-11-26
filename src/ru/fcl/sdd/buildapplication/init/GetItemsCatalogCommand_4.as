@@ -10,17 +10,13 @@ import org.robotlegs.mvcs.Command;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.*;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
-import ru.fcl.sdd.services.main.responsehandlers.WhenItemListReceivedCommand;
+import ru.fcl.sdd.services.main.responsehandlers.WhenItemCatalogReceivedCommand;
 import ru.fcl.sdd.user.UserDataModel;
 
-public class GetItemListCommand_3 extends Command
+public class GetItemsCatalogCommand_4 extends Command
 {
     [Inject]
     public var logger:ILogger;
-    [Inject]
-    public var userDataModel:UserDataModel;
-    [Inject]
-    public var userObject:Object;
     [Inject]
     public var sender:ISender;
 
@@ -29,7 +25,7 @@ public class GetItemListCommand_3 extends Command
         logger.log(this,"getting item table...");
 
         var call:Object = {command:"getItems"};
-        sender.send(call,WhenItemListReceivedCommand);
+        sender.send(call,WhenItemCatalogReceivedCommand);
     }
 }
 }

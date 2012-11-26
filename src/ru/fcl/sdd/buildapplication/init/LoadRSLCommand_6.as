@@ -15,7 +15,7 @@ import ru.fcl.sdd.rsl.MainInterfaceRsl;
 import ru.fcl.sdd.rsl.WhenRemoteRsUrlReceiveCommand;
 import ru.fcl.sdd.services.main.ISender;
 
-public class LoadRSLCommand5 extends SignalCommand
+public class LoadRSLCommand_6 extends SignalCommand
 {
     [Inject(name="main_interface_rsl_loader")]
     public var rsl:MainInterfaceRsl;

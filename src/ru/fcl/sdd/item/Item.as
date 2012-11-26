@@ -5,39 +5,39 @@
  */
 package ru.fcl.sdd.item
 {
+import as3isolib.display.primitive.IsoBox;
 
-public class Item
+public class Item extends IsoBox
 {
-    private var _id:String;
-    private var _name: String;
+    private var _key:String;
+    private var _item_name: String;
     private var _item_type: String;
     private var _money_cost: String;
     private var _coins_cost: String;
     private var _sell_cost:String;
-    private var _size_x:String;
-    private var _size_y:String;
     private var _reputation_bonus:String;
-    private var _reqirements:*;
-    private var _rewards:*;
+    private var _room_id:String;
+    private var _catalog_id:String;
+    private var _rotation:int;
 
-    public function get id():String
+    public function get key():String
     {
-        return _id;
+        return _key;
     }
 
-    public function set id(value:String):void
+    public function set key(value:String):void
     {
-        _id = value;
+        _key = value;
     }
 
-    public function get name():String
+    public function get item_name():String
     {
-        return _name;
+        return _item_name;
     }
 
-    public function set name(value:String):void
+    public function set item_name(value:String):void
     {
-        _name = value;
+        _item_name = value;
     }
 
     public function get item_type():String
@@ -80,26 +80,6 @@ public class Item
         _sell_cost = value;
     }
 
-    public function get size_x():String
-    {
-        return _size_x;
-    }
-
-    public function set size_x(value:String):void
-    {
-        _size_x = value;
-    }
-
-    public function get size_y():String
-    {
-        return _size_y;
-    }
-
-    public function set size_y(value:String):void
-    {
-        _size_y = value;
-    }
-
     public function get reputation_bonus():String
     {
         return _reputation_bonus;
@@ -110,24 +90,37 @@ public class Item
         _reputation_bonus = value;
     }
 
-    public function get reqirements():*
+
+    public function get room_id():String
     {
-        return _reqirements;
+        return _room_id;
     }
 
-    public function set reqirements(value:*):void
+    public function set room_id(value:String):void
     {
-        _reqirements = value;
+        _room_id = value;
     }
 
-    public function get rewards():*
+    public function get catalog_id():String
     {
-        return _rewards;
+        return _catalog_id;
     }
 
-    public function set rewards(value:*):void
+    public function set catalog_id(value:String):void
     {
-        _rewards = value;
+        _catalog_id = value;
     }
+
+
+    public function get rotation():int
+    {
+        return _rotation;
+    }
+
+    public function set rotation(value:int):void
+    {
+        _rotation = value;
+    }
+
 }
 }

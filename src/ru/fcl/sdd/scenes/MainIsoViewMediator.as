@@ -5,7 +5,6 @@
  */
 package ru.fcl.sdd.scenes
 {
-import flash.display.Shape;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 
@@ -45,7 +44,7 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
     }
 
-    private function viewZoom(e:MouseEvent)
+    private function viewZoom(e:MouseEvent):void
     {
         if(e.delta > 0)
         {
