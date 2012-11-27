@@ -26,6 +26,12 @@ public class ParseFlashVarsCommand extends SignalCommand
             flashVarsModel.social= SocialNet.LOCAL;
         }
 
+        flashVarsModel.content_url=FlexGlobals.topLevelApplication.flashVars.content_url;
+        if(!flashVarsModel.content_url)
+        {
+            flashVarsModel.content_url= FlashVarsModel.LOCAL_CONTENT_URL;
+        }
+
         flashVarsModel.socketUrl=FlexGlobals.topLevelApplication.flashVars.socket_url;
         if(!flashVarsModel.socketUrl)
         {
