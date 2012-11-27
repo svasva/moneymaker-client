@@ -5,9 +5,16 @@
  */
 package ru.fcl.sdd.item
 {
-import as3isolib.display.primitive.IsoBox;
+import as3isolib.display.IsoSprite;
 
-public class Item extends IsoBox
+import flash.display.DisplayObject;
+
+import flash.display.Loader;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.net.URLRequest;
+
+public class Item extends IsoSprite
 {
     private var _key:String;
     private var _item_name: String;
@@ -19,6 +26,27 @@ public class Item extends IsoBox
     private var _room_id:String;
     private var _catalog_id:String;
     private var _rotation:int;
+    private var _skinSwf:Loader;
+    private var _skinUrl:String;
+
+
+    public function get skinUrl():String
+    {
+        return _skinUrl;
+    }
+
+    public function set skinUrl(value:String):void
+    {
+        _skinUrl = value;
+        _skinSwf = new Loader();
+        _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+        _skinSwf.load(new URLRequest(value));
+    }
+
+    private function completeHandler(event:Event):void
+    {
+        this.sprites = [_skinSwf as DisplayObject];
+    }
 
     public function get key():String
     {

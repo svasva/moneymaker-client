@@ -19,8 +19,7 @@ public class PathGrid extends IsoScene
     {
         grid = new IsoGrid();
         grid.cellSize = IsoConfig.CELL_SIZE;
-//        grid.setSize(605,605,0);
-        grid.setGridSize(11,11);
+        grid.setGridSize(51,51);
 
         this.addChild(grid);
     }

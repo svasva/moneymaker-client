@@ -16,6 +16,8 @@ public class FlashVarsModel
     private var _social:String;
     private var _app_width:int=830;
     private var _app_height:int=760;
+//    private var _app_width:int=1920;
+//    private var _app_height:int=1080;
 
     public function get token():String
     {
