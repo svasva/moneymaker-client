@@ -8,6 +8,7 @@ package ru.fcl.sdd.config
 public class FlashVarsModel
 {
     public static const LOCAL_TOKEN:String = "50b348581685ff4c01000002";
+    public static const LOCAL_CONTENT_URL:String = "http://192.168.1.242:3000";
     public static const LOCAL_SOCKET_URL:String = "ws://192.168.1.242:9999/socket/0/0/websocket";
     public static const LOCAL_GREETING:String = "Greeting, dear developer.";
     private var _token:String;
@@ -16,6 +17,9 @@ public class FlashVarsModel
     private var _social:String;
     private var _app_width:int=830;
     private var _app_height:int=760;
+    private var _content_url:String;
+//    private var _app_width:int=1920;
+//    private var _app_height:int=1080;
 
     public function get token():String
     {
@@ -75,6 +79,16 @@ public class FlashVarsModel
     public function set app_height(value:int):void
     {
         _app_height = value;
+    }
+
+    public function get content_url():String
+    {
+        return _content_url;
+    }
+
+    public function set content_url(value:String):void
+    {
+        _content_url = value;
     }
 }
 }

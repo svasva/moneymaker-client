@@ -5,20 +5,77 @@
  */
 package ru.fcl.sdd.item
 {
-import as3isolib.display.primitive.IsoBox;
+import as3isolib.display.IsoSprite;
 
-public class Item extends IsoBox
+import flash.display.DisplayObject;
+import flash.display.Loader;
+import flash.display.MovieClip;
+import flash.events.Event;
+import flash.net.URLRequest;
+import flash.system.System;
+import flash.utils.setTimeout;
+
+public class Item extends IsoSprite
 {
     private var _key:String;
-    private var _item_name: String;
-    private var _item_type: String;
-    private var _money_cost: String;
-    private var _coins_cost: String;
+    private var _item_name:String;
+    private var _item_type:String;
+    private var _money_cost:String;
+    private var _coins_cost:String;
     private var _sell_cost:String;
     private var _reputation_bonus:String;
     private var _room_id:String;
     private var _catalog_id:String;
     private var _rotation:int;
+    private var _skinSwf:Loader;
+    private var _skinUrl:String;
+
+
+    public function get skinUrl():String
+    {
+        return _skinUrl;
+    }
+
+//    [Embed(source="./art/object_draft_2x1.swf")]
+//    private var templateMC:Class;
+    private var temp:MovieClip;
+
+    public function set skinUrl(value:String):void
+    {
+        if (value)
+        {
+            _skinUrl = value;
+            _skinSwf = new Loader();
+            _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+            _skinSwf.load(new URLRequest(value));
+        }
+//        completeHandler(new Event("123"));
+    }
+
+    private function completeHandler(event:Event):void
+    {
+//        temp = new templateMC();
+//        temp = _skinSwf.content as MovieClip;
+//        temp.stop();
+
+        this.sprites = [_skinSwf.content];
+        this.render();
+//        this.sprites = [temp as DisplayObject];
+        rotation = rotation;
+        rotate();
+    }
+
+    private function rotate():void
+    {
+        setTimeout(rotate, 3000);
+        if (3 == rotation)
+        {
+            rotation = 0;
+        } else
+        {
+            rotation++;
+        }
+    }
 
     public function get key():String
     {
@@ -120,7 +177,14 @@ public class Item extends IsoBox
     public function set rotation(value:int):void
     {
         _rotation = value;
+        if (_skinSwf.content)
+        {
+            MovieClip(_skinSwf.content).gotoAndStop(value + 1);
+            for (var i:int = 0; i < value; i++)
+            {
+                this.setSize(this.length, this.width, this.height);
+            }
+        }
     }
-
 }
 }

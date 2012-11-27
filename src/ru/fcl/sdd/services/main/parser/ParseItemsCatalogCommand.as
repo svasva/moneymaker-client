@@ -9,6 +9,8 @@ import mx.core.ClassFactory;
 
 import org.robotlegs.mvcs.Command;
 
+import ru.fcl.sdd.config.FlashVarsModel;
+
 import ru.fcl.sdd.config.IsoConfig;
 
 import ru.fcl.sdd.log.ILogger;
@@ -24,6 +26,8 @@ public class ParseItemsCatalogCommand extends Command
     public var itemListModel:ItemCatalog;
     [Inject]
     public var logger:ILogger;
+    [Inject]
+    public var flashVars:FlashVarsModel;
 
     override public function execute():void
     {
@@ -37,7 +41,8 @@ public class ParseItemsCatalogCommand extends Command
     {
         var itemClassFactory:ClassFactory = new ClassFactory(Item);
         //todo:Запилить здесь высоту айтемов. Пока 100
-        itemClassFactory.properties = {key:object._id,width:object.size_x*IsoConfig.CELL_SIZE,length:object.size_y*IsoConfig.CELL_SIZE,item_name:object.name,height:100};
+        var contentUrl:String = flashVars.content_url+object.swf_url;
+        itemClassFactory.properties = {key:object._id,skinUrl:contentUrl,width:object.size_x*IsoConfig.CELL_SIZE,length:object.size_y*IsoConfig.CELL_SIZE,item_name:object.name,height:100};
 
         itemListModel.set(object._id, itemClassFactory);
     }

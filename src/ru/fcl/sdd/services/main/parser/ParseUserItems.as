@@ -39,6 +39,7 @@ public class ParseUserItems extends SignalCommand
         item.rotation = object.rotation;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
+//        item.skinUrl = "/d/object_draft_2x1.swf";
         commandMap.execute(PlaceItemCommand,item);
     }
 }
