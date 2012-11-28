@@ -29,6 +29,7 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
     private var rsl:Object;
     [Inject]
     public var logger:ILogger;
+    private const NS:String = "ru.fcl.sdd.";
 
     public function loadRsl(url:String):void
     {
@@ -47,9 +48,10 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
         rslLoadedSignal.dispatch();
     }
 
-    public function getAssetClass(clazz:String):Class
+    public function getAsset(clazz:String):*
     {
-        return _loadedContent.contentLoaderInfo.applicationDomain.getDefinition(clazz) as Class;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition(NS+clazz) as Class;
+        return  new ClassDefinition();
     }
 
     private function loader_errorHandler(event:Event):void
