@@ -47,9 +47,14 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
         rslLoadedSignal.dispatch();
     }
 
+    public function getAssetClass(clazz:String):Class
+    {
+        return _loadedContent.contentLoaderInfo.applicationDomain.getDefinition(clazz) as Class;
+    }
+
     private function loader_errorHandler(event:Event):void
     {
-        _isReady = false
+        _isReady = false;
         logger.error(this, "error loading rsl from url: " + _url);
     }
 
