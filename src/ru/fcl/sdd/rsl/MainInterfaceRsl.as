@@ -147,19 +147,19 @@ public class MainInterfaceRsl implements IRsl,IRslLoader
 
     public function get getUpBarArtInstance():Sprite
     {
-        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.panels.UpGuiMokcup") as Class;
+            var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.UpGuiMokcup") as Class;
         return  new ClassDefinition();
     }
 
     public function get getCpBarArtInstance():Sprite
     {
-        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.panels.MainCpGuiMokcup") as Class;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.MainCpGuiMokcup") as Class;
         return  new ClassDefinition();
     }
 
     public function get getFriendBarBarArtInstance():Sprite
     {
-        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.panels.FriendBarGuiMokcup") as Class;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.FriendBarGuiMokcup") as Class;
         return  new ClassDefinition();
     }
 

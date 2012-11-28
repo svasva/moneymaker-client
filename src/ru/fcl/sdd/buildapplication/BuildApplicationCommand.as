@@ -14,7 +14,7 @@ import ru.fcl.sdd.log.BuildLoggerCommand;
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.panels.BuildGUICommand;
+import ru.fcl.sdd.gui.main.BuildMainGUICommand;
 
 import ru.fcl.sdd.rsl.BuildRslCommand;
 
