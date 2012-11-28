@@ -5,8 +5,6 @@
  */
 package ru.fcl.sdd.gui.ingame.shop
 {
-import flash.events.Event;
-
 import org.robotlegs.mvcs.Mediator;
 
 public class ShopViewMediator extends Mediator

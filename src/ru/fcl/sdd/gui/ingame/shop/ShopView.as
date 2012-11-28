@@ -7,10 +7,17 @@ package ru.fcl.sdd.gui.ingame.shop
 {
 import flash.display.Sprite;
 
+import ru.fcl.sdd.rsl.MainInterfaceRsl;
+
 public class ShopView extends Sprite
 {
-    public function ShopView()
+    [Inject]
+    public var rsl:MainInterfaceRsl;
+
+    [PostConstruct]
+    public function init():void
     {
+
     }
 }
 }
