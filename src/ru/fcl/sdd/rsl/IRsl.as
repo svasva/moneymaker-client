@@ -11,6 +11,8 @@ public interface IRsl
 {
     function get isReady():Boolean;
 
+    function getAssetClass(clazz:String):Class;
+
     function get buttonGoldDownArtInstance():Sprite;
 
     function get buttonGoldOverArtInstance():Sprite;
