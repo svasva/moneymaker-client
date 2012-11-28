@@ -10,7 +10,6 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.SocialNet;
 import ru.fcl.sdd.log.ILogger;
-import ru.fcl.sdd.rsl.IRslLoader;
 import ru.fcl.sdd.rsl.MainInterfaceRsl;
 import ru.fcl.sdd.rsl.WhenRemoteRsUrlReceiveCommand;
 import ru.fcl.sdd.services.main.ISender;
