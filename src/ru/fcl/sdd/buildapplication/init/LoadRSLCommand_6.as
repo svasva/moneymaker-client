@@ -10,14 +10,14 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.SocialNet;
 import ru.fcl.sdd.log.ILogger;
-import ru.fcl.sdd.rsl.MainInterfaceRsl;
+import ru.fcl.sdd.rsl.GuiRsl;
 import ru.fcl.sdd.rsl.WhenRemoteRsUrlReceiveCommand;
 import ru.fcl.sdd.services.main.ISender;
 
 public class LoadRSLCommand_6 extends SignalCommand
 {
-    [Inject(name="main_interface_rsl_loader")]
-    public var rsl:MainInterfaceRsl;
+    [Inject]
+    public var rsl:GuiRsl;
     [Inject]
     public var flashVars:FlashVarsModel;
     [Inject]

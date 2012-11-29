@@ -14,8 +14,7 @@ public class ShopViewMediator extends Mediator
 
     override public function onRegister():void
     {
-        shopView.graphics.beginFill(0xFFFFFF);
-        shopView.graphics.drawRect(0,0,150,150);
+
     }
 }
 }

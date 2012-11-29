@@ -7,14 +7,13 @@ package ru.fcl.sdd.gui.main.north
 {
 import flash.display.Sprite;
 
-import ru.fcl.sdd.rsl.IRsl;
-import ru.fcl.sdd.rsl.MainInterfaceRsl;
+import ru.fcl.sdd.rsl.GuiRsl;
 
 
 public class NorthPanelView extends Sprite
 {
-    [Inject(name="main_interface_rsl_loader")]
-    public var rsl:MainInterfaceRsl;
+    [Inject]
+    public var rsl:GuiRsl;
 
     private var _bg:Sprite;
 

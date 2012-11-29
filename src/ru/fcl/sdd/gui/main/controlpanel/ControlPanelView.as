@@ -8,12 +8,12 @@ package ru.fcl.sdd.gui.main.controlpanel
 import flash.display.SimpleButton;
 import flash.display.Sprite;
 
-import ru.fcl.sdd.rsl.MainInterfaceRsl;
+import ru.fcl.sdd.rsl.GuiRsl;
 
 public class ControlPanelView extends Sprite
 {
-    [Inject(name="main_interface_rsl_loader")]
-    public var rsl:MainInterfaceRsl;
+    [Inject]
+    public var rsl:GuiRsl;
 
 
     private var _bg:Sprite;

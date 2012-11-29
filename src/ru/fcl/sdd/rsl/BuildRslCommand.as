@@ -17,7 +17,7 @@ public class BuildRslCommand extends SignalCommand
         injector.mapValue(ISignal,rslLoaded,"rsl_loaded");
         signalCommandMap.mapSignal(rslLoaded,WhenRslLoaded);
 
-        injector.mapSingleton(MainInterfaceRsl,"main_interface_rsl_loader");
+        injector.mapSingleton(GuiRsl);
     }
 }
 }
