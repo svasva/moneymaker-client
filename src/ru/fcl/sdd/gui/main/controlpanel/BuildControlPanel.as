@@ -13,9 +13,7 @@ public class BuildControlPanel extends SignalCommand
 {
     override public function execute():void
     {
-        var showShop:ISignal = new Signal();
-        injector.mapValue(ISignal, showShop, "show_shop");
-        signalCommandMap.mapSignal(showShop, ShowHideShopCommand);
+
 
         injector.mapSingleton(ControlPanelView);
         mediatorMap.mapView(ControlPanelView, ControlPanelMediator);

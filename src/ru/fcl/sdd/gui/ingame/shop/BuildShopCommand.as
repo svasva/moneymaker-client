@@ -5,9 +5,12 @@
  */
 package ru.fcl.sdd.gui.ingame.shop
 {
+import org.osflash.signals.ISignal;
+import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.gui.ingame.shop.ShowHideShopCommand;
 
 public class BuildShopCommand extends SignalCommand
 {
@@ -16,6 +19,10 @@ public class BuildShopCommand extends SignalCommand
 
     override public function execute():void
     {
+        var showShop:ISignal = new Signal();
+        injector.mapValue(ISignal, showShop, "show_shop");
+        signalCommandMap.mapSignal(showShop, ShowHideShopCommand);
+
         injector.mapSingleton(ShopView);
         mediatorMap.mapView(ShopView,ShopViewMediator);
         var shop:ShopView = injector.getInstance(ShopView);
