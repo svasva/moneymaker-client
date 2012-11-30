@@ -28,6 +28,7 @@ public class AuthoriseSocketServerCommand_2 extends SignalCommand
 
         var token:Object = {token:flashVarsModel.token};
         sender.send(token,GetRoomsCommand_3);
+        sender.send(token,GetRoomsCommand_3);
     }
 }
 }

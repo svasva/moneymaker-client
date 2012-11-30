@@ -1,0 +1,22 @@
+/**
+ * User: Jessie
+ * Date: 30.11.12
+ * Time: 13:57
+ */
+package ru.fcl.sdd.item
+{
+import org.robotlegs.mvcs.Mediator;
+
+public class ItemCatalogViewMediator  extends Mediator
+{
+    override public function onRegister():void
+    {
+
+    }
+
+    override public function onRemove():void
+    {
+
+    }
+}
+}

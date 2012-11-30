@@ -20,7 +20,8 @@ public class BuildScenesCommand extends SignalCommand
     [Inject]
     public var flashVars:FlashVarsModel;
 
-    [Embed(source="./art/bg.jpg")]
+//    [Embed(source="./art/bg.jpg")]
+    [Embed(source="./art/1st-floor.jpg")]
     private var bgArt:Class;
 
     private var _bg:DisplayObject;

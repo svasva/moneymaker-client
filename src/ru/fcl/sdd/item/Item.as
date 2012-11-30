@@ -36,8 +36,6 @@ public class Item extends IsoSprite
         return _skinUrl;
     }
 
-//    [Embed(source="./art/object_draft_2x1.swf")]
-//    private var templateMC:Class;
     private var temp:MovieClip;
 
     public function set skinUrl(value:String):void
@@ -49,19 +47,14 @@ public class Item extends IsoSprite
             _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
             _skinSwf.load(new URLRequest(value));
         }
-//        completeHandler(new Event("123"));
     }
 
     private function completeHandler(event:Event):void
     {
-//        temp = new templateMC();
-//        temp = _skinSwf.content as MovieClip;
-//        temp.stop();
-
         this.sprites = [_skinSwf.content];
         this.render();
-//        this.sprites = [temp as DisplayObject];
         rotation = rotation;
+        //todo:Убрать тест поворота айтема.
         rotate();
     }
 
