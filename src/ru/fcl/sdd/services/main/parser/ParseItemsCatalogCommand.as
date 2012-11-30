@@ -17,6 +17,7 @@ import ru.fcl.sdd.log.ILogger;
 
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
+import ru.fcl.sdd.rsl.GuiRsl;
 
 public class ParseItemsCatalogCommand extends Command
 {
@@ -28,6 +29,8 @@ public class ParseItemsCatalogCommand extends Command
     public var logger:ILogger;
     [Inject]
     public var flashVars:FlashVarsModel;
+    [Inject]
+    public var rsl:GuiRsl;
 
     override public function execute():void
     {
@@ -43,6 +46,8 @@ public class ParseItemsCatalogCommand extends Command
         //todo:Запилить здесь высоту айтемов. Пока 100
         var contentUrl:String = flashVars.content_url+object.swf_url;
         itemClassFactory.properties = {key:object._id,skinUrl:contentUrl,width:object.size_x*IsoConfig.CELL_SIZE,length:object.size_y*IsoConfig.CELL_SIZE,item_name:object.name,height:100};
+
+
 
         itemListModel.set(object._id, itemClassFactory);
     }

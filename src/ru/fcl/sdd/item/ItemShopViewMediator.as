@@ -7,7 +7,7 @@ package ru.fcl.sdd.item
 {
 import org.robotlegs.mvcs.Mediator;
 
-public class ItemCatalogViewMediator  extends Mediator
+public class ItemShopViewMediator  extends Mediator
 {
     override public function onRegister():void
     {
