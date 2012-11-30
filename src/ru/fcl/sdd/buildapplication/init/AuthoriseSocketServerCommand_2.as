@@ -27,8 +27,7 @@ public class AuthoriseSocketServerCommand_2 extends SignalCommand
         logger.log(this, "socket server connect initialised, authorization...");
 
         var token:Object = {token:flashVarsModel.token};
-        sender.send(token,GetRoomsCommand_3);
-        sender.send(token,GetRoomsCommand_3);
+        sender.send(token,LoadRSLCommand_3);
     }
 }
 }
