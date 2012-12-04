@@ -47,10 +47,10 @@ public class ParseItemsCatalogCommand extends Command
         var item:Item = new Item();
         item.key = object._id;
         item.skinUrl=contentUrl;
-        item.iso.width=object.size_x*IsoConfig.CELL_SIZE;
-        item.iso.length=object.size_y*IsoConfig.CELL_SIZE;
+        item.width=object.size_x*IsoConfig.CELL_SIZE;
+        item.length=object.size_y*IsoConfig.CELL_SIZE;
         item.item_name=object.name;
-        item.iso.height=100;
+        item.height=100;
 
         itemListModel.set(item.key, item);
     }
