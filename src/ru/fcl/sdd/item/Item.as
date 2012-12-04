@@ -188,9 +188,19 @@ public class Item extends IsoSprite
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-            for (var i:int = _rotationIso; i < value; i++)
+
+            if (rotationIso > value)
             {
-                this.setSize(this.length, this.width, this.height);
+                for (var i:int = _rotationIso; i < value; i++)
+                {
+                    this.setSize(this.length, this.width, this.height);
+                }
+            }else
+            {
+                for (var j:int = _rotationIso; j > value; j--)
+                {
+                    this.setSize(this.length, this.width, this.height);
+                }
             }
         }
         _rotationIso = value;
