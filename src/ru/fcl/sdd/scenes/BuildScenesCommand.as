@@ -12,7 +12,7 @@ import flash.display.DisplayObject;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
-import ru.fcl.sdd.scenes.grid.PathGrid;
+import ru.fcl.sdd.scenes.grid.SceneGrid;
 import ru.fcl.sdd.scenes.FloorScene;
 
 public class BuildScenesCommand extends SignalCommand
@@ -20,7 +20,8 @@ public class BuildScenesCommand extends SignalCommand
     [Inject]
     public var flashVars:FlashVarsModel;
 
-    [Embed(source="./art/bg.jpg")]
+//    [Embed(source="./art/bg.jpg")]
+    [Embed(source="./art/1st-floor.jpg")]
     private var bgArt:Class;
 
     private var _bg:DisplayObject;
@@ -29,8 +30,8 @@ public class BuildScenesCommand extends SignalCommand
         injector.mapSingleton(FloorScene);
         var mainIsoScene:FloorScene = injector.getInstance(FloorScene);
 
-        injector.mapSingleton(PathGrid);
-        var gridScene:PathGrid = injector.getInstance(PathGrid);
+        injector.mapSingleton(SceneGrid);
+        var gridScene:SceneGrid = injector.getInstance(SceneGrid);
 
         injector.mapSingleton(MainIsoView);
         mediatorMap.mapView(MainIsoView,MainIsoViewMediator);

@@ -15,7 +15,7 @@ import ru.fcl.sdd.item.PlaceItemCommand;
 import ru.fcl.sdd.location.room.RoomCatalog;
 import ru.fcl.sdd.location.room.UserRoomList;
 import ru.fcl.sdd.scenes.FloorScene;
-import ru.fcl.sdd.scenes.grid.PathGrid;
+import ru.fcl.sdd.scenes.grid.SceneGrid;
 
 public class CreateFloorCommand extends SignalCommand
 {
@@ -30,7 +30,7 @@ public class CreateFloorCommand extends SignalCommand
     [Inject]
     public var itemCatalog:ItemCatalog;
     [Inject]
-    public var pathGrid:PathGrid;
+    public var pathGrid:SceneGrid;
     [Inject]
     public var floorScene:FloorScene;
 

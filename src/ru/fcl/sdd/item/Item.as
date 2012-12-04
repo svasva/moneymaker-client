@@ -7,13 +7,14 @@ package ru.fcl.sdd.item
 {
 import as3isolib.display.IsoSprite;
 
-import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
+import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
-import flash.system.System;
 import flash.utils.setTimeout;
+
+import ru.fcl.sdd.log.Logger;
 
 public class Item extends IsoSprite
 {
@@ -26,55 +27,60 @@ public class Item extends IsoSprite
     private var _reputation_bonus:String;
     private var _room_id:String;
     private var _catalog_id:String;
-    private var _rotation:int;
+    private var _rotationIso:int;
     private var _skinSwf:Loader;
     private var _skinUrl:String;
 
+
+    public function Item():void
+    {
+        _skinSwf = new Loader();
+    }
+
+    override public function clone():*
+    {
+        var item:Item = super.clone();
+        item.item_name = this.item_name;
+        item.item_type = this.item_type;
+        item.money_cost = this.money_cost;
+        item.coins_cost = this.coins_cost;
+        item.sell_cost = this.sell_cost;
+        item.reputation_bonus = this.reputation_bonus;
+        item.room_id = this.room_id;
+        item.catalog_id = this.catalog_id;
+        item.rotationIso = this.rotationIso;
+        item.skinUrl = this.skinUrl;
+
+        return item;
+    }
 
     public function get skinUrl():String
     {
         return _skinUrl;
     }
 
-//    [Embed(source="./art/object_draft_2x1.swf")]
-//    private var templateMC:Class;
-    private var temp:MovieClip;
-
     public function set skinUrl(value:String):void
     {
+        //TODO:грузить скины руками, по мере необходимости.
         if (value)
         {
             _skinUrl = value;
-            _skinSwf = new Loader();
             _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+            _skinSwf.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
             _skinSwf.load(new URLRequest(value));
         }
-//        completeHandler(new Event("123"));
     }
 
     private function completeHandler(event:Event):void
     {
-//        temp = new templateMC();
-//        temp = _skinSwf.content as MovieClip;
-//        temp.stop();
-
         this.sprites = [_skinSwf.content];
         this.render();
-//        this.sprites = [temp as DisplayObject];
-        rotation = rotation;
-        rotate();
+        rotationIso = rotationIso;
     }
 
-    private function rotate():void
+    private function ioErrorHandler(event:IOErrorEvent):void
     {
-        setTimeout(rotate, 3000);
-        if (3 == rotation)
-        {
-            rotation = 0;
-        } else
-        {
-            rotation++;
-        }
+        trace(event.text);
     }
 
     public function get key():String
@@ -169,22 +175,43 @@ public class Item extends IsoSprite
     }
 
 
-    public function get rotation():int
+    public function get rotationIso():int
     {
-        return _rotation;
+        return _rotationIso;
     }
 
-    public function set rotation(value:int):void
+    public function set rotationIso(value:int):void
     {
-        _rotation = value;
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-            for (var i:int = 0; i < value; i++)
+
+            if (rotationIso > value)
             {
-                this.setSize(this.length, this.width, this.height);
+                for (var i:int = _rotationIso; i < value; i++)
+                {
+                    this.setSize(this.length, this.width, this.height);
+                }
+            }else
+            {
+                for (var j:int = _rotationIso; j > value; j--)
+                {
+                    this.setSize(this.length, this.width, this.height);
+                }
             }
         }
+        _rotationIso = value;
     }
+
+    public function get skinSwf():Loader
+    {
+        return _skinSwf;
+    }
+
+    public function set skinSwf(value:Loader):void
+    {
+        _skinSwf = value;
+    }
+
 }
 }

@@ -11,8 +11,8 @@ import ru.fcl.sdd.log.ILogger;
 
 public class WhenRemoteRsUrlReceiveCommand extends SignalCommand
 {
-    [Inject(name="main_interface_rsl_loader")]
-    public var rsl:MainInterfaceRsl;
+    [Inject]
+    public var rsl:GuiRsl;
     [Inject]
     public var logger:ILogger;
     [Inject]

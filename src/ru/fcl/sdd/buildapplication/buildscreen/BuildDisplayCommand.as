@@ -7,15 +7,13 @@ package ru.fcl.sdd.buildapplication.buildscreen
 {
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.panels.BuildGUICommand;
+import ru.fcl.sdd.gui.BuildGuiCommand;
 
 public class BuildDisplayCommand extends SignalCommand
 {
-
-
     override public function execute():void
     {
-        commandMap.execute(BuildGUICommand);
+        commandMap.execute(BuildGuiCommand);
         commandMap.execute(AddViewsCommand);
     }
 }

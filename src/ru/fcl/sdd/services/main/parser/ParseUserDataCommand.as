@@ -22,9 +22,17 @@ public class ParseUserDataCommand extends Command
         userData.bank_name = userObject.response.bank_name;
 
         var rooms:Array = userObject.response.user_rooms;
+        if(!rooms)
+        {
+            rooms = [];
+        }
         commandMap.execute(ParseUserRooms,rooms);
 
         var items:Array = userObject.response.user_items;
+        if(!items)
+        {
+            items = [];
+        }
         commandMap.execute(ParseUserItems,items);
     }
 }

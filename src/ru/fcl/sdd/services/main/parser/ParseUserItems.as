@@ -32,14 +32,12 @@ public class ParseUserItems extends SignalCommand
 
     private function parseItems(object:Object,index:int, array:Array):void
     {
-        var item:Item = ClassFactory(itemCatalog.get(object.item_id)).newInstance() as Item;
+        var item:Item = Item(itemCatalog.get(object.item_id)).clone();
         item.key = object._id;
-        item.catalog_id = object.item_id;
-        item.room_id = object.room_id;
-        item.rotation = object.rotation;
+        item.rotationIso= object.rotationIso;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
-//        item.skinUrl = "/d/object_draft_2x1.swf";
+
         commandMap.execute(PlaceItemCommand,item);
     }
 }
