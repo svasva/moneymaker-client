@@ -38,9 +38,9 @@ public class ParseUserItems extends SignalCommand
         item.rotationIso= object.rotationIso;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
-        item.width = catalogItem.width;
-        item.length = catalogItem.length;
-        item.height = catalogItem.height;
+        item.width = catalogItem.isoWidth;
+        item.length = catalogItem.isoLength;
+        item.height = catalogItem.isoHeight;
         item.skin = catalogItem.skinUrl;
 
         userItems.set(item.key, item);

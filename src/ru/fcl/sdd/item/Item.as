@@ -5,7 +5,7 @@
  */
 package ru.fcl.sdd.item
 {
-public class Item
+public class Item extends ItemShopView
 {
     private var _key:String;
     private var _item_name:String;
@@ -18,35 +18,9 @@ public class Item
     private var _catalog_id:String;
     private var _skinUrl:String;
     private var _shopView:ItemShopView;
-    private var _width:int;
-    private var _length:int;
-    private var _height:int;
-
-
-    public function Item():void
-    {
-
-    }
-
-    public function clone():Item
-    {
-        var item:Item = super.clone();
-        item.item_name = this.item_name;
-        item.item_type = this.item_type;
-        item.money_cost = this.money_cost;
-        item.coins_cost = this.coins_cost;
-        item.sell_cost = this.sell_cost;
-        item.reputation_bonus = this.reputation_bonus;
-        item.room_id = this.room_id;
-        item.catalog_id = this.catalog_id;
-        item.width = this.width;
-        item.length = this.length;
-        item.height = this.height;
-        item.skinUrl = this.skinUrl;
-
-        return item;
-    }
-
+    private var _isoWidth:int;
+    private var _isoLength:int;
+    private var _isoHeight:int;
 
     public function get key():String
     {
@@ -162,34 +136,34 @@ public class Item
         _shopView = value;
     }
 
-    public function get width():int
+    public function get isoWidth():int
     {
-        return _width;
+        return _isoWidth;
     }
 
-    public function set width(value:int):void
+    public function set isoWidth(value:int):void
     {
-        _width = value;
+        _isoWidth = value;
     }
 
-    public function get length():int
+    public function get isoLength():int
     {
-        return _length;
+        return _isoLength;
     }
 
-    public function set length(value:int):void
+    public function set isoLength(value:int):void
     {
-        _length = value;
+        _isoLength = value;
     }
 
-    public function get height():int
+    public function get isoHeight():int
     {
-        return _height;
+        return _isoHeight;
     }
 
-    public function set height(value:int):void
+    public function set isoHeight(value:int):void
     {
-        _height = value;
+        _isoHeight = value;
     }
 }
 }

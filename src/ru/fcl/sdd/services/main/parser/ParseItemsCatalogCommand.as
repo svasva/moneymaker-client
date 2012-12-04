@@ -43,9 +43,9 @@ public class ParseItemsCatalogCommand extends Command
         item.key = object._id;
         item.item_name=object.name;
         item.skinUrl=contentUrl;
-        item.width=object.size_x*IsoConfig.CELL_SIZE;
-        item.length=object.size_y*IsoConfig.CELL_SIZE;
-        item.height=100;
+        item.isoWidth=object.size_x*IsoConfig.CELL_SIZE;
+        item.isoLength=object.size_y*IsoConfig.CELL_SIZE;
+        item.isoHeight=100;
 
         itemListModel.set(item.key, item);
     }
