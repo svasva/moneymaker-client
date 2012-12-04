@@ -34,10 +34,11 @@ public class ParseUserItems extends SignalCommand
     {
         var item:Item = Item(itemCatalog.get(object.item_id)).clone();
         item.key = object._id;
-        item.iso.x = object.x*IsoConfig.CELL_SIZE;
-        item.iso.y = object.y*IsoConfig.CELL_SIZE;
+        item.rotationIso= object.rotationIso;
+        item.x = object.x*IsoConfig.CELL_SIZE;
+        item.y = object.y*IsoConfig.CELL_SIZE;
 
-        commandMap.execute(PlaceItemCommand,item.iso);
+        commandMap.execute(PlaceItemCommand,item);
     }
 }
 }
