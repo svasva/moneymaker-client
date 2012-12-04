@@ -42,7 +42,7 @@ public class ParseItemsCatalogCommand extends Command
 
     private function parseItem(object:Object, index:int, array:Array):void
     {
-        //todo:Запилить здесь высоту айтемов. Пока 100
+        //todo:Запилить здесь высоту айтемов. Пока 100.
         var contentUrl:String = flashVars.content_url+object.swf_url;
         var item:Item = new Item();
         item.key = object._id;
