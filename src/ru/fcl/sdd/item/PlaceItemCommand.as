@@ -6,8 +6,6 @@
 package ru.fcl.sdd.item
 {
 
-import as3isolib.display.IsoSprite;
-
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.scenes.FloorScene;
