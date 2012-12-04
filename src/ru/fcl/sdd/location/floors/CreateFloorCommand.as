@@ -5,11 +5,14 @@
  */
 package ru.fcl.sdd.location.floors
 {
+import de.polygonal.ds.HashMapValIterator;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.item.Item;
 
 import ru.fcl.sdd.item.ItemCatalog;
+import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.item.PlaceItemCommand;
 import ru.fcl.sdd.location.room.RoomCatalog;
@@ -20,29 +23,20 @@ import ru.fcl.sdd.scenes.grid.SceneGrid;
 public class CreateFloorCommand extends SignalCommand
 {
     [Inject]
-    public var itemId:String;
-    [Inject]
-    public var userRooms:UserRoomList;
-    [Inject]
     public var userItems:UserItemList;
-    [Inject]
-    public var roomCatalog:RoomCatalog;
-    [Inject]
-    public var itemCatalog:ItemCatalog;
-    [Inject]
-    public var pathGrid:SceneGrid;
     [Inject]
     public var floorScene:FloorScene;
 
     override public function execute():void
     {
 
-        userItems.iterator().reset();
-        while(userItems.iterator().hasNext())
+        var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
+        iterator.reset();
+        while(iterator.hasNext())
         {
-            var item:Item = userItems.iterator().next() as Item;
+            var item:ItemIsoView = iterator.next() as ItemIsoView;
             //todo:проверить айтем на соответствие этажу.
-            PlaceItemCommand(item);
+            commandMap.execute(PlaceItemCommand,item);
         }
     }
 }

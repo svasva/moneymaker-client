@@ -23,7 +23,7 @@ public class ParseUserDataEmulationCommand extends Command
     [Inject]
     public var userObject:Object;
     [Inject]
-    public var userRommList:UserRoomList;
+    public var userRoomList:UserRoomList;
 
     [Inject]
     public var userItemList:UserItemList;
@@ -32,7 +32,7 @@ public class ParseUserDataEmulationCommand extends Command
     override public function execute():void
     {
         userData.bank_name = userObject.response.bank_name;
-        userRommList.set("0",new Room("0",0,new Point(10,10), new Point(12,20)));
+        userRoomList.set("0",new Room("0",0,new Point(10,10), new Point(12,20)));
     }
 }
 }

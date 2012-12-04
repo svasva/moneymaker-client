@@ -6,23 +6,22 @@
 package ru.fcl.sdd.services.main.parser
 {
 
-import mx.core.ClassFactory;
-
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.IsoConfig;
-
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
-import ru.fcl.sdd.item.PlaceItemCommand;
+import ru.fcl.sdd.item.ItemIsoView;
+import ru.fcl.sdd.item.UserItemList;
 
 public class ParseUserItems extends SignalCommand
 {
     [Inject]
     public var items:Array;
-
     [Inject]
     public var itemCatalog:ItemCatalog;
+    [Inject]
+    public var userItems:UserItemList;
 
 
     override public function execute():void
@@ -32,13 +31,20 @@ public class ParseUserItems extends SignalCommand
 
     private function parseItems(object:Object,index:int, array:Array):void
     {
-        var item:Item = Item(itemCatalog.get(object.item_id)).clone();
+        var catalogItem:Item = Item(itemCatalog.get(object.item_id));
+        var item:ItemIsoView = new ItemIsoView();
         item.key = object._id;
+        item.catalogKey = object.item_id;
         item.rotationIso= object.rotationIso;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
+        item.width = catalogItem.width;
+        item.length = catalogItem.length;
+        item.height = catalogItem.height;
+        item.skin = catalogItem.skinUrl;
 
-        commandMap.execute(PlaceItemCommand,item);
+        userItems.set(item.key, item);
+//        commandMap.execute(PlaceItemCommand,item);
     }
 }
 }
