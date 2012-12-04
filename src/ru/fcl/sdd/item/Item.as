@@ -15,7 +15,7 @@ import flash.net.URLRequest;
 import flash.system.System;
 import flash.utils.setTimeout;
 
-public class Item
+public class Item extends IsoSprite
 {
     private var _key:String;
     private var _item_name:String;
@@ -29,16 +29,11 @@ public class Item
     private var _rotationIso:int;
     private var _skinSwf:Loader;
     private var _skinUrl:String;
-    private var _iso:IsoSprite;
 
-    public function Item():void
-    {
-        _iso = new IsoSprite();
-    }
 
-    public function clone():Item
+    override public function clone():*
     {
-        var item:Item = new Item();
+        var item:Item = super.clone();
         item.item_name = this.item_name;
         item.item_type = this.item_type;
         item.money_cost = this.money_cost;
@@ -49,7 +44,6 @@ public class Item
         item.catalog_id = this.catalog_id;
         item.rotationIso = this.rotationIso;
         item.skinUrl = this.skinUrl;
-        item.iso = item.iso.clone();
 
         return item;
     }
@@ -61,6 +55,7 @@ public class Item
 
     public function set skinUrl(value:String):void
     {
+        //TODO:грузить скины руками, по мере необходимости.
         if (value)
         {
             _skinUrl = value;
@@ -72,8 +67,8 @@ public class Item
 
     private function completeHandler(event:Event):void
     {
-        iso.sprites = [_skinSwf.content];
-        iso.render();
+        this.sprites = [_skinSwf.content];
+        this.render();
         rotationIso = rotationIso;
         //todo:Убрать тест поворота айтема.
         rotate();
@@ -195,20 +190,10 @@ public class Item
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
             for (var i:int = _rotationIso; i < value; i++)
             {
-                iso.setSize(iso.length, iso.width, iso.height);
+                this.setSize(this.length, this.width, this.height);
             }
         }
         _rotationIso = value;
-    }
-
-    public function get iso():IsoSprite
-    {
-        return _iso;
-    }
-
-    public function set iso(value:IsoSprite):void
-    {
-        _iso = value;
     }
 }
 }
