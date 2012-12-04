@@ -26,7 +26,7 @@ public class Item
     private var _reputation_bonus:String;
     private var _room_id:String;
     private var _catalog_id:String;
-    private var _rotation:int;
+    private var _rotationIso:int;
     private var _skinSwf:Loader;
     private var _skinUrl:String;
     private var _iso:IsoSprite;
@@ -34,6 +34,24 @@ public class Item
     public function Item():void
     {
         _iso = new IsoSprite();
+    }
+
+    public function clone():Item
+    {
+        var item:Item = new Item();
+        item.item_name = this.item_name;
+        item.item_type = this.item_type;
+        item.money_cost = this.money_cost;
+        item.coins_cost = this.coins_cost;
+        item.sell_cost = this.sell_cost;
+        item.reputation_bonus = this.reputation_bonus;
+        item.room_id = this.room_id;
+        item.catalog_id = this.catalog_id;
+        item.rotationIso = this.rotationIso;
+        item.skinUrl = this.skinUrl;
+        item.iso = item.iso.clone();
+
+        return item;
     }
 
     public function get skinUrl():String
@@ -56,7 +74,7 @@ public class Item
     {
         iso.sprites = [_skinSwf.content];
         iso.render();
-        rotation = rotation;
+        rotationIso = rotationIso;
         //todo:Убрать тест поворота айтема.
         rotate();
     }
@@ -64,12 +82,12 @@ public class Item
     private function rotate():void
     {
         setTimeout(rotate, 3000);
-        if (3 == rotation)
+        if (3 == rotationIso)
         {
-            rotation = 0;
+            rotationIso = 0;
         } else
         {
-            rotation++;
+            rotationIso++;
         }
     }
 
@@ -165,14 +183,14 @@ public class Item
     }
 
 
-    public function get rotation():int
+    public function get rotationIso():int
     {
-        return _rotation;
+        return _rotationIso;
     }
 
-    public function set rotation(value:int):void
+    public function set rotationIso(value:int):void
     {
-        _rotation = value;
+        _rotationIso = value;
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
