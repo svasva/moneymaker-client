@@ -31,7 +31,10 @@ public class Item
     private var _skinUrl:String;
     private var _iso:IsoSprite;
 
-
+    public function Item():void
+    {
+        _iso = new IsoSprite();
+    }
 
     public function get skinUrl():String
     {
