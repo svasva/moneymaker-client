@@ -10,7 +10,7 @@ import as3isolib.display.scene.IsoScene;
 
 import ru.fcl.sdd.config.IsoConfig;
 
-public class PathGrid extends IsoScene
+public class SceneGrid extends IsoScene
 {
     private var grid:IsoGrid;
 
@@ -19,7 +19,7 @@ public class PathGrid extends IsoScene
     {
         grid = new IsoGrid();
         grid.cellSize = IsoConfig.CELL_SIZE;
-        grid.setGridSize(51,51);
+        grid.setGridSize(26,44);
 
         this.addChild(grid);
     }
