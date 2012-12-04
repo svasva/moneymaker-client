@@ -36,7 +36,7 @@ public class ParseUserItems extends SignalCommand
         item.key = object._id;
         item.catalog_id = object.item_id;
         item.room_id = object.room_id;
-        item.rotation = object.rotation;
+        item.rotationIso = object.rotation;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
 //        item.skinUrl = "/d/object_draft_2x1.swf";
