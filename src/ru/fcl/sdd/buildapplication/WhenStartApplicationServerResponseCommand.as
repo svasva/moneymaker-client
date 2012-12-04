@@ -28,7 +28,6 @@ public class WhenStartApplicationServerResponseCommand extends SignalCommand
     override public function execute():void
     {
         logger.log(this, "Server star application response success. Starting app.");
-//        callHashMap.remove(WhenStartApplicationServerResponseCommand);
         if (response.response.success)
         {
             SDD(FlexGlobals.topLevelApplication).dispatchInitComplete();
