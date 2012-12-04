@@ -6,6 +6,8 @@
 package ru.fcl.sdd.item
 {
 
+import as3isolib.display.IsoSprite;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.scenes.FloorScene;
@@ -14,7 +16,7 @@ import ru.fcl.sdd.scenes.grid.PathGrid;
 public class PlaceItemCommand extends SignalCommand
 {
     [Inject]
-    public var item:Item;
+    public var iso:Item;
     [Inject]
     public var floor:FloorScene;
     [Inject]
@@ -23,9 +25,9 @@ public class PlaceItemCommand extends SignalCommand
     override public function execute():void
     {
         //todo: Тут эмуляция внешнего вида айтемов. Как только появятся скины - убрать к чертям и поменять на них.
-        floor.addChild(item);
-        item.render();
+        floor.addChild(iso);
+        iso.render();
         floor.render();
-        }
+    }
 }
 }
