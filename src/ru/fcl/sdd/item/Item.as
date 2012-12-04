@@ -15,7 +15,7 @@ import flash.net.URLRequest;
 import flash.system.System;
 import flash.utils.setTimeout;
 
-public class Item extends IsoSprite
+public class Item
 {
     private var _key:String;
     private var _item_name:String;
@@ -29,14 +29,14 @@ public class Item extends IsoSprite
     private var _rotation:int;
     private var _skinSwf:Loader;
     private var _skinUrl:String;
+    private var _iso:IsoSprite;
+
 
 
     public function get skinUrl():String
     {
         return _skinUrl;
     }
-
-    private var temp:MovieClip;
 
     public function set skinUrl(value:String):void
     {
@@ -51,8 +51,8 @@ public class Item extends IsoSprite
 
     private function completeHandler(event:Event):void
     {
-        this.sprites = [_skinSwf.content];
-        this.render();
+        iso.sprites = [_skinSwf.content];
+        iso.render();
         rotation = rotation;
         //todo:Убрать тест поворота айтема.
         rotate();
@@ -175,9 +175,19 @@ public class Item extends IsoSprite
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
             for (var i:int = 0; i < value; i++)
             {
-                this.setSize(this.length, this.width, this.height);
+                iso.setSize(iso.length, iso.width, iso.height);
             }
         }
+    }
+
+    public function get iso():IsoSprite
+    {
+        return _iso;
+    }
+
+    public function set iso(value:IsoSprite):void
+    {
+        _iso = value;
     }
 }
 }
