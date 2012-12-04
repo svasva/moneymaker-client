@@ -7,13 +7,14 @@ package ru.fcl.sdd.item
 {
 import as3isolib.display.IsoSprite;
 
-import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
+import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
-import flash.system.System;
 import flash.utils.setTimeout;
+
+import ru.fcl.sdd.log.Logger;
 
 public class Item extends IsoSprite
 {
@@ -30,6 +31,11 @@ public class Item extends IsoSprite
     private var _skinSwf:Loader;
     private var _skinUrl:String;
 
+
+    public function Item():void
+    {
+        _skinSwf = new Loader();
+    }
 
     override public function clone():*
     {
@@ -59,8 +65,8 @@ public class Item extends IsoSprite
         if (value)
         {
             _skinUrl = value;
-            _skinSwf = new Loader();
             _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+            _skinSwf.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
             _skinSwf.load(new URLRequest(value));
         }
     }
@@ -70,20 +76,11 @@ public class Item extends IsoSprite
         this.sprites = [_skinSwf.content];
         this.render();
         rotationIso = rotationIso;
-        //todo:Убрать тест поворота айтема.
-        rotate();
     }
 
-    private function rotate():void
+    private function ioErrorHandler(event:IOErrorEvent):void
     {
-        setTimeout(rotate, 3000);
-        if (3 == rotationIso)
-        {
-            rotationIso = 0;
-        } else
-        {
-            rotationIso++;
-        }
+        trace(event.text);
     }
 
     public function get key():String
@@ -205,5 +202,16 @@ public class Item extends IsoSprite
         }
         _rotationIso = value;
     }
+
+    public function get skinSwf():Loader
+    {
+        return _skinSwf;
+    }
+
+    public function set skinSwf(value:Loader):void
+    {
+        _skinSwf = value;
+    }
+
 }
 }

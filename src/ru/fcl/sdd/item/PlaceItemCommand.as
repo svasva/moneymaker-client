@@ -9,7 +9,7 @@ package ru.fcl.sdd.item
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.scenes.FloorScene;
-import ru.fcl.sdd.scenes.grid.PathGrid;
+import ru.fcl.sdd.scenes.grid.SceneGrid;
 
 public class PlaceItemCommand extends SignalCommand
 {
@@ -18,7 +18,7 @@ public class PlaceItemCommand extends SignalCommand
     [Inject]
     public var floor:FloorScene;
     [Inject]
-    public var pathGreed:PathGrid;
+    public var pathGreed:SceneGrid;
 
     override public function execute():void
     {
