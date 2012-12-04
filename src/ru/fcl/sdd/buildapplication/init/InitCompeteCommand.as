@@ -9,6 +9,7 @@ import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.buildapplication.SendServerStartApplicationCommand;
 import ru.fcl.sdd.buildapplication.buildscreen.BuildDisplayCommand;
+import ru.fcl.sdd.location.BuildLocation;
 
 import ru.fcl.sdd.log.ILogger;
 
@@ -21,7 +22,7 @@ public class InitCompeteCommand extends SignalCommand
     {
         logger.log(this,"application init complete.");
         commandMap.execute(BuildDisplayCommand);
-
+        commandMap.execute(BuildLocation);
     }
 }
 }

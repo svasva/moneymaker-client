@@ -5,18 +5,7 @@
  */
 package ru.fcl.sdd.item
 {
-import as3isolib.display.IsoSprite;
-
-import flash.display.Loader;
-import flash.display.MovieClip;
-import flash.events.Event;
-import flash.events.IOErrorEvent;
-import flash.net.URLRequest;
-import flash.utils.setTimeout;
-
-import ru.fcl.sdd.log.Logger;
-
-public class Item extends IsoSprite
+public class Item
 {
     private var _key:String;
     private var _item_name:String;
@@ -27,17 +16,19 @@ public class Item extends IsoSprite
     private var _reputation_bonus:String;
     private var _room_id:String;
     private var _catalog_id:String;
-    private var _rotationIso:int;
-    private var _skinSwf:Loader;
     private var _skinUrl:String;
+    private var _shopView:ItemShopView;
+    private var _width:int;
+    private var _length:int;
+    private var _height:int;
 
 
     public function Item():void
     {
-        _skinSwf = new Loader();
+
     }
 
-    override public function clone():*
+    public function clone():Item
     {
         var item:Item = super.clone();
         item.item_name = this.item_name;
@@ -48,40 +39,14 @@ public class Item extends IsoSprite
         item.reputation_bonus = this.reputation_bonus;
         item.room_id = this.room_id;
         item.catalog_id = this.catalog_id;
-        item.rotationIso = this.rotationIso;
+        item.width = this.width;
+        item.length = this.length;
+        item.height = this.height;
         item.skinUrl = this.skinUrl;
 
         return item;
     }
 
-    public function get skinUrl():String
-    {
-        return _skinUrl;
-    }
-
-    public function set skinUrl(value:String):void
-    {
-        //TODO:грузить скины руками, по мере необходимости.
-        if (value)
-        {
-            _skinUrl = value;
-            _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
-            _skinSwf.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-            _skinSwf.load(new URLRequest(value));
-        }
-    }
-
-    private function completeHandler(event:Event):void
-    {
-        this.sprites = [_skinSwf.content];
-        this.render();
-        rotationIso = rotationIso;
-    }
-
-    private function ioErrorHandler(event:IOErrorEvent):void
-    {
-        trace(event.text);
-    }
 
     public function get key():String
     {
@@ -175,43 +140,56 @@ public class Item extends IsoSprite
     }
 
 
-    public function get rotationIso():int
+
+
+    public function get skinUrl():String
     {
-        return _rotationIso;
+        return _skinUrl;
     }
 
-    public function set rotationIso(value:int):void
+    public function set skinUrl(value:String):void
     {
-        if (_skinSwf.content)
-        {
-            MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-
-            if (rotationIso > value)
-            {
-                for (var i:int = _rotationIso; i < value; i++)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }else
-            {
-                for (var j:int = _rotationIso; j > value; j--)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }
-        }
-        _rotationIso = value;
+        _skinUrl = value;
     }
 
-    public function get skinSwf():Loader
+    public function get shopView():ItemShopView
     {
-        return _skinSwf;
+        return _shopView;
     }
 
-    public function set skinSwf(value:Loader):void
+    public function set shopView(value:ItemShopView):void
     {
-        _skinSwf = value;
+        _shopView = value;
     }
 
+    public function get width():int
+    {
+        return _width;
+    }
+
+    public function set width(value:int):void
+    {
+        _width = value;
+    }
+
+    public function get length():int
+    {
+        return _length;
+    }
+
+    public function set length(value:int):void
+    {
+        _length = value;
+    }
+
+    public function get height():int
+    {
+        return _height;
+    }
+
+    public function set height(value:int):void
+    {
+        _height = value;
+    }
 }
 }

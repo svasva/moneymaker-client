@@ -5,18 +5,13 @@
  */
 package ru.fcl.sdd.services.main.parser
 {
-import mx.core.ClassFactory;
-
 import org.robotlegs.mvcs.Command;
 
 import ru.fcl.sdd.config.FlashVarsModel;
-
 import ru.fcl.sdd.config.IsoConfig;
-
-import ru.fcl.sdd.log.ILogger;
-
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
+import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.rsl.GuiRsl;
 
 public class ParseItemsCatalogCommand extends Command
@@ -46,10 +41,10 @@ public class ParseItemsCatalogCommand extends Command
         var contentUrl:String = flashVars.content_url+object.swf_url;
         var item:Item = new Item();
         item.key = object._id;
+        item.item_name=object.name;
         item.skinUrl=contentUrl;
         item.width=object.size_x*IsoConfig.CELL_SIZE;
         item.length=object.size_y*IsoConfig.CELL_SIZE;
-        item.item_name=object.name;
         item.height=100;
 
         itemListModel.set(item.key, item);

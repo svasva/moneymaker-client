@@ -19,6 +19,7 @@ public class ItemShopView extends JPanel
     public var rsl:GuiRsl;
     private var _bg:DisplayObject;
 
+
     [PostConstruct]
     public function init():void
     {

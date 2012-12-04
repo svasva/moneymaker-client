@@ -14,7 +14,7 @@ import ru.fcl.sdd.scenes.grid.SceneGrid;
 public class PlaceItemCommand extends SignalCommand
 {
     [Inject]
-    public var iso:Item;
+    public var iso:ItemIsoView;
     [Inject]
     public var floor:FloorScene;
     [Inject]
