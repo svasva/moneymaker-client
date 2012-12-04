@@ -190,15 +190,15 @@ public class Item
 
     public function set rotationIso(value:int):void
     {
-        _rotationIso = value;
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-            for (var i:int = 0; i < value; i++)
+            for (var i:int = _rotationIso; i < value; i++)
             {
                 iso.setSize(iso.length, iso.width, iso.height);
             }
         }
+        _rotationIso = value;
     }
 
     public function get iso():IsoSprite
