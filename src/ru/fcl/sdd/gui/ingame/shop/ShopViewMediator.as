@@ -12,6 +12,7 @@ import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.gui.CollectChunker;
 
+
 import ru.fcl.sdd.item.ItemCatalog;
 
 public class ShopViewMediator extends Mediator
@@ -34,7 +35,7 @@ public class ShopViewMediator extends Mediator
     {
         shopView.closeButton.addEventListener(MouseEvent.CLICK, clickHandler);
         _collectChunker.reset();
-
+        shopView.items = _collectChunker.next();
     }
 
     override public function onRemove():void
@@ -45,7 +46,6 @@ public class ShopViewMediator extends Mediator
 
     private function clickHandler(event:MouseEvent):void
     {
-        //todo: Разобраться, почему диспатчится 2 раза.
         hideShop.dispatch()
     }
 }

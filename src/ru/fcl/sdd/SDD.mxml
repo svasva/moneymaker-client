@@ -1,16 +1,25 @@
 <?xml version="1.0"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"  backgroundColor="#000000"
-               xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader"
+               xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()"
               >
     <fx:Script><![CDATA[
+        import flash.Lib;
+
+        import org.aswing.AsWingManager;
+
         private var context:SDDContext;
         private var _flashVars:Object;
 
         public function startInit():void
         {
-//            this.stage.scaleMode = StageScaleMode.NO_SCALE;
+            AsWingManager.initAsStandard(flash.Lib.current);
             context = new SDDContext(mainContainer, false);
             context.startup();
+        }
+
+        public function addedToStage(e:Event=null):void
+        {
+            this.stage.scaleMode = StageScaleMode.NO_SCALE;
         }
 
         public function dispatchInitComplete():void
