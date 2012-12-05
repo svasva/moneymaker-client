@@ -50,8 +50,8 @@ public class ShopView extends JPanel
         layout0.setHgap(50);
         layout0.setVgap(20);
         _itemsJPanel.setLayout(layout0);
-        _itemsJPanel.setSize(new IntDimension(670, 560));
-        _itemsJPanel.x = 35;
+        _itemsJPanel.setSize(new IntDimension(680, 560));
+        _itemsJPanel.x = 25;
         _itemsJPanel.y = 140;
         this.append(_itemsJPanel);
     }

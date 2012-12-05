@@ -9,6 +9,15 @@ import org.robotlegs.mvcs.Mediator;
 
 public class ItemShopViewMediator  extends Mediator
 {
+    [Inject]
+    public var itemView:ItemShopView;
+
+    [PostConstruct]
+    public function init():void
+    {
+
+    }
+
     override public function onRegister():void
     {
 
