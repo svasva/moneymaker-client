@@ -11,6 +11,7 @@ import flash.display.SimpleButton;
 import org.aswing.AssetBackground;
 
 import org.aswing.GridLayout;
+import org.aswing.JButton;
 
 import org.aswing.JPanel;
 import org.aswing.geom.IntDimension;
@@ -32,6 +33,8 @@ public class ShopView extends JPanel
     private var _closeButton:SimpleButton;
     private var _helpButton:SimpleButton;
     private var _itemsJPanel:JPanel;
+    private var prevItemsBtn:SimpleButton;
+    private var nextItemsBtn:SimpleButton;
 
     [PostConstruct]
     public function init():void
@@ -45,6 +48,12 @@ public class ShopView extends JPanel
         _closeButton.x = 722;
         _closeButton.y = 54;
         this.addChild(_closeButton);
+
+        prevItemsBtn =new SimpleButton(getAsset("LeftArrowBtnBigUpArt"),getAsset("LeftArrowBtnBigOverArt"),getAsset("LeftArrowBtnBigDownArt"),getAsset("LeftArrowBtnBigDownArt"));
+        prevItemsBtn.x = 13;
+        prevItemsBtn.y = 390;
+        this.addChild(prevItemsBtn);
+
         _itemsJPanel = new JPanel();
         var layout0:GridLayout = new GridLayout(2,3,0,0);
         layout0.setHgap(50);
@@ -54,6 +63,12 @@ public class ShopView extends JPanel
         _itemsJPanel.x = 25;
         _itemsJPanel.y = 140;
         this.append(_itemsJPanel);
+
+        nextItemsBtn = new SimpleButton(getAsset("RightArrowBtnBigUpArt"),getAsset("RightArrowBtnBigOverArt"),getAsset("RightArrowBtnBigDownArt"),getAsset("RightArrowBtnBigDownArt"));
+        nextItemsBtn.x = 711;
+        nextItemsBtn.y = 390;
+        this.addChild(nextItemsBtn);
+
     }
 
     internal function set items(value:Array):void
