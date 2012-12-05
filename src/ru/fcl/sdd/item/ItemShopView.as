@@ -28,6 +28,8 @@ public class ItemShopView extends JPanel
     {
         _bg = getAsset("ItemPlaceArt");
         this.setBackgroundDecorator(new AssetBackground(_bg));
+        this.width = _bg.width;
+        this.height = _bg.height;
     }
 
     public function getAsset(value:String):DisplayObject
