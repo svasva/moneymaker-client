@@ -33,8 +33,8 @@ public class ShopView extends JPanel
     private var _closeButton:SimpleButton;
     private var _helpButton:SimpleButton;
     private var _itemsJPanel:JPanel;
-    private var prevItemsBtn:SimpleButton;
-    private var nextItemsBtn:SimpleButton;
+    private var _prevItemsBtn:SimpleButton;
+    private var _nextItemsBtn:SimpleButton;
 
     [PostConstruct]
     public function init():void
@@ -49,26 +49,23 @@ public class ShopView extends JPanel
         _closeButton.y = 54;
         this.addChild(_closeButton);
 
-        prevItemsBtn =new SimpleButton(getAsset("LeftArrowBtnBigUpArt"),getAsset("LeftArrowBtnBigOverArt"),getAsset("LeftArrowBtnBigDownArt"),getAsset("LeftArrowBtnBigDownArt"));
-        prevItemsBtn.x = 13;
-        prevItemsBtn.y = 390;
-        this.addChild(prevItemsBtn);
+        _prevItemsBtn =new SimpleButton(getAsset("LeftArrowBtnBigUpArt"),getAsset("LeftArrowBtnBigOverArt"),getAsset("LeftArrowBtnBigDownArt"),getAsset("LeftArrowBtnBigDownArt"));
+        _prevItemsBtn.x = 13;
+        _prevItemsBtn.y = 390;
+        this.addChild(_prevItemsBtn);
 
         _itemsJPanel = new JPanel();
-        var layout0:GridLayout = new GridLayout(2,3,0,0);
-        layout0.setHgap(50);
-        layout0.setVgap(20);
+        var layout0:GridLayout = new GridLayout(2,3,29,16);
         _itemsJPanel.setLayout(layout0);
-        _itemsJPanel.setSize(new IntDimension(680, 560));
-        _itemsJPanel.x = 25;
-        _itemsJPanel.y = 140;
+        _itemsJPanel.setSize(new IntDimension(637, 526));
+        _itemsJPanel.x = 60;
+        _itemsJPanel.y = 166;
         this.append(_itemsJPanel);
 
-        nextItemsBtn = new SimpleButton(getAsset("RightArrowBtnBigUpArt"),getAsset("RightArrowBtnBigOverArt"),getAsset("RightArrowBtnBigDownArt"),getAsset("RightArrowBtnBigDownArt"));
-        nextItemsBtn.x = 711;
-        nextItemsBtn.y = 390;
-        this.addChild(nextItemsBtn);
-
+        _nextItemsBtn = new SimpleButton(getAsset("RightArrowBtnBigUpArt"),getAsset("RightArrowBtnBigOverArt"),getAsset("RightArrowBtnBigDownArt"),getAsset("RightArrowBtnBigDownArt"));
+        _nextItemsBtn.x = 711;
+        _nextItemsBtn.y = 390;
+        this.addChild(_nextItemsBtn);
     }
 
     internal function set items(value:Array):void
@@ -96,6 +93,26 @@ public class ShopView extends JPanel
     internal function set closeButton(value:SimpleButton):void
     {
         _closeButton = value;
+    }
+
+    public function get prevItemsBtn():SimpleButton
+    {
+        return _prevItemsBtn;
+    }
+
+    public function set prevItemsBtn(value:SimpleButton):void
+    {
+        _prevItemsBtn = value;
+    }
+
+    public function get nextItemsBtn():SimpleButton
+    {
+        return _nextItemsBtn;
+    }
+
+    public function set nextItemsBtn(value:SimpleButton):void
+    {
+        _nextItemsBtn = value;
     }
 }
 }

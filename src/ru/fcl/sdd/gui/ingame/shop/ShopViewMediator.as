@@ -28,25 +28,48 @@ public class ShopViewMediator extends Mediator
     [PostConstruct]
     public function init():void
     {
-        _collectChunker = new CollectChunker(itemCatalog,6);
+
     }
 
     override public function onRegister():void
     {
-        shopView.closeButton.addEventListener(MouseEvent.CLICK, clickHandler);
+        _collectChunker = new CollectChunker(itemCatalog, 6);
+        shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
+        shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
+        shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
     }
 
     override public function onRemove():void
     {
-        shopView.closeButton.removeEventListener(MouseEvent.CLICK, clickHandler);
+        shopView.closeButton.removeEventListener(MouseEvent.CLICK, closeClickHandler);
+        shopView.prevItemsBtn.removeEventListener(MouseEvent.CLICK, prevItemsClickHandler);
+        shopView.nextItemsBtn.removeEventListener(MouseEvent.CLICK, nextItemsClickHandler);
     }
 
-
-    private function clickHandler(event:MouseEvent):void
+    private function closeClickHandler(event:MouseEvent):void
     {
         hideShop.dispatch()
+    }
+
+    private function prevItemsClickHandler(event:MouseEvent):void
+    {
+        shopView.items = _collectChunker.prev();
+        checkItemsBtnVisible();
+    }
+
+    private function nextItemsClickHandler(event:MouseEvent):void
+    {
+        shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
+    }
+
+    private function checkItemsBtnVisible():void
+    {
+        shopView.prevItemsBtn.visible = _collectChunker.hasPrev();
+        shopView.nextItemsBtn.visible = _collectChunker.hasNext();
     }
 }
 }
