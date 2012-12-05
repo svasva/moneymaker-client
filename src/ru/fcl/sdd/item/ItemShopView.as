@@ -11,6 +11,7 @@ import flash.display.Loader;
 import org.aswing.AssetBackground;
 
 import org.aswing.JPanel;
+import org.aswing.geom.IntDimension;
 
 import ru.fcl.sdd.rsl.GuiRsl;
 
@@ -28,8 +29,8 @@ public class ItemShopView extends JPanel
     {
         _bg = getAsset("ItemPlaceArt");
         this.setBackgroundDecorator(new AssetBackground(_bg));
-        this.width = _bg.width;
-        this.height = _bg.height;
+        this.setMaximumSize(new IntDimension(194,255));
+        this.setMinimumSize(new IntDimension(194,255));
     }
 
     public function getAsset(value:String):DisplayObject

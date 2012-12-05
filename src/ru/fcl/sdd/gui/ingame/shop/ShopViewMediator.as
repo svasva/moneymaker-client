@@ -12,6 +12,7 @@ import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.gui.CollectChunker;
 
+
 import ru.fcl.sdd.item.ItemCatalog;
 
 public class ShopViewMediator extends Mediator

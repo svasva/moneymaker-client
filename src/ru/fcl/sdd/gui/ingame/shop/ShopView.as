@@ -7,21 +7,22 @@ package ru.fcl.sdd.gui.ingame.shop
 {
 import flash.display.DisplayObject;
 import flash.display.SimpleButton;
-import flash.display.Sprite;
+
+import org.aswing.AssetBackground;
 
 import org.aswing.GridLayout;
 
 import org.aswing.JPanel;
 import org.aswing.geom.IntDimension;
+import org.aswing.plaf.EmptyLayoutUIResourse;
 
 import org.osflash.signals.ISignal;
 
-import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemShopView;
 
 import ru.fcl.sdd.rsl.GuiRsl;
 
-public class ShopView extends Sprite
+public class ShopView extends JPanel
 {
     [Inject]
     public var rsl:GuiRsl;
@@ -35,32 +36,36 @@ public class ShopView extends Sprite
     [PostConstruct]
     public function init():void
     {
+        this.setLayout(new EmptyLayoutUIResourse());
         _bg = getAsset("BackgroundArt");
-        this.addChild(_bg);
-
+        this.setBackgroundDecorator(new AssetBackground(_bg));
+        this.width = _bg.width;
+        this.height = _bg.height;
         _closeButton = new SimpleButton(getAsset("ButtonCloseUpArt"),getAsset("ButtonCloseOverArt"),getAsset("ButtonCloseDownArt"),getAsset("ButtonCloseUpArt"));
         _closeButton.x = 722;
         _closeButton.y = 54;
         this.addChild(_closeButton);
         _itemsJPanel = new JPanel();
-        var layout0:GridLayout = new GridLayout();
-        layout0.setRows(2);
-        layout0.setColumns(3);
+        var layout0:GridLayout = new GridLayout(2,3,0,0);
         layout0.setHgap(50);
-        layout0.setVgap(50);
+        layout0.setVgap(20);
         _itemsJPanel.setLayout(layout0);
-        _itemsJPanel.setSize(new IntDimension(470, 379));
-        this.addChild(_itemsJPanel);
+        _itemsJPanel.setSize(new IntDimension(670, 560));
+        _itemsJPanel.x = 35;
+        _itemsJPanel.y = 140;
+        this.append(_itemsJPanel);
     }
 
-    internal function set items(value:Vector.<ItemShopView>):void
+    internal function set items(value:Array):void
     {
         _itemsJPanel.removeAll();
         for (var i:int = 0; i < value.length; i++)
         {
-            var item:ItemShopView = value[i];
-
+            var item:ItemShopView = new ItemShopView();
+            item = value[i] as ItemShopView;
+            _itemsJPanel.append(value[i] as ItemShopView);
         }
+        _itemsJPanel.validate();
     }
 
     private function getAsset(value:String):DisplayObject
