@@ -6,6 +6,7 @@
 package ru.fcl.sdd.item
 {
 import flash.display.DisplayObject;
+import flash.display.Loader;
 
 import org.aswing.AssetBackground;
 
@@ -18,6 +19,8 @@ public class ItemShopView extends JPanel
     [Inject]
     public var rsl:GuiRsl;
     private var _bg:DisplayObject;
+    private var _iconSwf:Loader;
+    private var _iconUrl:String;
 
 
     [PostConstruct]
@@ -30,6 +33,26 @@ public class ItemShopView extends JPanel
     public function getAsset(value:String):DisplayObject
     {
         return rsl.getAsset("gui.ingame.shop."+value);
+    }
+
+    public function get iconSwf():Loader
+    {
+        return _iconSwf;
+    }
+
+    public function set iconSwf(value:Loader):void
+    {
+        _iconSwf = value;
+    }
+
+    public function get iconUrl():String
+    {
+        return _iconUrl;
+    }
+
+    public function set iconUrl(value:String):void
+    {
+        _iconUrl = value;
     }
 }
 }
