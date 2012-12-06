@@ -9,18 +9,13 @@ import flash.display.DisplayObject;
 import flash.display.SimpleButton;
 
 import org.aswing.AssetBackground;
-
 import org.aswing.GridLayout;
-import org.aswing.JButton;
-
 import org.aswing.JPanel;
 import org.aswing.geom.IntDimension;
 import org.aswing.plaf.EmptyLayoutUIResourse;
-
 import org.osflash.signals.ISignal;
 
 import ru.fcl.sdd.item.ItemShopView;
-
 import ru.fcl.sdd.rsl.GuiRsl;
 
 public class ShopView extends JPanel
@@ -75,6 +70,8 @@ public class ShopView extends JPanel
         {
             var item:ItemShopView = new ItemShopView();
             item = value[i] as ItemShopView;
+            item.buttonMode = true;
+            item.useHandCursor = true;
             _itemsJPanel.append(value[i] as ItemShopView);
         }
         _itemsJPanel.validate();
