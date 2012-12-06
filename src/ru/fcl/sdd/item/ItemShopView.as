@@ -6,7 +6,9 @@
 package ru.fcl.sdd.item
 {
 import flash.display.DisplayObject;
+import flash.events.MouseEvent;
 import flash.filters.DropShadowFilter;
+import flash.filters.GlowFilter;
 import flash.net.URLRequest;
 
 import org.aswing.AssetBackground;
@@ -27,17 +29,25 @@ public class ItemShopView extends JPanel
     private var _loadPane:JLoadPane;
     private var _realPriceLabel:JLabel;
     private var _goldPriceLabel:JLabel;
+    private var  highLightFilter:GlowFilter;
+    private var  shadowFilter:DropShadowFilter;
 
 
     [PostConstruct]
     public function init():void
     {
+        highLightFilter = new GlowFilter();
+        highLightFilter.color = 0xCCFF00;
+        highLightFilter.blurX = 5;
+        highLightFilter.blurY = 5;
+
         _bg = getAsset("ItemPlaceArt");
         this.setLayout(new CenterLayout());
         this.setBackgroundDecorator(new AssetBackground(_bg));
-        this.setMaximumSize(new IntDimension(193,255));
-        this.setMinimumSize(new IntDimension(193,255));
-        this.filters = [new DropShadowFilter(4,45,0,1,5,5,0.2)];
+        this.setMaximumSize(new IntDimension(193, 255));
+        this.setMinimumSize(new IntDimension(193, 255));
+        shadowFilter = new DropShadowFilter(4, 45, 0, 1, 5, 5, 0.2);
+        this.filters = [shadowFilter];
 
         loadPane = new JLoadPane();
         this.append(loadPane);
@@ -49,7 +59,7 @@ public class ItemShopView extends JPanel
 
     public function getAsset(value:String):DisplayObject
     {
-        return rsl.getAsset("gui.ingame.shop."+value);
+        return rsl.getAsset("gui.ingame.shop." + value);
     }
 
     public function get iconUrl():String
@@ -91,6 +101,30 @@ public class ItemShopView extends JPanel
     public function set goldPriceLabel(value:JLabel):void
     {
         _goldPriceLabel = value;
+    }
+
+    override public function set buttonMode(value:Boolean):void
+    {
+        if (value)
+        {
+            this.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
+            this.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
+        } else
+        {
+            this.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
+            this.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
+        }
+        super.buttonMode = value;
+    }
+
+    private function mouseOverHandler(event:MouseEvent):void
+    {
+        this.filters = [highLightFilter, shadowFilter];
+    }
+
+    private function mouseOutHandler(event:MouseEvent):void
+    {
+        this.filters = [shadowFilter];
     }
 }
 }
