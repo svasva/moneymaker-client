@@ -81,6 +81,7 @@ public class CollectChunker
                 }
             }
         }
+        _currentChunk--;
         return _preparedArray;
     }
 
