@@ -10,6 +10,7 @@ import ru.fcl.sdd.buildapplication.init.InitialiseServerCommand_1;
 import ru.fcl.sdd.buildapplication.MapModelsCommand_0;
 import ru.fcl.sdd.config.BuildConfigCommand;
 import ru.fcl.sdd.error.BuildErrorHandlers;
+import ru.fcl.sdd.states.BuildGameStatesCommand;
 import ru.fcl.sdd.log.BuildLoggerCommand;
 
 import org.robotlegs.mvcs.SignalCommand;
@@ -55,8 +56,11 @@ public class BuildApplicationCommand extends SignalCommand
 
         //**************DISPLAY****************************
         commandMap.execute(BuildScenesCommand);
-
         //**************display****************************
+
+        //**************GAME_STATES************************
+        commandMap.execute(BuildGameStatesCommand);
+        //**************game_states************************
 
         //*************INITIALISE**************************
         commandMap.execute(InitialiseServerCommand_1);

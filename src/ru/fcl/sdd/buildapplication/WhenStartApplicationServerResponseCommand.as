@@ -13,6 +13,8 @@ import ru.fcl.sdd.SDD;
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.ISender;
 import ru.fcl.sdd.services.main.listen.CallHashMap;
+import ru.fcl.sdd.states.ChangeStateSignal;
+import ru.fcl.sdd.states.GameStates;
 
 public class WhenStartApplicationServerResponseCommand extends SignalCommand
 {
@@ -24,6 +26,8 @@ public class WhenStartApplicationServerResponseCommand extends SignalCommand
     public var callHashMap:CallHashMap;
     [Inject]
     public var response:Object;
+    [Inject]
+    public var stateChange:ChangeStateSignal;
 
     override public function execute():void
     {
@@ -31,6 +35,7 @@ public class WhenStartApplicationServerResponseCommand extends SignalCommand
         if (response.response.success)
         {
             SDD(FlexGlobals.topLevelApplication).dispatchInitComplete();
+            stateChange.dispatch(GameStates.VIEW);
         }
     }
 }

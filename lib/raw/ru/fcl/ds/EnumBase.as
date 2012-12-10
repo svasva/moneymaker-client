@@ -3,7 +3,7 @@
  * Date: 07.12.12
  * Time: 17:34
  */
-package ru.fcl.sdd.gamestate
+package ru.fcl.ds
 {
 public class EnumBase
 {
