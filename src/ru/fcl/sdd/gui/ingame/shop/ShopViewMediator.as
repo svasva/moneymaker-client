@@ -6,11 +6,13 @@
 package ru.fcl.sdd.gui.ingame.shop
 {
 import flash.events.MouseEvent;
+import flash.geom.Point;
 
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.gui.CollectChunker;
+import ru.fcl.sdd.gui.ingame.shop.events.ShopItemViewEvent;
 
 
 import ru.fcl.sdd.item.ItemCatalog;
@@ -26,19 +28,25 @@ public class ShopViewMediator extends Mediator
     [Inject]
     public var itemCatalog:ItemCatalog;
     private var _collectChunker:CollectChunker;
+    private var _underMouse:Array;
 
     [PostConstruct]
     public function init():void
     {
-
+        if (!_underMouse)
+        {
+            _underMouse = [];
+        }
     }
 
     override public function onRegister():void
     {
-        _collectChunker = new CollectChunker(itemCatalog, 6);
         shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
+        shopView.addEventListener(ShopItemViewEvent.ITEM_CLICKED, shopItemClickHandler)
+
+        _collectChunker = new CollectChunker(itemCatalog, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
         checkItemsBtnVisible();
@@ -72,6 +80,11 @@ public class ShopViewMediator extends Mediator
     {
         shopView.prevItemsBtn.visible = _collectChunker.hasPrev();
         shopView.nextItemsBtn.visible = _collectChunker.hasNext();
+    }
+
+    private function shopItemClickHandler(event:ShopItemViewEvent):void
+    {
+        trace(event);
     }
 }
 }

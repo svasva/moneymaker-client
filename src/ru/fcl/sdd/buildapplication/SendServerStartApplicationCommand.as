@@ -5,15 +5,10 @@
  */
 package ru.fcl.sdd.buildapplication
 {
-import mx.core.FlexGlobals;
-
 import org.robotlegs.mvcs.SignalCommand;
-
-import ru.fcl.sdd.SDD;
 
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.main.ISender;
-import ru.fcl.sdd.services.main.listen.CallHashMap;
 
 public class SendServerStartApplicationCommand extends SignalCommand
 {

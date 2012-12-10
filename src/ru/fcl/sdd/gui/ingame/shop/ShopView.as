@@ -7,13 +7,16 @@ package ru.fcl.sdd.gui.ingame.shop
 {
 import flash.display.DisplayObject;
 import flash.display.SimpleButton;
+import flash.events.MouseEvent;
 
 import org.aswing.AssetBackground;
 import org.aswing.GridLayout;
 import org.aswing.JPanel;
 import org.aswing.geom.IntDimension;
 import org.aswing.plaf.EmptyLayoutUIResourse;
-import org.osflash.signals.ISignal;
+
+import ru.fcl.sdd.gui.ingame.shop.events.ShopItemViewEvent;
+import ru.fcl.sdd.item.Item;
 
 import ru.fcl.sdd.item.ItemShopView;
 import ru.fcl.sdd.rsl.GuiRsl;
@@ -63,11 +66,15 @@ public class ShopView extends JPanel
 
     internal function set items(value:Array):void
     {
-        _itemsJPanel.removeAll();
+        while(_itemsJPanel.getComponentCount())
+        {
+            (_itemsJPanel.getComponent(0)).removeEventListener(MouseEvent.CLICK, itemClickHandler);
+            _itemsJPanel.removeAt(0);
+        }
         for (var i:int = 0; i < value.length; i++)
         {
-            var item:ItemShopView = new ItemShopView();
-            item = value[i] as ItemShopView;
+            var item:ItemShopView = value[i] as ItemShopView;
+            item.addEventListener(MouseEvent.CLICK, itemClickHandler);
             item.buttonMode = true;
             item.useHandCursor = true;
             _itemsJPanel.append(value[i] as ItemShopView);
@@ -108,6 +115,11 @@ public class ShopView extends JPanel
     public function set nextItemsBtn(value:SimpleButton):void
     {
         _nextItemsBtn = value;
+    }
+
+    private function itemClickHandler(event:MouseEvent):void
+    {
+        this.dispatchEvent(new ShopItemViewEvent(ShopItemViewEvent.ITEM_CLICKED,event.currentTarget as Item));
     }
 }
 }
