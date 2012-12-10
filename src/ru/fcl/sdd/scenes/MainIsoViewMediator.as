@@ -24,6 +24,14 @@ public class MainIsoViewMediator extends Mediator
         view.stage.addEventListener(MouseEvent.MOUSE_WHEEL, viewZoom);
     }
 
+    override public function onRemove():void
+    {
+        view.stage.removeEventListener(MouseEvent.MOUSE_MOVE, viewPan);
+        view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
+        view.stage.removeEventListener(MouseEvent.MOUSE_DOWN, viewMouseDown);
+        view.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, viewZoom);
+    }
+
     private function viewMouseDown(e:MouseEvent):void
     {
         panPoint = new Point(view.stage.mouseX, view.stage.mouseY);

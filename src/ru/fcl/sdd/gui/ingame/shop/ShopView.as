@@ -22,8 +22,6 @@ public class ShopView extends JPanel
 {
     [Inject]
     public var rsl:GuiRsl;
-    [Inject(name="show_shop")]
-    public var closeShop:ISignal;
     private var _bg:DisplayObject;
     private var _closeButton:SimpleButton;
     private var _helpButton:SimpleButton;

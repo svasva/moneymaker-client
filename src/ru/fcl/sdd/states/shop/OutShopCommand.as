@@ -1,16 +1,17 @@
 /**
  * User: Jessie
- * Date: 28.11.12
- * Time: 14:30
+ * Date: 10.12.12
+ * Time: 12:21
  */
-package ru.fcl.sdd.gui.ingame.shop
+package ru.fcl.sdd.states.shop
 {
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.gui.ingame.InGameGuiView;
 import ru.fcl.sdd.gui.ingame.shop.ShopView;
 
-public class ShowHideShopCommand extends SignalCommand
+
+public class OutShopCommand extends SignalCommand
 {
     [Inject]
     public var shopView:ShopView;
@@ -19,13 +20,7 @@ public class ShowHideShopCommand extends SignalCommand
 
     override public function execute():void
     {
-        if(!shopView.parent)
-        {
-            inGameGuiView.addChild(shopView);
-        } else
-        {
-            inGameGuiView.removeChild(shopView);
-        }
+        inGameGuiView.removeChild(shopView);
     }
 }
 }

@@ -14,13 +14,15 @@ import ru.fcl.gui.CollectChunker;
 
 
 import ru.fcl.sdd.item.ItemCatalog;
+import ru.fcl.sdd.states.ChangeStateSignal;
+import ru.fcl.sdd.states.GameStates;
 
 public class ShopViewMediator extends Mediator
 {
     [Inject]
     public var shopView:ShopView;
-    [Inject(name="show_shop")]
-    public var hideShop:ISignal;
+    [Inject]
+    public var hideShop:ChangeStateSignal;
     [Inject]
     public var itemCatalog:ItemCatalog;
     private var _collectChunker:CollectChunker;
@@ -51,7 +53,7 @@ public class ShopViewMediator extends Mediator
 
     private function closeClickHandler(event:MouseEvent):void
     {
-        hideShop.dispatch()
+        hideShop.dispatch(GameStates.STATE_OUT);
     }
 
     private function prevItemsClickHandler(event:MouseEvent):void

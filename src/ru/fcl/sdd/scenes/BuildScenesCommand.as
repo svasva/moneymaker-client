@@ -34,7 +34,8 @@ public class BuildScenesCommand extends SignalCommand
         var gridScene:SceneGrid = injector.getInstance(SceneGrid);
 
         injector.mapSingleton(MainIsoView);
-        mediatorMap.mapView(MainIsoView,MainIsoViewMediator);
+//        mediatorMap.mapView(MainIsoView,MainIsoViewMediator); //map in state changer
+
         var mainIsoView:MainIsoView = injector.getInstance(MainIsoView);
         mainIsoView.clipContent = true;
 

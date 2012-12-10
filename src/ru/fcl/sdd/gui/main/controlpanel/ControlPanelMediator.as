@@ -5,19 +5,19 @@
  */
 package ru.fcl.sdd.gui.main.controlpanel
 {
-import flash.events.Event;
 import flash.events.MouseEvent;
 
-import org.osflash.signals.ISignal;
-
 import org.robotlegs.mvcs.Mediator;
+
+import ru.fcl.sdd.states.ChangeStateSignal;
+import ru.fcl.sdd.states.GameStates;
 
 public class ControlPanelMediator extends Mediator
 {
     [Inject]
     public var view:ControlPanelView;
-    [Inject(name="show_shop")]
-    public var showShop:ISignal;
+    [Inject]
+    public var changeState:ChangeStateSignal;
 
     override public function onRegister():void
     {
@@ -26,7 +26,7 @@ public class ControlPanelMediator extends Mediator
 
     private function shopBtn_clickHandler(event:MouseEvent):void
     {
-        showShop.dispatch();
+        changeState.dispatch(GameStates.IN_SHOP);
     }
 }
 }

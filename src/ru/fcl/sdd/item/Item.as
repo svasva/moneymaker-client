@@ -113,9 +113,6 @@ public class Item extends ItemShopView
         _catalog_id = value;
     }
 
-
-
-
     public function get skinUrl():String
     {
         return _skinUrl;
