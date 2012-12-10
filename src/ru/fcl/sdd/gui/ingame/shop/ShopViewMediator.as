@@ -6,15 +6,15 @@
 package ru.fcl.sdd.gui.ingame.shop
 {
 import flash.events.MouseEvent;
-import flash.geom.Point;
 
 import org.osflash.signals.ISignal;
+
+import org.robotlegs.base.CommandMap;
+
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.gui.CollectChunker;
 import ru.fcl.sdd.gui.ingame.shop.events.ShopItemViewEvent;
-
-
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -27,24 +27,16 @@ public class ShopViewMediator extends Mediator
     public var hideShop:ChangeStateSignal;
     [Inject]
     public var itemCatalog:ItemCatalog;
+    [Inject(name="buy_item")]
+    public var buyItem:ISignal;
     private var _collectChunker:CollectChunker;
-    private var _underMouse:Array;
-
-    [PostConstruct]
-    public function init():void
-    {
-        if (!_underMouse)
-        {
-            _underMouse = [];
-        }
-    }
 
     override public function onRegister():void
     {
         shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
-        shopView.addEventListener(ShopItemViewEvent.ITEM_CLICKED, shopItemClickHandler)
+        shopView.addEventListener(ShopItemViewEvent.ITEM_CLICKED, shopItemClickHandler);
 
         _collectChunker = new CollectChunker(itemCatalog, 6);
         _collectChunker.reset();
@@ -57,6 +49,7 @@ public class ShopViewMediator extends Mediator
         shopView.closeButton.removeEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.removeEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.removeEventListener(MouseEvent.CLICK, nextItemsClickHandler);
+        shopView.items = [];
     }
 
     private function closeClickHandler(event:MouseEvent):void
@@ -84,7 +77,7 @@ public class ShopViewMediator extends Mediator
 
     private function shopItemClickHandler(event:ShopItemViewEvent):void
     {
-        trace(event);
+        buyItem.dispatch(event.item);
     }
 }
 }

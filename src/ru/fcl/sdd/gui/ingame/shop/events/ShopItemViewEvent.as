@@ -12,7 +12,7 @@ import ru.fcl.sdd.item.Item;
 public class ShopItemViewEvent extends Event
 {
     public static const ITEM_CLICKED:String = "item_clicked";
-    private var item:Item;
+    public var item:Item;
 
     public function ShopItemViewEvent(type:String,item:Item,bubbles:Boolean = false,cancelable:Boolean = false):void
     {
