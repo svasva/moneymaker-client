@@ -21,7 +21,7 @@ public class BuildShopCommand extends SignalCommand
     {
         var buyItemSignal:ISignal = new AboutItemSignal();
         injector.mapValue(ISignal,buyItemSignal,"buy_item");
-        signalCommandMap.mapSignal(buyItemSignal,SendServerBuyItemCommand);
+        signalCommandMap.mapSignal(buyItemSignal,BuyItemCommand);
 
         injector.mapSingleton(ShopView);
         mediatorMap.mapView(ShopView,ShopViewMediator);

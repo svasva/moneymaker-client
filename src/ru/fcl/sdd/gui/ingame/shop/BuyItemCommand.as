@@ -19,7 +19,7 @@ import ru.fcl.sdd.states.GameStates;
 public class BuyItemCommand extends SignalCommand
 {
     [Inject]
-    public var serverResponse:Object;
+    public var item:Item;
     [Inject]
     public var changeState:ChangeStateSignal;
     [Inject]
@@ -29,11 +29,12 @@ public class BuyItemCommand extends SignalCommand
 
     override public function execute():void
     {
-        var item:Item = itemCatalog.get(serverResponse.response.item_id) as Item;
+//        var item:Item = itemCatalog.get(serverResponse.response.item_id) as Item;
+
 
         //todo:добавить iso айтем в хэшмэпу, заинжектить его, сменить на него курсор, начать двигать.
         var itemForMove:ItemIsoView = new ItemIsoView();
-        itemForMove.key = item.key;
+//        itemForMove.catalogKey = item.key;
         itemForMove.catalogKey = item.catalog_id;
         itemForMove.rotationIso= item.rotation;
         itemForMove.x = item.x*IsoConfig.CELL_SIZE;
@@ -47,7 +48,7 @@ public class BuyItemCommand extends SignalCommand
 
         injector.mapValue(ItemIsoView, itemForMove,"item_for_move");
 
-        changeState.dispatch(GameStates.MOVE_ITEM);
+        changeState.dispatch(GameStates.BUY_ITEM);
     }
 }
 }

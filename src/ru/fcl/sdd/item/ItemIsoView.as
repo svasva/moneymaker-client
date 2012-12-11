@@ -19,6 +19,7 @@ public class ItemIsoView  extends IsoSprite
     private var _rotationIso:int;
     private var _key:String;
     private var _catalogKey:String;
+    private var _skin:String;
 
     public function ItemIsoView():void
     {
@@ -54,6 +55,7 @@ public class ItemIsoView  extends IsoSprite
     public function set skin(value:String):void
     {
         //TODO:грузить скины руками, по мере необходимости.
+        _skin = value;
         if (value)
         {
             _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
