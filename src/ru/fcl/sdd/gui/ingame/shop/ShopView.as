@@ -15,7 +15,7 @@ import org.aswing.JPanel;
 import org.aswing.geom.IntDimension;
 import org.aswing.plaf.EmptyLayoutUIResourse;
 
-import ru.fcl.sdd.gui.ingame.shop.events.ShopItemViewEvent;
+import ru.fcl.sdd.gui.ingame.shop.events.ItemEvent;
 import ru.fcl.sdd.item.Item;
 
 import ru.fcl.sdd.item.ItemShopView;
@@ -73,11 +73,11 @@ public class ShopView extends JPanel
         }
         for (var i:int = 0; i < value.length; i++)
         {
-            var item:ItemShopView = value[i] as ItemShopView;
+            var item:Item = value[i] as Item;
             item.addEventListener(MouseEvent.CLICK, itemClickHandler);
             item.buttonMode = true;
             item.useHandCursor = true;
-            _itemsJPanel.append(value[i] as ItemShopView);
+            _itemsJPanel.append(value[i] as Item);
         }
         _itemsJPanel.validate();
     }
@@ -119,7 +119,7 @@ public class ShopView extends JPanel
 
     private function itemClickHandler(event:MouseEvent):void
     {
-        this.dispatchEvent(new ShopItemViewEvent(ShopItemViewEvent.ITEM_CLICKED,event.currentTarget as Item));
+        this.dispatchEvent(new ItemEvent(ItemEvent.ITEM_CLICKED,event.currentTarget as Item));
     }
 }
 }

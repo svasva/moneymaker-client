@@ -14,7 +14,7 @@ import org.robotlegs.base.CommandMap;
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.gui.CollectChunker;
-import ru.fcl.sdd.gui.ingame.shop.events.ShopItemViewEvent;
+import ru.fcl.sdd.gui.ingame.shop.events.ItemEvent;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -36,7 +36,7 @@ public class ShopViewMediator extends Mediator
         shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
-        shopView.addEventListener(ShopItemViewEvent.ITEM_CLICKED, shopItemClickHandler);
+        shopView.addEventListener(ItemEvent.ITEM_CLICKED, shopItemClickHandler);
 
         _collectChunker = new CollectChunker(itemCatalog, 6);
         _collectChunker.reset();
@@ -49,6 +49,7 @@ public class ShopViewMediator extends Mediator
         shopView.closeButton.removeEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.removeEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.removeEventListener(MouseEvent.CLICK, nextItemsClickHandler);
+        shopView.removeEventListener(ItemEvent.ITEM_CLICKED, shopItemClickHandler);
         shopView.items = [];
     }
 
@@ -75,7 +76,7 @@ public class ShopViewMediator extends Mediator
         shopView.nextItemsBtn.visible = _collectChunker.hasNext();
     }
 
-    private function shopItemClickHandler(event:ShopItemViewEvent):void
+    private function shopItemClickHandler(event:ItemEvent):void
     {
         buyItem.dispatch(event.item);
     }

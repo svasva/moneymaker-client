@@ -13,7 +13,7 @@ public class AboutItemSignal extends Signal
 {
     public function AboutItemSignal()
     {
-        super(ItemShopView);
+        super(Item);
     }
 }
 }
