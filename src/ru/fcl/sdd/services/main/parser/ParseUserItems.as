@@ -31,11 +31,11 @@ public class ParseUserItems extends SignalCommand
 
     private function parseItems(object:Object,index:int, array:Array):void
     {
-        var catalogItem:Item = Item(itemCatalog.get(object.item_id));
+        var catalogItem:Item = Item(itemCatalog.get(object.reference_id));
         var item:ItemIsoView = new ItemIsoView();
         item.key = object._id;
-        item.catalogKey = object.item_id;
-        item.rotationIso= object.rotationIso;
+        item.catalogKey = object.reference_id;
+        item.rotationIso= object.rotation;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
         item.width = catalogItem.isoWidth;

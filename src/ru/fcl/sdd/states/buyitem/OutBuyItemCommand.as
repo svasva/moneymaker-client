@@ -5,22 +5,22 @@
  */
 package ru.fcl.sdd.states.buyitem
 {
+import flash.ui.Mouse;
+
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.gui.ingame.InGameGuiView;
-import ru.fcl.sdd.gui.ingame.shop.ShopView;
-
+import ru.fcl.sdd.item.ItemIsoView;
 
 public class OutBuyItemCommand extends SignalCommand
 {
-    [Inject]
-    public var shopView:ShopView;
-    [Inject]
-    public var inGameGuiView:InGameGuiView;
+    [Inject(name="item_for_move")]
+    public var item:ItemIsoView;
 
     override public function execute():void
     {
-//        inGameGuiView.removeChild(shopView);
+        Mouse.show();
+        mediatorMap.removeMediatorByView(item);
+        mediatorMap.unmapView(item);
     }
 }
 }

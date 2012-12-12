@@ -11,6 +11,8 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 
+import org.osflash.signals.ISignal;
+
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
@@ -26,11 +28,14 @@ public class ItemIsoViewMoveMediator extends Mediator
     public var cursor:ItemIsoView;
     [Inject]
     public var _view:MainIsoView;
+    [Inject(name="place_moved_item")]
+    public var placeMovedItem:ISignal;
 
     private var _dragPt:Pt;
 
     override public function onRegister():void
     {
+        contextView.stage.addEventListener(MouseEvent.CLICK, onDrop);
         contextView.stage.addEventListener(MouseEvent.MOUSE_MOVE, updateMouse, false, 0, true);
         contextView.stage.addEventListener(MouseEvent.MOUSE_WHEEL, wheelMouse, false, 0, true);
         _dragPt = new Pt();//_view.localToIso( new Point( contextView.stage.mouseX, contextView.stage.mouseY ) );
@@ -38,29 +43,23 @@ public class ItemIsoViewMoveMediator extends Mediator
 //        _dragPt.y -= cursor.y;
         _dragPt.x = contextView.stage.mouseX;
         _dragPt.y = contextView.stage.mouseY;
-
-
-//        _dragObject.addEventListener( MouseEvent.MOUSE_UP, onDrop, false, 0, true );
-//        contextView.stage.addEventListener( MouseEvent.MOUSE_UP, onDrop, false, 0, true );
-        contextView.stage.addEventListener(MouseEvent.MOUSE_MOVE, updateMouse, false, 0, true);
+        cursor.z = 25;
 
 //        Tweener.addTween( _dragObject, { z:25, time:0.5 } );
     }
 
     private function onDrop(e:Event):void
     {
-        contextView.stage.removeEventListener(MouseEvent.MOUSE_UP, onDrop);
-        contextView.stage.removeEventListener(MouseEvent.MOUSE_UP, onDrop);
-        contextView.stage.removeEventListener(MouseEvent.MOUSE_MOVE, updateMouse);
-
-//        contextView.stage.addEventListener( MouseEvent.MOUSE_DOWN, onPickup, false, 0, true );
-
+        placeMovedItem.dispatch(cursor);
+        cursor.z = 0;
 //        Tweener.addTween( _dragObject, { z:0, time:0.5 } );
     }
 
     override public function onRemove():void
     {
+        contextView.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, wheelMouse, false);
         contextView.stage.removeEventListener(MouseEvent.MOUSE_MOVE, updateMouse, false);
+        contextView.stage.removeEventListener(MouseEvent.CLICK, onDrop);
     }
 
     private function updateMouse(e:MouseEvent):void

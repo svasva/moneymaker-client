@@ -18,7 +18,7 @@ public class SendServerBuyItemCommand extends SignalCommand
     public var item:Item;
     override public function execute():void
     {
-        sender.send({command:"buyItem",args:[/*item_id:*/item.key,/*currency:*/"money"]},BuyItemCommand);
+        sender.send({command:"buyContent",args:[/*item_id:*/item.key,/*currency:*/"coins"]},BuyItemCommand);
     }
 }
 }

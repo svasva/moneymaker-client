@@ -12,6 +12,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.ItemIsoViewMoveMediator;
 import ru.fcl.sdd.item.PlaceItemCommand;
+import ru.fcl.sdd.states.iso.EnterIsoViewCommand;
 
 public class EnterBuyItemCommand extends SignalCommand
 {

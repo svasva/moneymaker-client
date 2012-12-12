@@ -7,11 +7,11 @@ package ru.fcl.sdd.item
 {
 import org.osflash.signals.Signal;
 
-public class AboutItemSignal extends Signal
+public class AboutIsoItemSignal extends Signal
 {
-    public function AboutItemSignal()
+    public function AboutIsoItemSignal()
     {
-        super(Item);
+        super(ItemIsoView);
     }
 }
 }

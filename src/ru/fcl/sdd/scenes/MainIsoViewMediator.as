@@ -5,8 +5,10 @@
  */
 package ru.fcl.sdd.scenes
 {
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import flash.ui.Keyboard;
 
 import org.robotlegs.mvcs.Mediator;
 
@@ -21,7 +23,7 @@ public class MainIsoViewMediator extends Mediator
     override public function onRegister():void
     {
         view.stage.addEventListener(MouseEvent.MOUSE_DOWN, viewMouseDown);
-        view.stage.addEventListener(MouseEvent.MOUSE_WHEEL, viewZoom);
+        view.stage.addEventListener(KeyboardEvent.KEY_DOWN, viewZoom);
     }
 
     override public function onRemove():void
@@ -29,7 +31,7 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_MOVE, viewPan);
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
         view.stage.removeEventListener(MouseEvent.MOUSE_DOWN, viewMouseDown);
-        view.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, viewZoom);
+        view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, viewZoom);
     }
 
     private function viewMouseDown(e:MouseEvent):void
@@ -52,13 +54,13 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
     }
 
-    private function viewZoom(e:MouseEvent):void
+    private function viewZoom(e:KeyboardEvent):void
     {
-        if(e.delta > 0)
+        if(e.keyCode == Keyboard.NUMPAD_ADD)
         {
             zoom +=  0.10;
         }
-        if(e.delta < 0)
+        if(e.keyCode == Keyboard.NUMPAD_SUBTRACT)
         {
             zoom -=  0.10;
         }

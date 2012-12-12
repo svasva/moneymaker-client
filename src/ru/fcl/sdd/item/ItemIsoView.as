@@ -76,6 +76,16 @@ public class ItemIsoView  extends IsoSprite
         trace(event.text);
     }
 
+    public function grad2frame(value:int):int
+    {
+        return value/90;
+    }
+
+    public function frame2grad(value:int):int
+    {
+        return value*90;
+    }
+
     public function set rotationIso(value:int):void
     {
         if (_skinSwf.content)
