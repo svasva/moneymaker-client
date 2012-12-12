@@ -7,6 +7,10 @@ package ru.fcl.sdd.states
 {
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.states.buyitem.EnterBuyItemCommand;
+
+import ru.fcl.sdd.states.buyitem.OutBuyItemCommand;
+
 import ru.fcl.sdd.states.iso.OutIsoViewCommand;
 
 import ru.fcl.sdd.states.shop.EnterShopCommand;
@@ -37,6 +41,12 @@ public class ChangeStateCommand extends SignalCommand
                 {
                     stateHolder.stateOutCommand = OutShopCommand;
                     commandMap.execute(EnterShopCommand);
+                    break;
+                }
+                case GameStates.BUY_ITEM:
+                {
+                    stateHolder.stateOutCommand = OutBuyItemCommand;
+                    commandMap.execute(EnterBuyItemCommand);
                     break;
                 }
                 case GameStates.VIEW:

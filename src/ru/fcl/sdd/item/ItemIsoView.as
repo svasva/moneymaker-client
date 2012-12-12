@@ -19,6 +19,7 @@ public class ItemIsoView  extends IsoSprite
     private var _rotationIso:int;
     private var _key:String;
     private var _catalogKey:String;
+    private var _skin:String;
 
     public function ItemIsoView():void
     {
@@ -54,6 +55,7 @@ public class ItemIsoView  extends IsoSprite
     public function set skin(value:String):void
     {
         //TODO:грузить скины руками, по мере необходимости.
+        _skin = value;
         if (value)
         {
             _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
@@ -72,6 +74,16 @@ public class ItemIsoView  extends IsoSprite
     private function ioErrorHandler(event:IOErrorEvent):void
     {
         trace(event.text);
+    }
+
+    public function grad2frame(value:int):int
+    {
+        return value/90;
+    }
+
+    public function frame2grad(value:int):int
+    {
+        return value*90;
     }
 
     public function set rotationIso(value:int):void

@@ -5,32 +5,24 @@
   */
 package ru.fcl.sdd.buildapplication
 {
-import ru.fcl.sdd.buildapplication.buildscreen.BuildDisplayCommand;
-import ru.fcl.sdd.buildapplication.init.InitialiseServerCommand_1;
-import ru.fcl.sdd.buildapplication.MapModelsCommand_0;
-import ru.fcl.sdd.config.BuildConfigCommand;
-import ru.fcl.sdd.error.BuildErrorHandlers;
-import ru.fcl.sdd.states.BuildGameStatesCommand;
-import ru.fcl.sdd.log.BuildLoggerCommand;
-
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.gui.main.BuildMainGUICommand;
-
+import ru.fcl.sdd.buildapplication.init.InitialiseServerCommand_1;
+import ru.fcl.sdd.config.BuildConfigCommand;
+import ru.fcl.sdd.error.BuildErrorHandlers;
+import ru.fcl.sdd.item.BuildItemsCommand;
+import ru.fcl.sdd.log.BuildLoggerCommand;
+import ru.fcl.sdd.pathfind.BuildPathFind;
 import ru.fcl.sdd.rsl.BuildRslCommand;
-
 import ru.fcl.sdd.scenes.BuildScenesCommand;
 import ru.fcl.sdd.services.main.BuildMainServicesCommand;
-
+import ru.fcl.sdd.states.BuildGameStatesCommand;
 import ru.fcl.sdd.test.BuildDebugConsoleCommand;
-
 
 public class BuildApplicationCommand extends SignalCommand
 {
     override public function execute():void
     {
-
-
         commandMap.execute(MapModelsCommand_0);
 
         //***********CONFIGURE*****************************
@@ -57,6 +49,14 @@ public class BuildApplicationCommand extends SignalCommand
         //**************DISPLAY****************************
         commandMap.execute(BuildScenesCommand);
         //**************display****************************
+
+        //**************ITEMS******************************
+        commandMap.execute(BuildItemsCommand);
+        //**************items******************************
+
+        //**************PATHFIND***************************
+        commandMap.execute(BuildPathFind);
+        //**************pathfind***************************
 
         //**************GAME_STATES************************
         commandMap.execute(BuildGameStatesCommand);

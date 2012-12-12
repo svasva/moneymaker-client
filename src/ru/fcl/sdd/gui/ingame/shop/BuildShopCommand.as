@@ -5,9 +5,13 @@
  */
 package ru.fcl.sdd.gui.ingame.shop
 {
+import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.gui.ingame.shop.SendServerBuyItemCommand;
+import ru.fcl.sdd.gui.ingame.shop.SendServerBuyItemCommand;
+import ru.fcl.sdd.item.AboutItemSignal;
 
 public class BuildShopCommand extends SignalCommand
 {
@@ -16,6 +20,10 @@ public class BuildShopCommand extends SignalCommand
 
     override public function execute():void
     {
+        var buyItemSignal:ISignal = new AboutItemSignal();
+        injector.mapValue(ISignal,buyItemSignal,"buy_item");
+        signalCommandMap.mapSignal(buyItemSignal,SendServerBuyItemCommand);
+
         injector.mapSingleton(ShopView);
         mediatorMap.mapView(ShopView,ShopViewMediator);
         var shop:ShopView = injector.getInstance(ShopView);
