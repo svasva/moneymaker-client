@@ -57,6 +57,7 @@ public class Preloader extends SparkDownloadProgressBar
     {
         super();
         this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+//        this.width=this.height=800;
     }
 
     /**

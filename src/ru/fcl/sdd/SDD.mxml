@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"  backgroundColor="#000000"
-               xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()"
-              >
+               xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()"  maxWidth="830" maxHeight="760">
     <fx:Script><![CDATA[
         import flash.Lib;
 
         import org.aswing.AsWingManager;
+
+        import ru.fcl.sdd.config.FlashVarsModel;
 
         private var context:SDDContext;
         private var _flashVars:Object;

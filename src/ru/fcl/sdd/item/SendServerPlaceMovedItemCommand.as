@@ -11,7 +11,6 @@ import ru.fcl.sdd.config.IsoConfig;
 
 import ru.fcl.sdd.location.room.Room;
 
-import ru.fcl.sdd.location.room.RoomCatalog;
 import ru.fcl.sdd.location.room.UserRoomList;
 
 import ru.fcl.sdd.log.LogServerResponseCommand;
