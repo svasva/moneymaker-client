@@ -12,10 +12,12 @@ import flash.filters.GlowFilter;
 import flash.net.URLRequest;
 
 import org.aswing.AssetBackground;
+import org.aswing.BorderLayout;
 import org.aswing.CenterLayout;
 import org.aswing.JLabel;
 import org.aswing.JLoadPane;
 import org.aswing.JPanel;
+import org.aswing.SoftBoxLayout;
 import org.aswing.geom.IntDimension;
 
 import ru.fcl.sdd.rsl.GuiRsl;
@@ -27,8 +29,8 @@ public class ItemShopView extends JPanel
     private var _bg:DisplayObject;
     private var _iconUrl:String;
     private var _loadPane:JLoadPane;
-    private var _realPriceLabel:JLabel;
-    private var _goldPriceLabel:JLabel;
+    private var _realMoneyPriceLabel:JLabel;
+    private var _gameMoneyPriceLabel:JLabel;
     private var  highLightFilter:GlowFilter;
     private var  shadowFilter:DropShadowFilter;
 
@@ -42,19 +44,25 @@ public class ItemShopView extends JPanel
         highLightFilter.blurY = 5;
 
         _bg = getAsset("ItemPlaceArt");
-        this.setLayout(new CenterLayout());
+        this.setLayout(new SoftBoxLayout(SoftBoxLayout.Y_AXIS,20,SoftBoxLayout.CENTER));
         this.setBackgroundDecorator(new AssetBackground(_bg));
         this.setMaximumSize(new IntDimension(193, 255));
         this.setMinimumSize(new IntDimension(193, 255));
         shadowFilter = new DropShadowFilter(4, 45, 0, 1, 5, 5, 0.2);
         this.filters = [shadowFilter];
 
+        var loadPanel:JPanel = new JPanel(new CenterLayout());
         loadPane = new JLoadPane();
-        this.append(loadPane);
+        loadPanel.append(loadPane);
+        this.append(loadPanel);
 
-        realPriceLabel = new JLabel("1024");
-        realPriceLabel.setBackgroundDecorator(new AssetBackground(getAsset("PriceGoldSmallArt")));
-        this.append(realPriceLabel);
+        var gamePricePanel:JPanel = new JPanel(new CenterLayout());
+        gameMoneyPriceLabel = new JLabel("n/a");
+        gameMoneyPriceLabel.setHorizontalTextPosition(JLabel.RIGHT);
+        gameMoneyPriceLabel.setPreferredSize(new IntDimension(83,26));
+        gameMoneyPriceLabel.setBackgroundDecorator(new AssetBackground(getAsset("PriceGoldSmallArt")));
+        gamePricePanel.append(gameMoneyPriceLabel);
+        this.append(gamePricePanel);
     }
 
     public function getAsset(value:String):DisplayObject
@@ -83,24 +91,24 @@ public class ItemShopView extends JPanel
         _loadPane = value;
     }
 
-    public function get realPriceLabel():JLabel
+    public function get realMoneyPriceLabel():JLabel
     {
-        return _realPriceLabel;
+        return _realMoneyPriceLabel;
     }
 
-    public function set realPriceLabel(value:JLabel):void
+    public function set realMoneyPriceLabel(value:JLabel):void
     {
-        _realPriceLabel = value;
+        _realMoneyPriceLabel = value;
     }
 
-    public function get goldPriceLabel():JLabel
+    public function get gameMoneyPriceLabel():JLabel
     {
-        return _goldPriceLabel;
+        return _gameMoneyPriceLabel;
     }
 
-    public function set goldPriceLabel(value:JLabel):void
+    public function set gameMoneyPriceLabel(value:JLabel):void
     {
-        _goldPriceLabel = value;
+        _gameMoneyPriceLabel = value;
     }
 
     override public function set buttonMode(value:Boolean):void

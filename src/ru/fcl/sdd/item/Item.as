@@ -11,7 +11,7 @@ public class Item extends ItemShopView
     private var _item_name:String;
     private var _item_type:String;
     private var _money_cost:String;
-    private var _coins_cost:String;
+    private var _gameMoneyPrice:int;
     private var _sell_cost:String;
     private var _reputation_bonus:String;
     private var _room_id:String;
@@ -62,14 +62,15 @@ public class Item extends ItemShopView
         _money_cost = value;
     }
 
-    public function get coins_cost():String
+    public function get gameMoneyPrice():int
     {
-        return _coins_cost;
+        return _gameMoneyPrice;
     }
 
-    public function set coins_cost(value:String):void
+    public function set gameMoneyPrice(value:int):void
     {
-        _coins_cost = value;
+        gameMoneyPriceLabel.setText(value.toString());
+        _gameMoneyPrice = value;
     }
 
     public function get sell_cost():String
