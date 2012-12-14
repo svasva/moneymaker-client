@@ -15,7 +15,7 @@ import ru.fcl.sdd.buildapplication.init.AuthoriseSocketServerCommand_2;
 
 import ru.fcl.sdd.services.main.errorhandle.ServerResponseErrorHandleCommand;
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
-import ru.fcl.sdd.services.main.parser.ParseExecutedCommand;
+import ru.fcl.sdd.services.main.parser.ParseCommand;
 
 public class BuildMainServicesCommand extends SignalCommand
 {
@@ -33,7 +33,7 @@ public class BuildMainServicesCommand extends SignalCommand
 
         var serverTalkSignal:ISignal = new AboutString();
         injector.mapValue(ISignal,serverTalkSignal,"main_server_talk");
-        signalCommandMap.mapSignal(serverTalkSignal,ParseExecutedCommand);
+        signalCommandMap.mapSignal(serverTalkSignal,ParseCommand);
 
         injector.mapSingletonOf(IServerProxy, ServerProxy);
 

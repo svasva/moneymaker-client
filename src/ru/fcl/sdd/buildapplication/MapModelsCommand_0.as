@@ -11,6 +11,10 @@ import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.location.room.RoomCatalog;
+import ru.fcl.sdd.money.BuildMoneyCommand;
+import ru.fcl.sdd.money.GameMoney;
+import ru.fcl.sdd.money.IMoney;
+import ru.fcl.sdd.money.RealMoney;
 import ru.fcl.sdd.user.UserDataModel;
 import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.location.room.UserRoomList;
@@ -26,6 +30,8 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(UserItemList);
         injector.mapSingleton(PlatformModel);
         injector.mapSingleton(ItemCatalog);
+        commandMap.execute(BuildMoneyCommand);
+
     }
 }
 }

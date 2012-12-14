@@ -12,6 +12,7 @@ import ru.fcl.sdd.config.BuildConfigCommand;
 import ru.fcl.sdd.error.BuildErrorHandlers;
 import ru.fcl.sdd.item.BuildItemsCommand;
 import ru.fcl.sdd.log.BuildLoggerCommand;
+import ru.fcl.sdd.money.BuildMoneyCommand;
 import ru.fcl.sdd.pathfind.BuildPathFind;
 import ru.fcl.sdd.rsl.BuildRslCommand;
 import ru.fcl.sdd.scenes.BuildScenesCommand;

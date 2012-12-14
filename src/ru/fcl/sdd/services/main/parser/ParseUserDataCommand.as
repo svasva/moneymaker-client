@@ -34,6 +34,9 @@ public class ParseUserDataCommand extends Command
             items = [];
         }
         commandMap.execute(ParseUserItems,items);
+
+        var money:Object = {gameMoney:userObject.response.coins,realMoney:userObject.response.money};
+        commandMap.execute(ParseMoneyCommand,money);
     }
 }
 }

@@ -45,6 +45,7 @@ public class ParseItemsCatalogCommand extends Command
         item.key = object._id;
         item.item_name=object.name;
         item.skinUrl=contentUrl;
+        item.gameMoneyPrice = object.coins_cost as int;
         item.iconUrl = flashVars.content_url+object.icon_url;
         item.isoWidth=object.size_x*IsoConfig.CELL_SIZE;
         item.isoLength=object.size_y*IsoConfig.CELL_SIZE;

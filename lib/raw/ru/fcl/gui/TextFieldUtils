@@ -1,0 +1,44 @@
+package ru.fd.gui
+{
+import flash.text.TextField;
+import flash.text.TextFormat;
+
+public class TextFieldUtils
+{
+
+    /**
+     *
+     * @param x x
+     * @param y y
+     * @param width width
+     * @param height height
+     * @param text text
+     * @param textFormat textFormat
+     * @param multilineWordWrap multilineWordWrap
+     * @param autoSize autoSize
+     * @param embedFonts embedFonts
+     * @param antiAliasType antiAliasType
+     * @param selectable selectable
+     * @return
+     */
+    public static function createTextField(x:Number = 0, y:Number = 0, width:Number = 100, height:Number = 100, text:String = "", textFormat:TextFormat = null, multilineWordWrap:Boolean = false, autoSize:String = "none", embedFonts:Boolean = true, antiAliasType:String = "advanced", selectable:Boolean = false):TextField
+    {
+
+        var tf:TextField = new TextField();
+        tf.x = x;
+        tf.y = y;
+        tf.width = width;
+        tf.height = height;
+        tf.embedFonts = embedFonts;
+        tf.selectable = selectable;
+        tf.multiline = tf.wordWrap = multilineWordWrap;
+        tf.autoSize = autoSize;
+        tf.antiAliasType = antiAliasType;
+        tf.defaultTextFormat = textFormat;
+        tf.htmlText = text;
+
+        return tf;
+    }
+
+}
+}
