@@ -7,11 +7,11 @@ package ru.fcl.sdd.config
 {
 public class FlashVarsModel
 {
-    public static const LOCAL_TOKEN:String = "50c996f85dae911559000009";
+    public static const LOCAL_TOKEN:String = "50cef4675dae91b5b1000001";
     public static const LOCAL_CONTENT_URL:String = "http://app.so14.org";
-    public static const LOCAL_SOCKET_URL:String = "ws://178.132.203.71:9999/socket/0/0/websocket";
+    public static const LOCAL_SOCKET_URL:String = "ws://178.132.203.71:9999/socket/websocket";
 //    public static const LOCAL_CONTENT_URL:String = "http://192.168.1.242:3000";
-//    public static const LOCAL_SOCKET_URL:String = "ws://192.168.1.242:9999/socket/0/0/websocket";
+//    public static const LOCAL_SOCKET_URL:String = "ws://192.168.1.242:9999/socket/websocket";
     public static const LOCAL_GREETING:String = "Greeting, dear developer.";
     private var _token:String;
     private var _socketUrl:String;

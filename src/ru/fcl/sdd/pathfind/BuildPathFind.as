@@ -12,7 +12,7 @@ public class BuildPathFind extends SignalCommand
     override public function execute():void
     {
         injector.mapSingleton(PathGrid);
-        var pathGrid = injector.getInstance(PathGrid);
+        var pathGrid:PathGrid = injector.getInstance(PathGrid);
         //fixme: вынести размеры сетки в конфиг.
         pathGrid.init(26,11);
     }

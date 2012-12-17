@@ -67,20 +67,10 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
 
     private function handleWebSocketMessage(event:WebSocketEvent):void
     {
-        if (event.message.type ===
-                WebSocketMessage.TYPE_UTF8)
+        if (event.message.type === WebSocketMessage.TYPE_UTF8)
         {
             _logger.log(event.message.utf8Data);
-            if (event.message.utf8Data.substr(0, 1) == "a")
-            {
-                serverTalkSignal.dispatch(Object(event.message.utf8Data.slice(1, event.message.utf8Data.length)));
-            }
-        }
-        else if (event.message.type ===
-                WebSocketMessage.TYPE_BINARY)
-        {
-            WebSocket.logger("Binary message received.  Length: " +
-                    event.message.binaryData.length);
+            serverTalkSignal.dispatch(Object(event.message.utf8Data));
         }
     }
 
@@ -100,7 +90,7 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
     private function handleConnectionFail(event:WebSocketErrorEvent):void
     {
         _logger.log(this, "Connection Failure: " +
-                event.text);
+                          event.text);
         _errorHandler.handleError(event);
     }
 

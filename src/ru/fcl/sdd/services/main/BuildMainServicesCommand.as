@@ -16,6 +16,7 @@ import ru.fcl.sdd.buildapplication.init.AuthoriseSocketServerCommand_2;
 import ru.fcl.sdd.services.main.errorhandle.ServerResponseErrorHandleCommand;
 import ru.fcl.sdd.services.main.listen.BuildServerListen;
 import ru.fcl.sdd.services.main.parser.ParseCommand;
+import ru.fcl.sdd.services.main.test.BuildMainServerTestCommand;
 
 public class BuildMainServicesCommand extends SignalCommand
 {
@@ -38,6 +39,9 @@ public class BuildMainServicesCommand extends SignalCommand
         injector.mapSingletonOf(IServerProxy, ServerProxy);
 
         injector.mapSingletonOf(ISender,Sender);
+
+        //******************tests*****************
+        commandMap.execute(BuildMainServerTestCommand);
     }
 }
 }

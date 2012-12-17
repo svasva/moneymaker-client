@@ -28,16 +28,9 @@ public class ParseCommand extends SignalCommand
 
     override public function execute():void
     {
-        var slicedString:String = response.slice(2, response.length - 2);
-
-        while (slicedString.indexOf("\\") != -1)
+        if (response.substr(0, 1) == "{")
         {
-            slicedString = slicedString.replace("\\", "");
-        }
-
-        if (slicedString.substr(0, 1) == "{")
-        {
-            var decodedObject:Object = JSON.decode(slicedString);
+            var decodedObject:Object = JSON.decode(response);
             logger.log(this, "decode value: " + decodedObject);
 
             if (decodedObject.response)
@@ -56,6 +49,9 @@ public class ParseCommand extends SignalCommand
                 callHashMap.remove(callHashMap.get(decodedObject.requestId));
                 callHashMap.remove(callHashMap.get(decodedObject.requestId + "_error"));
             }
+        }else
+        {
+            logger.error(this, response);
         }
     }
 }

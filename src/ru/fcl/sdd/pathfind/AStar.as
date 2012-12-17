@@ -22,8 +22,8 @@ public class AStar
     public function findPath(grid:Grid):Boolean
     {
         _grid = grid;
-        _open = new Array();
-        _closed = new Array();
+        _open = [];
+        _closed = [];
         _startNode = _grid.startNode;
         _endNode = _grid.endNode;
 
@@ -100,7 +100,7 @@ public class AStar
 
     private function buildPath():void
     {
-        _path = new Array();
+        _path = [];
         var node:Node = _endNode;
         _path.push(node);
         while (node != _startNode)
