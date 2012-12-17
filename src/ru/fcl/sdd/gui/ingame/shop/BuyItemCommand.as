@@ -53,7 +53,6 @@ public class BuyItemCommand extends SignalCommand
             injector.mapValue(ItemIsoView, itemForMove, "item_for_move");
 
             changeState.dispatch(GameStates.BUY_ITEM);
-
         }
     }
 }

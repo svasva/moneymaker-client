@@ -69,7 +69,7 @@ public class Item extends ItemShopView
 
     public function set gameMoneyPrice(value:int):void
     {
-        gameMoneyPriceLabel.setText(value.toString());
+        gameMoneyPriceTextField.text = value.toString();
         _gameMoneyPrice = value;
     }
 

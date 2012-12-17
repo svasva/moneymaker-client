@@ -6,6 +6,8 @@
 package ru.fcl.sdd.item
 {
 import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.filters.DropShadowFilter;
 import flash.filters.GlowFilter;
@@ -19,6 +21,10 @@ import org.aswing.JLoadPane;
 import org.aswing.JPanel;
 import org.aswing.SoftBoxLayout;
 import org.aswing.geom.IntDimension;
+import org.aswing.plaf.EmptyLayoutUIResourse;
+import org.aswing.plaf.EmptyUIResources;
+
+import ru.fcl.sdd.gui.textformats.StatisticNumberTextField;
 
 import ru.fcl.sdd.rsl.GuiRsl;
 
@@ -29,8 +35,8 @@ public class ItemShopView extends JPanel
     private var _bg:DisplayObject;
     private var _iconUrl:String;
     private var _loadPane:JLoadPane;
-    private var _realMoneyPriceLabel:JLabel;
-    private var _gameMoneyPriceLabel:JLabel;
+    private var _realMoneyPriceTextField:StatisticNumberTextField;
+    private var _gameMoneyPriceTextField:StatisticNumberTextField;
     private var  highLightFilter:GlowFilter;
     private var  shadowFilter:DropShadowFilter;
 
@@ -56,13 +62,20 @@ public class ItemShopView extends JPanel
         loadPanel.append(loadPane);
         this.append(loadPanel);
 
-        var gamePricePanel:JPanel = new JPanel(new CenterLayout());
-        gameMoneyPriceLabel = new JLabel("n/a");
-        gameMoneyPriceLabel.setHorizontalTextPosition(JLabel.RIGHT);
-        gameMoneyPriceLabel.setPreferredSize(new IntDimension(83,26));
-        gameMoneyPriceLabel.setBackgroundDecorator(new AssetBackground(getAsset("PriceGoldSmallArt")));
-        gamePricePanel.append(gameMoneyPriceLabel);
-        this.append(gamePricePanel);
+        var gameMoneyContainer:Sprite = new Sprite();
+        gameMoneyContainer.addChild(getAsset("PriceRubBig"));
+        gameMoneyContainer.width = 121;
+        gameMoneyContainer.height = 40;
+        gameMoneyPriceTextField = new StatisticNumberTextField();
+        gameMoneyContainer.addChild(gameMoneyPriceTextField);
+        gameMoneyPriceTextField.width = 116;
+        gameMoneyPriceTextField.height = 30;
+
+        gameMoneyPriceTextField.y+=7;
+        gameMoneyContainer.x = 37;
+        gameMoneyContainer.y = 207;
+
+        this.addChild(gameMoneyContainer);
     }
 
     public function getAsset(value:String):DisplayObject
@@ -91,24 +104,24 @@ public class ItemShopView extends JPanel
         _loadPane = value;
     }
 
-    public function get realMoneyPriceLabel():JLabel
+    public function get realMoneyPriceTextField():StatisticNumberTextField
     {
-        return _realMoneyPriceLabel;
+        return _realMoneyPriceTextField;
     }
 
-    public function set realMoneyPriceLabel(value:JLabel):void
+    public function set realMoneyPriceTextField(value:StatisticNumberTextField):void
     {
-        _realMoneyPriceLabel = value;
+        _realMoneyPriceTextField = value;
     }
 
-    public function get gameMoneyPriceLabel():JLabel
+    public function get gameMoneyPriceTextField():StatisticNumberTextField
     {
-        return _gameMoneyPriceLabel;
+        return _gameMoneyPriceTextField;
     }
 
-    public function set gameMoneyPriceLabel(value:JLabel):void
+    public function set gameMoneyPriceTextField(value:StatisticNumberTextField):void
     {
-        _gameMoneyPriceLabel = value;
+        _gameMoneyPriceTextField = value;
     }
 
     override public function set buttonMode(value:Boolean):void
