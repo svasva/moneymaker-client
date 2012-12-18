@@ -15,16 +15,29 @@ import flash.net.URLRequest;
 
 public class ClientusIsoView extends IsoSprite
 {
-    private var _skinSwf:Loader;
-    private var _rotationIso:int;
+
+    private var _direction:int;
     private var _key:String;
     private var _needItemId:String;
-    private var _skin:String;
     private var _path:Array;
+    private var _skinSwf:Loader;
+    private var _skin:String;
+
+    public static const START_R_UP:int = 1;
+    public static const START_R_DOWN:int = 2;
+    public static const START_L_DOWN:int = 3;
+    public static const START_L_UP:int = 4;
+    public static const WALK_R_UP:int = 5;
+    public static const WALK_R_DOWN:int = 6;
+    public static const WALK_L_DOWN:int = 7;
+    public static const WALK_L_UP:int = 8;
+    public static const STOP_R_UP:int = 9;
+    public static const STOP_R_DOWN:int = 10;
+    public static const STOP_L_DOWN:int = 11;
+    public static const STOP_L_UP:int = 12;
 
     public function ClientusIsoView()
     {
-
         _skinSwf = new Loader();
         skin = "./art/Man02Animations.swf";
         super();
@@ -35,6 +48,7 @@ public class ClientusIsoView extends IsoSprite
     {
         setSize(100, 100, 100);
     }
+
     /**
      * Load skin from url.
      * @param value - skin swf url.
@@ -51,40 +65,27 @@ public class ClientusIsoView extends IsoSprite
         }
     }
 
+    public function set direction(value:int):void
+    {
+        if (_skinSwf.content)
+        {
+            MovieClip(_skinSwf.content).gotoAndStop(value + 1);
+        }
+        _direction = value;
+//        render();
+    }
+
+
     private function completeHandler(event:Event):void
     {
-        MovieClip(_skinSwf.content).gotoAndStop(rotationIso + 1);
         this.sprites = [_skinSwf.content];
+        this.direction = direction;
         this.render();
     }
 
     private function ioErrorHandler(event:IOErrorEvent):void
     {
         trace(event.text);
-    }
-
-    public function set rotationIso(value:int):void
-    {
-        if (_skinSwf.content)
-        {
-            MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-
-            if (rotationIso > value)
-            {
-                for (var i:int = _rotationIso; i < value; i++)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }
-            else
-            {
-                for (var j:int = _rotationIso; j > value; j--)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }
-        }
-        _rotationIso = value;
     }
 
     public function get skinSwf():Loader
@@ -97,9 +98,9 @@ public class ClientusIsoView extends IsoSprite
         _skinSwf = value;
     }
 
-    public function get rotationIso():int
+    public function get direction():int
     {
-        return _rotationIso;
+        return _direction;
     }
 
     public function get needItemId():String
