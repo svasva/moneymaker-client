@@ -89,8 +89,7 @@ public class ServerProxy extends EventDispatcher implements IServerProxy
 
     private function handleConnectionFail(event:WebSocketErrorEvent):void
     {
-        _logger.log(this, "Connection Failure: " +
-                          event.text);
+        _logger.log(this, "Connection Failure: " + event.text);
         _errorHandler.handleError(event);
     }
 

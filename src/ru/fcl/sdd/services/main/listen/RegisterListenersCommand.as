@@ -14,7 +14,7 @@ public class RegisterListenersCommand extends SignalCommand
 
     override public function execute():void
     {
-         callHashMap.addResponseHandler(IncomingClientListen,-3);
+         callHashMap.addResponseHandler(IncomingClientusListen,"-3");
     }
 }
 }

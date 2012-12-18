@@ -19,21 +19,16 @@ public class CallHashMap extends HashMap
      * @return key of value
      * @param preInitKey use for pre sever push events.
      */
-    public function addResponseHandler(value:Class, preInitKey:int = 0):String
+    public function addResponseHandler(value:Class, preInitKey:String = null):String
     {
-        var key:String;
-        if (preInitKey == 0)
+        if (!preInitKey)
         {
             var date:Date = new Date();
             var time2Hash:String = String(date.time);
-             key = MD5.hash(time2Hash);
-            this.set(key, value);
+            preInitKey = MD5.hash(time2Hash);
         }
-        else
-        {
-            key = preInitKey.toString();
-        }
-        return key;
+        this.set(preInitKey, value);
+        return preInitKey;
     }
 }
 }

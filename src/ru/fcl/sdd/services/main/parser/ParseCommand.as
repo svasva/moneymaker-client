@@ -39,17 +39,18 @@ public class ParseCommand extends SignalCommand
                 {
                     errorResponseSignal.dispatch(decodedObject);
                 }
-                else if (callHashMap.get(decodedObject.requestId))
+                else if (callHashMap.get((decodedObject.requestId)))
                 {
-                    commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
+                        commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
                 }
             }
-            if ((int(decodedObject.requestId))>=0 )
+            if ((int(decodedObject.requestId)) >= 0)
             {
                 callHashMap.remove(callHashMap.get(decodedObject.requestId));
                 callHashMap.remove(callHashMap.get(decodedObject.requestId + "_error"));
             }
-        }else
+        }
+        else
         {
             logger.error(this, response);
         }

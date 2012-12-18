@@ -1,12 +1,11 @@
 /**
  * User: Jessie
- * Date: 04.12.12
- * Time: 16:01
+ * Date: 17.12.12
+ * Time: 12:05
  */
-package ru.fcl.sdd.item
+package ru.fcl.sdd.homus
 {
 import as3isolib.display.IsoSprite;
-import as3isolib.geom.Pt;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -14,43 +13,28 @@ import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
 
-public class ItemIsoView  extends IsoSprite
+public class ClientusIsoView extends IsoSprite
 {
     private var _skinSwf:Loader;
     private var _rotationIso:int;
     private var _key:String;
-    private var _catalogKey:String;
+    private var _needItemId:String;
     private var _skin:String;
-    private var _enterPoint:Pt;
+    private var _path:Array;
 
-    public function ItemIsoView():void
+    public function ClientusIsoView()
     {
-        enterPoint = new Pt();
+
         _skinSwf = new Loader();
+        skin = "./art/Man02Animations.swf";
         super();
     }
 
-    public function get key():String
+    [PostConstruct]
+    public function init():void
     {
-        return _key;
+        setSize(100, 100, 100);
     }
-
-    public function set key(value:String):void
-    {
-        _key = value;
-    }
-
-    public function get catalogKey():String
-    {
-        return _catalogKey;
-    }
-
-    public function set catalogKey(value:String):void
-    {
-        _catalogKey = value;
-    }
-
-
     /**
      * Load skin from url.
      * @param value - skin swf url.
@@ -79,16 +63,6 @@ public class ItemIsoView  extends IsoSprite
         trace(event.text);
     }
 
-    public function grad2frame(value:int):int
-    {
-        return value/90;
-    }
-
-    public function frame2grad(value:int):int
-    {
-        return value*90;
-    }
-
     public function set rotationIso(value:int):void
     {
         if (_skinSwf.content)
@@ -101,7 +75,8 @@ public class ItemIsoView  extends IsoSprite
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
-            }else
+            }
+            else
             {
                 for (var j:int = _rotationIso; j > value; j--)
                 {
@@ -122,20 +97,29 @@ public class ItemIsoView  extends IsoSprite
         _skinSwf = value;
     }
 
-
     public function get rotationIso():int
     {
         return _rotationIso;
     }
 
-    public function get enterPoint():Pt
+    public function get needItemId():String
     {
-        return _enterPoint;
+        return _needItemId;
     }
 
-    public function set enterPoint(value:Pt):void
+    public function set needItemId(value:String):void
     {
-        _enterPoint = value;
+        _needItemId = value;
+    }
+
+    public function get key():String
+    {
+        return _key;
+    }
+
+    public function set key(value:String):void
+    {
+        _key = value;
     }
 }
 }

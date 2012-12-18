@@ -14,11 +14,12 @@ import ru.fcl.sdd.location.room.Room;
 import ru.fcl.sdd.location.room.UserRoomList;
 
 import ru.fcl.sdd.log.LogServerResponseCommand;
+import ru.fcl.sdd.pathfind.PlacePathGridItemCommand;
 import ru.fcl.sdd.services.main.ISender;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
 
-public class SendServerPlaceMovedItemCommand extends SignalCommand
+public class PlaceMovedItemCommand extends SignalCommand
 {
     [Inject]
     public var sender:ISender;
@@ -37,6 +38,7 @@ public class SendServerPlaceMovedItemCommand extends SignalCommand
         var room:Room = userRoomList.iterator().next() as Room;
         changeState.dispatch(GameStates.VIEW);
         sender.send({command:"placeItem", args:[room.id,item.key,item.x/IsoConfig.CELL_SIZE, item.y/IsoConfig.CELL_SIZE,item.rotationIso]},LogServerResponseCommand);
+        commandMap.execute(PlacePathGridItemCommand,item);
     }
 }
 }

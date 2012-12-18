@@ -48,7 +48,7 @@ public class BuyItemCommand extends SignalCommand
             itemForMove.height = item.isoHeight;
             itemForMove.skin = item.skinUrl;
 
-            userItems.set(itemForMove.key, item);
+            userItems.set(itemForMove.key, itemForMove);
 
             injector.mapValue(ItemIsoView, itemForMove, "item_for_move");
 
