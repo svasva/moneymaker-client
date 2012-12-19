@@ -13,7 +13,6 @@ import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.geom.Point;
-import flash.media.Sound;
 import flash.net.URLRequest;
 
 import ru.fcl.sdd.config.IsoConfig;
@@ -26,7 +25,7 @@ public class ItemIsoView extends IsoSprite
     public static const WEST:int = 3;
 
     private var _skinSwf:Loader;
-    private var _rotationIso:int;
+    private var _direction:int;
     private var _key:String;
     private var _catalogKey:String;
     private var _skin:String;
@@ -48,7 +47,7 @@ public class ItemIsoView extends IsoSprite
         if (!_isCorrectEnterPoint)
         {
             _isCorrectEnterPoint = true;
-            switch (rotationIso)
+            switch (direction)
             {
                 case NORTH:
                 {
@@ -98,7 +97,7 @@ public class ItemIsoView extends IsoSprite
 
     private function completeHandler(event:Event):void
     {
-        MovieClip(_skinSwf.content).gotoAndStop(rotationIso + 1);
+        MovieClip(_skinSwf.content).gotoAndStop(direction + 1);
         this.sprites = [_skinSwf.content];
         this.render();
     }
@@ -128,34 +127,34 @@ public class ItemIsoView extends IsoSprite
         _catalogKey = value;
     }
 
-    public function set rotationIso(value:int):void
+    public function set direction(value:int):void
     {
-        _isCorrectEnterPoint = (value==rotationIso);
+        _isCorrectEnterPoint = (value==direction);
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
 
-            if (rotationIso > value)
+            if (direction > value)
             {
-                for (var i:int = _rotationIso; i < value; i++)
+                for (var i:int = _direction; i < value; i++)
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
             }
             else
             {
-                for (var j:int = _rotationIso; j > value; j--)
+                for (var j:int = _direction; j > value; j--)
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
             }
         }
-        _rotationIso = value;
+        _direction = value;
     }
 
-    public function get rotationIso():int
+    public function get direction():int
     {
-        return _rotationIso;
+        return _direction;
     }
 
     override public function setSize(width:Number, length:Number, height:Number):void
