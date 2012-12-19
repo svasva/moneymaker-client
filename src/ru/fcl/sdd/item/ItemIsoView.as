@@ -31,10 +31,12 @@ public class ItemIsoView extends IsoSprite
     private var _skin:String;
     private var _enterPoint:Point;
     private var _isCorrectEnterPoint:Boolean = false;
+    private var _originalDirectionSize:Point;
 
     public function ItemIsoView():void
     {
         _enterPoint = new Pt();
+        _originalDirectionSize = new Point();
         _skinSwf = new Loader();
         super();
     }
@@ -129,25 +131,18 @@ public class ItemIsoView extends IsoSprite
 
     public function set direction(value:int):void
     {
-        _isCorrectEnterPoint = (value==direction);
+        _isCorrectEnterPoint = (value == direction);
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-
-            if (direction > value)
-            {
-                for (var i:int = _direction; i < value; i++)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }
-            else
-            {
-                for (var j:int = _direction; j > value; j--)
-                {
-                    this.setSize(this.length, this.width, this.height);
-                }
-            }
+        }
+        for (var i:int = direction; i < value; i++)
+        {
+            setSize(length,width,height);
+        }
+        for (var j:int = direction; j > value; j--)
+        {
+            setSize(length,width,height);
         }
         _direction = value;
     }
@@ -159,7 +154,7 @@ public class ItemIsoView extends IsoSprite
 
     override public function setSize(width:Number, length:Number, height:Number):void
     {
-        _isCorrectEnterPoint=false;
+        _isCorrectEnterPoint = false;
         super.setSize(width, length, height);
     }
 
@@ -175,5 +170,14 @@ public class ItemIsoView extends IsoSprite
         super.length = length;
     }
 
+    public function get originalDirectionSize():Point
+    {
+        return _originalDirectionSize;
+    }
+
+    public function set originalDirectionSize(value:Point):void
+    {
+        _originalDirectionSize = value;
+    }
 }
 }
