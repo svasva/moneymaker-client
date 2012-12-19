@@ -48,11 +48,14 @@ public class ClientusIsoView extends IsoSprite
     }
 
 
-    public function setDirection(direction:int,state:int):void
+    public function setDirection(direction:int, state:int):void
     {
         this._direction = direction;
         this._state = state;
-        MovieClip(_skinSwf.content).gotoAndStop(_state*4+_direction);
+        if (_skinSwf.content)
+        {
+            MovieClip(_skinSwf.content).gotoAndStop(_state * 4 + _direction);
+        }
     }
 
     /**
@@ -70,10 +73,11 @@ public class ClientusIsoView extends IsoSprite
             _skinSwf.load(new URLRequest(value));
         }
     }
+
     private function completeHandler(event:Event):void
     {
         this.sprites = [_skinSwf.content];
-        setDirection(_direction,_state);
+        setDirection(_direction, _state);
         this.render();
     }
 

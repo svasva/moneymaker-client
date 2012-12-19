@@ -57,7 +57,8 @@ public class AStar
                     var cost:Number = _straightCost;
                     if (!((node.x == test.x) || (node.y == test.y)))
                     {
-                        cost = _diagCost;
+//                        cost = _diagCost;
+                        continue;
                     }
                     var g:Number = node.g + cost * test.costMultiplier;
                     var h:Number = _heuristic(test);

@@ -13,6 +13,7 @@ public class Node
     public var walkable:Boolean = true;
     public var parent:Node;
     public var costMultiplier:Number = 1.0;
+    public var direction:int;
 
     public function Node(x:int, y:int)
     {
