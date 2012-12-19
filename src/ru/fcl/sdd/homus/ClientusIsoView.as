@@ -17,24 +17,22 @@ public class ClientusIsoView extends IsoSprite
 {
 
     private var _direction:int;
+    private var _state:int;
     private var _key:String;
     private var _needItemId:String;
     private var _path:Array;
     private var _skinSwf:Loader;
     private var _skin:String;
 
-    public static const START_R_UP:int = 1;
-    public static const START_R_DOWN:int = 2;
-    public static const START_L_DOWN:int = 3;
-    public static const START_L_UP:int = 4;
-    public static const WALK_R_UP:int = 5;
-    public static const WALK_R_DOWN:int = 6;
-    public static const WALK_L_DOWN:int = 7;
-    public static const WALK_L_UP:int = 8;
-    public static const STOP_R_UP:int = 9;
-    public static const STOP_R_DOWN:int = 10;
-    public static const STOP_L_DOWN:int = 11;
-    public static const STOP_L_UP:int = 12;
+    public static const NORTH:int = 0;
+    public static const EAST:int = 1;
+    public static const SOUTH:int = 2;
+    public static const WEST:int = 3;
+
+    public static const START:int = 1;
+    public static const WALK:int = 2;
+    public static const STOP:int = 3;
+    public static const STOPPED:int = 4;
 
     public function ClientusIsoView()
     {
@@ -47,6 +45,14 @@ public class ClientusIsoView extends IsoSprite
     public function init():void
     {
         setSize(100, 100, 100);
+    }
+
+
+    public function setDirection(direction:int,state:int):void
+    {
+        this._direction = direction;
+        this._state = state;
+        MovieClip(_skinSwf.content).gotoAndStop(_state+_direction);
     }
 
     /**
@@ -64,43 +70,16 @@ public class ClientusIsoView extends IsoSprite
             _skinSwf.load(new URLRequest(value));
         }
     }
-
-    public function set direction(value:int):void
-    {
-        if (_skinSwf.content)
-        {
-            MovieClip(_skinSwf.content).gotoAndStop(value + 1);
-        }
-        _direction = value;
-//        render();
-    }
-
-
     private function completeHandler(event:Event):void
     {
         this.sprites = [_skinSwf.content];
-        this.direction = direction;
+        setDirection(_direction,_state);
         this.render();
     }
 
     private function ioErrorHandler(event:IOErrorEvent):void
     {
         trace(event.text);
-    }
-
-    public function get skinSwf():Loader
-    {
-        return _skinSwf;
-    }
-
-    public function set skinSwf(value:Loader):void
-    {
-        _skinSwf = value;
-    }
-
-    public function get direction():int
-    {
-        return _direction;
     }
 
     public function get needItemId():String
