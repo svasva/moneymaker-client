@@ -34,6 +34,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var item:ItemIsoView;
     private var _directionAtEnd:int;
 
+
     override public function onRegister():void
     {
         astar = new AStar();
@@ -58,28 +59,29 @@ public class ClientusIsoViewMediator extends Mediator
     {
         _state = ClientusIsoView.START;
         clientusView.setDirection(path[0].direction,_state);
-        Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
+        Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
         path.shift();
+
     }
 
     private function goToCell():void
     {
-        if (path.length > 1)
+        if (path.length > 2)
         {
             _state = ClientusIsoView.WALK;
-            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
+            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
             clientusView.setDirection(path[0].direction,_state);
             path.shift();
 
         }else
-        if(path.length==1)
+        if(path.length>1)
         {
             _state = ClientusIsoView.STOP;
             clientusView.setDirection(path[0].direction,_state);
-            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
+            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
             path.shift();
         }else
-        if(path.length==0)
+        if(path.length==1)
         {
             _state = ClientusIsoView.STOPPED;
             clientusView.setDirection(_directionAtEnd,_state);
@@ -104,7 +106,7 @@ public class ClientusIsoViewMediator extends Mediator
                 {
                     path[i].direction = ClientusIsoView.SOUTH;
                 }else
-                if(path[i].x>path[i+1].x)
+                if(path[i].y>path[i+1].y)
                 {
                     path[i].direction = ClientusIsoView.NORTH;
                 }
