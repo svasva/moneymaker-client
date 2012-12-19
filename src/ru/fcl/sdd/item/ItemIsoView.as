@@ -12,42 +12,71 @@ import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
+import flash.geom.Point;
+import flash.media.Sound;
 import flash.net.URLRequest;
 
-public class ItemIsoView  extends IsoSprite
+import ru.fcl.sdd.config.IsoConfig;
+
+public class ItemIsoView extends IsoSprite
 {
+    public static const NORTH:int = 0;
+    public static const EAST:int = 1;
+    public static const SOUTH:int = 2;
+    public static const WEST:int = 3;
+
     private var _skinSwf:Loader;
     private var _rotationIso:int;
     private var _key:String;
     private var _catalogKey:String;
     private var _skin:String;
-    private var _enterPoint:Pt;
+    private var _enterPoint:Point;
+    private var _isCorrectEnterPoint:Boolean = false;
 
     public function ItemIsoView():void
     {
-        enterPoint = new Pt();
+        _enterPoint = new Pt();
         _skinSwf = new Loader();
         super();
     }
 
-    public function get key():String
+    /**
+     * @return enterPoint - point of face item, in Iso CellSize coords.
+     */
+    public function get enterPoint():Point
     {
-        return _key;
-    }
-
-    public function set key(value:String):void
-    {
-        _key = value;
-    }
-
-    public function get catalogKey():String
-    {
-        return _catalogKey;
-    }
-
-    public function set catalogKey(value:String):void
-    {
-        _catalogKey = value;
+        if (!_isCorrectEnterPoint)
+        {
+            _isCorrectEnterPoint = true;
+            switch (rotationIso)
+            {
+                case NORTH:
+                {
+                    _enterPoint.x = Math.floor((x + width / 2) / IsoConfig.CELL_SIZE);
+                    _enterPoint.y = y / IsoConfig.CELL_SIZE - 1;
+                    break;
+                }
+                case EAST:
+                {
+                    _enterPoint.x = (x + width) / IsoConfig.CELL_SIZE;
+                    _enterPoint.y = Math.floor((y + length / 2) / IsoConfig.CELL_SIZE);
+                    break;
+                }
+                case SOUTH:
+                {
+                    _enterPoint.x = Math.floor((x + width / 2) / IsoConfig.CELL_SIZE);
+                    _enterPoint.y = (y + length) / IsoConfig.CELL_SIZE;
+                    break;
+                }
+                case WEST:
+                {
+                    _enterPoint.x = x / IsoConfig.CELL_SIZE - 1;
+                    _enterPoint.y = Math.floor((y + length / 2) / IsoConfig.CELL_SIZE);
+                    break;
+                }
+            }
+        }
+        return _enterPoint;
     }
 
 
@@ -79,18 +108,29 @@ public class ItemIsoView  extends IsoSprite
         trace(event.text);
     }
 
-    public function grad2frame(value:int):int
+    public function get key():String
     {
-        return value/90;
+        return _key;
     }
 
-    public function frame2grad(value:int):int
+    public function set key(value:String):void
     {
-        return value*90;
+        _key = value;
+    }
+
+    public function get catalogKey():String
+    {
+        return _catalogKey;
+    }
+
+    public function set catalogKey(value:String):void
+    {
+        _catalogKey = value;
     }
 
     public function set rotationIso(value:int):void
     {
+        _isCorrectEnterPoint = (value==rotationIso);
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
@@ -101,7 +141,8 @@ public class ItemIsoView  extends IsoSprite
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
-            }else
+            }
+            else
             {
                 for (var j:int = _rotationIso; j > value; j--)
                 {
@@ -112,30 +153,28 @@ public class ItemIsoView  extends IsoSprite
         _rotationIso = value;
     }
 
-    public function get skinSwf():Loader
-    {
-        return _skinSwf;
-    }
-
-    public function set skinSwf(value:Loader):void
-    {
-        _skinSwf = value;
-    }
-
-
     public function get rotationIso():int
     {
         return _rotationIso;
     }
 
-    public function get enterPoint():Pt
+    override public function setSize(width:Number, length:Number, height:Number):void
     {
-        return _enterPoint;
+        _isCorrectEnterPoint=false;
+        super.setSize(width, length, height);
     }
 
-    public function set enterPoint(value:Pt):void
+    override public function set width(width:Number):void
     {
-        _enterPoint = value;
+        _isCorrectEnterPoint = false;
+        super.width = width;
     }
+
+    override public function set length(length:Number):void
+    {
+        _isCorrectEnterPoint = false;
+        super.length = length;
+    }
+
 }
 }
