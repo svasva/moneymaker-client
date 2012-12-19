@@ -35,7 +35,7 @@ public class ParseUserItems extends SignalCommand
         var item:ItemIsoView = new ItemIsoView();
         item.key = object._id;
         item.catalogKey = object.reference_id;
-        item.rotationIso= object.rotation;
+        item.direction= object.rotation;
         item.x = object.x*IsoConfig.CELL_SIZE;
         item.y = object.y*IsoConfig.CELL_SIZE;
         item.width = catalogItem.isoWidth;

@@ -40,7 +40,7 @@ public class BuyItemCommand extends SignalCommand
             var itemForMove:ItemIsoView = new ItemIsoView();
             itemForMove.key = response.response._id;
             itemForMove.catalogKey = item.catalog_id;
-            itemForMove.rotationIso = item.rotation;
+            itemForMove.direction = item.rotation;
             itemForMove.x = item.x * IsoConfig.CELL_SIZE;
             itemForMove.y = item.y * IsoConfig.CELL_SIZE;
             itemForMove.width = item.isoWidth;

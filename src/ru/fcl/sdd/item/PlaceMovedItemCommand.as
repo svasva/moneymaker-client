@@ -37,7 +37,7 @@ public class PlaceMovedItemCommand extends SignalCommand
     {
         var room:Room = userRoomList.iterator().next() as Room;
         changeState.dispatch(GameStates.VIEW);
-        sender.send({command:"placeItem", args:[room.id,item.key,item.x/IsoConfig.CELL_SIZE, item.y/IsoConfig.CELL_SIZE,item.rotationIso]},LogServerResponseCommand);
+        sender.send({command:"placeItem", args:[room.id,item.key,item.x/IsoConfig.CELL_SIZE, item.y/IsoConfig.CELL_SIZE,item.direction]},LogServerResponseCommand);
         commandMap.execute(PlacePathGridItemCommand,item);
     }
 }
