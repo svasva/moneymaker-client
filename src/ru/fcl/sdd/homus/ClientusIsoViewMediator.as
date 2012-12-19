@@ -7,7 +7,7 @@ package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
 
-import flash.utils.setTimeout;
+import fl.motion.easing.Linear;
 
 import org.robotlegs.mvcs.Mediator;
 
@@ -29,7 +29,6 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var floor:FloorScene;
     private var path:Array;
-    private var _direction:int;
     private var _state:int;
     private var astar:AStar;
     private var item:ItemIsoView;
@@ -59,7 +58,7 @@ public class ClientusIsoViewMediator extends Mediator
     {
         _state = ClientusIsoView.START;
         clientusView.setDirection(path[0].direction,_state);
-        Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},0.5,null,0,null,goToCell);
+        Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
         path.shift();
     }
 
@@ -68,23 +67,17 @@ public class ClientusIsoViewMediator extends Mediator
         if (path.length > 1)
         {
             _state = ClientusIsoView.WALK;
-//            clientusView.x = path[0].x * IsoConfig.CELL_SIZE;
-//            clientusView.y = path[0].y * IsoConfig.CELL_SIZE;
-            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},0.5,null,0,null,goToCell);
+            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
             clientusView.setDirection(path[0].direction,_state);
             path.shift();
 
-//            setTimeout(goToCell, 200);
         }else
         if(path.length==1)
         {
-//            clientusView.x = path[0].x * IsoConfig.CELL_SIZE;
-//            clientusView.y = path[0].y * IsoConfig.CELL_SIZE;
             _state = ClientusIsoView.STOP;
             clientusView.setDirection(path[0].direction,_state);
-            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},0.5,null,0,null,goToCell);
+            Tweensy.to(clientusView,{x:path[0].x * IsoConfig.CELL_SIZE, y:path[0].y * IsoConfig.CELL_SIZE},1,Linear.easeNone,0,null,goToCell);
             path.shift();
-//            setTimeout(goToCell, 200);
         }else
         if(path.length==0)
         {
