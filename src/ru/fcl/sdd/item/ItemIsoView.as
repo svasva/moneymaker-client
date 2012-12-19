@@ -38,6 +38,7 @@ public class ItemIsoView extends IsoSprite
         _enterPoint = new Pt();
         _originalDirectionSize = new Point();
         _skinSwf = new Loader();
+        _isCorrectEnterPoint = false;
         super();
     }
 
@@ -131,7 +132,10 @@ public class ItemIsoView extends IsoSprite
 
     public function set direction(value:int):void
     {
-        _isCorrectEnterPoint = (value == direction);
+        if (value != direction)
+        {
+            _isCorrectEnterPoint = false;
+        }
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
