@@ -11,6 +11,7 @@ public interface ISender
      * Send object 2 server.
      * @param value - object 2 send {command:String, args:Array=null}
      * @param handlerCommandClass - Command/SignalCommand handler class 4 handle server response. Must have inject Object, parsed server response.
+     * @param errorHandlerCommandClass
      * @example
      * <Listing>
      *     ...
@@ -27,6 +28,6 @@ public interface ISender
      *     }
      * </Listing>
      */
-    function send(value:Object, handlerCommandClass:Class, errorHandlerCommandClass:Class=null):void;
+    function send(value:Object, handlerCommandClass:Class=null, errorHandlerCommandClass:Class = null):void;
 }
 }

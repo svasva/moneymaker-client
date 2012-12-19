@@ -12,6 +12,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.PlaceItemCommand;
 import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.pathfind.PlacePathGridItemCommand;
 import ru.fcl.sdd.scenes.FloorScene;
 
 public class CreateFloorCommand extends SignalCommand
@@ -31,7 +32,9 @@ public class CreateFloorCommand extends SignalCommand
             var item:ItemIsoView = iterator.next() as ItemIsoView;
             //todo:проверить айтем на соответствие этажу.
             commandMap.execute(PlaceItemCommand,item);
+            commandMap.execute(PlacePathGridItemCommand,item);
         }
+
     }
 }
 }

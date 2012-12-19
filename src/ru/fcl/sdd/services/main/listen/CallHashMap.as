@@ -17,14 +17,18 @@ public class CallHashMap extends HashMap
      * @param value SocketCall object
      *
      * @return key of value
+     * @param preInitKey use for pre sever push events.
      */
-    public function addResponseHandler(value:Class):String
+    public function addResponseHandler(value:Class, preInitKey:String = null):String
     {
-        var date:Date = new Date();
-        var time2Hash:String = String(date.time);
-        var key:String = MD5.hash(time2Hash);
-        this.set(key, value);
-        return key;
+        if (!preInitKey)
+        {
+            var date:Date = new Date();
+            var time2Hash:String = String(date.time);
+            preInitKey = MD5.hash(time2Hash);
+        }
+        this.set(preInitKey, value);
+        return preInitKey;
     }
 }
 }

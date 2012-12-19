@@ -22,8 +22,8 @@ public class AStar
     public function findPath(grid:Grid):Boolean
     {
         _grid = grid;
-        _open = new Array();
-        _closed = new Array();
+        _open = [];
+        _closed = [];
         _startNode = _grid.startNode;
         _endNode = _grid.endNode;
 
@@ -57,7 +57,8 @@ public class AStar
                     var cost:Number = _straightCost;
                     if (!((node.x == test.x) || (node.y == test.y)))
                     {
-                        cost = _diagCost;
+//                        cost = _diagCost;
+                        continue;
                     }
                     var g:Number = node.g + cost * test.costMultiplier;
                     var h:Number = _heuristic(test);
@@ -100,7 +101,7 @@ public class AStar
 
     private function buildPath():void
     {
-        _path = new Array();
+        _path = [];
         var node:Node = _endNode;
         _path.push(node);
         while (node != _startNode)

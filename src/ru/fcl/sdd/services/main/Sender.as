@@ -17,7 +17,7 @@ public class Sender implements ISender
     [Inject]
     public var callHashMap:CallHashMap;
 
-    public function send(value:Object,responseHandleCommand:Class,errorHandlerCommandClass:Class=null):void
+    public function send(value:Object,responseHandleCommand:Class=null,errorHandlerCommandClass:Class=null):void
     {
         var key:String = callHashMap.addResponseHandler(responseHandleCommand);
         value.requestId = key;

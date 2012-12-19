@@ -75,10 +75,10 @@ public class ItemIsoViewMoveMediator extends Mediator
     {
         if (e.delta > 0)
         {
-            cursor.rotationIso++;
+            cursor.direction++;
         }else
         {
-            cursor.rotationIso--;
+            cursor.direction--;
         }
     }
 }

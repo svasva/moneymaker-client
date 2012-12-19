@@ -10,6 +10,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.buildapplication.init.InitialiseServerCommand_1;
 import ru.fcl.sdd.config.BuildConfigCommand;
 import ru.fcl.sdd.error.BuildErrorHandlers;
+import ru.fcl.sdd.homus.BuildHomusCommand;
 import ru.fcl.sdd.item.BuildItemsCommand;
 import ru.fcl.sdd.log.BuildLoggerCommand;
 import ru.fcl.sdd.money.BuildMoneyCommand;
@@ -59,6 +60,10 @@ public class BuildApplicationCommand extends SignalCommand
         commandMap.execute(BuildPathFind);
         //**************pathfind***************************
 
+        //***************CLIENTUS**************************
+        commandMap.execute(BuildHomusCommand);
+        //***************clientus**************************
+
         //**************GAME_STATES************************
         commandMap.execute(BuildGameStatesCommand);
         //**************game_states************************
@@ -66,7 +71,6 @@ public class BuildApplicationCommand extends SignalCommand
         //*************INITIALISE**************************
         commandMap.execute(InitialiseServerCommand_1);
         //*************initialise**************************
-
     }
 }
 }

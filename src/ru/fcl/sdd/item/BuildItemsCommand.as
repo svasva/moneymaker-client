@@ -14,7 +14,8 @@ public class BuildItemsCommand extends SignalCommand
     {
         var placeMovedItem:ISignal = new AboutIsoItemSignal();
         injector.mapValue(ISignal,placeMovedItem,"place_moved_item");
-        signalCommandMap.mapSignal(placeMovedItem,SendServerPlaceMovedItemCommand);
+        signalCommandMap.mapSignal(placeMovedItem,PlaceMovedItemCommand);
+
     }
 }
 }

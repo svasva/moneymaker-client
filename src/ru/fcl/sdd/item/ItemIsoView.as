@@ -6,25 +6,105 @@
 package ru.fcl.sdd.item
 {
 import as3isolib.display.IsoSprite;
+import as3isolib.geom.Pt;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
+import flash.geom.Point;
 import flash.net.URLRequest;
 
-public class ItemIsoView  extends IsoSprite
+import ru.fcl.sdd.config.IsoConfig;
+
+public class ItemIsoView extends IsoSprite
 {
+    public static const NORTH:int = 0;
+    public static const EAST:int = 1;
+    public static const SOUTH:int = 2;
+    public static const WEST:int = 3;
+
     private var _skinSwf:Loader;
-    private var _rotationIso:int;
+    private var _direction:int;
     private var _key:String;
     private var _catalogKey:String;
     private var _skin:String;
+    private var _enterPoint:Point;
+    private var _isCorrectEnterPoint:Boolean = false;
 
     public function ItemIsoView():void
     {
+        _enterPoint = new Pt();
         _skinSwf = new Loader();
         super();
+    }
+
+    /**
+     * @return enterPoint - point of face item, in Iso CellSize coords.
+     */
+    public function get enterPoint():Point
+    {
+        if (!_isCorrectEnterPoint)
+        {
+            _isCorrectEnterPoint = true;
+            switch (direction)
+            {
+                case NORTH:
+                {
+                    _enterPoint.x = Math.floor((x + width / 2) / IsoConfig.CELL_SIZE);
+                    _enterPoint.y = y / IsoConfig.CELL_SIZE - 1;
+                    break;
+                }
+                case EAST:
+                {
+                    _enterPoint.x = (x + width) / IsoConfig.CELL_SIZE;
+                    _enterPoint.y = Math.floor((y + length / 2) / IsoConfig.CELL_SIZE);
+                    break;
+                }
+                case SOUTH:
+                {
+                    _enterPoint.x = Math.floor((x + width / 2) / IsoConfig.CELL_SIZE);
+                    _enterPoint.y = (y + length) / IsoConfig.CELL_SIZE;
+                    break;
+                }
+                case WEST:
+                {
+                    _enterPoint.x = x / IsoConfig.CELL_SIZE - 1;
+                    _enterPoint.y = Math.floor((y + length / 2) / IsoConfig.CELL_SIZE);
+                    break;
+                }
+            }
+        }
+        return _enterPoint;
+    }
+
+
+    /**
+     * Load skin from url.
+     * @param value - skin swf url.
+     */
+    public function set skin(value:String):void
+    {
+        //TODO:грузить скины руками, по мере необходимости.
+        _skin = value;
+        if (value)
+        {
+            _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+            _skinSwf.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+            _skinSwf.load(new URLRequest(value));
+        }
+    }
+
+    private function completeHandler(event:Event):void
+    {
+        MovieClip(_skinSwf.content).gotoAndStop(direction + 1);
+        this.sprites = [_skinSwf.content];
+        this.render();
+    }
+
+    private function ioErrorHandler(event:IOErrorEvent):void
+    {
+        trace(event.text);
     }
 
     public function get key():String
@@ -47,82 +127,52 @@ public class ItemIsoView  extends IsoSprite
         _catalogKey = value;
     }
 
-
-    /**
-     * Load skin from url.
-     * @param value - skin swf url.
-     */
-    public function set skin(value:String):void
+    public function set direction(value:int):void
     {
-        //TODO:грузить скины руками, по мере необходимости.
-        _skin = value;
-        if (value)
-        {
-            _skinSwf.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
-            _skinSwf.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-            _skinSwf.load(new URLRequest(value));
-        }
-    }
-
-    private function completeHandler(event:Event):void
-    {
-        MovieClip(_skinSwf.content).gotoAndStop(rotationIso + 1);
-        this.sprites = [_skinSwf.content];
-        this.render();
-    }
-
-    private function ioErrorHandler(event:IOErrorEvent):void
-    {
-        trace(event.text);
-    }
-
-    public function grad2frame(value:int):int
-    {
-        return value/90;
-    }
-
-    public function frame2grad(value:int):int
-    {
-        return value*90;
-    }
-
-    public function set rotationIso(value:int):void
-    {
+        _isCorrectEnterPoint = (value==direction);
         if (_skinSwf.content)
         {
             MovieClip(_skinSwf.content).gotoAndStop(value + 1);
 
-            if (rotationIso > value)
+            if (direction > value)
             {
-                for (var i:int = _rotationIso; i < value; i++)
+                for (var i:int = _direction; i < value; i++)
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
-            }else
+            }
+            else
             {
-                for (var j:int = _rotationIso; j > value; j--)
+                for (var j:int = _direction; j > value; j--)
                 {
                     this.setSize(this.length, this.width, this.height);
                 }
             }
         }
-        _rotationIso = value;
+        _direction = value;
     }
 
-    public function get skinSwf():Loader
+    public function get direction():int
     {
-        return _skinSwf;
+        return _direction;
     }
 
-    public function set skinSwf(value:Loader):void
+    override public function setSize(width:Number, length:Number, height:Number):void
     {
-        _skinSwf = value;
+        _isCorrectEnterPoint=false;
+        super.setSize(width, length, height);
     }
 
-
-    public function get rotationIso():int
+    override public function set width(width:Number):void
     {
-        return _rotationIso;
+        _isCorrectEnterPoint = false;
+        super.width = width;
+    }
+
+    override public function set length(length:Number):void
+    {
+        _isCorrectEnterPoint = false;
+        super.length = length;
     }
 
 }

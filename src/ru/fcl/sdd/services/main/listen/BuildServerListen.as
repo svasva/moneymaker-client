@@ -12,6 +12,7 @@ public class BuildServerListen extends SignalCommand
     override public function execute():void
     {
         injector.mapSingleton(CallHashMap);
+        commandMap.execute(RegisterListenersCommand);
     }
 }
 }
