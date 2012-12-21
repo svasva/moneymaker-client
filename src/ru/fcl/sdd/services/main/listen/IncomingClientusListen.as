@@ -19,7 +19,7 @@ public class IncomingClientusListen extends SignalCommand
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
         clientusIsoView.needItemId = response.response.item_id;
-        clientusIsoView.key = response.response.client._id;
+        clientusIsoView.key = response.response._id;
         commandMap.execute(AddClientusCommand,clientusIsoView);
     }
 }
