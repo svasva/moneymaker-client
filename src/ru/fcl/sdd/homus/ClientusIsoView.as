@@ -20,7 +20,6 @@ public class ClientusIsoView extends IsoSprite
     private var _state:int;
     private var _key:String;
     private var _needItemId:String;
-    private var _path:Array;
     private var _skinSwf:Loader;
     private var _skin:String;
 

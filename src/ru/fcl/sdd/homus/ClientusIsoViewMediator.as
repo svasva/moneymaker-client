@@ -28,16 +28,17 @@ public class ClientusIsoViewMediator extends Mediator
     public var clientusView:ClientusIsoView;
     [Inject]
     public var floor:FloorScene;
+
     private var path:Array;
     private var _state:int;
-    private var astar:AStar;
+    private var aStar:AStar;
     private var item:ItemIsoView;
     private var _directionAtEnd:int;
 
 
     override public function onRegister():void
     {
-        astar = new AStar();
+        aStar = new AStar();
         clientusView.x = 14 * IsoConfig.CELL_SIZE;
         pathGrid.setStartNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
         item = userItems.get(clientusView.needItemId) as ItemIsoView;
@@ -49,9 +50,9 @@ public class ClientusIsoViewMediator extends Mediator
 
     protected function findPath():void
     {
-        if (astar.findPath(pathGrid))
+        if (aStar.findPath(pathGrid))
         {
-            path = astar.path;
+            path = aStar.path;
         }
     }
 
