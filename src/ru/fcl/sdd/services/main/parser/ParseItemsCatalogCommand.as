@@ -38,18 +38,28 @@ public class ParseItemsCatalogCommand extends Command
     private function parseItem(object:Object, index:int, array:Array):void
     {
         //todo:Запилить здесь высоту айтемов. Пока 100.
-        var contentUrl:String = flashVars.content_url+object.swf_url;
+        var contentUrl:String = flashVars.content_url + object.swf_url;
         var item:Item = new Item();
-        injector.mapValue(Item,item);
+        injector.mapValue(Item, item);
         injector.injectInto(item);
         item.key = object._id;
-        item.item_name=object.name;
-        item.skinUrl=contentUrl;
+        item.item_name = object.name;
+        item.skinUrl = contentUrl;
+        if (object.operations)
+        {
+            for (var i:int = 0; i < Array(object.operations).length; i++)
+            {
+                if(object.operations[i]!="")
+                {
+                    item.operations[item.operations.length]=object.operations[i];
+                }
+            }
+        }
         item.gameMoneyPrice = object.coins_cost as int;
-        item.iconUrl = flashVars.content_url+object.icon_url;
-        item.isoWidth=object.size_x*IsoConfig.CELL_SIZE;
-        item.isoLength=object.size_y*IsoConfig.CELL_SIZE;
-        item.isoHeight=100;
+        item.iconUrl = flashVars.content_url + object.icon_url;
+        item.isoWidth = object.size_x * IsoConfig.CELL_SIZE;
+        item.isoLength = object.size_y * IsoConfig.CELL_SIZE;
+        item.isoHeight = 100;
         itemListModel.set(item.key, item);
     }
 }
