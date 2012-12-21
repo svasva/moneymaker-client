@@ -14,6 +14,7 @@ import com.flashdynamix.motion.Tweensy;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import flash.utils.setTimeout;
 
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.Mediator;
@@ -32,6 +33,10 @@ public class ItemIsoViewMoveMediator extends Mediator
     public var _view:MainIsoView;
     [Inject(name="place_moved_item")]
     public var placeMovedItem:ISignal;
+    [Inject]
+    public var mainIsoView:MainIsoView;
+    private var inFrame:Boolean;
+
     private var shadowFactory:ClassFactory;
     private var _dragPt:Pt;
 
@@ -57,8 +62,28 @@ public class ItemIsoViewMoveMediator extends Mediator
     {
         placeMovedItem.dispatch(cursor);
         cursor.z = 0;
-        Tweensy.to(cursor, { z: 0}, 0.5);
+        Tweensy.to(cursor, { z: 0}, 0.05, null, 0, null, onDropComplete);
+//        setTimeout(function():void{mainIsoView.panBy(0,-3)},100);
+//        setTimeout(function():void{mainIsoView.panBy(0,3)},150);
     }
+
+    private function onDropComplete():void
+    {
+        contextView.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler_OnDropComplete);
+        inFrame=true;
+        mainIsoView.panBy(0, -3);
+    }
+
+    private function enterFrameHandler_OnDropComplete(event:Event):void
+    {
+        if(!inFrame)
+        {
+            contextView.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler_OnDropComplete);
+            mainIsoView.panBy(0, 3);
+        }
+        inFrame=false;
+    }
+
 
     override public function onRemove():void
     {
@@ -101,5 +126,6 @@ public class ItemIsoViewMoveMediator extends Mediator
             }
         }
     }
+
 }
 }
