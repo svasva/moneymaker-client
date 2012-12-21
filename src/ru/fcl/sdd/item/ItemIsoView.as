@@ -8,6 +8,8 @@ package ru.fcl.sdd.item
 import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;
 
+import de.polygonal.ds.Array2;
+
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
