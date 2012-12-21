@@ -8,7 +8,6 @@ package ru.fcl.sdd.item
 import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;
 
-import de.polygonal.ds.Array2;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -34,6 +33,7 @@ public class ItemIsoView extends IsoSprite
     private var _enterPoint:Point;
     private var _isCorrectEnterPoint:Boolean = false;
     private var _originalDirectionSize:Point;
+    private var _isActiveObject:Boolean = true;
 
     public function ItemIsoView():void
     {
@@ -176,6 +176,18 @@ public class ItemIsoView extends IsoSprite
         super.length = length;
     }
 
+    override public function moveTo(x:Number,y:Number,z:Number):void
+    {
+        _isCorrectEnterPoint = false;
+        super.moveTo(x,y,z);
+    }
+
+    override public function moveBy(x:Number,y:Number,z:Number):void
+    {
+        _isCorrectEnterPoint = false;
+        super.moveBy(x,y,z);
+    }
+
     public function get originalDirectionSize():Point
     {
         return _originalDirectionSize;
@@ -184,6 +196,16 @@ public class ItemIsoView extends IsoSprite
     public function set originalDirectionSize(value:Point):void
     {
         _originalDirectionSize = value;
+    }
+
+    public function get isActiveObject():Boolean
+    {
+        return _isActiveObject;
+    }
+
+    public function set isActiveObject(value:Boolean):void
+    {
+        _isActiveObject = value;
     }
 }
 }

@@ -43,7 +43,14 @@ public class Grid
      */
     public function getNode(x:int, y:int):Node
     {
-        return _nodes[x][y] as Node;
+        if(_nodes[x])
+        {
+            if(_nodes[x][y])
+            {
+                return _nodes[x][y] as Node;
+            }
+        }
+        return null;
     }
 
     /**
