@@ -160,7 +160,6 @@ public class ItemIsoViewMoveMediator extends Mediator
         var pt:Pt = _view.localToIso(new Point(contextView.stage.mouseX, contextView.stage.mouseY));
         if ((pt.x != cursor.x) && (pt.y != cursor.y))
         {
-            trace("cursor moved");
             cursor.moveTo(Math.floor(pt.x / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.x*/, Math.floor(pt.y / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.y*/, cursor.z);
             cursor.render();
             floor.render();
