@@ -20,8 +20,8 @@ public class ControlPanelView extends Sprite
     private var _shopBtn:SimpleButton;
     private var _floorDownBtn:SimpleButton;
     private var _floorUpBtn:SimpleButton;
-    private var _zoomIncBtn:SimpleButton;
-    private var _zoomDecBtn:SimpleButton;
+    private var _zoomInBtn:SimpleButton;
+    private var _zoomOutBtn:SimpleButton;
 
 
     [PostConstruct]
@@ -43,15 +43,15 @@ public class ControlPanelView extends Sprite
         _floorUpBtn.y = 102;
         this.addChild(_floorUpBtn);
 
-        _zoomIncBtn = new SimpleButton( getAsset("ButtonIncUpArt"),getAsset("ButtonIncOverArt"),getAsset("ButtonIncDownArt"),getAsset("ButtonIncDownArt"));
-        _zoomIncBtn.x = 160;
-        _zoomIncBtn.y = 180;
-        this.addChild(_zoomIncBtn);
+        _zoomInBtn = new SimpleButton( getAsset("ButtonIncUpArt"),getAsset("ButtonIncOverArt"),getAsset("ButtonIncDownArt"),getAsset("ButtonIncDownArt"));
+        _zoomInBtn.x = 160;
+        _zoomInBtn.y = 180;
+        this.addChild(_zoomInBtn);
 
-        _zoomDecBtn = new SimpleButton( getAsset("ButtonDecUpArt"),getAsset("ButtonDecOverArt"),getAsset("ButtonDecDownArt"),getAsset("ButtonDecDownArt"));
-        _zoomDecBtn.x = 160;
-        _zoomDecBtn.y = 202;
-        this.addChild(_zoomDecBtn);
+        _zoomOutBtn = new SimpleButton( getAsset("ButtonDecUpArt"),getAsset("ButtonDecOverArt"),getAsset("ButtonDecDownArt"),getAsset("ButtonDecDownArt"));
+        _zoomOutBtn.x = 160;
+        _zoomOutBtn.y = 202;
+        this.addChild(_zoomOutBtn);
     }
 
     private function getAsset(clazz:String):*
@@ -72,6 +72,46 @@ public class ControlPanelView extends Sprite
     public function set shopBtn(value:SimpleButton):void
     {
         _shopBtn = value;
+    }
+
+    public function get floorDownBtn():SimpleButton
+    {
+        return _floorDownBtn;
+    }
+
+    public function set floorDownBtn(value:SimpleButton):void
+    {
+        _floorDownBtn = value;
+    }
+
+    public function get floorUpBtn():SimpleButton
+    {
+        return _floorUpBtn;
+    }
+
+    public function set floorUpBtn(value:SimpleButton):void
+    {
+        _floorUpBtn = value;
+    }
+
+    public function get zoomInBtn():SimpleButton
+    {
+        return _zoomInBtn;
+    }
+
+    public function set zoomInBtn(value:SimpleButton):void
+    {
+        _zoomInBtn = value;
+    }
+
+    public function get zoomOutBtn():SimpleButton
+    {
+        return _zoomOutBtn;
+    }
+
+    public function set zoomOutBtn(value:SimpleButton):void
+    {
+        _zoomOutBtn = value;
     }
 }
 }

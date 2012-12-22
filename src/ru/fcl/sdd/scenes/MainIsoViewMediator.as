@@ -10,12 +10,21 @@ import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.ui.Keyboard;
 
+import org.osflash.signals.ISignal;
+
 import org.robotlegs.mvcs.Mediator;
+
+import ru.fcl.sdd.config.Graphic;
 
 public class MainIsoViewMediator extends Mediator
 {
     [Inject]
     public var view:MainIsoView;
+
+    [Inject(name="zoom_in")]
+    public var zoomInSignal:ISignal;
+    [Inject(name="zoom_out")]
+    public var zoomOutSignal:ISignal;
 
     private var panPoint:Point;
     private var zoom:Number = 1;
@@ -24,6 +33,8 @@ public class MainIsoViewMediator extends Mediator
     {
         view.stage.addEventListener(MouseEvent.MOUSE_DOWN, viewMouseDown);
         view.stage.addEventListener(KeyboardEvent.KEY_DOWN, viewZoom);
+        zoomInSignal.add(zoomIn);
+        zoomOutSignal.add(zoomOut);
     }
 
     override public function onRemove():void
@@ -32,6 +43,8 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
         view.stage.removeEventListener(MouseEvent.MOUSE_DOWN, viewMouseDown);
         view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, viewZoom);
+        zoomInSignal.remove(zoomIn);
+        zoomOutSignal.remove(zoomOut);
     }
 
     private function viewMouseDown(e:MouseEvent):void
@@ -54,17 +67,35 @@ public class MainIsoViewMediator extends Mediator
         view.stage.removeEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
     }
 
+    private function zoomIn():void
+    {
+        if (zoom < Graphic.MAX_ZOOM)
+        {
+            zoom += Graphic.ZOOM_STEP;
+            view.currentZoom = zoom;
+        }
+    }
+
+    private function zoomOut():void
+    {
+        if (zoom > Graphic.MIN_ZOOM)
+        {
+            zoom -= Graphic.ZOOM_STEP;
+            view.currentZoom = zoom;
+        }
+    }
+
     private function viewZoom(e:KeyboardEvent):void
     {
-        if(e.keyCode == Keyboard.NUMPAD_ADD)
+        if (e.keyCode == Keyboard.NUMPAD_ADD)
         {
-            zoom +=  0.10;
+            zoomIn();
         }
-        if(e.keyCode == Keyboard.NUMPAD_SUBTRACT)
+        if (e.keyCode == Keyboard.NUMPAD_SUBTRACT)
         {
-            zoom -=  0.10;
+            zoomOut();
         }
-        view.currentZoom = zoom;
+
     }
 }
 }
