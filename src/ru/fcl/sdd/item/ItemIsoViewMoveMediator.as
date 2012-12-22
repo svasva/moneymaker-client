@@ -18,7 +18,6 @@ import flash.geom.Point;
 import flash.ui.Keyboard;
 
 import org.osflash.signals.ISignal;
-import org.osmf.net.NetStreamSwitchManager;
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
@@ -27,6 +26,7 @@ import ru.fcl.sdd.scenes.FloorScene;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
+
 
 public class ItemIsoViewMoveMediator extends Mediator
 {
@@ -158,11 +158,14 @@ public class ItemIsoViewMoveMediator extends Mediator
     private function updateMouse(e:MouseEvent):void
     {
         var pt:Pt = _view.localToIso(new Point(contextView.stage.mouseX, contextView.stage.mouseY));
-        cursor.moveTo(Math.floor(pt.x / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.x*/, Math.floor(pt.y / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.y*/, cursor.z);
-        cursor.render();
-        floor.render();
-        e.updateAfterEvent();
-        checkPlaceable();
+        if ((pt.x != cursor.x) && (pt.y != cursor.y))
+        {
+            cursor.moveTo(Math.floor(pt.x / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.x*/, Math.floor(pt.y / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.y*/, cursor.z);
+            cursor.render();
+            floor.render();
+            e.updateAfterEvent();
+            checkPlaceable();
+        }
     }
 
     private function wheelMouse(e:MouseEvent):void
