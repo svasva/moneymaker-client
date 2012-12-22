@@ -8,8 +8,8 @@ package ru.fcl.sdd.config
 
 public class Graphic
 {
-    public static const MIN_ZOOM:Number = 0.5;
-    public static const MAX_ZOOM:Number = 1.5;
+    public static const MIN_ZOOM:Number = 0.25;
+    public static const MAX_ZOOM:Number = 1.25;
     public static const ZOOM_STEP:Number = 0.25
 }
 }
