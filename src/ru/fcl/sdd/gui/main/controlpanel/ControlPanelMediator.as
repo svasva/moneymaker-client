@@ -11,6 +11,8 @@ import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.Mediator;
 
+import ru.fcl.sdd.scenes.MainIsoView;
+
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
 
@@ -25,17 +27,17 @@ public class ControlPanelMediator extends Mediator
     public var zoomIn:ISignal;
     [Inject(name="zoom_out")]
     public var zoomOut:ISignal;
+    [Inject]
+    public var mainIsoView:MainIsoView;
 
-    [Inject(name="floor_up")]
-    public var floorUp:ISignal;
-    [Inject(name="floor_down")]
-    public var floorDown:ISignal;
+    [Inject(name="change_floor")]
+    public var floorChange:ISignal;
 
     override public function onRegister():void
     {
         view.shopBtn.addEventListener(MouseEvent.CLICK, shopBtn_clickHandler);
-        view.floorDownBtn.addEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
-        view.floorUpBtn.addEventListener(MouseEvent.CLICK, floorDownBtn_clickHandler);
+        view.floorDownBtn.addEventListener(MouseEvent.CLICK, floorDownBtn_clickHandler);
+        view.floorUpBtn.addEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.addEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
         view.zoomOutBtn.addEventListener(MouseEvent.CLICK, zoomOut_clickHandler);
     }
@@ -43,8 +45,8 @@ public class ControlPanelMediator extends Mediator
     override public function onRemove():void
     {
         view.shopBtn.removeEventListener(MouseEvent.CLICK, shopBtn_clickHandler);
-        view.floorDownBtn.removeEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
-        view.floorUpBtn.removeEventListener(MouseEvent.CLICK, floorDownBtn_clickHandler);
+        view.floorDownBtn.removeEventListener(MouseEvent.CLICK,floorDownBtn_clickHandler);
+        view.floorUpBtn.removeEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.removeEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
         view.zoomOutBtn.removeEventListener(MouseEvent.CLICK, zoomOut_clickHandler);
     }
@@ -57,12 +59,18 @@ public class ControlPanelMediator extends Mediator
 
     private function floorUpBtn_clickHandler(event:MouseEvent):void
     {
-        floorUp.dispatch();
+        if (mainIsoView.currentFloorNumber < 4)
+        {
+            floorChange.dispatch(mainIsoView.currentFloorNumber+1);
+        }
     }
 
     private function floorDownBtn_clickHandler(event:MouseEvent):void
     {
-        floorDown.dispatch();
+        if (mainIsoView.currentFloorNumber>0)
+        {
+            floorChange.dispatch(mainIsoView.currentFloorNumber-1);
+        }
     }
 
     private function zoomIn_clickHandler(event:MouseEvent):void

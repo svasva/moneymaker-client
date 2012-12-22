@@ -5,6 +5,7 @@
  */
 package ru.fcl.sdd.gui.main.controlpanel
 {
+import org.osflash.signals.AboutInt;
 import org.osflash.signals.ISignal;
 import org.osflash.signals.Signal;
 import org.robotlegs.mvcs.SignalCommand;
@@ -17,10 +18,8 @@ public class BuildControlPanel extends SignalCommand
         injector.mapValue(ISignal,zoomIn,"zoom_in");
         var zoomOut:ISignal = new Signal();
         injector.mapValue(ISignal,zoomOut,"zoom_out");
-        var floorUp:ISignal = new Signal();
-        injector.mapValue(ISignal,floorUp,"floor_up");
-        var floorDown:ISignal = new Signal();
-        injector.mapValue(ISignal,floorDown,"floor_down");
+//        var floor:ISignal = new AboutInt();
+//        injector.mapValue(ISignal,floor,"floor");
 
         injector.mapSingleton(ControlPanelView);
         mediatorMap.mapView(ControlPanelView, ControlPanelMediator);

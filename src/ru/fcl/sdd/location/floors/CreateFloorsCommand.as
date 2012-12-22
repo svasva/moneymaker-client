@@ -7,30 +7,32 @@ package ru.fcl.sdd.location.floors
 {
 import de.polygonal.ds.HashMapValIterator;
 
+import org.osflash.signals.ISignal;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.PlaceItemCommand;
 import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.pathfind.PlacePathGridItemCommand;
-import ru.fcl.sdd.scenes.FloorScene;
 
-public class CreateFloorCommand extends SignalCommand
+public class CreateFloorsCommand extends SignalCommand
 {
     [Inject]
     public var userItems:UserItemList;
-    [Inject]
-    public var floorScene:FloorScene;
 
     override public function execute():void
     {
+        injector.mapSingleton(Floor1Scene);
 
+        var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
+        commandMap.execute(ChangeFloorCommand,1);
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
+
         while(iterator.hasNext())
         {
             var item:ItemIsoView = iterator.next() as ItemIsoView;
-            //todo:проверить айтем на соответствие этажу.
             commandMap.execute(PlaceItemCommand,item);
             commandMap.execute(PlacePathGridItemCommand,item);
         }
