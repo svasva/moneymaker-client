@@ -19,7 +19,7 @@ public class ClientusIsoView extends IsoSprite
     private var _direction:int;
     private var _state:int;
     private var _key:String;
-    private var _needItemId:String;
+    private var _operations:Array;
     private var _skinSwf:Loader;
     private var _skin:String;
 
@@ -85,14 +85,18 @@ public class ClientusIsoView extends IsoSprite
         trace(event.text);
     }
 
-    public function get needItemId():String
+    public function get operations():Array
     {
-        return _needItemId;
+        if(!operations)
+        {
+            operations = [];
+        }
+        return _operations;
     }
 
-    public function set needItemId(value:String):void
+    public function set operations(value:Array):void
     {
-        _needItemId = value;
+        _operations = value;
     }
 
     public function get key():String

@@ -5,12 +5,17 @@
  */
 package ru.fcl.sdd.homus
 {
+import org.osflash.signals.AboutInt;
+import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 
 public class BuildHomusCommand extends SignalCommand
 {
     override public function execute():void
     {
+//        var operationMoney:ISignal = new AboutInt();
+//        injector.mapValue(ISignal,operationMoney,"operation_money");
+//        signalCommandMap.mapSignal(operationMoney,CompleteOperationCommitChangesCommand);
         injector.mapSingleton(ClientusList);
         injector.mapClass(ClientusIsoView,ClientusIsoView);
         mediatorMap.mapView(ClientusIsoView,ClientusIsoViewMediator);

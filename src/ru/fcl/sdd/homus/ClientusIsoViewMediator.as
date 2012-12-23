@@ -7,11 +7,20 @@ package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
 
+import de.polygonal.ds.HashMapValIterator;
+
 import fl.motion.easing.Linear;
+
+import flash.display.Bitmap;
+import flash.utils.setTimeout;
+
+import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
+import ru.fcl.sdd.item.Item;
+import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.pathfind.AStar;
@@ -25,14 +34,19 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var userItems:UserItemList;
     [Inject]
+    public var itemCatalog:ItemCatalog;
+    [Inject]
     public var clientusView:ClientusIsoView;
     [Inject]
     public var floor:Floor1Scene;
 
+    [Inject(name="operation_money")]
+    public var operationMoney:ISignal;
+
     private var path:Array;
     private var _state:int;
     private var aStar:AStar;
-    private var item:ItemIsoView;
+    private var currentTarget:ItemIsoView;
     private var _directionAtEnd:int;
 
 
@@ -40,16 +54,61 @@ public class ClientusIsoViewMediator extends Mediator
     {
         aStar = new AStar();
         clientusView.x = 14 * IsoConfig.CELL_SIZE;
-        pathGrid.setStartNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
-        item = userItems.get(clientusView.needItemId) as ItemIsoView;
-        pathGrid.setEndNode(item.enterPoint.x, item.enterPoint.y);
+    }
+
+    private function walkNextTarget():void
+    {
+        selectTarget();
         findPath();
         checkDirections();
         startWalk();
     }
 
+    private function selectTarget():void
+    {
+        if (clientusView.operations.length)
+        {
+            var operation = clientusView.operations.shift();
+            var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
+            var item:Item;
+            var itemIsoView:ItemIsoView;
+            var avaibleItems:Array = [];
+            iterator.reset();
+            while (iterator.hasNext())
+            {
+                itemIsoView = iterator.next() as ItemIsoView;
+                item = itemCatalog.get(itemIsoView.catalogKey) as Item;
+                if (item.operations)
+                {
+                    for (var i:int = 0; i < item.operations.length; i++)
+                    {
+                        if (item.operations[i] == operation)
+                        {
+                            avaibleItems[avaibleItems.length] = itemIsoView;
+                        }
+                    }
+                }
+            }
+            currentTarget = avaibleItems.pop() as ItemIsoView;
+        }
+        else
+        {
+            currentTarget = null;
+        }
+    }
+
     protected function findPath():void
     {
+        pathGrid.setStartNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
+        if (currentTarget)
+        {
+            pathGrid.setEndNode(currentTarget.enterPoint.x, currentTarget.enterPoint.y);
+        }
+        else
+        {
+            pathGrid.setEndNode(14, 0);
+        }
+
         if (aStar.findPath(pathGrid))
         {
             path = aStar.path;
@@ -59,10 +118,9 @@ public class ClientusIsoViewMediator extends Mediator
     private function startWalk():void
     {
         _state = ClientusIsoView.START;
-        clientusView.setDirection(path[0].direction,_state);
-        Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
+        clientusView.setDirection(path[0].direction, _state);
+        Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
         path.shift();
-
     }
 
     private function goToCell():void
@@ -70,49 +128,57 @@ public class ClientusIsoViewMediator extends Mediator
         if (path.length > 2)
         {
             _state = ClientusIsoView.WALK;
-            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
-            clientusView.setDirection(path[0].direction,_state);
+            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
+            clientusView.setDirection(path[0].direction, _state);
             path.shift();
-
-        }else
-        if(path.length>1)
+        }
+        else if (path.length > 1)
         {
             _state = ClientusIsoView.STOP;
-            clientusView.setDirection(path[0].direction,_state);
-            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null,goToCell);
+            clientusView.setDirection(path[0].direction, _state);
+            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
             path.shift();
-        }else
-        if(path.length==1)
+        }
+        else if (path.length == 1)
         {
             _state = ClientusIsoView.STOPPED;
-            clientusView.setDirection(_directionAtEnd,_state);
+            clientusView.setDirection(_directionAtEnd, _state);
+            setTimeout(endOperation, 10000);
         }
         floor.render();
     }
 
+    private function endOperation():void
+    {
+        selectTarget();
+        if (currentTarget)
+        {
+
+        }
+    }
 
     private function checkDirections():void
     {
-        for (var i:int = 0; i < path.length-1; i++)
+        for (var i:int = 0; i < path.length - 1; i++)
         {
-                if(path[i].x<path[i+1].x)
-                {
-                    path[i].direction = ClientusIsoView.EAST;
-                }else
-                if(path[i].x>path[i+1].x)
-                {
-                    path[i].direction = ClientusIsoView.WEST;
-                }else
-                if(path[i].y<path[i+1].y)
-                {
-                    path[i].direction = ClientusIsoView.SOUTH;
-                }else
-                if(path[i].y>path[i+1].y)
-                {
-                    path[i].direction = ClientusIsoView.NORTH;
-                }
+            if (path[i].x < path[i + 1].x)
+            {
+                path[i].direction = ClientusIsoView.EAST;
+            }
+            else if (path[i].x > path[i + 1].x)
+            {
+                path[i].direction = ClientusIsoView.WEST;
+            }
+            else if (path[i].y < path[i + 1].y)
+            {
+                path[i].direction = ClientusIsoView.SOUTH;
+            }
+            else if (path[i].y > path[i + 1].y)
+            {
+                path[i].direction = ClientusIsoView.NORTH;
+            }
         }
-        switch (item.direction)
+        switch (currentTarget.direction)
         {
             case ItemIsoView.NORTH:
             {
@@ -136,8 +202,6 @@ public class ClientusIsoViewMediator extends Mediator
             }
         }
     }
-
-
 
 
 }

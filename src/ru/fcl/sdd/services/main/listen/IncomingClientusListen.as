@@ -18,7 +18,7 @@ public class IncomingClientusListen extends SignalCommand
     override public function execute():void
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
-        clientusIsoView.needItemId = response.response.item_id;
+        clientusIsoView.operations = response.response.operations;
         clientusIsoView.key = response.response._id;
         commandMap.execute(AddClientusCommand,clientusIsoView);
     }
