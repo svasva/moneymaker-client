@@ -7,14 +7,14 @@ package ru.fcl.sdd.homus
 {
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.scenes.FloorScene;
+import ru.fcl.sdd.location.floors.Floor1Scene;
 
 public class AddClientusCommand extends SignalCommand
 {
     [Inject]
     public var clientusList:ClientusList;
     [Inject]
-    public var currentFloor:FloorScene;
+    public var currentFloor:Floor1Scene;
     [Inject]
     public var clientusIsoView:ClientusIsoView;
 

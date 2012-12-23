@@ -22,7 +22,7 @@ import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.pathfind.PathGrid;
-import ru.fcl.sdd.scenes.FloorScene;
+import ru.fcl.sdd.location.floors.Floor1Scene;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -31,7 +31,7 @@ import ru.fcl.sdd.states.GameStates;
 public class ItemIsoViewMoveMediator extends Mediator
 {
     [Inject]
-    public var floor:FloorScene;
+    public var floor:Floor1Scene;
     [Inject(name="item_for_move")]
     public var cursor:ItemIsoView;
     [Inject]
@@ -68,7 +68,7 @@ public class ItemIsoViewMoveMediator extends Mediator
 
     private function onEscKeyDown(event:KeyboardEvent):void
     {
-        if (event.charCode = Keyboard.ESCAPE)
+        if (event.charCode == Keyboard.ESCAPE)
         {
             floor.removeChild(cursor);
             changeState.dispatch(GameStates.VIEW);

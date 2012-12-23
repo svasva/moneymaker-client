@@ -16,7 +16,7 @@ import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.UserItemList;
 import ru.fcl.sdd.pathfind.AStar;
 import ru.fcl.sdd.pathfind.PathGrid;
-import ru.fcl.sdd.scenes.FloorScene;
+import ru.fcl.sdd.location.floors.Floor1Scene;
 
 public class ClientusIsoViewMediator extends Mediator
 {
@@ -27,7 +27,7 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var clientusView:ClientusIsoView;
     [Inject]
-    public var floor:FloorScene;
+    public var floor:Floor1Scene;
 
     private var path:Array;
     private var _state:int;

@@ -8,14 +8,14 @@ package ru.fcl.sdd.item
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.scenes.FloorScene;
+import ru.fcl.sdd.location.floors.Floor1Scene;
 
 public class PlaceItemCommand extends SignalCommand
 {
     [Inject]
     public var iso:ItemIsoView;
     [Inject]
-    public var floor:FloorScene;
+    public var floor:Floor1Scene;
 
     override public function execute():void
     {
