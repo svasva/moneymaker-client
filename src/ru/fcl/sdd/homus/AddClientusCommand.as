@@ -11,8 +11,8 @@ import ru.fcl.sdd.location.floors.Floor1Scene;
 
 public class AddClientusCommand extends SignalCommand
 {
-    [Inject]
-    public var clientusList:ClientusList;
+//    [Inject]
+//    public var clientusList:ClientusList;
     [Inject]
     public var currentFloor:Floor1Scene;
     [Inject]
@@ -20,11 +20,10 @@ public class AddClientusCommand extends SignalCommand
 
     override public function execute():void
     {
-        clientusList.set(clientusIsoView.key,clientusIsoView);
+//        clientusList.set(clientusIsoView.key,clientusIsoView);
         mediatorMap.createMediator(clientusIsoView);
         currentFloor.addChild(clientusIsoView);
         currentFloor.render();
-
     }
 }
 }

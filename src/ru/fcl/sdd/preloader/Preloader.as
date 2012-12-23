@@ -111,12 +111,13 @@ public class Preloader extends SparkDownloadProgressBar
             _star.y = 150;
             _star.addEventListener(Event.ENTER_FRAME, rotateStar);
 
-            addChild(_text);
+//            addChild(_text);
 
             tf = new TextFormat();
             tf.font = 'AVA_B';
             tf.size = 54;
             tf.align = 'center';
+
             _text.embedFonts = true;
             _text.antiAliasType = "advanced";
             _text.textColor = 0x00b500;

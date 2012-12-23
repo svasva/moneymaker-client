@@ -37,7 +37,7 @@ public class ClientusIsoView extends IsoSprite
     {
         _operations=[];
         _skinSwf = new Loader();
-        skin = "./art/Man02Animations.swf";
+//        skin = "./art/Man02Animations.swf";
         super();
     }
 
@@ -104,6 +104,11 @@ public class ClientusIsoView extends IsoSprite
     public function set key(value:String):void
     {
         _key = value;
+    }
+
+    public function get skin():String
+    {
+        return _skin;
     }
 }
 }

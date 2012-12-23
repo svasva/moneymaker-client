@@ -53,6 +53,7 @@ public class BuildMainGUICommand extends SignalCommand
         mainInterfaceView.addChild(controlPanelView);
 
 
+
     }
 }
 }

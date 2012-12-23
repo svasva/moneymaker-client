@@ -5,13 +5,16 @@
  */
 package ru.fcl.sdd.gui.main.controlpanel
 {
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.ui.Keyboard;
 
 import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.scenes.MainIsoView;
+import ru.fcl.sdd.services.main.ISender;
 
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -29,6 +32,8 @@ public class ControlPanelMediator extends Mediator
     public var zoomOut:ISignal;
     [Inject]
     public var mainIsoView:MainIsoView;
+    [Inject]
+    public var sender:ISender;
 
     [Inject(name="change_floor")]
     public var floorChange:ISignal;
@@ -36,6 +41,7 @@ public class ControlPanelMediator extends Mediator
     override public function onRegister():void
     {
         view.shopBtn.addEventListener(MouseEvent.CLICK, shopBtn_clickHandler);
+        view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
         view.floorDownBtn.addEventListener(MouseEvent.CLICK, floorDownBtn_clickHandler);
         view.floorUpBtn.addEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.addEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
@@ -45,7 +51,7 @@ public class ControlPanelMediator extends Mediator
     override public function onRemove():void
     {
         view.shopBtn.removeEventListener(MouseEvent.CLICK, shopBtn_clickHandler);
-        view.floorDownBtn.removeEventListener(MouseEvent.CLICK,floorDownBtn_clickHandler);
+        view.floorDownBtn.removeEventListener(MouseEvent.CLICK, floorDownBtn_clickHandler);
         view.floorUpBtn.removeEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.removeEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
         view.zoomOutBtn.removeEventListener(MouseEvent.CLICK, zoomOut_clickHandler);
@@ -61,15 +67,15 @@ public class ControlPanelMediator extends Mediator
     {
         if (mainIsoView.currentFloorNumber < 4)
         {
-            floorChange.dispatch(mainIsoView.currentFloorNumber+1);
+            floorChange.dispatch(mainIsoView.currentFloorNumber + 1);
         }
     }
 
     private function floorDownBtn_clickHandler(event:MouseEvent):void
     {
-        if (mainIsoView.currentFloorNumber>0)
+        if (mainIsoView.currentFloorNumber > 0)
         {
-            floorChange.dispatch(mainIsoView.currentFloorNumber-1);
+            floorChange.dispatch(mainIsoView.currentFloorNumber - 1);
         }
     }
 
@@ -81,6 +87,14 @@ public class ControlPanelMediator extends Mediator
     private function zoomOut_clickHandler(event:MouseEvent):void
     {
         zoomOut.dispatch();
+    }
+
+    private function keyDownHandler(event:KeyboardEvent):void
+    {
+        if (event.keyCode == Keyboard.ENTER)
+        {
+            sender.send({command: "resetGame"});
+        }
     }
 }
 }

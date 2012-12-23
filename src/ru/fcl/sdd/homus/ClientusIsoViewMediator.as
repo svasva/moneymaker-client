@@ -154,7 +154,7 @@ public class ClientusIsoViewMediator extends Mediator
             walkNextTarget();
         }else
         {
-            Tweensy.to(clientusView,{z:2000},2,Linear.easeOut,0,null,removeClientus);
+            removeClientus();
         }
     }
 
@@ -212,7 +212,7 @@ public class ClientusIsoViewMediator extends Mediator
         }
         else
         {
-            _directionAtEnd = ClientusIsoView.NORTH;
+//            _directionAtEnd = ClientusIsoView.NORTH;
         }
     }
 

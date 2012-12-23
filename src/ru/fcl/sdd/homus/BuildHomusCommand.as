@@ -16,7 +16,7 @@ public class BuildHomusCommand extends SignalCommand
 //        var operationMoney:ISignal = new AboutInt();
 //        injector.mapValue(ISignal,operationMoney,"operation_money");
 //        signalCommandMap.mapSignal(operationMoney,CompleteOperationCommitChangesCommand);
-        injector.mapSingleton(ClientusList);
+//        injector.mapSingleton(ClientusList);
         injector.mapClass(ClientusIsoView,ClientusIsoView);
         mediatorMap.mapView(ClientusIsoView,ClientusIsoViewMediator);
     }
