@@ -21,7 +21,7 @@ public class Item extends ItemShopView
     private var _isoWidth:int;
     private var _isoLength:int;
     private var _isoHeight:int;
-    private var _operations:Vector.<String>;
+    private var _operations:Array;
 
     public function get key():String
     {
@@ -165,16 +165,16 @@ public class Item extends ItemShopView
         _isoHeight = value;
     }
 
-    public function get operations():Vector.<String>
+    public function get operations():Array
     {
         if(!_operations)
         {
-            _operations = new Vector.<String>();
+            _operations = [];
         }
         return _operations;
     }
 
-    public function set operations(value:Vector.<String>):void
+    public function set operations(value:Array):void
     {
         _operations = value;
     }

@@ -47,7 +47,7 @@ public class ParseItemsCatalogCommand extends Command
         item.skinUrl = contentUrl;
         if (object.operations)
         {
-            for (var i:int = 0; i < Array(object.operations).length; i++)
+            for (var i:int = 0; i < object.operations.length; i++)
             {
                 if(object.operations[i]!="")
                 {

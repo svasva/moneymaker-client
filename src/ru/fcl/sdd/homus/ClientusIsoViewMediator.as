@@ -11,10 +11,7 @@ import de.polygonal.ds.HashMapValIterator;
 
 import fl.motion.easing.Linear;
 
-import flash.display.Bitmap;
 import flash.utils.setTimeout;
-
-import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.Mediator;
 
@@ -23,9 +20,9 @@ import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.location.floors.Floor1Scene;
 import ru.fcl.sdd.pathfind.AStar;
 import ru.fcl.sdd.pathfind.PathGrid;
-import ru.fcl.sdd.location.floors.Floor1Scene;
 
 public class ClientusIsoViewMediator extends Mediator
 {
@@ -40,8 +37,8 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var floor:Floor1Scene;
 
-    [Inject(name="operation_money")]
-    public var operationMoney:ISignal;
+//    [Inject(name="operation_money")]
+//    public var operationMoney:ISignal;
 
     private var path:Array;
     private var _state:int;
@@ -54,6 +51,7 @@ public class ClientusIsoViewMediator extends Mediator
     {
         aStar = new AStar();
         clientusView.x = 14 * IsoConfig.CELL_SIZE;
+        walkNextTarget();
     }
 
     private function walkNextTarget():void
@@ -106,7 +104,7 @@ public class ClientusIsoViewMediator extends Mediator
         }
         else
         {
-            pathGrid.setEndNode(14, 0);
+            pathGrid.setEndNode(11, 0);
         }
 
         if (aStar.findPath(pathGrid))
@@ -143,18 +141,26 @@ public class ClientusIsoViewMediator extends Mediator
         {
             _state = ClientusIsoView.STOPPED;
             clientusView.setDirection(_directionAtEnd, _state);
-            setTimeout(endOperation, 10000);
+            setTimeout(endOperation, 3000);
         }
         floor.render();
     }
 
     private function endOperation():void
     {
-        selectTarget();
         if (currentTarget)
         {
-
+            selectTarget();
+            walkNextTarget();
+        }else
+        {
+            Tweensy.to(clientusView,{z:2000},2,Linear.easeOut,0,null,removeClientus);
         }
+    }
+
+    private function removeClientus():void
+    {
+        floor.removeChild(clientusView);
     }
 
     private function checkDirections():void
@@ -178,28 +184,35 @@ public class ClientusIsoViewMediator extends Mediator
                 path[i].direction = ClientusIsoView.NORTH;
             }
         }
-        switch (currentTarget.direction)
+        if (currentTarget)
         {
-            case ItemIsoView.NORTH:
+            switch (currentTarget.direction)
             {
-                _directionAtEnd = ClientusIsoView.SOUTH;
-                break;
+                case ItemIsoView.NORTH:
+                {
+                    _directionAtEnd = ClientusIsoView.SOUTH;
+                    break;
+                }
+                case ItemIsoView.SOUTH:
+                {
+                    _directionAtEnd = ClientusIsoView.NORTH;
+                    break;
+                }
+                case ItemIsoView.WEST:
+                {
+                    _directionAtEnd = ClientusIsoView.EAST;
+                    break;
+                }
+                case ItemIsoView.EAST:
+                {
+                    _directionAtEnd = ClientusIsoView.WEST;
+                    break;
+                }
             }
-            case ItemIsoView.SOUTH:
-            {
-                _directionAtEnd = ClientusIsoView.NORTH;
-                break;
-            }
-            case ItemIsoView.WEST:
-            {
-                _directionAtEnd = ClientusIsoView.EAST;
-                break;
-            }
-            case ItemIsoView.EAST:
-            {
-                _directionAtEnd = ClientusIsoView.WEST;
-                break;
-            }
+        }
+        else
+        {
+            _directionAtEnd = ClientusIsoView.NORTH;
         }
     }
 

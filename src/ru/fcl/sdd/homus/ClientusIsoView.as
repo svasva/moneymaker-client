@@ -35,6 +35,7 @@ public class ClientusIsoView extends IsoSprite
 
     public function ClientusIsoView()
     {
+        _operations=[];
         _skinSwf = new Loader();
         skin = "./art/Man02Animations.swf";
         super();
@@ -87,10 +88,6 @@ public class ClientusIsoView extends IsoSprite
 
     public function get operations():Array
     {
-        if(!operations)
-        {
-            operations = [];
-        }
         return _operations;
     }
 

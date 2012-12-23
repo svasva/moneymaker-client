@@ -5,6 +5,8 @@
  */
 package ru.fcl.sdd.services.main.listen
 {
+import com.adobe.utils.ArrayUtil;
+
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.homus.AddClientusCommand;
@@ -18,7 +20,13 @@ public class IncomingClientusListen extends SignalCommand
     override public function execute():void
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
-        clientusIsoView.operations = response.response.operations;
+        var temp:Array = response.response.operations_mapped;
+        //fixme:КОСТЫЛЬ!
+        for (var i:int = 0; i < temp.length; i+=2)
+        {
+            clientusIsoView.operations.push(temp[i]);
+        }
+
         clientusIsoView.key = response.response._id;
         commandMap.execute(AddClientusCommand,clientusIsoView);
     }
