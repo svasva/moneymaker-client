@@ -30,6 +30,8 @@ public class Preloader extends SparkDownloadProgressBar
 
     [Embed(source="art/star.png")]
     private static const _starClass:Class;
+    [Embed(source="art/PreloaderBgArt.jpg")]
+    private static const _bgClass:Class;
     [Embed(source="art/AVA_LL.TTF", fontFamily="a_AvanteLt", mimeType="application/x-font", embedAsCFF="false")]
     public var _lightFont:Class;
     [Embed(source="art/AVA_LDB.TTF", fontFamily="AVA_B", mimeType="application/x-font", embedAsCFF="false")]
@@ -50,7 +52,7 @@ public class Preloader extends SparkDownloadProgressBar
     private var rslBaseText:String = "";
     private var numberRslTotal:Number = 1;
     private var numberRslCurrent:Number = 1;
-    private var preloaderDisplay:Preloader1McArt;
+    private var preloaderDisplay:DisplayObject;
     public var flashVars:Object;
 
     public function Preloader()
@@ -92,17 +94,17 @@ public class Preloader extends SparkDownloadProgressBar
     {
         if (!preloaderDisplay)
         {
-            preloaderDisplay = new Preloader1McArt();
+            preloaderDisplay = new _bgClass();
 
             var startX:Number = Math.round((stageWidth - preloaderDisplay.width) / 2) + X_OFFSET;
             var startY:Number = Math.round((stageHeight - preloaderDisplay.height) / 2) + Y_OFFSET;
 
-            preloaderDisplay.x = startX;
-            preloaderDisplay.y = startY;
+//            preloaderDisplay.x = startX;
+//            preloaderDisplay.y = startY;
             addChild(preloaderDisplay);
 
             var s:DisplayObject = new _starClass();
-            addChild(_star);
+//            addChild(_star);
             _star.addChild(s);
             s.y = s.x = -s.width / 2;
             _star.x = stage.stageWidth / 2;
@@ -121,7 +123,7 @@ public class Preloader extends SparkDownloadProgressBar
             _text.defaultTextFormat = tf;
 
             _text.autoSize = TextFieldAutoSize.LEFT;
-            _text.y = stageHeight - 235;
+            _text.y = stageHeight - 400;
         }
     }
 
@@ -136,7 +138,7 @@ public class Preloader extends SparkDownloadProgressBar
             var progressApp:int = Math.round((evt.bytesLoaded / evt.bytesLoaded) * 100);
 
             //Main Progress displays the shape of the logo
-            preloaderDisplay.gotoAndStop(progressApp);
+//            preloaderDisplay.gotoAndStop(progressApp);
 
             setPreloaderLoadingText(rslBaseText + Math.round((evt.bytesLoaded / evt.bytesLoaded) * 100).toString() +
                     "%");
@@ -165,8 +167,8 @@ public class Preloader extends SparkDownloadProgressBar
 
             var progressRsl:Number = Math.round((evt.bytesLoaded / evt.bytesTotal) * 100);
 
-            preloaderDisplay.setDownloadRSLProgress(Math.round((numberRslCurrent - 1) * 100 / numberRslTotal +
-                    progressRsl / numberRslTotal));
+//            preloaderDisplay.setDownloadRSLProgress(Math.round((numberRslCurrent - 1) * 100 / numberRslTotal +
+//                    progressRsl / numberRslTotal));
 
             //setPreloaderLoadingText(rslBaseText + Math.round((evt.bytesLoaded / evt.bytesTotal) * 100).toString() + "%");
         }
