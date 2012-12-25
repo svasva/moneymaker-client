@@ -19,9 +19,9 @@ public class PlacePathGridItemCommand extends SignalCommand
 
     override public function execute():void
     {
-        for (var i:int = 0; i < iso.width / IsoConfig.CELL_SIZE; i++)
+        for (var j:int = 0; j < iso.length / IsoConfig.CELL_SIZE; j++)
         {
-            for (var j:int = 0; j < iso.length / IsoConfig.CELL_SIZE; j++)
+            for (var i:int = 0; i < iso.width / IsoConfig.CELL_SIZE; i++)
             {
                 pathGreed.setWalkable(i + iso.x / IsoConfig.CELL_SIZE, j + iso.y / IsoConfig.CELL_SIZE, false);
             }

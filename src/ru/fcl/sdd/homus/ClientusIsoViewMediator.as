@@ -11,6 +11,7 @@ import de.polygonal.ds.HashMapValIterator;
 
 import fl.motion.easing.Linear;
 
+import flash.events.Event;
 import flash.utils.setTimeout;
 
 import org.robotlegs.mvcs.Mediator;
@@ -37,33 +38,92 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var floor:Floor1Scene;
 
-//    [Inject(name="operation_money")]
-//    public var operationMoney:ISignal;
-
     private var path:Array;
-    private var _state:int;
     private var aStar:AStar;
-    private var currentTarget:ItemIsoView;
-    private var _directionAtEnd:int;
+    private var target:ItemIsoView;
+    private var isNextFrame:Boolean = false;
 
 
     override public function onRegister():void
     {
         aStar = new AStar();
-        clientusView.x = 14 * IsoConfig.CELL_SIZE;
-        walkNextTarget();
+        clientusView.x = 13 * IsoConfig.CELL_SIZE;
+        clientusView.y = 1 * IsoConfig.CELL_SIZE;
+        nextStep();
     }
 
-    private function walkNextTarget():void
+    private function nextStep():void
     {
-        selectTarget();
-        findPath();
-        checkDirections();
-        startWalk();
+        var startX:int = clientusView.x / IsoConfig.CELL_SIZE;
+        var startY:int = clientusView.y / IsoConfig.CELL_SIZE;
+        var endX:int;
+        var endY:int;
+        target = selectTarget();
+
+        if (target)
+        {
+            endX = target.enterPoint.x;
+            endY = target.enterPoint.y;
+        }
+        else
+        {
+            endX = IsoConfig.START_CLIENTUS_CELL_X;
+            endY = IsoConfig.START_CLIENTUS_CELL_Y;
+        }
+        path = findPath(startX, startY, endX, endY);
+        path.shift();
+        if (path.length == 0)
+        {
+            setTimeout(nextStep, 3000);
+        }
+        else
+        {
+            tryGoToNextCell(true);
+        }
     }
 
-    private function selectTarget():void
+    private function tryGoToNextCell(start:Boolean = false):void
     {
+        var direction:int;
+        var state:int;
+        if (!start)
+        {
+            switch (path.length)
+            {
+                case 0:
+                {
+                    state = ClientusIsoView.STOPPED;
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
+                    setDirection(state, direction, true);
+                    break;
+                }
+                case 1:
+                {
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[0].x, path[0].y);
+                    state = ClientusIsoView.STOP;
+                    setDirection(state, direction);
+                    break;
+                }
+                default :
+                {
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[0].x, path[0].y);
+                    state = ClientusIsoView.WALK;
+                    setDirection(state, direction);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            state = ClientusIsoView.START;
+            direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[0].x, path[0].y);
+            setDirection(state, direction);
+        }
+    }
+
+    private function selectTarget():ItemIsoView
+    {
+        var target:ItemIsoView;
         if (clientusView.operations.length)
         {
             var operation = clientusView.operations.shift();
@@ -90,136 +150,120 @@ public class ClientusIsoViewMediator extends Mediator
                     }
                 }
             }
-            currentTarget = avaibleItems.pop() as ItemIsoView;
+            target = avaibleItems.pop() as ItemIsoView;
         }
         else
         {
-            currentTarget = null;
+            target = null;
         }
+        return target;
     }
 
-    protected function findPath():void
+    protected function findPath(startNodeX:int, startNodeY:int, endNodeX:int, endNodeY:int):Array
     {
-        pathGrid.setStartNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
-        if (currentTarget)
+        pathGrid.setStartNode(startNodeX, startNodeY);
+        pathGrid.setEndNode(endNodeX, endNodeY);
+        aStar.findPath(pathGrid);
+        path = aStar.path;
+//            path = null;
+        return path;
+    }
+
+    private function setDirection(state:int, direction:int, endPath:Boolean = false):void
+    {
+        clientusView.setDirection(direction, state);
+        if (!endPath)
         {
-            pathGrid.setEndNode(currentTarget.enterPoint.x, currentTarget.enterPoint.y);
+            clientusView.addEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
         }
         else
         {
-            pathGrid.setEndNode(11, 0);
-        }
-
-        if (aStar.findPath(pathGrid))
-        {
-            path = aStar.path;
+            if (clientusView.operations.length)
+            {
+                setTimeout(nextStep, 3000);
+            }
+            else
+            {
+                setTimeout(removeClientus, 1000);
+            }
         }
     }
 
-    private function startWalk():void
+    private function setDirectionCompleteHandler(event:Event):void
     {
-        _state = ClientusIsoView.START;
-        clientusView.setDirection(path[0].direction, _state);
-        Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
-        path.shift();
+        if (isNextFrame)
+        {
+            clientusView.removeEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
+            goToCell();
+            isNextFrame = false;
+        }
+        else
+        {
+            isNextFrame = true
+        }
     }
 
     private function goToCell():void
     {
-        if (path.length > 2)
-        {
-            _state = ClientusIsoView.WALK;
-            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
-            clientusView.setDirection(path[0].direction, _state);
-            path.shift();
-        }
-        else if (path.length > 1)
-        {
-            _state = ClientusIsoView.STOP;
-            clientusView.setDirection(path[0].direction, _state);
-            Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, goToCell);
-            path.shift();
-        }
-        else if (path.length == 1)
-        {
-            _state = ClientusIsoView.STOPPED;
-            clientusView.setDirection(_directionAtEnd, _state);
-            setTimeout(endOperation, 3000);
-        }
-        floor.render();
+        Tweensy.to(clientusView, {x: path[0].x * IsoConfig.CELL_SIZE, y: path[0].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, tryGoToNextCell);
+        path.shift();
     }
 
-    private function endOperation():void
+    private function checkDirection(nodeFromX:int, nodeFromY:int, nodeToX:int, nodeToY:int):int
     {
-        if (currentTarget)
+        if (nodeFromX > nodeToX)
         {
-            selectTarget();
-            walkNextTarget();
+            return ClientusIsoView.WEST;
         }
-        else
+        else if (nodeFromX < nodeToX)
         {
-            removeClientus();
+            return ClientusIsoView.EAST;
         }
+        else if (nodeFromY > nodeToY)
+        {
+            return ClientusIsoView.NORTH;
+        }
+        else if (nodeFromY < nodeToY)
+        {
+            return ClientusIsoView.SOUTH;
+        }
+        else if ((target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
+        {
+            switch (target.direction)
+            {
+                case ItemIsoView.EAST:
+                {
+                    return ClientusIsoView.WEST;
+                    break;
+                }
+                case ItemIsoView.WEST:
+                {
+                    return ClientusIsoView.EAST;
+                    break;
+                }
+                case ItemIsoView.SOUTH:
+                {
+                    return ClientusIsoView.NORTH;
+                    break;
+                }
+                case ItemIsoView.NORTH:
+                {
+                    return ClientusIsoView.SOUTH;
+                    break;
+                }
+            }
+        }
+        else if ((!target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
+        {
+            return ClientusIsoView.NORTH;
+        }
+        return null;
     }
 
     private function removeClientus():void
     {
         floor.removeChild(clientusView);
     }
-
-    private function checkDirections():void
-    {
-        for (var i:int = 0; i < path.length - 1; i++)
-        {
-            if (path[i].x < path[i + 1].x)
-            {
-                path[i].direction = ClientusIsoView.EAST;
-            }
-            else if (path[i].x > path[i + 1].x)
-            {
-                path[i].direction = ClientusIsoView.WEST;
-            }
-            else if (path[i].y < path[i + 1].y)
-            {
-                path[i].direction = ClientusIsoView.SOUTH;
-            }
-            else if (path[i].y > path[i + 1].y)
-            {
-                path[i].direction = ClientusIsoView.NORTH;
-            }
-        }
-        if (currentTarget)
-        {
-            switch (currentTarget.direction)
-            {
-                case ItemIsoView.NORTH:
-                {
-                    _directionAtEnd = ClientusIsoView.SOUTH;
-                    break;
-                }
-                case ItemIsoView.SOUTH:
-                {
-                    _directionAtEnd = ClientusIsoView.NORTH;
-                    break;
-                }
-                case ItemIsoView.WEST:
-                {
-                    _directionAtEnd = ClientusIsoView.EAST;
-                    break;
-                }
-                case ItemIsoView.EAST:
-                {
-                    _directionAtEnd = ClientusIsoView.WEST;
-                    break;
-                }
-            }
-        }
-        else
-        {
-//            _directionAtEnd = ClientusIsoView.NORTH;
-        }
-    }
-
 
 }
 }
