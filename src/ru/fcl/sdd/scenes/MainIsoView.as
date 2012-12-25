@@ -19,19 +19,30 @@ public class MainIsoView extends IsoView
         return _currentFloor;
     }
 
+    [PostConstruct]
+    public function init():void
+    {
+        addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+    }
+
+    private function addedToStageHandler(event:Event):void
+    {
+        stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+    }
+
     public function set currentFloor(value:IIsoScene):void
     {
         if (_currentFloor)
         {
             removeScene(_currentFloor);
-            _currentFloor.render();
-            _currentFloor.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
+//            _currentFloor.render();
+//            _currentFloor.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
         }
         if (value)
         {
-            value.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+//            value.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
             addScene(value);
-            value.render();
+//            value.render();
         }
         _currentFloor = value;
     }
@@ -39,7 +50,7 @@ public class MainIsoView extends IsoView
 
     private function enterFrameHandler(event:Event):void
     {
-        _currentFloor.render();
+        render(true);
     }
 
     public function get currentFloorNumber():int

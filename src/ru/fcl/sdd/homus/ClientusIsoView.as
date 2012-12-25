@@ -44,7 +44,7 @@ public class ClientusIsoView extends IsoSprite
     [PostConstruct]
     public function init():void
     {
-        setSize(100, 100, 100);
+
     }
 
 
