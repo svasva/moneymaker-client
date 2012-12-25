@@ -76,13 +76,16 @@ public class ClientusIsoViewMediator extends Mediator
             {
                 itemIsoView = iterator.next() as ItemIsoView;
                 item = itemCatalog.get(itemIsoView.catalogKey) as Item;
-                if (item.operations)
+                if (item)
                 {
-                    for (var i:int = 0; i < item.operations.length; i++)
+                    if (item.operations)
                     {
-                        if (item.operations[i] == operation)
+                        for (var i:int = 0; i < item.operations.length; i++)
                         {
-                            avaibleItems[avaibleItems.length] = itemIsoView;
+                            if (item.operations[i] == operation)
+                            {
+                                avaibleItems[avaibleItems.length] = itemIsoView;
+                            }
                         }
                     }
                 }
@@ -152,7 +155,8 @@ public class ClientusIsoViewMediator extends Mediator
         {
             selectTarget();
             walkNextTarget();
-        }else
+        }
+        else
         {
             removeClientus();
         }
