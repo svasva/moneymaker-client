@@ -15,7 +15,7 @@ public class PlacePathGridItemCommand extends SignalCommand
     [Inject]
     public var iso:ItemIsoView;
     [Inject]
-    public var pathGreed:PathGrid;
+    public var pathGreed:ItemsPathGrid;
 
     override public function execute():void
     {

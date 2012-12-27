@@ -37,7 +37,7 @@ public class ClientusIsoView extends IsoSprite
     {
         _operations=[];
         _skinSwf = new Loader();
-//        skin = "./art/Man02Animations.swf";
+        skin = "./art/Man02Animations.swf";
         super();
     }
 

@@ -6,7 +6,7 @@
 package ru.fcl.sdd.pathfind
 {
 
-public class PathGrid extends Grid
+public class HomusPathGrid extends Grid
 {
 
 }
