@@ -22,16 +22,17 @@ public class ClientusIsoView extends IsoSprite
     private var _operations:Array;
     private var _skinSwf:Loader;
     private var _skin:String;
+    private var _currentFrame:int = 1;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
     public static const SOUTH:int = 3;
     public static const WEST:int = 4;
 
-    public static const START:int = 0;
     public static const WALK:int = 1;
-    public static const STOP:int = 2;
-    public static const STOPPED:int = 3;
+    public static const STOP:int = 0;
+
+
 
     public function ClientusIsoView()
     {
@@ -54,7 +55,15 @@ public class ClientusIsoView extends IsoSprite
         this._state = state;
         if (_skinSwf.content)
         {
-            MovieClip(_skinSwf.content).gotoAndStop(_state * 4 + _direction);
+            _currentFrame =MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
+            if(_state<1)
+            {
+                MovieClip(_skinSwf.content).gotoAndStop(_direction);
+                MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(_currentFrame);
+            }else
+            {
+                MovieClip(_skinSwf.content).gotoAndStop(_direction*2);
+            }
         }
     }
 
