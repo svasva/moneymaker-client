@@ -16,7 +16,7 @@ import flash.net.URLRequest;
 public class ClientusIsoView extends IsoSprite
 {
 
-    private var _direction:int;
+    private var _currentDirection:int;
     private var _state:int;
     private var _key:String;
     private var _operations:Array;
@@ -43,7 +43,7 @@ public class ClientusIsoView extends IsoSprite
 
     public function setDirection(direction:int, state:int):void
     {
-        this._direction = direction;
+        this._currentDirection = direction;
         this._state = state;
         if (_skinSwf.content)
         {
@@ -53,7 +53,7 @@ public class ClientusIsoView extends IsoSprite
                 {
                     _currentFrame = MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
                 }
-                MovieClip(_skinSwf.content).gotoAndStop(_direction);
+                MovieClip(_skinSwf.content).gotoAndStop(_currentDirection);
                 if (_currentFrame < 24)
                 {
                     MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(_currentFrame + 1);
@@ -65,7 +65,7 @@ public class ClientusIsoView extends IsoSprite
             }
             else
             {
-                MovieClip(_skinSwf.content).gotoAndStop(_direction + 4);
+                MovieClip(_skinSwf.content).gotoAndStop(_currentDirection + 4);
             }
         }
     }
@@ -89,7 +89,7 @@ public class ClientusIsoView extends IsoSprite
     private function completeHandler(event:Event):void
     {
         this.sprites = [_skinSwf.content];
-        setDirection(_direction, _state);
+        setDirection(_currentDirection, _state);
         this.render();
     }
 
@@ -121,6 +121,11 @@ public class ClientusIsoView extends IsoSprite
     public function get skin():String
     {
         return _skin;
+    }
+
+    public function get currentDirection():int
+    {
+        return _currentDirection;
     }
 }
 }
