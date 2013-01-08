@@ -178,7 +178,9 @@ public class ClientusIsoViewMediator extends Mediator
         clientusView.setDirection(direction, state);
         if (!endPath)
         {
-            clientusView.addEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
+//            clientusView.addEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
+//            setDirectionCompleteHandler(null);
+            goToCell();
         }
         else
         {
@@ -195,17 +197,17 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function setDirectionCompleteHandler(event:Event):void
     {
-        if (isNextFrame)
-        {
-            clientusView.removeEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
+//        if (isNextFrame)
+//        {
+//            clientusView.removeEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
             goToCell();
-            isNextFrame = false;
+//            isNextFrame = false;
 //            floor.render();
-        }
-        else
-        {
-            isNextFrame = true;
-        }
+//        }
+//        else
+//        {
+//            isNextFrame = true;
+//        }
     }
 
     private function goToCell():void

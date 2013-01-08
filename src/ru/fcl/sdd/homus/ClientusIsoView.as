@@ -41,13 +41,6 @@ public class ClientusIsoView extends IsoSprite
         super();
     }
 
-    [PostConstruct]
-    public function init():void
-    {
-
-    }
-
-
     public function setDirection(direction:int, state:int):void
     {
         this._direction = direction;
