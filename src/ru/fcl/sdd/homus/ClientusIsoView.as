@@ -29,14 +29,13 @@ public class ClientusIsoView extends IsoSprite
     public static const SOUTH:int = 3;
     public static const WEST:int = 4;
 
-    public static const WALK:int = 1;
-    public static const STOP:int = 0;
-
+    public static const WALK:int = 0;
+    public static const STOP:int = 1;
 
 
     public function ClientusIsoView()
     {
-        _operations=[];
+        _operations = [];
         _skinSwf = new Loader();
         skin = "./art/Man02Animations.swf";
         super();
@@ -55,14 +54,26 @@ public class ClientusIsoView extends IsoSprite
         this._state = state;
         if (_skinSwf.content)
         {
-            _currentFrame =MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
-            if(_state<1)
+            if (_state < 1)
             {
+                if (MovieClip(_skinSwf.content).currentFrame < 5)
+                {
+                    _currentFrame = MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
+                    trace(_currentFrame);
+                }
                 MovieClip(_skinSwf.content).gotoAndStop(_direction);
-                MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(_currentFrame);
-            }else
+                if (_currentFrame < 24)
+                {
+                    MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(_currentFrame + 1);
+                }
+                else
+                {
+                    MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(1);
+                }
+            }
+            else
             {
-                MovieClip(_skinSwf.content).gotoAndStop(_direction*2);
+                MovieClip(_skinSwf.content).gotoAndStop(_direction + 4);
             }
         }
     }

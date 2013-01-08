@@ -51,6 +51,8 @@ public class ClientusIsoViewMediator extends Mediator
 
     override public function onRegister():void
     {
+        Tweensy.refreshType = Tweensy.FRAME;
+        Tweensy.secondsPerFrame = 1/24;
         aStar = new AStar();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
@@ -172,7 +174,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function setDirection(state:int, direction:int, endPath:Boolean = false):void
     {
-        floor.render();
+//        floor.render();
         clientusView.setDirection(direction, state);
         if (!endPath)
         {
@@ -198,7 +200,7 @@ public class ClientusIsoViewMediator extends Mediator
             clientusView.removeEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
             goToCell();
             isNextFrame = false;
-            floor.render();
+//            floor.render();
         }
         else
         {
@@ -218,7 +220,7 @@ public class ClientusIsoViewMediator extends Mediator
             prevNode = new Node(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
         }
         homusPathGrid.getNode(prevNode.x, prevNode.y).walkable = false;
-        Tweensy.to(clientusView, {x: path[0].x * IsoConfig.CELL_SIZE, y: path[0].y * IsoConfig.CELL_SIZE}, 0.75, Linear.easeNone, 0, null, tryGoToNextCell);
+        Tweensy.to(clientusView, {x: path[0].x * IsoConfig.CELL_SIZE, y: path[0].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, tryGoToNextCell);
         path.shift();
     }
 

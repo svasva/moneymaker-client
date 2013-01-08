@@ -7,7 +7,6 @@
         import flash.Lib;
 
         import org.aswing.AsWingManager;
-
         private var context:SDDContext;
         private var _flashVars:Object;
         [Embed(source="SBER_mus.mp3")]
@@ -16,7 +15,6 @@
         public var welcomeClass:Class;
         private var welcomeWindow:DisplayObject;
         public var music:Sound;
-
         public function startInit():void
         {
             AsWingManager.initAsStandard(flash.Lib.current);
