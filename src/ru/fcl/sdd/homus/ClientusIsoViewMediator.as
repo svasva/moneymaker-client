@@ -91,6 +91,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function tryGoToNextCell():void
     {
+
 //
 //        if((path[0])&&(!homusPathGrid.getNode(path[0].x, path[0].y).walkable))
 //        {
@@ -193,21 +194,6 @@ public class ClientusIsoViewMediator extends Mediator
                 setTimeout(removeClientus, 1000);
             }
         }
-    }
-
-    private function setDirectionCompleteHandler(event:Event):void
-    {
-//        if (isNextFrame)
-//        {
-//            clientusView.removeEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
-            goToCell();
-//            isNextFrame = false;
-//            floor.render();
-//        }
-//        else
-//        {
-//            isNextFrame = true;
-//        }
     }
 
     private function goToCell():void
