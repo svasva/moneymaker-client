@@ -7,18 +7,31 @@ package ru.fcl.sdd.services.main.listen
 {
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.config.FlashVarsModel;
+import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.homus.AddClientusCommand;
-
 import ru.fcl.sdd.homus.ClientusIsoView;
 
 public class IncomingClientusListen extends SignalCommand
 {
     [Inject]
     public var response:Object;
+    [Inject]
+    public var flashVars:FlashVarsModel;
     override public function execute():void
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
-        clientusIsoView.needItemId = response.response.item_id;
+//      var clientusIsoView:ClientusIsoView = new ClientusIsoView();
+//        clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
+//        injector.mapValue(ClientusIsoView,clientusIsoView);
+         clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,4.16*IsoConfig.CELL_SIZE);
+        var temp:Array = response.response.operations_mapped;
+        //fixme:КОСТЫЛЬ!
+        for (var i:int = 0; i < temp.length; i+=2)
+        {
+            clientusIsoView.operations.push(temp[i]);
+        }
+
         clientusIsoView.key = response.response._id;
         commandMap.execute(AddClientusCommand,clientusIsoView);
     }

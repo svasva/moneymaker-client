@@ -21,7 +21,7 @@ import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
-import ru.fcl.sdd.pathfind.PathGrid;
+import ru.fcl.sdd.pathfind.ItemsPathGrid;
 import ru.fcl.sdd.location.floors.Floor1Scene;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.states.ChangeStateSignal;
@@ -44,7 +44,7 @@ public class ItemIsoViewMoveMediator extends Mediator
     private var shadowFactory:ClassFactory;
     private var _dragPt:Pt;
     [Inject]
-    public var pathGrid:PathGrid;
+    public var pathGrid:ItemsPathGrid;
     [Inject]
     public var changeState:ChangeStateSignal;
 

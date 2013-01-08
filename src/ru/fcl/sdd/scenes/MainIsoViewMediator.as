@@ -27,7 +27,7 @@ public class MainIsoViewMediator extends Mediator
     public var zoomOutSignal:ISignal;
 
     private var panPoint:Point;
-    private var zoom:Number = 1;
+    private var zoom:Number = 0.75;
 
     override public function onRegister():void
     {
@@ -35,6 +35,7 @@ public class MainIsoViewMediator extends Mediator
         view.stage.addEventListener(KeyboardEvent.KEY_DOWN, viewZoom);
         zoomInSignal.add(zoomIn);
         zoomOutSignal.add(zoomOut);
+        view.currentZoom = zoom;
     }
 
     override public function onRemove():void

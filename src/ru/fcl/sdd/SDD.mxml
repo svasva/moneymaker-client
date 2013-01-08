@@ -1,16 +1,20 @@
 <?xml version="1.0"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"  backgroundColor="#000000"
-               frameRate="48" xmlns:containers="mx.containers.*" xmlns:core="mx.core.*" preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()"  maxWidth="830" maxHeight="760">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+               backgroundColor="#000000"
+               frameRate="24" xmlns:containers="mx.containers.*" xmlns:core="mx.core.*"
+               preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()" maxWidth="830" maxHeight="760">
     <fx:Script><![CDATA[
         import flash.Lib;
 
         import org.aswing.AsWingManager;
-
-        import ru.fcl.sdd.config.FlashVarsModel;
-
         private var context:SDDContext;
         private var _flashVars:Object;
-
+        [Embed(source="SBER_mus.mp3")]
+        public var musicClass:Class;
+        [Embed(source="WelcomeWindow.png")]
+        public var welcomeClass:Class;
+        private var welcomeWindow:DisplayObject;
+        public var music:Sound;
         public function startInit():void
         {
             AsWingManager.initAsStandard(flash.Lib.current);
@@ -18,9 +22,21 @@
             context.startup();
         }
 
-        public function addedToStage(e:Event=null):void
+        public function addedToStage(e:Event = null):void
         {
+            playMusic();
             this.stage.scaleMode = StageScaleMode.NO_SCALE;
+            welcomeWindow = new welcomeClass();
+            this.stage.addEventListener(MouseEvent.CLICK, clickHandler);
+            mainContainer.addChild(welcomeWindow);
+            welcomeWindow.x = 37;
+            welcomeWindow.y = 165;
+        }
+
+        public function playMusic():void
+        {
+            music = new musicClass;
+            music.play(0, int.MAX_VALUE);
         }
 
         public function dispatchInitComplete():void
@@ -36,6 +52,12 @@
         public function set flashVars(value:Object):void
         {
             _flashVars = value;
+        }
+
+        private function clickHandler(event:MouseEvent):void
+        {
+            this.stage.removeEventListener(MouseEvent.CLICK, clickHandler);
+            mainContainer.removeChild(welcomeWindow);
         }
         ]]></fx:Script>
     <core:UIComponent id="mainContainer"/>

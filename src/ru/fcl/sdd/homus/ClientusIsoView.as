@@ -19,33 +19,27 @@ public class ClientusIsoView extends IsoSprite
     private var _direction:int;
     private var _state:int;
     private var _key:String;
-    private var _needItemId:String;
+    private var _operations:Array;
     private var _skinSwf:Loader;
     private var _skin:String;
+    private var _currentFrame:int = 1;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
     public static const SOUTH:int = 3;
     public static const WEST:int = 4;
 
-    public static const START:int = 0;
-    public static const WALK:int = 1;
-    public static const STOP:int = 2;
-    public static const STOPPED:int = 3;
+    public static const WALK:int = 0;
+    public static const STOP:int = 1;
+
 
     public function ClientusIsoView()
     {
+        _operations = [];
         _skinSwf = new Loader();
         skin = "./art/Man02Animations.swf";
         super();
     }
-
-    [PostConstruct]
-    public function init():void
-    {
-        setSize(100, 100, 100);
-    }
-
 
     public function setDirection(direction:int, state:int):void
     {
@@ -53,7 +47,27 @@ public class ClientusIsoView extends IsoSprite
         this._state = state;
         if (_skinSwf.content)
         {
-            MovieClip(_skinSwf.content).gotoAndStop(_state * 4 + _direction);
+            if (_state < 1)
+            {
+                if (MovieClip(_skinSwf.content).currentFrame < 5)
+                {
+                    _currentFrame = MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
+                    trace(_currentFrame);
+                }
+                MovieClip(_skinSwf.content).gotoAndStop(_direction);
+                if (_currentFrame < 24)
+                {
+                    MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(_currentFrame + 1);
+                }
+                else
+                {
+                    MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).gotoAndPlay(1);
+                }
+            }
+            else
+            {
+                MovieClip(_skinSwf.content).gotoAndStop(_direction + 4);
+            }
         }
     }
 
@@ -85,14 +99,14 @@ public class ClientusIsoView extends IsoSprite
         trace(event.text);
     }
 
-    public function get needItemId():String
+    public function get operations():Array
     {
-        return _needItemId;
+        return _operations;
     }
 
-    public function set needItemId(value:String):void
+    public function set operations(value:Array):void
     {
-        _needItemId = value;
+        _operations = value;
     }
 
     public function get key():String
@@ -103,6 +117,11 @@ public class ClientusIsoView extends IsoSprite
     public function set key(value:String):void
     {
         _key = value;
+    }
+
+    public function get skin():String
+    {
+        return _skin;
     }
 }
 }
