@@ -52,7 +52,6 @@ public class ClientusIsoView extends IsoSprite
                 if (MovieClip(_skinSwf.content).currentFrame < 5)
                 {
                     _currentFrame = MovieClip(MovieClip(_skinSwf.content).getChildAt(0)).currentFrame;
-                    trace(_currentFrame);
                 }
                 MovieClip(_skinSwf.content).gotoAndStop(_direction);
                 if (_currentFrame < 24)
