@@ -11,7 +11,6 @@ import de.polygonal.ds.HashMapValIterator;
 
 import fl.motion.easing.Linear;
 
-import flash.events.Event;
 import flash.utils.setTimeout;
 
 import org.robotlegs.mvcs.Mediator;
@@ -45,14 +44,13 @@ public class ClientusIsoViewMediator extends Mediator
     private var path:Array;
     private var aStar:AStar;
     private var target:ItemIsoView;
-    private var isNextFrame:Boolean = false;
     private var prevNode:Node;
 
 
     override public function onRegister():void
     {
         Tweensy.refreshType = Tweensy.FRAME;
-        Tweensy.secondsPerFrame = 1/24;
+        Tweensy.secondsPerFrame = 1 / 24;
         aStar = new AStar();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
@@ -91,8 +89,6 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function tryGoToNextCell():void
     {
-
-//
 //        if((path[0])&&(!homusPathGrid.getNode(path[0].x, path[0].y).walkable))
 //        {
 //            setTimeout(tryGoToNextCell,1000);
@@ -100,28 +96,36 @@ public class ClientusIsoViewMediator extends Mediator
         {
             var direction:int;
             var state:int;
-                switch (path.length)
+            switch (path.length)
+            {
+                case 0:
                 {
-                    case 0:
+                    state = ClientusIsoView.STOP;
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
+                    clientusView.setDirection(direction, state);
+                    if (clientusView.operations.length)
                     {
-                        state = ClientusIsoView.STOP;
-                        direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
-                        setDirection(state, direction, true);
-                        break;
+                        setTimeout(nextStep, 3000);
                     }
-                    default :
+                    else
                     {
-                        if (prevNode)
-                        {
-                            homusPathGrid.getNode(prevNode.x, prevNode.y).walkable = true;
-                        }
-                        direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[0].x, path[0].y);
-                        state = ClientusIsoView.WALK;
-                        setDirection(state, direction);
-                        break;
+                        setTimeout(removeClientus, 1000);
                     }
+                    break;
                 }
-
+                default :
+                {
+                    if (prevNode)
+                    {
+                        homusPathGrid.getNode(prevNode.x, prevNode.y).walkable = true;
+                    }
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[0].x, path[0].y);
+                    state = ClientusIsoView.WALK;
+                    clientusView.setDirection(direction, state);
+                    goToCell();
+                    break;
+                }
+            }
         }
     }
 
@@ -169,31 +173,7 @@ public class ClientusIsoViewMediator extends Mediator
         itemPathGrid.setEndNode(endNodeX, endNodeY);
         aStar.findPath(itemPathGrid);
         path = aStar.path;
-//            path = null;
         return path;
-    }
-
-    private function setDirection(state:int, direction:int, endPath:Boolean = false):void
-    {
-//        floor.render();
-        clientusView.setDirection(direction, state);
-        if (!endPath)
-        {
-//            clientusView.addEventListener(Event.ENTER_FRAME, setDirectionCompleteHandler);
-//            setDirectionCompleteHandler(null);
-            goToCell();
-        }
-        else
-        {
-            if (clientusView.operations.length)
-            {
-                setTimeout(nextStep, 3000);
-            }
-            else
-            {
-                setTimeout(removeClientus, 1000);
-            }
-        }
     }
 
     private function goToCell():void
