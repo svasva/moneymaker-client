@@ -7,10 +7,8 @@ package ru.fcl.sdd.item
 {
 import de.polygonal.ds.HashMap;
 
-public class UserItemList extends HashMap
+public class ActiveUserItemList extends HashMap
 {
-    public function UserItemList()
-    {
-    }
+
 }
 }
