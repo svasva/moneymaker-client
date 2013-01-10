@@ -47,6 +47,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var _freeCellWaitTryCount:int;
     private var endX:int;
     private var endY:int;
+    private var targetCatalogItem:Item;
 
     override public function onRegister():void
     {
@@ -63,6 +64,13 @@ public class ClientusIsoViewMediator extends Mediator
     {
         if (!isStart)
         {
+            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+            {
+                if (target.clientStack[i] == homusPathGrid.getNode(path[0].x, path[0].y))
+                {
+                    target.clientStack.slice(i, 1);
+                }
+            }
             homusPathGrid.getNode(path[0].x, path[0].y).walkable = true;
             path.shift();
         }
@@ -82,14 +90,15 @@ public class ClientusIsoViewMediator extends Mediator
             endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
         path = findPath(startX, startY, endX, endY);
-        if (path.length == 1)
-        {
-            setTimeout(nextStep, 3000);
-        }
-        else
-        {
-            tryGoToNextCell(isStart);
-        }
+//        if (path.length == 1)
+//        {
+//            homusPathGrid.getNode(path[0].x, path[0].y).walkable = false;
+//            setTimeout(nextStep,);
+//        }
+//        else
+//        {
+        tryGoToNextCell(isStart);
+//        }
     }
 
     private function tryGoToNextCell(isStart:Boolean = false):void
@@ -102,19 +111,41 @@ public class ClientusIsoViewMediator extends Mediator
         if ((path[1]) && (!homusPathGrid.getNode(path[1].x, path[1].y).walkable))
         {
             state = ClientusIsoView.STOP;
-            clientusView.setDirection(clientusView.currentDirection, state);
-            if (_freeCellWaitTryCount > 0)
+            clientusView.setDirection(clientusView.currentDirection, state); //todo: make direction is correct.
+
+            var inStack:Boolean = false; //todo: convert 2 prop., optimise next iteration (skip, if true).
+
+            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
             {
-                setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
-                _freeCellWaitTryCount--;
+                if (homusPathGrid.getNode(path[0].x, path[0].y) == target.clientStack[i])
+                {
+                    inStack = true;
+                }
             }
-            else
+
+            switch (inStack)
             {
-                itemPathGrid.getNode(path[1].x, path[1].y).walkable = false;
-                path = findPath(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, endX, endY);
-                itemPathGrid.getNode(path[1].x, path[1].y).walkable = true;
-                _freeCellWaitTryCount = 4;
-                tryGoToNextCell(true);
+                case false:
+                {
+                    if (_freeCellWaitTryCount > 0)
+                    {
+                        setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
+                        _freeCellWaitTryCount--;
+                    }
+                    else
+                    {
+                        itemPathGrid.getNode(path[1].x, path[1].y).walkable = false;
+                        path = findPath(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, endX, endY);
+                        itemPathGrid.getNode(path[1].x, path[1].y).walkable = true;
+                        _freeCellWaitTryCount = 4;
+                        tryGoToNextCell(true);
+                    }
+                    break;
+                }
+                case true:
+                {
+                    setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
+                }
             }
         }
         else
@@ -128,9 +159,14 @@ public class ClientusIsoViewMediator extends Mediator
                     state = ClientusIsoView.STOP;
                     direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
                     clientusView.setDirection(direction, state);
+                    if (target)
+                    {
+                        target.clientStack.push(homusPathGrid.getNode(path[0].x, path[0].y));
+                    }
+
                     if (clientusView.operations.length)
                     {
-                        setTimeout(nextStep, 3000);
+                        setTimeout(nextStep, targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
@@ -175,9 +211,7 @@ public class ClientusIsoViewMediator extends Mediator
                         {
                             if (item.operations[i] == operation)
                             {
-                                avaibleItems[avaibleItems.length] = [];
-                                avaibleItems[avaibleItems.length].iso = itemIsoView;
-                                avaibleItems[avaibleItems.length].catalogItem = item;
+                                avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
                             }
                         }
                     }
@@ -197,6 +231,7 @@ public class ClientusIsoViewMediator extends Mediator
                     }
                 }
                 target = avaibleItems[moreFreer].iso;
+                targetCatalogItem = avaibleItems[moreFreer].catalogItem;
             }
             else
             {
@@ -278,6 +313,16 @@ public class ClientusIsoViewMediator extends Mediator
     private function removeClientus():void
     {
         homusPathGrid.getNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE).walkable = true;
+        if (target)
+        {
+            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+            {
+                if (target.clientStack[i] == homusPathGrid.getNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE))
+                {
+                    target.clientStack.slice(i, 1);
+                }
+            }
+        }
         path.shift();
         floor.removeChild(clientusView);
     }
