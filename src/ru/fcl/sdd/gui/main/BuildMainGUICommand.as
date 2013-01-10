@@ -48,12 +48,9 @@ public class BuildMainGUICommand extends SignalCommand
         mainInterfaceView.addChild(friendBarView);
 
         var controlPanelView:ControlPanelView = injector.getInstance(ControlPanelView);
-        controlPanelView.y = flashVars.app_height - controlPanelView.height - 10;
-        controlPanelView.x = flashVars.app_width - controlPanelView.width - 50;
+        controlPanelView.y = flashVars.app_height - controlPanelView.height - 36;
+        controlPanelView.x = flashVars.app_width - controlPanelView.width - 55;
         mainInterfaceView.addChild(controlPanelView);
-
-
-
-    }
+	}
 }
 }

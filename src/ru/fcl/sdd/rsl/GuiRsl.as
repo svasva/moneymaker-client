@@ -65,95 +65,15 @@ public class GuiRsl
         return _isReady;
     }
 
-    public function get buttonGoldDownArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonGoldOverArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonGoldUpArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonLvlDownArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonLvlOverArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonLvlUpArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonMoneyDownArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonMoneyOverArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonMoneyUpArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonReputationDownArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonReputationOverArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get buttonReputationUpArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get reputation1ArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get reputation2ArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get reputation3ArtInstance():Sprite
-    {
-        return null;
-    }
-
-    public function get reputation4ArtInstance():Sprite
-    {
-        return null;
-    }
-
     public function get getUpBarArtInstance():Sprite
     {
-            var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.UpGuiMokcup") as Class;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.panels.BarArt") as Class;
         return  new ClassDefinition();
     }
 
     public function get getCpBarArtInstance():Sprite
     {
-        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.MainCpGuiMokcup") as Class;
+        var ClassDefinition:Class = _loadedContent.contentLoaderInfo.applicationDomain.getDefinition("ru.fcl.sdd.gui.MainPanel.Background") as Class;
         return  new ClassDefinition();
     }
 

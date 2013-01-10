@@ -46,6 +46,13 @@ public class ControlPanelMediator extends Mediator
         view.floorUpBtn.addEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.addEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
         view.zoomOutBtn.addEventListener(MouseEvent.CLICK, zoomOut_clickHandler);
+		view.configBtn.addEventListener(MouseEvent.CLICK, config_clickHandler);
+		view.fullscreenBtn.addEventListener(MouseEvent.CLICK, fullscreen_clickHandler);
+		view.statisticBtn.addEventListener(MouseEvent.CLICK, statistic_clickHandler);
+		view.mapBtn.addEventListener(MouseEvent.CLICK, map_clickHandler);
+		view.missionBtn.addEventListener(MouseEvent.CLICK, mission_clickHandler);
+		view.postBtn.addEventListener(MouseEvent.CLICK, post_clickHandler);
+		view.rateBtn.addEventListener(MouseEvent.CLICK, rate_clickHandler);
     }
 
     override public function onRemove():void
@@ -55,6 +62,13 @@ public class ControlPanelMediator extends Mediator
         view.floorUpBtn.removeEventListener(MouseEvent.CLICK, floorUpBtn_clickHandler);
         view.zoomInBtn.removeEventListener(MouseEvent.CLICK, zoomIn_clickHandler);
         view.zoomOutBtn.removeEventListener(MouseEvent.CLICK, zoomOut_clickHandler);
+		view.configBtn.removeEventListener(MouseEvent.CLICK, config_clickHandler);
+		view.fullscreenBtn.removeEventListener(MouseEvent.CLICK, fullscreen_clickHandler);
+		view.statisticBtn.removeEventListener(MouseEvent.CLICK, statistic_clickHandler);
+		view.mapBtn.removeEventListener(MouseEvent.CLICK, map_clickHandler);
+		view.missionBtn.removeEventListener(MouseEvent.CLICK, mission_clickHandler);
+		view.postBtn.removeEventListener(MouseEvent.CLICK, post_clickHandler);
+		view.rateBtn.removeEventListener(MouseEvent.CLICK, rate_clickHandler);
     }
 
     private function shopBtn_clickHandler(event:MouseEvent):void
@@ -96,5 +110,33 @@ public class ControlPanelMediator extends Mediator
             sender.send({command: "resetGame"});
         }
     }
+	
+	private function config_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function statistic_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function map_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function mission_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function post_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function rate_clickHandler(event:MouseEvent):void
+	{
+	}
+	
+	private function fullscreen_clickHandler(event:MouseEvent):void
+	{
+	}
 }
 }
