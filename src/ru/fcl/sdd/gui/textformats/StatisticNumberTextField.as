@@ -8,6 +8,7 @@ package ru.fcl.sdd.gui.textformats
 import flash.filters.GlowFilter;
 import flash.text.AntiAliasType;
 import flash.text.TextField;
+import flash.text.TextFieldAutoSize;
 
 
 public class StatisticNumberTextField extends TextField
@@ -20,6 +21,7 @@ public class StatisticNumberTextField extends TextField
         selectable = false;
 //        maxChars = 7;
         multiline=false;
+		autoSize = TextFieldAutoSize.RIGHT;
 
         //***effects*****
         filters = [new GlowFilter(0x733923,1,4,4,1000)];
