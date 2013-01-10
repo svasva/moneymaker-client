@@ -62,7 +62,7 @@ public class ParseItemsCatalogCommand extends Command
         item.isoHeight = object.height * IsoConfig.CELL_SIZE;
         if (object.service_speed)
         {
-            item.serviceSpeed = object.service_speed;
+            item.serviceSpeed = object.service_speed * 1000;
         }
         else
         {
