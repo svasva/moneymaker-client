@@ -24,7 +24,7 @@
 
         public function addedToStage(e:Event = null):void
         {
-            playMusic();
+//            playMusic();
             this.stage.scaleMode = StageScaleMode.NO_SCALE;
             welcomeWindow = new welcomeClass();
             this.stage.addEventListener(MouseEvent.CLICK, clickHandler);

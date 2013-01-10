@@ -12,7 +12,7 @@ import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemIsoView;
-import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.item.ActiveUserItemList;
 
 public class ParseUserItems extends SignalCommand
 {
@@ -21,7 +21,7 @@ public class ParseUserItems extends SignalCommand
     [Inject]
     public var itemCatalog:ItemCatalog;
     [Inject]
-    public var userItems:UserItemList;
+    public var userItems:ActiveUserItemList;
 
 
     override public function execute():void
