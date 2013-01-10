@@ -8,7 +8,6 @@ package ru.fcl.sdd.item
 import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;
 
-
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.events.Event;
@@ -17,6 +16,7 @@ import flash.geom.Point;
 import flash.net.URLRequest;
 
 import ru.fcl.sdd.config.IsoConfig;
+import ru.fcl.sdd.pathfind.Node;
 
 public class ItemIsoView extends IsoSprite
 {
@@ -33,10 +33,11 @@ public class ItemIsoView extends IsoSprite
     private var _enterPoint:Point;
     private var _isCorrectEnterPoint:Boolean = false;
     private var _originalDirectionSize:Point;
-    private var _isActiveObject:Boolean = true;
+    private var _clientStack:Vector.<Node>;
 
     public function ItemIsoView():void
     {
+        _clientStack = new Vector.<Node>();
         _enterPoint = new Pt();
         _originalDirectionSize = new Point();
         _skinSwf = new Loader();
@@ -82,7 +83,6 @@ public class ItemIsoView extends IsoSprite
         }
         return _enterPoint;
     }
-
 
     /**
      * Load skin from url.
@@ -188,24 +188,15 @@ public class ItemIsoView extends IsoSprite
         super.moveBy(x,y,z);
     }
 
-    public function get originalDirectionSize():Point
+    public function get clientStack():Vector.<Node>
     {
-        return _originalDirectionSize;
+        return _clientStack;
     }
 
-    public function set originalDirectionSize(value:Point):void
+    public function set clientStack(value:Vector.<Node>
+            ):void
     {
-        _originalDirectionSize = value;
-    }
-
-    public function get isActiveObject():Boolean
-    {
-        return _isActiveObject;
-    }
-
-    public function set isActiveObject(value:Boolean):void
-    {
-        _isActiveObject = value;
+        _clientStack = value;
     }
 }
 }
