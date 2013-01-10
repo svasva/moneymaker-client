@@ -19,7 +19,7 @@ import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemIsoView;
-import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.location.floors.Floor1Scene;
 import ru.fcl.sdd.pathfind.AStar;
 import ru.fcl.sdd.pathfind.HomusPathGrid;
@@ -32,7 +32,7 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var homusPathGrid:HomusPathGrid;
     [Inject]
-    public var userItems:UserItemList;
+    public var userItems:ActiveUserItemList;
     [Inject]
     public var itemCatalog:ItemCatalog;
     [Inject]

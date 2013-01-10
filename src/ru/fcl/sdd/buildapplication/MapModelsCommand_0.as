@@ -16,7 +16,7 @@ import ru.fcl.sdd.money.GameMoney;
 import ru.fcl.sdd.money.IMoney;
 import ru.fcl.sdd.money.RealMoney;
 import ru.fcl.sdd.user.UserDataModel;
-import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.location.room.UserRoomList;
 
 public class MapModelsCommand_0 extends SignalCommand
@@ -27,7 +27,7 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(UserDataModel);
         injector.mapSingleton(UserRoomList);
         injector.mapSingleton(RoomCatalog);
-        injector.mapSingleton(UserItemList);
+        injector.mapSingleton(ActiveUserItemList);
         injector.mapSingleton(PlatformModel);
         injector.mapSingleton(ItemCatalog);
         commandMap.execute(BuildMoneyCommand);

@@ -13,13 +13,13 @@ import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.item.ItemIsoView;
 import ru.fcl.sdd.item.PlaceItemCommand;
-import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.pathfind.PlacePathGridItemCommand;
 
 public class CreateFloorsCommand extends SignalCommand
 {
     [Inject]
-    public var userItems:UserItemList;
+    public var userItems:ActiveUserItemList;
 
     override public function execute():void
     {

@@ -12,7 +12,7 @@ import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemIsoView;
-import ru.fcl.sdd.item.UserItemList;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.money.IMoney;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -24,7 +24,7 @@ public class BuyItemCommand extends SignalCommand
     [Inject]
     public var changeState:ChangeStateSignal;
     [Inject]
-    public var userItems:UserItemList;
+    public var userItems:ActiveUserItemList;
     [Inject]
     public var itemCatalog:ItemCatalog;
     [Inject(name="game_money")]
