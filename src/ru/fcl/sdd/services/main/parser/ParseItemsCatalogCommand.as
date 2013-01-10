@@ -49,9 +49,9 @@ public class ParseItemsCatalogCommand extends Command
         {
             for (var i:int = 0; i < object.operations.length; i++)
             {
-                if(object.operations[i]!="")
+                if (object.operations[i] != "")
                 {
-                    item.operations[item.operations.length]=object.operations[i];
+                    item.operations[item.operations.length] = object.operations[i];
                 }
             }
         }
@@ -59,7 +59,15 @@ public class ParseItemsCatalogCommand extends Command
         item.iconUrl = flashVars.content_url + object.icon_url;
         item.isoWidth = object.size_x * IsoConfig.CELL_SIZE;
         item.isoLength = object.size_y * IsoConfig.CELL_SIZE;
-        item.isoHeight = 100;
+        item.isoHeight = object.height * IsoConfig.CELL_SIZE;
+        if (object.service_speed)
+        {
+            item.serviceSpeed = object.service_speed;
+        }
+        else
+        {
+            item.serviceSpeed = -1;
+        }
         itemListModel.set(item.key, item);
     }
 }

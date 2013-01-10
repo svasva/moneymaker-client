@@ -28,7 +28,6 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(PlatformModel);
         injector.mapSingleton(ItemCatalog);
         commandMap.execute(BuildMoneyCommand);
-
     }
 }
 }

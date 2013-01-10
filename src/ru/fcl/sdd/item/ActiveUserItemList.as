@@ -9,8 +9,6 @@ import de.polygonal.ds.HashMap;
 
 public class ActiveUserItemList extends HashMap
 {
-    public function ActiveUserItemList()
-    {
-    }
+
 }
 }

@@ -22,6 +22,7 @@ public class Item extends ItemShopView
     private var _isoLength:int;
     private var _isoHeight:int;
     private var _operations:Array;
+    private var _serviceSpeed:int;
 
     public function get key():String
     {
@@ -177,6 +178,16 @@ public class Item extends ItemShopView
     public function set operations(value:Array):void
     {
         _operations = value;
+    }
+
+    public function get serviceSpeed():int
+    {
+        return _serviceSpeed;
+    }
+
+    public function set serviceSpeed(value:int):void
+    {
+        _serviceSpeed = value;
     }
 }
 }

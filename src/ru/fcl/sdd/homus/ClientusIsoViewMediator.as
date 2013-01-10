@@ -103,16 +103,16 @@ public class ClientusIsoViewMediator extends Mediator
         {
             state = ClientusIsoView.STOP;
             clientusView.setDirection(clientusView.currentDirection, state);
-            if (_freeCellWaitTryCount >0)
+            if (_freeCellWaitTryCount > 0)
             {
-                setTimeout(tryGoToNextCell, _freeCellWaitTime,true);
+                setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
                 _freeCellWaitTryCount--;
             }
             else
             {
-                itemPathGrid.getNode(path[1].x, path[1].y).walkable=false;
+                itemPathGrid.getNode(path[1].x, path[1].y).walkable = false;
                 path = findPath(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, endX, endY);
-                itemPathGrid.getNode(path[1].x, path[1].y).walkable=true;
+                itemPathGrid.getNode(path[1].x, path[1].y).walkable = true;
                 _freeCellWaitTryCount = 4;
                 tryGoToNextCell(true);
             }
@@ -162,6 +162,7 @@ public class ClientusIsoViewMediator extends Mediator
             var itemIsoView:ItemIsoView;
             var avaibleItems:Array = [];
             iterator.reset();
+
             while (iterator.hasNext())
             {
                 itemIsoView = iterator.next() as ItemIsoView;
@@ -174,13 +175,33 @@ public class ClientusIsoViewMediator extends Mediator
                         {
                             if (item.operations[i] == operation)
                             {
-                                avaibleItems[avaibleItems.length] = itemIsoView;
+                                avaibleItems[avaibleItems.length] = [];
+                                avaibleItems[avaibleItems.length].iso = itemIsoView;
+                                avaibleItems[avaibleItems.length].catalogItem = item;
                             }
                         }
                     }
                 }
             }
-            target = avaibleItems.pop() as ItemIsoView;
+            if (avaibleItems.length > 0)
+            {
+                var moreFreer:int;
+                var minTime:int;
+                minTime = ItemIsoView(avaibleItems[length - 1].iso).clientStack.length * Item(avaibleItems[length - 1].catalogItem).serviceSpeed;
+                for (var i:int = avaibleItems.length - 2; i >= 0; i--)
+                {
+                    if ((ItemIsoView(avaibleItems[i].iso).clientStack.length * Item(avaibleItems[i].catalogItem).serviceSpeed) < minTime)
+                    {
+                        minTime = ItemIsoView(avaibleItems[i].iso).clientStack.length * Item(avaibleItems[i].catalogItem).serviceSpeed;
+                        moreFreer = i;
+                    }
+                }
+                target = avaibleItems[moreFreer].iso;
+            }
+            else
+            {
+                target = null;
+            }
         }
         else
         {
