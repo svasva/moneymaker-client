@@ -9,15 +9,12 @@ import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.location.room.RoomCatalog;
-import ru.fcl.sdd.money.BuildMoneyCommand;
-import ru.fcl.sdd.money.GameMoney;
-import ru.fcl.sdd.money.IMoney;
-import ru.fcl.sdd.money.RealMoney;
-import ru.fcl.sdd.user.UserDataModel;
-import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.location.room.UserRoomList;
+import ru.fcl.sdd.money.BuildMoneyCommand;
+import ru.fcl.sdd.user.UserDataModel;
 
 public class MapModelsCommand_0 extends SignalCommand
 {
