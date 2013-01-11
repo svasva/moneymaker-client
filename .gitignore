@@ -1,6 +1,7 @@
 .git
 ~*
 out
+bin-debug
 html-template
 fla
 .*

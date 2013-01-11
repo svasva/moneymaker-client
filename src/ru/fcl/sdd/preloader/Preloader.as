@@ -21,7 +21,7 @@ import mx.events.RSLEvent;
 import mx.managers.SystemManager;
 import mx.preloaders.SparkDownloadProgressBar;
 
-import ru.fcl.sdd.Preloader1McArt;
+//import ru.fcl.sdd.Preloader1McArt;
 
 import spark.effects.Fade;
 
