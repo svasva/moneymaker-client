@@ -14,7 +14,6 @@ import fl.motion.easing.Linear;
 import flash.events.TimerEvent;
 
 import flash.utils.Timer;
-import flash.utils.getTimer;
 
 import flash.utils.setTimeout;
 
@@ -371,6 +370,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function clientWaitTimer_timerCompleteHandler(event:TimerEvent):void
     {
+        var position:int = 10;
         if (target)
         {
             while (clientusView.operations.length != 0)
@@ -378,7 +378,17 @@ public class ClientusIsoViewMediator extends Mediator
                 clientusView.operations.shift();
                 _isOutOfSchedule = true;
             }
-            if (target.clientStack.length > 2)
+            if(inStack)
+            {
+                for (var i:int = 0; i < target.clientStack.length; i++)
+                {
+                    if(target.clientStack[i]==homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE,clientusView.y/IsoConfig.CELL_SIZE))
+                    {
+                        position = i;
+                    }
+                }
+            }
+            if (position > 2)
             {
                 nextStep(); //todo: В следующий раз отправить на сервер, что клиент уходит раньше срока.
             }
