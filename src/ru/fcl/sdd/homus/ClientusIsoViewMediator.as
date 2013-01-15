@@ -11,6 +11,11 @@ import de.polygonal.ds.HashMapValIterator;
 
 import fl.motion.easing.Linear;
 
+import flash.events.TimerEvent;
+
+import flash.utils.Timer;
+import flash.utils.getTimer;
+
 import flash.utils.setTimeout;
 
 import org.robotlegs.mvcs.Mediator;
@@ -39,6 +44,8 @@ public class ClientusIsoViewMediator extends Mediator
     public var clientusView:ClientusIsoView;
     [Inject]
     public var floor:Floor1Scene;
+    [Inject]
+    public var outOfScheduleSignal:OutOfScheduleSignal
 
     private var path:Array;
     private var aStar:AStar;
@@ -49,6 +56,11 @@ public class ClientusIsoViewMediator extends Mediator
     private var endY:int;
     private var targetCatalogItem:Item;
     private var currentOperation:ClientOperation;
+    private var clientWaitTimer:Timer;
+    private var inStack:Boolean = false;
+    private var _isOutOfSchedule:Boolean = false;
+    private var _isEndOfSequence:Boolean = false;
+
 
     override public function onRegister():void
     {
@@ -56,6 +68,9 @@ public class ClientusIsoViewMediator extends Mediator
         Tweensy.refreshType = Tweensy.FRAME;
         Tweensy.secondsPerFrame = 1 / 24;
         aStar = new AStar();
+        clientWaitTimer = new Timer(clientusView.maxWaiTime);
+        clientWaitTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
+        clientWaitTimer.start();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
         nextStep(true);
@@ -63,6 +78,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function nextStep(isStart:Boolean = false):void
     {
+        inStack = false;
         if (!isStart)
         {
             for (var i:int = target.clientStack.length - 1; i >= 0; i--)
@@ -87,7 +103,7 @@ public class ClientusIsoViewMediator extends Mediator
         }
         else
         {
-            endX = IsoConfig.START_CLIENTUS_CELL_X;
+            endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
             endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
         path = findPath(startX, startY, endX, endY);
@@ -113,14 +129,14 @@ public class ClientusIsoViewMediator extends Mediator
         {
             state = ClientusIsoView.STOP;
             clientusView.setDirection(clientusView.currentDirection, state); //todo: make direction is correct.
-
-            var inStack:Boolean = false; //todo: convert 2 prop., optimise next iteration (skip, if true).
-
-            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+            if (target)
             {
-                if (homusPathGrid.getNode(path[0].x, path[0].y) == target.clientStack[i])
+                for (var i:int = target.clientStack.length - 1; i >= 0; i--)
                 {
-                    inStack = true;
+                    if (homusPathGrid.getNode(path[0].x, path[0].y) == target.clientStack[i])
+                    {
+                        inStack = true;
+                    }
                 }
             }
 
@@ -171,7 +187,22 @@ public class ClientusIsoViewMediator extends Mediator
                     }
                     else
                     {
-                        setTimeout(removeClientus, 1000);
+                        if (!_isEndOfSequence)
+                        {
+                            _isEndOfSequence = true;
+                            setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                        }
+                        else
+                        {
+//                            if (!_isOutOfSchedule)
+//                            {
+//                                setTimeout(removeClientus, targetCatalogItem.serviceSpeed);
+//                            }
+//                            else
+//                            {
+                                setTimeout(removeClientus, 1000);
+//                            }
+                        }
                     }
                     break;
                 }
@@ -190,7 +221,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function completeOperation():void
     {
-        target.cashMoney+=currentOperation.money;
+        target.cashMoney += currentOperation.money;
         nextStep();
     }
 
@@ -332,6 +363,26 @@ public class ClientusIsoViewMediator extends Mediator
         }
         path.shift();
         floor.removeChild(clientusView);
+        if (_isOutOfSchedule)
+        {
+            outOfScheduleSignal.dispatch();
+        }
+    }
+
+    private function clientWaitTimer_timerCompleteHandler(event:TimerEvent):void
+    {
+        if (target)
+        {
+            while (clientusView.operations.length != 0)
+            {
+                clientusView.operations.shift();
+                _isOutOfSchedule = true;
+            }
+            if (target.clientStack.length > 2)
+            {
+                nextStep(); //todo: В следующий раз отправить на сервер, что клиент уходит раньше срока.
+            }
+        }
     }
 }
 }
