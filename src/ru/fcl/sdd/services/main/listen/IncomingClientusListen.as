@@ -10,6 +10,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.homus.AddClientusCommand;
+import ru.fcl.sdd.homus.ClientOperation;
 import ru.fcl.sdd.homus.ClientusIsoView;
 
 public class IncomingClientusListen extends SignalCommand
@@ -21,15 +22,19 @@ public class IncomingClientusListen extends SignalCommand
     override public function execute():void
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
-//      var clientusIsoView:ClientusIsoView = new ClientusIsoView();
-//        clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
+        clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
 //        injector.mapValue(ClientusIsoView,clientusIsoView);
          clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,4.16*IsoConfig.CELL_SIZE);
         var temp:Array = response.response.operations_mapped;
-        //fixme:КОСТЫЛЬ!
+        clientusIsoView.maxWaiTime = response.response.wait_time;
+
+        //fixme:КОСТЫЛЬ! С сервера приходят данные через строку: нечетные - id операции, четные - деньги на нее.
         for (var i:int = 0; i < temp.length; i+=2)
         {
-            clientusIsoView.operations.push(temp[i]);
+            var operation:ClientOperation = new ClientOperation();
+            operation.id = temp[i];
+            operation.money = temp[i+1];
+            clientusIsoView.operations.push(operation);
         }
 
         clientusIsoView.key = response.response._id;

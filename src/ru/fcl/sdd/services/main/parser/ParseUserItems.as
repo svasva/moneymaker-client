@@ -29,18 +29,22 @@ public class ParseUserItems extends SignalCommand
         items.forEach(parseItems);
     }
 
-    private function parseItems(object:Object,index:int, array:Array):void
+    private function parseItems(object:Object, index:int, array:Array):void
     {
         var catalogItem:Item = Item(itemCatalog.get(object.reference_id));
         var item:ItemIsoView = new ItemIsoView();
         item.key = object._id;
         item.catalogKey = object.reference_id;
-        item.setSize(catalogItem.isoWidth,catalogItem.isoLength,catalogItem.isoHeight);
+        item.setSize(catalogItem.isoWidth, catalogItem.isoLength, catalogItem.isoHeight);
         //set direction only after setSize!
-        item.direction= object.rotation;
-        item.x = object.x*IsoConfig.CELL_SIZE;
-        item.y = object.y*IsoConfig.CELL_SIZE;
+        item.direction = object.rotation;
+        item.x = object.x * IsoConfig.CELL_SIZE;
+        item.y = object.y * IsoConfig.CELL_SIZE;
         item.skin = catalogItem.skinUrl;
+        if (object.cash)
+        {
+            item.cashMoney = object.cash;
+        }
 
         userItems.set(item.key, item);
 //        commandMap.execute(PlaceItemCommand,item);

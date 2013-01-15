@@ -34,6 +34,7 @@ public class ItemIsoView extends IsoSprite
     private var _isCorrectEnterPoint:Boolean = false;
     private var _originalDirectionSize:Point;
     private var _clientStack:Vector.<Node>;
+    private var _cashMoney:int;
 
     public function ItemIsoView():void
     {
@@ -197,6 +198,16 @@ public class ItemIsoView extends IsoSprite
             ):void
     {
         _clientStack = value;
+    }
+
+    public function get cashMoney():int
+    {
+        return _cashMoney;
+    }
+
+    public function set cashMoney(value:int):void
+    {
+        _cashMoney = value;
     }
 }
 }

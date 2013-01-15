@@ -19,10 +19,11 @@ public class ClientusIsoView extends IsoSprite
     private var _currentDirection:int;
     private var _state:int;
     private var _key:String;
-    private var _operations:Array;
+    private var _operations:Vector.<ClientOperation>;
     private var _skinSwf:Loader;
     private var _skin:String;
     private var _currentFrame:int = 1;
+    private var _maxWaiTime:int;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
@@ -32,12 +33,11 @@ public class ClientusIsoView extends IsoSprite
     public static const WALK:int = 0;
     public static const STOP:int = 1;
 
-
     public function ClientusIsoView()
     {
-        _operations = [];
+        _operations = new Vector.<ClientOperation>();
         _skinSwf = new Loader();
-        skin = "./art/Man02Animations.swf";
+//        skin = "./art/Man02Animations.swf";
         super();
     }
 
@@ -98,12 +98,12 @@ public class ClientusIsoView extends IsoSprite
         trace(event.text);
     }
 
-    public function get operations():Array
+    public function get operations():Vector.<ClientOperation>
     {
         return _operations;
     }
 
-    public function set operations(value:Array):void
+    public function set operations(value:Vector.<ClientOperation>):void
     {
         _operations = value;
     }
@@ -126,6 +126,16 @@ public class ClientusIsoView extends IsoSprite
     public function get currentDirection():int
     {
         return _currentDirection;
+    }
+
+    public function get maxWaiTime():int
+    {
+        return _maxWaiTime;
+    }
+
+    public function set maxWaiTime(value:int):void
+    {
+        _maxWaiTime = value;
     }
 }
 }
