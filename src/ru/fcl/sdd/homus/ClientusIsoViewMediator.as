@@ -192,6 +192,7 @@ public class ClientusIsoViewMediator extends Mediator
     private function completeOperation():void
     {
         target.cashMoney+=currentOperation.money;
+        nextStep();
     }
 
     private function selectTarget():ItemIsoView
@@ -216,7 +217,7 @@ public class ClientusIsoViewMediator extends Mediator
                     {
                         for (var i:int = 0; i < item.operations.length; i++)
                         {
-                            if (item.operations[i] == currentOperation)
+                            if (item.operations[i] == currentOperation.id)
                             {
                                 avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
                             }
