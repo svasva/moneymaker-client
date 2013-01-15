@@ -33,12 +33,11 @@ public class ClientusIsoView extends IsoSprite
     public static const WALK:int = 0;
     public static const STOP:int = 1;
 
-
     public function ClientusIsoView()
     {
         _operations = new Vector.<ClientOperation>();
         _skinSwf = new Loader();
-        skin = "./art/Man02Animations.swf";
+//        skin = "./art/Man02Animations.swf";
         super();
     }
 

@@ -22,7 +22,7 @@ public class IncomingClientusListen extends SignalCommand
     override public function execute():void
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
-//        clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
+        clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
 //        injector.mapValue(ClientusIsoView,clientusIsoView);
          clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,4.16*IsoConfig.CELL_SIZE);
         var temp:Array = response.response.operations_mapped;
