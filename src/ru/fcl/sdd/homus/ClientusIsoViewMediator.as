@@ -6,6 +6,7 @@
 package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
+import com.hurlant.crypto.prng.TLSPRF;
 
 import de.polygonal.ds.HashMapValIterator;
 
@@ -48,6 +49,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var endX:int;
     private var endY:int;
     private var targetCatalogItem:Item;
+    private var currentOperation:ClientOperation;
 
     override public function onRegister():void
     {
@@ -166,7 +168,7 @@ public class ClientusIsoViewMediator extends Mediator
 
                     if (clientusView.operations.length)
                     {
-                        setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                        setTimeout(completeOperation, targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
@@ -187,12 +189,17 @@ public class ClientusIsoViewMediator extends Mediator
         }
     }
 
+    private function completeOperation():void
+    {
+        target.cashMoney+=currentOperation.money;
+    }
+
     private function selectTarget():ItemIsoView
     {
         var target:ItemIsoView;
         if (clientusView.operations.length)
         {
-            var operation:String = clientusView.operations.shift();
+            currentOperation = clientusView.operations.shift();
             var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
             var item:Item;
             var itemIsoView:ItemIsoView;
@@ -209,7 +216,7 @@ public class ClientusIsoViewMediator extends Mediator
                     {
                         for (var i:int = 0; i < item.operations.length; i++)
                         {
-                            if (item.operations[i] == operation)
+                            if (item.operations[i] == currentOperation)
                             {
                                 avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
                             }
