@@ -21,29 +21,14 @@ public class FriendBarView extends Sprite
     
     private var _vis:Boolean;
     
-    private var _checkBtn:JToggleButton;
+   
     
     [PostConstruct]
     public function init():void
     {
         _bg = rsl.getFriendBarBarArtInstance;
         this.addChild(_bg);
-        _checkBtn = new JToggleButton("Закрыть");
-        _checkBtn.width = 100;
-        _checkBtn.height = 30;
-        addChild(_checkBtn);
-    }
-    
-    
-    
-    public function get checkBtn():JToggleButton 
-    {
-        return _checkBtn;
-    }
-    
-    public function set checkBtn(value:JToggleButton):void 
-    {
-        _checkBtn = value;
+       
     }
     
     public function get vis():Boolean 

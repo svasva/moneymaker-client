@@ -26,7 +26,7 @@ package ru.fcl.sdd.gui
      * @see
      */
     
-    public class SendServiceFBVisPressed extends SignalCommand 
+    public class SendServiceFBVisPressedCommand extends SignalCommand 
     {
         [Inject]
         public var fBVisModel:FriendBarVisModel;

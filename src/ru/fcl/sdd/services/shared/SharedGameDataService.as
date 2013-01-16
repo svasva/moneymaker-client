@@ -14,25 +14,29 @@ package ru.fcl.sdd.services.shared
         [Inject]
         public var fbVisServUpdated:FriendBarVisServiceUpdatedSignal;
         
-        private static const FRIEND_BAR_VIS_STATUS:String = "FRIEND_BAR_VIS_STATUS";
+        public static const FRIEND_BAR_VIS_STATUS:String = "FRIEND_BAR_VIS_STATUS";
         
         private var _friendBarVisState:Boolean;
          
         [PostConstruct]
-        public function init() 
-        {
-          trace("SharedGameDataService");
+        public function init():void 
+        {         
             sharedSrv.getLocalObject();
         }
         
         public function get friendBarVisState():Boolean 
         {
+            if (sharedSrv.getLocal(FRIEND_BAR_VIS_STATUS) == null)
+            return true;
+            
+            _friendBarVisState = sharedSrv.getLocal(FRIEND_BAR_VIS_STATUS);
             return _friendBarVisState;
         }
         
         public function set friendBarVisState(value:Boolean):void 
         {
-            _friendBarVisState = value;
+            _friendBarVisState = value;            
+            sharedSrv.setLocal(FRIEND_BAR_VIS_STATUS,value);
             fbVisServUpdated.dispatch(_friendBarVisState);
             
         }

@@ -8,3 +8,5 @@ fla
 .gitignore
 *.iml
 other
+/bin
+/MoneyMakerFD.as3proj

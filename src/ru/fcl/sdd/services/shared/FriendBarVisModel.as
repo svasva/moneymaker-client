@@ -9,7 +9,7 @@ package ru.fcl.sdd.services.shared
         [Inject]
         public var modelUpdater:FriendBarVisModelUpdatedSignal;
         
-        private var _friendBarVisStatus:Boolean;
+        private var _friendBarVisStatus:Boolean
         
         public function FriendBarVisModel() 
         {
