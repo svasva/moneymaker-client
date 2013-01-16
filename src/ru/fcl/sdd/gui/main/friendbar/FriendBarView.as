@@ -6,6 +6,9 @@
 package ru.fcl.sdd.gui.main.friendbar
 {
 import flash.display.Sprite;
+import org.aswing.event.InteractiveEvent;
+import org.aswing.JButton;
+import org.aswing.JToggleButton;
 
 import ru.fcl.sdd.rsl.GuiRsl;
 
@@ -15,12 +18,28 @@ public class FriendBarView extends Sprite
     public var rsl:GuiRsl;
 
     private var _bg:Sprite;
-
+    
+    private var _vis:Boolean;
+    
+   
+    
     [PostConstruct]
     public function init():void
     {
         _bg = rsl.getFriendBarBarArtInstance;
         this.addChild(_bg);
+       
+    }
+    
+    public function get vis():Boolean 
+    {
+        return _vis;
+    }
+    
+    public function set vis(value:Boolean):void 
+    {
+        _vis = value;
+        _bg.visible = _vis;
     }
 }
 }
