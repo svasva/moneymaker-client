@@ -6,6 +6,7 @@
 package ru.fcl.sdd.buildapplication
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.services.shared.SharedGameDataService;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
