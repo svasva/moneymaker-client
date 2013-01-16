@@ -81,6 +81,7 @@ public class ClientusIsoViewMediator extends Mediator
         aStar = new AStar();
         clientWaitTimer = new Timer(clientusView.maxWaiTime);
         clientWaitTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
+        clientWaitTimer.addEventListener(TimerEvent.TIMER, clientWaitTimer_timerHandler);
         clientWaitTimer.start();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
@@ -120,21 +121,7 @@ public class ClientusIsoViewMediator extends Mediator
             endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
         path = findPath(startX, startY, endX, endY);
-        if(!path)
-        {
-            endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
-            endY = IsoConfig.START_CLIENTUS_CELL_Y;
-            path = findPath(startX, startY, endX, endY);//fixme: чел не может пройти к объекту.
-        }
-//        if (path.length == 1)
-//        {
-//            homusPathGrid.getNode(path[0].x, path[0].y).walkable = false;
-//            setTimeout(nextStep,);
-//        }
-//        else
-//        {
         tryGoToNextCell(isStart);
-//        }
     }
 
     private function tryGoToNextCell(isStart:Boolean = false):void
@@ -434,6 +421,11 @@ public class ClientusIsoViewMediator extends Mediator
                 nextStep(); //todo: В следующий раз отправить на сервер, что клиент уходит раньше срока.
             }
         }
+    }
+
+    private function clientWaitTimer_timerHandler(event:TimerEvent):void
+    {
+        Timer(event.currentTarget).currentCount
     }
 
     private function clientusView_mouseOverHandler(event:ProxyEvent):void
