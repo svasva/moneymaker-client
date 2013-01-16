@@ -9,13 +9,24 @@ import com.flashdynamix.motion.Tweensy;
 
 import de.polygonal.ds.HashMapValIterator;
 
+import eDpLib.events.ProxyEvent;
+
 import fl.motion.easing.Linear;
 
+import flash.display.DisplayObject;
+
+import flash.display.MovieClip;
+
+import flash.events.MouseEvent;
+
 import flash.events.TimerEvent;
+import flash.filters.GlowFilter;
 
 import flash.utils.Timer;
 
 import flash.utils.setTimeout;
+
+import org.aswing.event.ModelEvent;
 
 import org.robotlegs.mvcs.Mediator;
 
@@ -59,6 +70,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var inStack:Boolean = false;
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
+    private var selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
 
 
     override public function onRegister():void
@@ -72,6 +84,8 @@ public class ClientusIsoViewMediator extends Mediator
         clientWaitTimer.start();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
+        clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
+        clientusView.addEventListener(MouseEvent.MOUSE_OUT, clientusView_mouseOutHandler);
         nextStep(true);
     }
 
@@ -393,6 +407,16 @@ public class ClientusIsoViewMediator extends Mediator
                 nextStep(); //todo: В следующий раз отправить на сервер, что клиент уходит раньше срока.
             }
         }
+    }
+
+    private function clientusView_mouseOverHandler(event:ProxyEvent):void
+    {
+        DisplayObject(clientusView.sprites[0]).filters = [selectFilter];
+    }
+
+    private function clientusView_mouseOutHandler(event:ProxyEvent):void
+    {
+        DisplayObject(clientusView.sprites[0]).filters = [];
     }
 }
 }
