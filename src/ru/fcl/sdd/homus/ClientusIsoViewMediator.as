@@ -55,7 +55,7 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var floor:Floor1Scene;
     [Inject]
-    public var outOfScheduleSignal:OutOfScheduleSignal
+    public var outOfScheduleSignal:OutOfScheduleSignal;
 
     private var path:Array;
     private var aStar:AStar;
