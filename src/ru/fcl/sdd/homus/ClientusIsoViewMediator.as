@@ -213,14 +213,35 @@ public class ClientusIsoViewMediator extends Mediator
                         }
                         else
                         {
-//                            if (!_isOutOfSchedule)
-//                            {
-//                                setTimeout(removeClientus, targetCatalogItem.serviceSpeed);
-//                            }
-//                            else
-//                            {
                                 setTimeout(removeClientus, 1000);
-//                            }
+                        }
+                    }
+                    break;
+                }
+                case 0: //walk to some place/item
+                {
+//                    state = ClientusIsoView.STOP;
+//                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
+//                    clientusView.setDirection(direction, state);
+                    if (target)
+                    {
+                        target.clientStack.push(homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE, clientusView.y/IsoConfig.CELL_SIZE));
+                    }
+
+                    if (clientusView.operations.length)
+                    {
+                        setTimeout(completeOperation, targetCatalogItem.serviceSpeed);
+                    }
+                    else
+                    {
+                        if (!_isEndOfSequence)
+                        {
+                            _isEndOfSequence = true;
+                            setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                        }
+                        else
+                        {
+                                setTimeout(removeClientus, 1000);
                         }
                     }
                     break;
