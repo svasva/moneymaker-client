@@ -14,19 +14,11 @@ import eDpLib.events.ProxyEvent;
 import fl.motion.easing.Linear;
 
 import flash.display.DisplayObject;
-
-import flash.display.MovieClip;
-
 import flash.events.MouseEvent;
-
 import flash.events.TimerEvent;
 import flash.filters.GlowFilter;
-
 import flash.utils.Timer;
-
 import flash.utils.setTimeout;
-
-import org.aswing.event.ModelEvent;
 
 import org.robotlegs.mvcs.Mediator;
 
