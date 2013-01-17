@@ -24,19 +24,19 @@ public class WhenStartApplicationServerResponseCommand extends SignalCommand
     public var sender:ISender;
     [Inject]
     public var callHashMap:CallHashMap;
-    [Inject]
-    public var response:Object;
+//    [Inject]
+//    public var response:Object;
     [Inject]
     public var stateChange:ChangeStateSignal;
 
     override public function execute():void
     {
         logger.log(this, "Server star application response success. Starting app.");
-        if (response.response.success)
-        {
+//        if (response.response.success)
+//        {
             SDD(FlexGlobals.topLevelApplication).dispatchInitComplete();
             stateChange.dispatch(GameStates.VIEW);
-        }
+//        }
     }
 }
 }
