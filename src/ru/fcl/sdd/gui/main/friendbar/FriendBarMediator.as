@@ -7,7 +7,7 @@ package ru.fcl.sdd.gui.main.friendbar
 {
 import org.aswing.event.InteractiveEvent;
 import org.robotlegs.mvcs.Mediator;
-import ru.fcl.sdd.gui.FriendBarVisBtnPressedSignal;
+
 import ru.fcl.sdd.log.ILogger;
 import ru.fcl.sdd.services.shared.FriendBarVisModel;
 import ru.fcl.sdd.services.shared.FriendBarVisModelUpdatedSignal;

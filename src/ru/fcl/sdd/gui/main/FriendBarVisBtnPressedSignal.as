@@ -1,4 +1,4 @@
-package ru.fcl.sdd.gui 
+package ru.fcl.sdd.gui.main 
 {
 	import org.osflash.signals.Signal;
 	
