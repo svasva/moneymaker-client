@@ -1,4 +1,4 @@
-package ru.fcl.sdd.gui
+package ru.fcl.sdd.gui.main
 {
     import flash.events.Event;
     import flash.events.MouseEvent;
@@ -12,28 +12,7 @@ package ru.fcl.sdd.gui
     import ru.fcl.sdd.services.shared.FriendBarVisServiceUpdatedSignal;
     import ru.fcl.sdd.services.shared.ISharedGameDataService;
     
-    /**
-     * <p>
-     * Description
-     *
-     * Mediator:
-     * • The View is represented by your view components and their Mediators
-     * • Mediators provide an API for view components (to keep the framework out)
-     * • Mediators listen for view component events
-     * • Mediators listen for framework events
-     * • Mediators dispatch framework events
-     * • view components are <b>not</b> coupled to their Mediators (or any other framework class, period.)
-     * • Mediators <b>are</b> coupled to view components
-     * • Mediators can access Service and Model classes directly (but this will couple the Mediator to the Actor, tread carefully)
-     * </p>
-     *
-     * @class MainInterfaceMediator
-     * @author atuzov
-     * @date 01.16.2013
-     * @version 1.0
-     * @see
-     */
-    
+      
     public class MainInterfaceMediator extends Mediator
     {        
         [Inject]
