@@ -49,6 +49,11 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var outOfScheduleSignal:OutOfScheduleSignal;
 
+    [Inject]
+    public var homusMouseOutSignal:HomusMouseOutSignal;
+    [Inject]
+    public var homusMouseOverSignal:HomusMouseOverSignal;
+
     private var _path:Array;
     private var _aStar:AStar;
     private var _target:ItemIsoView;
@@ -75,7 +80,6 @@ public class ClientusIsoViewMediator extends Mediator
         _aStar = new AStar();
         _clientWaitTimer = new Timer(clientusView.maxWaiTime);
         _clientWaitTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
-        _clientWaitTimer.addEventListener(TimerEvent.TIMER, clientWaitTimer_timerHandler);
         _clientWaitTimer.start();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
@@ -417,19 +421,16 @@ public class ClientusIsoViewMediator extends Mediator
         }
     }
 
-    private function clientWaitTimer_timerHandler(event:TimerEvent):void
-    {
-        Timer(event.currentTarget).currentCount
-    }
-
     private function clientusView_mouseOverHandler(event:ProxyEvent):void
     {
         DisplayObject(clientusView.sprites[0]).filters = [_selectFilter];
+        homusMouseOverSignal.dispatch(clientusView);
     }
 
     private function clientusView_mouseOutHandler(event:ProxyEvent):void
     {
         DisplayObject(clientusView.sprites[0]).filters = [];
+        homusMouseOutSignal.dispatch();
     }
 }
 }
