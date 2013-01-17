@@ -14,19 +14,11 @@ import eDpLib.events.ProxyEvent;
 import fl.motion.easing.Linear;
 
 import flash.display.DisplayObject;
-
-import flash.display.MovieClip;
-
 import flash.events.MouseEvent;
-
 import flash.events.TimerEvent;
 import flash.filters.GlowFilter;
-
 import flash.utils.Timer;
-
 import flash.utils.setTimeout;
-
-import org.aswing.event.ModelEvent;
 
 import org.robotlegs.mvcs.Mediator;
 
@@ -55,22 +47,28 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var floor:Floor1Scene;
     [Inject]
-    public var outOfScheduleSignal:OutOfScheduleSignal
+    public var outOfScheduleSignal:OutOfScheduleSignal;
 
-    private var path:Array;
-    private var aStar:AStar;
-    private var target:ItemIsoView;
+    [Inject]
+    public var homusMouseOutSignal:HomusMouseOutSignal;
+    [Inject]
+    public var homusMouseOverSignal:HomusMouseOverSignal;
+
+    private var _path:Array;
+    private var _aStar:AStar;
+    private var _target:ItemIsoView;
     private var _freeCellWaitTime:int;
     private var _freeCellWaitTryCount:int;
-    private var endX:int;
-    private var endY:int;
-    private var targetCatalogItem:Item;
-    private var currentOperation:ClientOperation;
-    private var clientWaitTimer:Timer;
-    private var inStack:Boolean = false;
+    private var _endX:int;
+    private var _endY:int;
+    private var _targetCatalogItem:Item;
+    private var _currentOperation:ClientOperation;
+    private var _inStack:Boolean = false;
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
-    private var selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
+    private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
+
+
 
 
     override public function onRegister():void
@@ -78,10 +76,9 @@ public class ClientusIsoViewMediator extends Mediator
         _freeCellWaitTime = Math.random() * 2000 + 1000;
         Tweensy.refreshType = Tweensy.FRAME;
         Tweensy.secondsPerFrame = 1 / 24;
-        aStar = new AStar();
-        clientWaitTimer = new Timer(clientusView.maxWaiTime);
-        clientWaitTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
-        clientWaitTimer.start();
+        _aStar = new AStar();
+        clientusView.leaveTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
+        clientusView.startTimer();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
@@ -91,75 +88,61 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function nextStep(isStart:Boolean = false):void
     {
-        inStack = false;
+        _inStack = false;
         if (!isStart)
         {
-            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+            for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
             {
-                if (target.clientStack[i] == homusPathGrid.getNode(path[0].x, path[0].y))
+                if (_target.clientStack[i] == homusPathGrid.getNode(_path[0].x, _path[0].y))
                 {
-                    target.clientStack.slice(i, 1);
+                    _target.clientStack.slice(i, 1);
                 }
             }
-            homusPathGrid.getNode(path[0].x, path[0].y).walkable = true;
-            path.shift();
+            homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
+            _path.shift();
         }
         var startX:int = clientusView.x / IsoConfig.CELL_SIZE;
         var startY:int = clientusView.y / IsoConfig.CELL_SIZE;
 
-        target = selectTarget();
+        _target = selectTarget();
 
-        if (target)
+        if (_target)
         {
-            endX = target.enterPoint.x;
-            endY = target.enterPoint.y;
+            _endX = _target.enterPoint.x;
+            _endY = _target.enterPoint.y;
         }
         else
         {
-            endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
-            endY = IsoConfig.START_CLIENTUS_CELL_Y;
+            _endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
+            _endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
-        path = findPath(startX, startY, endX, endY);
-        if(!path)
-        {
-            endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
-            endY = IsoConfig.START_CLIENTUS_CELL_Y;
-            path = findPath(startX, startY, endX, endY);//fixme: чел не может пройти к объекту.
-        }
-//        if (path.length == 1)
-//        {
-//            homusPathGrid.getNode(path[0].x, path[0].y).walkable = false;
-//            setTimeout(nextStep,);
-//        }
-//        else
-//        {
+        _path = findPath(startX, startY, _endX, _endY);
         tryGoToNextCell(isStart);
-//        }
     }
 
     private function tryGoToNextCell(isStart:Boolean = false):void
     {
         if (!isStart)
         {
-            homusPathGrid.getNode(path[0].x, path[0].y).walkable = true;
-            path.shift();
+            homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
+            _path.shift();
         }
-        if ((path[1]) && (!homusPathGrid.getNode(path[1].x, path[1].y).walkable))
+        if ((_path[1]) && (!homusPathGrid.getNode(_path[1].x, _path[1].y).walkable))
         {
             state = ClientusIsoView.STOP;
             clientusView.setDirection(clientusView.currentDirection, state); //todo: make direction is correct.
-            if (target)
+            if (_target)
             {
-                for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+                for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
                 {
-                    if (homusPathGrid.getNode(path[0].x, path[0].y) == target.clientStack[i])
+                    if (homusPathGrid.getNode(_path[0].x, _path[0].y) == _target.clientStack[i])
                     {
-                        inStack = true;
+                        _inStack = true;
                     }
                 }
             }
 
-            switch (inStack)
+            switch (_inStack)
             {
                 case false:
                 {
@@ -170,9 +153,9 @@ public class ClientusIsoViewMediator extends Mediator
                     }
                     else
                     {
-                        itemPathGrid.getNode(path[1].x, path[1].y).walkable = false;
-                        path = findPath(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, endX, endY);
-                        itemPathGrid.getNode(path[1].x, path[1].y).walkable = true;
+                        itemPathGrid.getNode(_path[1].x, _path[1].y).walkable = false;
+                        _path = findPath(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, _endX, _endY);
+                        itemPathGrid.getNode(_path[1].x, _path[1].y).walkable = true;
                         _freeCellWaitTryCount = 4;
                         tryGoToNextCell(true);
                     }
@@ -188,28 +171,28 @@ public class ClientusIsoViewMediator extends Mediator
         {
             var direction:int;
             var state:int;
-            switch (path.length)
+            switch (_path.length)
             {
                 case 1:
                 {
                     state = ClientusIsoView.STOP;
                     direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
                     clientusView.setDirection(direction, state);
-                    if (target)
+                    if (_target)
                     {
-                        target.clientStack.push(homusPathGrid.getNode(path[0].x, path[0].y));
+                        _target.clientStack.push(homusPathGrid.getNode(_path[0].x, _path[0].y));
                     }
 
                     if (clientusView.operations.length)
                     {
-                        setTimeout(completeOperation, targetCatalogItem.serviceSpeed);
+                        setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
                         if (!_isEndOfSequence)
                         {
                             _isEndOfSequence = true;
-                            setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
                         }
                         else
                         {
@@ -223,21 +206,21 @@ public class ClientusIsoViewMediator extends Mediator
 //                    state = ClientusIsoView.STOP;
 //                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
 //                    clientusView.setDirection(direction, state);
-                    if (target)
+                    if (_target)
                     {
-                        target.clientStack.push(homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE, clientusView.y/IsoConfig.CELL_SIZE));
+                        _target.clientStack.push(homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE, clientusView.y/IsoConfig.CELL_SIZE));
                     }
 
                     if (clientusView.operations.length)
                     {
-                        setTimeout(completeOperation, targetCatalogItem.serviceSpeed);
+                        setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
                         if (!_isEndOfSequence)
                         {
                             _isEndOfSequence = true;
-                            setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
                         }
                         else
                         {
@@ -248,8 +231,8 @@ public class ClientusIsoViewMediator extends Mediator
                 }
                 default :
                 {
-                    homusPathGrid.getNode(path[1].x, path[1].y).walkable = false;
-                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, path[1].x, path[1].y);
+                    homusPathGrid.getNode(_path[1].x, _path[1].y).walkable = false;
+                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, _path[1].x, _path[1].y);
                     state = ClientusIsoView.WALK;
                     clientusView.setDirection(direction, state);
                     goToCell();
@@ -261,7 +244,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function completeOperation():void
     {
-        target.cashMoney += currentOperation.money;
+        _target.cashMoney += _currentOperation.money;
         nextStep();
     }
 
@@ -270,7 +253,7 @@ public class ClientusIsoViewMediator extends Mediator
         var target:ItemIsoView;
         if (clientusView.operations.length)
         {
-            currentOperation = clientusView.operations.shift();
+            _currentOperation = clientusView.operations.shift();
             var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
             var item:Item;
             var itemIsoView:ItemIsoView;
@@ -287,7 +270,7 @@ public class ClientusIsoViewMediator extends Mediator
                     {
                         for (var i:int = 0; i < item.operations.length; i++)
                         {
-                            if (item.operations[i] == currentOperation.id)
+                            if (item.operations[i] == _currentOperation.id)
                             {
                                 avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
                             }
@@ -309,7 +292,7 @@ public class ClientusIsoViewMediator extends Mediator
                     }
                 }
                 target = avaibleItems[moreFreer].iso;
-                targetCatalogItem = avaibleItems[moreFreer].catalogItem;
+                _targetCatalogItem = avaibleItems[moreFreer].catalogItem;
             }
             else
             {
@@ -327,14 +310,14 @@ public class ClientusIsoViewMediator extends Mediator
     {
         itemPathGrid.setStartNode(startNodeX, startNodeY);
         itemPathGrid.setEndNode(endNodeX, endNodeY);
-        aStar.findPath(itemPathGrid);
-        path = aStar.path;
-        return path;
+        _aStar.findPath(itemPathGrid);
+        _path = _aStar.path;
+        return _path;
     }
 
     private function goToCell():void
     {
-        Tweensy.to(clientusView, {x: path[1].x * IsoConfig.CELL_SIZE, y: path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, tryGoToNextCell);
+        Tweensy.to(clientusView, {x: _path[1].x * IsoConfig.CELL_SIZE, y: _path[1].y * IsoConfig.CELL_SIZE}, 0.5, Linear.easeNone, 0, null, tryGoToNextCell);
     }
 
     private function checkDirection(nodeFromX:int, nodeFromY:int, nodeToX:int, nodeToY:int):int
@@ -355,9 +338,9 @@ public class ClientusIsoViewMediator extends Mediator
         {
             return ClientusIsoView.SOUTH;
         }
-        else if ((target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
+        else if ((_target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
         {
-            switch (target.direction)
+            switch (_target.direction)
             {
                 case ItemIsoView.EAST:
                 {
@@ -381,7 +364,7 @@ public class ClientusIsoViewMediator extends Mediator
                 }
             }
         }
-        else if ((!target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
+        else if ((!_target) && (nodeFromX == nodeToX) && (nodeFromY == nodeToY))
         {
             return ClientusIsoView.NORTH;
         }
@@ -391,17 +374,17 @@ public class ClientusIsoViewMediator extends Mediator
     private function removeClientus():void
     {
         homusPathGrid.getNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE).walkable = true;
-        if (target)
+        if (_target)
         {
-            for (var i:int = target.clientStack.length - 1; i >= 0; i--)
+            for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
             {
-                if (target.clientStack[i] == homusPathGrid.getNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE))
+                if (_target.clientStack[i] == homusPathGrid.getNode(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE))
                 {
-                    target.clientStack.slice(i, 1);
+                    _target.clientStack.slice(i, 1);
                 }
             }
         }
-        path.shift();
+        _path.shift();
         floor.removeChild(clientusView);
         if (_isOutOfSchedule)
         {
@@ -412,18 +395,18 @@ public class ClientusIsoViewMediator extends Mediator
     private function clientWaitTimer_timerCompleteHandler(event:TimerEvent):void
     {
         var position:int = 10;
-        if (target)
+        if (_target)
         {
             while (clientusView.operations.length != 0)
             {
                 clientusView.operations.shift();
                 _isOutOfSchedule = true;
             }
-            if(inStack)
+            if(_inStack)
             {
-                for (var i:int = 0; i < target.clientStack.length; i++)
+                for (var i:int = 0; i < _target.clientStack.length; i++)
                 {
-                    if(target.clientStack[i]==homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE,clientusView.y/IsoConfig.CELL_SIZE))
+                    if(_target.clientStack[i]==homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE,clientusView.y/IsoConfig.CELL_SIZE))
                     {
                         position = i;
                     }
@@ -438,12 +421,14 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function clientusView_mouseOverHandler(event:ProxyEvent):void
     {
-        DisplayObject(clientusView.sprites[0]).filters = [selectFilter];
+        DisplayObject(clientusView.sprites[0]).filters = [_selectFilter];
+        homusMouseOverSignal.dispatch(clientusView);
     }
 
     private function clientusView_mouseOutHandler(event:ProxyEvent):void
     {
         DisplayObject(clientusView.sprites[0]).filters = [];
+        homusMouseOutSignal.dispatch();
     }
 }
 }
