@@ -12,6 +12,8 @@ import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
+import flash.utils.Timer;
+import flash.utils.getTimer;
 
 public class ClientusIsoView extends IsoSprite
 {
@@ -24,6 +26,7 @@ public class ClientusIsoView extends IsoSprite
     private var _skin:String;
     private var _currentFrame:int = 1;
     private var _maxWaiTime:int;
+    private var _leaveTimer:Timer;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
@@ -39,6 +42,16 @@ public class ClientusIsoView extends IsoSprite
         _skinSwf = new Loader();
 //        skin = "./art/Man02Animations.swf";
         super();
+    }
+
+    /**
+     * start timer to leave client from bank
+     * @param time time to leave, ms.
+     */
+    public function startTimer(time:int):void
+    {
+        leaveTimer = new Timer(time);
+        leaveTimer.start();
     }
 
     public function setDirection(direction:int, state:int):void
@@ -136,6 +149,16 @@ public class ClientusIsoView extends IsoSprite
     public function set maxWaiTime(value:int):void
     {
         _maxWaiTime = value;
+    }
+
+    public function get leaveTimer():Timer
+    {
+        return _leaveTimer;
+    }
+
+    public function set leaveTimer(value:Timer):void
+    {
+        _leaveTimer = value;
     }
 }
 }

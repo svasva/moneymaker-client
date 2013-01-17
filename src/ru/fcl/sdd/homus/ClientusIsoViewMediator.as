@@ -63,7 +63,6 @@ public class ClientusIsoViewMediator extends Mediator
     private var _endY:int;
     private var _targetCatalogItem:Item;
     private var _currentOperation:ClientOperation;
-    private var _clientWaitTimer:Timer;
     private var _inStack:Boolean = false;
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
@@ -78,9 +77,8 @@ public class ClientusIsoViewMediator extends Mediator
         Tweensy.refreshType = Tweensy.FRAME;
         Tweensy.secondsPerFrame = 1 / 24;
         _aStar = new AStar();
-        _clientWaitTimer = new Timer(clientusView.maxWaiTime);
-        _clientWaitTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
-        _clientWaitTimer.start();
+        clientusView.leaveTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
+        clientusView.startTimer(clientusView.maxWaiTime);
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
