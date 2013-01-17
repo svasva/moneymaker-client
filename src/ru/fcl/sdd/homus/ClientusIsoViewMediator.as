@@ -120,6 +120,12 @@ public class ClientusIsoViewMediator extends Mediator
             endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
         path = findPath(startX, startY, endX, endY);
+        if(!path)
+        {
+            endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
+            endY = IsoConfig.START_CLIENTUS_CELL_Y;
+            path = findPath(startX, startY, endX, endY);//fixme: чел не может пройти к объекту.
+        }
 //        if (path.length == 1)
 //        {
 //            homusPathGrid.getNode(path[0].x, path[0].y).walkable = false;
