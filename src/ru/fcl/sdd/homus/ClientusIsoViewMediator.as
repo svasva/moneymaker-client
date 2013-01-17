@@ -206,21 +206,21 @@ public class ClientusIsoViewMediator extends Mediator
 //                    state = ClientusIsoView.STOP;
 //                    direction = checkDirection(clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE, clientusView.x / IsoConfig.CELL_SIZE, clientusView.y / IsoConfig.CELL_SIZE);
 //                    clientusView.setDirection(direction, state);
-                    if (target)
+                    if (_target)
                     {
-                        target.clientStack.push(homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE, clientusView.y/IsoConfig.CELL_SIZE));
+                        _target.clientStack.push(homusPathGrid.getNode(clientusView.x/IsoConfig.CELL_SIZE, clientusView.y/IsoConfig.CELL_SIZE));
                     }
 
                     if (clientusView.operations.length)
                     {
-                        setTimeout(completeOperation, targetCatalogItem.serviceSpeed);
+                        setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
                         if (!_isEndOfSequence)
                         {
                             _isEndOfSequence = true;
-                            setTimeout(nextStep, targetCatalogItem.serviceSpeed);
+                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
                         }
                         else
                         {
