@@ -8,6 +8,7 @@ package ru.fcl.sdd.buildapplication.buildscreen
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.buildapplication.SendServerStartApplicationCommand;
+import ru.fcl.sdd.gui.info.InfoLayerView;
 import ru.fcl.sdd.gui.ingame.InGameGuiView;
 
 import ru.fcl.sdd.gui.main.MainInterfaceView;
@@ -22,11 +23,15 @@ public class AddViewsCommand extends SignalCommand
     public var mainInterfaceView:MainInterfaceView;
 
     [Inject]
+    public var infoView:InfoLayerView;
+
+    [Inject]
     public var inGameGuiView:InGameGuiView;
 
     override public function execute():void
     {
         contextView.addChild(mainIsoView);
+        contextView.addChild(infoView);
         contextView.addChild(mainInterfaceView);
         contextView.addChild(inGameGuiView);
 
