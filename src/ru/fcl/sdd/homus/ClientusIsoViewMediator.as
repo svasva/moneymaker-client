@@ -78,7 +78,7 @@ public class ClientusIsoViewMediator extends Mediator
         Tweensy.secondsPerFrame = 1 / 24;
         _aStar = new AStar();
         clientusView.leaveTimer.addEventListener(TimerEvent.TIMER_COMPLETE, clientWaitTimer_timerCompleteHandler);
-        clientusView.startTimer(clientusView.maxWaiTime);
+        clientusView.startTimer();
         clientusView.x = 13 * IsoConfig.CELL_SIZE;
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);

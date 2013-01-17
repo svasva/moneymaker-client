@@ -38,6 +38,7 @@ public class ClientusIsoView extends IsoSprite
 
     public function ClientusIsoView()
     {
+        leaveTimer = new Timer(_maxWaiTime);
         _operations = new Vector.<ClientOperation>();
         _skinSwf = new Loader();
 //        skin = "./art/Man02Animations.swf";
@@ -46,11 +47,9 @@ public class ClientusIsoView extends IsoSprite
 
     /**
      * start timer to leave client from bank
-     * @param time time to leave, ms.
      */
-    public function startTimer(time:int):void
+    public function startTimer():void
     {
-        leaveTimer = new Timer(time);
         leaveTimer.start();
     }
 

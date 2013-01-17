@@ -12,7 +12,7 @@ public class BuildInfoViewCommand extends SignalCommand
     override public function execute():void
     {
         injector.mapSingleton(InfoLayerView);
-        mediatorMap.mapView(InfoLayerView,ClientusInfoLayerViewMediator);
+        mediatorMap.mapView(InfoLayerView,InfoLayerViewMediator);
     }
 }
 }
