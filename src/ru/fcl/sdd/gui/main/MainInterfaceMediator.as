@@ -51,20 +51,22 @@ package ru.fcl.sdd.gui.main
             view.friendBarVisBtn.addEventListener(MouseEvent.CLICK, onCloseFriendBarSelected);
             friendBarModelUpdatedSignal.add(onFriendBarVisModelUpdated);
             sharedGameDataSrv.friendBarVisState = sharedGameDataSrv.friendBarVisState;
+            view.addChild(view.friendBarVisBtn);
         }
         
         private function onFriendBarVisModelUpdated(value:Boolean):void
         {
+            
             logger.log(this, "onFriendBarVisModelUpdated",value);
-            friendBarView.visible = value;
+            friendBarView.vis = value;
             if (value)
             {
-                view.friendBarVisBtn.setText("Закрыть");
+              //  view.friendBarVisBtn.setText("Закрыть");
                 view.friendBarVisBtn.setSelected(false);
             }
             else
             {
-                view.friendBarVisBtn.setText("Открыть");
+             //   view.friendBarVisBtn.setText("Открыть");
                 view.friendBarVisBtn.setSelected(true);
             }
         }
