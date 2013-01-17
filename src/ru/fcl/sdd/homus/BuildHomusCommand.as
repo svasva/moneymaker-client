@@ -5,8 +5,6 @@
  */
 package ru.fcl.sdd.homus
 {
-import org.osflash.signals.AboutInt;
-import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 
 public class BuildHomusCommand extends SignalCommand
@@ -17,6 +15,7 @@ public class BuildHomusCommand extends SignalCommand
 //        injector.mapValue(ISignal,operationMoney,"operation_money");
 //        signalCommandMap.mapSignal(operationMoney,CompleteOperationCommitChangesCommand);
 //        injector.mapSingleton(ClientusList);
+        injector.mapSingleton(HomusMouseOverSignal);
         injector.mapSingleton(OutOfScheduleSignal);
         signalCommandMap.mapSignalClass(OutOfScheduleSignal,SendServerOutOfScheduleCommand);
         injector.mapClass(ClientusIsoView,ClientusIsoView);
