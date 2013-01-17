@@ -60,11 +60,11 @@ public class BuildMainGUICommand extends SignalCommand
         signalCommandMap.mapSignalClass(FriendBarVisBtnPressedSignal, SendServiceFBVisPressedCommand);
        
         friendBarView.x = flashVars.app_width/2-friendBarView.width/2;
-        friendBarView.y = flashVars.app_height-friendBarView.height;
+        friendBarView.y = flashVars.app_height-288;
         mainInterfaceView.addChild(friendBarView);
 
         var controlPanelView:ControlPanelView = injector.getInstance(ControlPanelView);
-        controlPanelView.y = flashVars.app_height - controlPanelView.height - 36;
+        controlPanelView.y = flashVars.app_height - controlPanelView.height-10;
         controlPanelView.x = flashVars.app_width - controlPanelView.width - 35;
         mainInterfaceView.addChild(controlPanelView);
         
