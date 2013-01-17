@@ -22,7 +22,8 @@ public class SendServerStartApplicationCommand extends SignalCommand
     {
         logger.log(this, "sending 2 server star application command...");
         var call:Object = {command:"startApplication"};
-        sender.send(call,WhenStartApplicationServerResponseCommand);
+        sender.send(call);
+        commandMap.execute(WhenStartApplicationServerResponseCommand);
     }
 }
 }
