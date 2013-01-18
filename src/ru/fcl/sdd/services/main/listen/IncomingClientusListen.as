@@ -23,7 +23,7 @@ public class IncomingClientusListen extends SignalCommand
     {
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
         clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
-         clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,response.response.height*IsoConfig.CELL_SIZE);
+        clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,response.response.height*IsoConfig.CELL_SIZE);
         var temp:Array = response.response.operations_mapped;
         clientusIsoView.maxWaiTime = response.response.wait_time*1000;
 

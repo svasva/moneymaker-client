@@ -13,8 +13,6 @@ import flash.geom.Point;
 
 import org.robotlegs.mvcs.Mediator;
 
-import ru.fcl.sdd.config.IsoConfig;
-
 import ru.fcl.sdd.gui.info.icons.Clock;
 import ru.fcl.sdd.homus.ClientusIsoView;
 import ru.fcl.sdd.homus.HomusMouseOutSignal;
@@ -59,7 +57,7 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.z = clientusView.z;
         screenPt = mainIsoView.isoToLocal(isoPt);
         clock.x = screenPt.x-clock.width/2;
-        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
+        clock.y = screenPt.y-clientusView.height;
         clock.addEventListener(Event.ENTER_FRAME, clock_enterFrameHandler);
     }
 
@@ -78,7 +76,7 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.z = clientusView.z;
         screenPt = mainIsoView.isoToLocal(isoPt);
         clock.x = screenPt.x-clock.width/2;
-        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
+        clock.y = screenPt.y-clientusView.height;
     }
 }
 }

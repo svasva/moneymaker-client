@@ -17,6 +17,8 @@ public class BuildHomusCommand extends SignalCommand
 //        injector.mapSingleton(ClientusList);
         injector.mapSingleton(HomusMouseOverSignal);
         injector.mapSingleton(HomusMouseOutSignal);
+        injector.mapSingleton(OperationFailedSignal);
+        injector.mapSingleton(OperationSuccessSignal);
         injector.mapSingleton(OutOfScheduleSignal);
         signalCommandMap.mapSignalClass(OutOfScheduleSignal,SendServerOutOfScheduleCommand);
         injector.mapClass(ClientusIsoView,ClientusIsoView);
