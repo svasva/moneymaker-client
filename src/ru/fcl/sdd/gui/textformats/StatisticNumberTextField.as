@@ -24,7 +24,7 @@ public class StatisticNumberTextField extends TextField
 		autoSize = TextFieldAutoSize.RIGHT;
 
         //***effects*****
-        filters = [new GlowFilter(0x733923,1,4,4,1000)];
+        filters = [new GlowFilter(0x733923,1,4,4,5)];
     }
 }
 }
