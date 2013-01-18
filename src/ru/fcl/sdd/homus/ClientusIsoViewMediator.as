@@ -116,7 +116,14 @@ public class ClientusIsoViewMediator extends Mediator
             _endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
             _endY = IsoConfig.START_CLIENTUS_CELL_Y;
         }
+
         _path = findPath(startX, startY, _endX, _endY);
+        if(!_path)
+        {
+            _endX = IsoConfig.START_CLIENTUS_CELL_X - 2;
+            _endY = IsoConfig.START_CLIENTUS_CELL_Y;
+            _path = findPath(startX, startY, _endX, _endY);
+        }
         tryGoToNextCell(isStart);
     }
 
