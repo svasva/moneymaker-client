@@ -11,7 +11,7 @@ public class OperationSuccessSignal extends Signal
 {
     public function OperationSuccessSignal()
     {
-        super(int);
+        super(ClientusIsoView);
     }
 }
 }

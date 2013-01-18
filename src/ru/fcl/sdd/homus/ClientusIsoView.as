@@ -27,7 +27,7 @@ public class ClientusIsoView extends IsoSprite
     private var _currentFrame:int = 1;
     private var _maxWaiTime:int;
     private var _leaveTimer:Timer;
-    private var _experience:int;
+    private var _reputation:int;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
@@ -161,14 +161,14 @@ public class ClientusIsoView extends IsoSprite
         _leaveTimer = value;
     }
 
-    public function get experience():int
+    public function get reputation():int
     {
-        return _experience;
+        return _reputation;
     }
 
-    public function set experience(value:int):void
+    public function set reputation(value:int):void
     {
-        _experience = value;
+        _reputation = value;
     }
 }
 }

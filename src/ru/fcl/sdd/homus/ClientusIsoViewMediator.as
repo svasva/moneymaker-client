@@ -257,7 +257,7 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function completeOperation():void
     {
-        operationSuccessSignal.dispatch(clientusView)
+        operationSuccessSignal.dispatch(clientusView);
         _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
         nextStep();
     }
