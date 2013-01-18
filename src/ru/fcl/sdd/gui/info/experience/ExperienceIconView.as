@@ -5,11 +5,20 @@
  */
 package ru.fcl.sdd.gui.info.experience
 {
-public class ExperienceIconView
-{
-    public function ExperienceIconView()
-    {
+import flash.display.Sprite;
 
+import ru.fcl.sdd.gui.textformats.StatisticNumberTextField;
+
+public class ExperienceIconView extends Sprite
+{
+    private var value:int;
+    private var valueTextField:StatisticNumberTextField;
+
+    public function ExperienceIconView(value:int)
+    {
+        valueTextField = new StatisticNumberTextField();
+        addChild(valueTextField);
+        valueTextField.text = value.toString();
     }
 }
 }

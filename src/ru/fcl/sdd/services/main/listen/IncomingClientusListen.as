@@ -24,8 +24,11 @@ public class IncomingClientusListen extends SignalCommand
         var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
         clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
         clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,response.response.height*IsoConfig.CELL_SIZE);
-        var temp:Array = response.response.operations_mapped;
         clientusIsoView.maxWaiTime = response.response.wait_time*1000;
+        clientusIsoView.reputation = response.response.reputation;
+        var temp:Array = response.response.operations_mapped;
+
+
 
         //fixme:КОСТЫЛЬ! С сервера приходят данные через строку: нечетные - id операции, четные - деньги на нее.
         for (var i:int = 0; i < temp.length; i+=2)
