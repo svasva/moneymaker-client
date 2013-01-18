@@ -5,19 +5,19 @@
  */
 package ru.fcl.sdd.gui.info
 {
-import as3isolib.geom.IsoMath;
 import as3isolib.geom.Pt;
+
+import flash.events.Event;
 
 import flash.geom.Point;
 
 import org.robotlegs.mvcs.Mediator;
 
+import ru.fcl.sdd.config.IsoConfig;
+
 import ru.fcl.sdd.gui.info.icons.Clock;
-
 import ru.fcl.sdd.homus.ClientusIsoView;
-
 import ru.fcl.sdd.homus.HomusMouseOutSignal;
-
 import ru.fcl.sdd.homus.HomusMouseOverSignal;
 import ru.fcl.sdd.scenes.MainIsoView;
 
@@ -58,15 +58,27 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.y = clientusView.y;
         isoPt.z = clientusView.z;
         screenPt = mainIsoView.isoToLocal(isoPt);
-        clock.x = screenPt.x;
-        clock.y = screenPt.y;
-        trace(clock.x, clock.y);
+        clock.x = screenPt.x-clock.width/2;
+        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
+        clock.addEventListener(Event.ENTER_FRAME, clock_enterFrameHandler);
     }
 
     private function onHomusMouseOut():void
     {
         clientusView = null;
         infoView.removeChild(clock);
+        clock.removeEventListener(Event.ENTER_FRAME, clock_enterFrameHandler);
+    }
+
+    private function clock_enterFrameHandler(event:Event):void
+    {
+        clock.count = Math.round(clientusView.leaveTimer.currentCount*100/clientusView.maxWaiTime);
+        isoPt.x = clientusView.x;
+        isoPt.y = clientusView.y;
+        isoPt.z = clientusView.z;
+        screenPt = mainIsoView.isoToLocal(isoPt);
+        clock.x = screenPt.x-clock.width/2;
+        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
     }
 }
 }

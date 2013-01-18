@@ -26,7 +26,7 @@ public class IncomingClientusListen extends SignalCommand
 //        injector.mapValue(ClientusIsoView,clientusIsoView);
          clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,4.16*IsoConfig.CELL_SIZE);
         var temp:Array = response.response.operations_mapped;
-        clientusIsoView.maxWaiTime = response.response.wait_time;
+        clientusIsoView.maxWaiTime = response.response.wait_time*1000;
 
         //fixme:КОСТЫЛЬ! С сервера приходят данные через строку: нечетные - id операции, четные - деньги на нее.
         for (var i:int = 0; i < temp.length; i+=2)
