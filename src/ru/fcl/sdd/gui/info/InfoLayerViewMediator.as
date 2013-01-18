@@ -57,7 +57,6 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.x = clientusView.x;
         isoPt.y = clientusView.y;
         isoPt.z = clientusView.z;
-//        IsoMath.isoToScreen(isoPt);
         screenPt = mainIsoView.isoToLocal(isoPt);
         clock.x = screenPt.x;
         clock.y = screenPt.y;
