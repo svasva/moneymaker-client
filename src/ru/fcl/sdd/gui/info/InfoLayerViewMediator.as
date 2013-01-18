@@ -7,27 +7,38 @@ package ru.fcl.sdd.gui.info
 {
 import as3isolib.geom.Pt;
 
+import com.flashdynamix.motion.Tweensy;
+
 import flash.events.Event;
 
 import flash.geom.Point;
+import flash.utils.setTimeout;
+
+import mx.skins.halo.DateChooserYearArrowSkin;
 
 import org.robotlegs.mvcs.Mediator;
 
-import ru.fcl.sdd.config.IsoConfig;
+import ru.fcl.sdd.gui.info.experience.ExperienceIconView;
 
 import ru.fcl.sdd.gui.info.icons.Clock;
 import ru.fcl.sdd.homus.ClientusIsoView;
 import ru.fcl.sdd.homus.HomusMouseOutSignal;
 import ru.fcl.sdd.homus.HomusMouseOverSignal;
+import ru.fcl.sdd.homus.OperationFailedSignal;
+import ru.fcl.sdd.homus.OperationSuccessSignal;
 import ru.fcl.sdd.scenes.MainIsoView;
 
 public class InfoLayerViewMediator extends Mediator
 {
     [Inject]
     public var homusMouseOverSignal:HomusMouseOverSignal;
-
     [Inject]
     public var homusMouseOutSignal:HomusMouseOutSignal;
+
+    [Inject]
+    public var operationSuccessSignal:OperationSuccessSignal;
+    [Inject]
+    public var operationFailedSignal:OperationFailedSignal;
 
     [Inject]
     public var infoView:InfoLayerView;
@@ -48,6 +59,22 @@ public class InfoLayerViewMediator extends Mediator
         clock = new Clock();
         homusMouseOverSignal.add(onHomusMouseOver);
         homusMouseOutSignal.add(onHomusMouseOut);
+        operationSuccessSignal.add(onOperationSuccess);
+    }
+
+    private function onOperationSuccess(value:ClientusIsoView):void
+    {
+        //fixme:переделать.
+        var repView:ExperienceIconView = new ExperienceIconView(value.reputation);
+        infoView.addChild(repView);
+        isoPt.x = value.x;
+        isoPt.y = value.y;
+        isoPt.z = value.z;
+        screenPt = mainIsoView.isoToLocal(isoPt);
+        repView.x = screenPt.x-repView.width/2;
+        repView.y = screenPt.y-value.height;
+        setTimeout(function():void{infoView.removeChild(repView)},2000);
+        Tweensy.to(repView,{y:repView.y-100,alpha:0},2);
     }
 
     private function onHomusMouseOver(value:ClientusIsoView):void
@@ -59,7 +86,7 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.z = clientusView.z;
         screenPt = mainIsoView.isoToLocal(isoPt);
         clock.x = screenPt.x-clock.width/2;
-        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
+        clock.y = screenPt.y-clientusView.height;
         clock.addEventListener(Event.ENTER_FRAME, clock_enterFrameHandler);
     }
 
@@ -78,7 +105,7 @@ public class InfoLayerViewMediator extends Mediator
         isoPt.z = clientusView.z;
         screenPt = mainIsoView.isoToLocal(isoPt);
         clock.x = screenPt.x-clock.width/2;
-        clock.y = screenPt.y-clientusView.height+IsoConfig.CELL_SIZE;
+        clock.y = screenPt.y-clientusView.height;
     }
 }
 }

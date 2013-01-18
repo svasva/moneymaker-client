@@ -27,6 +27,7 @@ public class ClientusIsoView extends IsoSprite
     private var _currentFrame:int = 1;
     private var _maxWaiTime:int;
     private var _leaveTimer:Timer;
+    private var _reputation:int;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
@@ -158,6 +159,16 @@ public class ClientusIsoView extends IsoSprite
     public function set leaveTimer(value:Timer):void
     {
         _leaveTimer = value;
+    }
+
+    public function get reputation():int
+    {
+        return _reputation;
+    }
+
+    public function set reputation(value:int):void
+    {
+        _reputation = value;
     }
 }
 }

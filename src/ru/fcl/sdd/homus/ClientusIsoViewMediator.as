@@ -54,6 +54,12 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var homusMouseOverSignal:HomusMouseOverSignal;
 
+    [Inject]
+    public var operationSuccessSignal:OperationSuccessSignal;
+    [Inject]
+    public var operationFailedSignal:OperationFailedSignal;
+
+
     private var _path:Array;
     private var _aStar:AStar;
     private var _target:ItemIsoView;
@@ -251,7 +257,8 @@ public class ClientusIsoViewMediator extends Mediator
 
     private function completeOperation():void
     {
-        _target.cashMoney += _currentOperation.money;
+        operationSuccessSignal.dispatch(clientusView);
+        _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
         nextStep();
     }
 
