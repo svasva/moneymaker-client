@@ -5,8 +5,10 @@
  */
 package ru.fcl.sdd.gui.main.north
 {
+    import flash.display.DisplayObject;
     import flash.display.SimpleButton;
     import flash.display.Sprite;
+    import flash.text.TextFieldAutoSize;
     
     import org.aswing.JLabel;
     
@@ -32,17 +34,22 @@ package ru.fcl.sdd.gui.main.north
         private var _realMoneyBtn:SimpleButton;
         private var _experienceBtn:SimpleButton;
         private var _reputationBtn:SimpleButton;
-        
         private var _bucksIcon:Sprite;
         private var _levelIcon:Sprite;
         
+        
+        private var _gameMoneyBar:GameProgressBar;
         private var _experienceBar:GameProgressBar;
+        
+        private var _reputationLevel:int
+        
+        private var _smileLayerSp:Sprite = new Sprite();
         
         [PostConstruct]
         public function init():void
         {
             _bg = rsl.getUpBarArtInstance;
-           // this.addChild(_bg);
+            this.addChild(_bg);
             
             smileArts = new Array();
             smileArts.push(rsl.getAsset("panels.Reputation1Art"));
@@ -50,16 +57,32 @@ package ru.fcl.sdd.gui.main.north
             smileArts.push(rsl.getAsset("panels.Reputation3Art"));
             smileArts.push(rsl.getAsset("panels.Reputation4Art"));
             
+            _bucksIcon = getAsset("IconMoney") as Sprite;
+            _bucksIcon.x = 12;
+            _bucksIcon.y = 7;
+            
             _experienceBar = new GameProgressBar(rsl.getAsset("panels.ProgressBarExperience"));
             _experienceBar.x = 636;
             _experienceBar.y = 14;
             addChild(_experienceBar);
+            
+            _gameMoneyBar = new GameProgressBar(rsl.getAsset("panels.ProgressBarBarMoneyArt"));
+            _gameMoneyBar.x = 39;
+            _gameMoneyBar.y = 14;
+            addChild(_gameMoneyBar);
+            
+            _levelIcon = getAsset("IconLVLArt") as Sprite;
+            _levelIcon.x = 625;
+            _levelIcon.y = 9;
+            addChild(_levelIcon);
             
             _gameMoneyTextField = new StatisticNumberTextField();
             _gameMoneyTextField.x=126;
             _gameMoneyTextField.y=15;
             _gameMoneyTextField.textColor = 0x93CDA8;
             this.addChild(_gameMoneyTextField);
+            
+            this.addChild(_bucksIcon);
             
             _realMoneyTextField = new StatisticNumberTextField();
             _realMoneyTextField.x=288;
@@ -68,15 +91,23 @@ package ru.fcl.sdd.gui.main.north
             this.addChild(_realMoneyTextField);
             
             _experienceTextField = new StatisticNumberTextField();
-            _experienceTextField.x=644;
+            _experienceTextField.x=640;
             _experienceTextField.y=15;
             _experienceTextField.textColor = 0x93CDA8;
+            _experienceTextField.autoSize = TextFieldAutoSize.CENTER;
+            
             this.addChild(_experienceTextField);
             
             _reputationTextField = new StatisticNumberTextField();
             _reputationTextField.x=584;
-            _reputationTextField.y=15;
+            _reputationTextField.y = 15;
+            
             this.addChild(_reputationTextField);
+            
+            addChild(_smileLayerSp);
+            _smileLayerSp.x = 509;
+            _smileLayerSp.y = 9;
+            
             
             _gameMoneyBtn = createSimpleButton("ButtonMoney");
             _gameMoneyBtn.x = 133;
@@ -97,8 +128,7 @@ package ru.fcl.sdd.gui.main.north
             _reputationBtn.x = 590;
             _reputationBtn.y = 11;
             this.addChild(_reputationBtn);
-            
-            
+        
         }
         
         public function set gameMoney(value:int):void
@@ -120,16 +150,16 @@ package ru.fcl.sdd.gui.main.north
         {
             _reputationTextField.text = value.toString();
             
-            var neededSmileId:int = 0;	// TODO: реализовать градацию иконок		
+           /* var neededSmileId:int = 0;	// TODO: реализовать градацию иконок		
             if ( currentSmile != smileArts[ neededSmileId ] )
             {
                 if ( currentSmile != null && currentSmile.parent != null )
                     currentSmile.parent.removeChild(currentSmile);
                 currentSmile = smileArts[ neededSmileId ];
-                currentSmile.x = 503;
-                currentSmile.y = 9;
-                this.addChild(currentSmile);
-            }
+              //  currentSmile.x = 503;
+              //  currentSmile.y = 9;
+                _smileLayerSp.addChild(currentSmile);
+            }*/
         }
         
         private function createSimpleButton(baseName:String):SimpleButton
@@ -140,6 +170,22 @@ package ru.fcl.sdd.gui.main.north
         public function get gameMoneyBtn():SimpleButton
         {
             return _gameMoneyBtn;
+        }
+        
+        public function set reputationLevel(value:int):void 
+        {        
+            if (value > 3 || value < 0)
+            return;
+            _reputationLevel = value;
+            
+            
+            
+           while (_smileLayerSp.numChildren > 0) 
+            _smileLayerSp.removeChildAt(0);
+
+            _smileLayerSp.addChild(smileArts[ _reputationLevel] as Sprite);
+           
+        
         }
         
         public function set gameMoneyBtn(value:SimpleButton):void
@@ -186,11 +232,26 @@ package ru.fcl.sdd.gui.main.north
         {
             _experienceBar = value;
         }
+        
+        public function get gameMoneyBar():GameProgressBar
+        {
+            
+            return _gameMoneyBar;
+        
+        }
+        
+        public function set gameMoneyBar(value:GameProgressBar):void
+        {
+            
+            _gameMoneyBar = value;
+        
+        }
+        
+        
         private function getAsset(value:String):DisplayObject
         {
-            return rsl.getAsset("gui.panels."+value);
+            return rsl.getAsset("panels." + value);
         }
-    
     
     }
 }

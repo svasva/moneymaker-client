@@ -11,7 +11,7 @@ package ru.fcl.sdd.userdata.capacity
         
         public function CapacityUpdateSignal() 
         {
-            
+           
         }
         
     }
