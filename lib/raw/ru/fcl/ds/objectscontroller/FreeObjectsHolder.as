@@ -3,7 +3,7 @@
  * Date: 18.01.13
  * Time: 16:40
  */
-package ru.fcl.sdd.gui.info.experience
+package ru.fcl.ds.objectscontroller
 {
 public class FreeObjectsHolder
 {
