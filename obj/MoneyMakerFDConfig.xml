@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'17.01.2013'</value>
+      <value>'18.01.2013'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -44,6 +44,7 @@
       <path-element>C:\work\moneymaker-client\lib\bin\ds.swc</path-element>
       <path-element>C:\work\moneymaker-client\lib\bin\SwiftSuspenders-v1.5.1.swc</path-element>
       <path-element>C:\work\moneymaker-client\lib\bin\TweensyOriginalCS4.swc</path-element>
+      <path-element>C:\work\moneymaker-client\art\bin\homus_icons.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
