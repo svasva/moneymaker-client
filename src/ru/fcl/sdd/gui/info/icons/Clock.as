@@ -16,6 +16,7 @@ public class Clock extends Sprite
     public function Clock()
     {
         _art = new ChargingAnimationArt();
+        _art.scaleX=_art.scaleY=0.5;
         this.addChild(_art);
     }
 
