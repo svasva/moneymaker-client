@@ -7,6 +7,8 @@ package ru.fcl.sdd.homus
 {
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.gui.info.ShowAddReputationInfoCommand;
+
 public class BuildHomusCommand extends SignalCommand
 {
     override public function execute():void
@@ -17,8 +19,9 @@ public class BuildHomusCommand extends SignalCommand
 //        injector.mapSingleton(ClientusList);
         injector.mapSingleton(HomusMouseOverSignal);
         injector.mapSingleton(HomusMouseOutSignal);
-        injector.mapSingleton(OperationFailedSignal);
+//        injector.mapSingleton(OperationFailedSignal);
         injector.mapSingleton(OperationSuccessSignal);
+        signalCommandMap.mapSignalClass(OperationSuccessSignal,ShowAddReputationInfoCommand);
         injector.mapSingleton(OutOfScheduleSignal);
         signalCommandMap.mapSignalClass(OutOfScheduleSignal,SendServerOutOfScheduleCommand);
         injector.mapClass(ClientusIsoView,ClientusIsoView);
