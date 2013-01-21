@@ -11,6 +11,9 @@ package ru.fcl.sdd.gui.main.north
     import ru.fcl.sdd.money.IMoney;
     import ru.fcl.sdd.userdata.capacity.CapacityUpdateSignal;
     import ru.fcl.sdd.userdata.capacity.ICapacity;
+    import ru.fcl.sdd.userdata.experience.IExperience;
+    import ru.fcl.sdd.userdata.reputation.IReputation;
+    import ru.fcl.sdd.userdata.reputation.UpdateReputationSignal;
     
     public class NorthPanelMediator extends Mediator
     {
@@ -26,12 +29,24 @@ package ru.fcl.sdd.gui.main.north
         public var capacityUpdate:CapacityUpdateSignal;
         [Inject]
         public var capacity:ICapacity;
+        [Inject] 
+        public var reputationUpdate:UpdateReputationSignal;
+        [Inject]
+        public var reputationMdl:IReputation;
+        [Inject] 
+        public var epxUpdate:UpdateReputationSignal;
+        [Inject]
+        public var expMdl:IExperience;
+        
+        
         
         
         override public function onRegister():void
         {
             gameMoneyUpdate.add(setGameMoney);
             capacityUpdate.add(setCapacity);
+            epxUpdate.add(setExperience);
+            reputationUpdate.add(setReputation);
             
             setGameMoney();
             setCapacity();
@@ -73,15 +88,19 @@ package ru.fcl.sdd.gui.main.north
         
         private function setExperience():void
         {
-            view.experience = 9;
-          
-            view.experienceBar.currValue = 45;
+            
+            view.experience = expMdl.levelNumer;
+            
+            var exp:int = expMdl.count;
+            var nextLvExp:int = expMdl.nextLevel;            
+            var percent:Number = exp / nextLvExp * 100;         
+            view.experienceBar.currValue = percent;
         }
         
         private function setReputation():void
         {
-            var reputation:Number=99;
-            var minReputation:Number=100;
+            var reputation:Number = reputationMdl.countValue;
+            var minReputation:Number = reputationMdl.min_rep;
             var percent:Number;
             
             view.reputation = reputation;

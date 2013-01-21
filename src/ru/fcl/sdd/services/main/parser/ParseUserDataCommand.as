@@ -41,6 +41,15 @@ public class ParseUserDataCommand extends Command
         trace( "userObject.response.capacity : " + userObject.response.capacity ); 
         var capacity:int = userObject.response.capacity;
         commandMap.execute(ParseCapasityCommand, capacity);
+        
+        var reputation:Object = {reputation:userObject.response.reputation, minReputation:userObject.response.min_rep};
+        commandMap.execute(ParseReputationCommand, reputation);
+        
+        var exp:Object = { exp:   userObject.response.experience,
+                           nextLv:userObject.response.nextlevel,
+                           levelNuber:userObject.response.levelnumber};
+                           
+         commandMap.execute(ParseExperienceCommand,exp);
        
         
         

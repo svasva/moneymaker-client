@@ -9,9 +9,10 @@ package ru.fcl.sdd.userdata.reputation
     public class BuildReputationCommand extends SignalCommand 
     {
         
-        public function BuildReputationCommand() 
+        override public function execute():void
         {
-            
+            injector.mapSingleton(UpdateReputationSignal);
+            injector.mapSingletonOf(IReputation, Reputation);
         }
         
     }

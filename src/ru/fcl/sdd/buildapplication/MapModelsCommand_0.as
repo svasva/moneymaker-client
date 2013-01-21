@@ -6,8 +6,11 @@
 package ru.fcl.sdd.buildapplication
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.rsl.BuildRslCommand;
 import ru.fcl.sdd.services.shared.SharedGameDataService;
 import ru.fcl.sdd.userdata.capacity.BuildCapacityCommand;
+import ru.fcl.sdd.userdata.experience.BuildExperienceCommand;
+import ru.fcl.sdd.userdata.reputation.BuildReputationCommand;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.PlatformModel;
@@ -31,6 +34,8 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(ItemCatalog);
         commandMap.execute(BuildMoneyCommand);
         commandMap.execute(BuildCapacityCommand);
+        commandMap.execute(BuildReputationCommand);
+        commandMap.execute(BuildExperienceCommand);
     }
 }
 }
