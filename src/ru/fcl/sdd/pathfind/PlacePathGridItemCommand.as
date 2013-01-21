@@ -8,7 +8,7 @@ package ru.fcl.sdd.pathfind
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.IsoConfig;
-import ru.fcl.sdd.item.ItemIsoView;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 
 public class PlacePathGridItemCommand extends SignalCommand
 {

@@ -3,7 +3,7 @@
  * Date: 04.12.12
  * Time: 16:01
  */
-package ru.fcl.sdd.item
+package ru.fcl.sdd.item.iso
 {
 import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;

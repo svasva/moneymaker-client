@@ -3,8 +3,10 @@
  * Date: 11.12.12
  * Time: 11:23
  */
-package ru.fcl.sdd.item
+package ru.fcl.sdd.item.iso
 {
+import ru.fcl.sdd.item.*;
+
 import as3isolib.core.ClassFactory;
 import as3isolib.display.renderers.DefaultShadowRenderer;
 import as3isolib.geom.Pt;
