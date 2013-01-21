@@ -7,6 +7,7 @@ package ru.fcl.sdd.item
 {
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.item.iso.AboutIsoItemSignal;
 
 import ru.fcl.sdd.item.iso.PlaceMovedItemCommand;
 

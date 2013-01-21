@@ -27,6 +27,7 @@ public class InfoLayerViewMediator extends Mediator
     public var mainIsoView:MainIsoView;
     [Inject]
     public var homusMouseOverSignal:HomusMouseOverSignal;
+    [Inject]
     public var homusMouseOutSignal:HomusMouseOutSignal;
 
     private var clientusView:ClientusIsoView;
