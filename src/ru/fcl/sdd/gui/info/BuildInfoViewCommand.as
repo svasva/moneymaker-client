@@ -7,12 +7,15 @@ package ru.fcl.sdd.gui.info
 {
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.gui.info.experience.ExperienceIconView;
+
 public class BuildInfoViewCommand extends SignalCommand
 {
     override public function execute():void
     {
         injector.mapSingleton(InfoLayerView);
         mediatorMap.mapView(InfoLayerView,InfoLayerViewMediator);
+        injector.mapClass(ExperienceIconView,ExperienceIconView);
     }
 }
 }

@@ -56,8 +56,8 @@ public class ClientusIsoViewMediator extends Mediator
 
     [Inject]
     public var operationSuccessSignal:OperationSuccessSignal;
-    [Inject]
-    public var operationFailedSignal:OperationFailedSignal;
+//    [Inject]
+//    public var operationFailedSignal:OperationFailedSignal;
 
 
     private var _path:Array;
