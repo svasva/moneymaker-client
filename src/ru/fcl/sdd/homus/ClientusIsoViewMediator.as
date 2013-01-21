@@ -26,7 +26,7 @@ import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
-import ru.fcl.sdd.item.ItemIsoView;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 import ru.fcl.sdd.location.floors.Floor1Scene;
 import ru.fcl.sdd.pathfind.AStar;
 import ru.fcl.sdd.pathfind.HomusPathGrid;

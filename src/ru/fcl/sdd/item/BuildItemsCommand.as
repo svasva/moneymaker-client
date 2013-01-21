@@ -8,6 +8,8 @@ package ru.fcl.sdd.item
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 
+import ru.fcl.sdd.item.iso.PlaceMovedItemCommand;
+
 public class BuildItemsCommand extends SignalCommand
 {
     override public function execute():void

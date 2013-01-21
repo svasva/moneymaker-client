@@ -9,7 +9,7 @@ import flash.ui.Mouse;
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.item.ItemIsoView;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 
 public class OutBuyItemCommand extends SignalCommand
 {

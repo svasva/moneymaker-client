@@ -11,8 +11,8 @@ import org.osflash.signals.ISignal;
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.item.ItemIsoView;
-import ru.fcl.sdd.item.PlaceItemCommand;
+import ru.fcl.sdd.item.iso.ItemIsoView;
+import ru.fcl.sdd.item.iso.PlaceItemCommand;
 import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.pathfind.PlacePathGridItemCommand;
 

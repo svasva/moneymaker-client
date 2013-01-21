@@ -9,9 +9,9 @@ import flash.ui.Mouse;
 
 import org.robotlegs.mvcs.SignalCommand;
 
-import ru.fcl.sdd.item.ItemIsoView;
-import ru.fcl.sdd.item.ItemIsoViewMoveMediator;
-import ru.fcl.sdd.item.PlaceItemCommand;
+import ru.fcl.sdd.item.iso.ItemIsoView;
+import ru.fcl.sdd.item.iso.ItemIsoViewMoveMediator;
+import ru.fcl.sdd.item.iso.PlaceItemCommand;
 import ru.fcl.sdd.states.iso.EnterIsoViewCommand;
 
 public class EnterBuyItemCommand extends SignalCommand

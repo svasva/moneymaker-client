@@ -3,11 +3,12 @@
  * Date: 12.12.12
  * Time: 17:06
  */
-package ru.fcl.sdd.item
+package ru.fcl.sdd.item.iso
 {
 import org.robotlegs.mvcs.SignalCommand;
 
 import ru.fcl.sdd.config.IsoConfig;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 
 import ru.fcl.sdd.location.room.Room;
 

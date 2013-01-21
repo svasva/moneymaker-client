@@ -28,8 +28,6 @@ public class IncomingClientusListen extends SignalCommand
         clientusIsoView.reputation = response.response.reputation;
         var temp:Array = response.response.operations_mapped;
 
-
-
         //fixme:КОСТЫЛЬ! С сервера приходят данные через строку: нечетные - id операции, четные - деньги на нее.
         for (var i:int = 0; i < temp.length; i+=2)
         {
