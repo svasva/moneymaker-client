@@ -104,6 +104,7 @@ public class Item extends ItemShopView
     public function set room_id(value:String):void
     {
         _room_id = value;
+       
     }
 
     public function get catalog_id():String

@@ -32,6 +32,7 @@ public class ItemShopView extends JPanel
 {
     [Inject]
     public var rsl:GuiRsl;
+    
     private var _bg:DisplayObject;
     private var _iconUrl:String;
     private var _loadPane:JLoadPane;

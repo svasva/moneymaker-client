@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.parser
 {
 import org.robotlegs.mvcs.Command;
+import ru.fcl.sdd.tools.PrintJSON;
 
 import ru.fcl.sdd.user.UserDataModel;
 
@@ -21,6 +22,8 @@ public class ParseUserDataCommand extends Command
     {
         userData.bank_name = userObject.response.bank_name;
 
+        PrintJSON.deepTrace(userObject);
+        
         var rooms:Array = userObject.response.rooms;
         if(!rooms)
         {
@@ -38,7 +41,7 @@ public class ParseUserDataCommand extends Command
         var money:Object = {gameMoney:userObject.response.coins,realMoney:userObject.response.money};
         commandMap.execute(ParseMoneyCommand, money);
         
-        trace( "userObject.response.capacity : " + userObject.response.capacity ); 
+       
         var capacity:int = userObject.response.capacity;
         commandMap.execute(ParseCapasityCommand, capacity);
         
