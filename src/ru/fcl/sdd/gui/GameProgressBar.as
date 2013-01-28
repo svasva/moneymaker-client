@@ -32,7 +32,6 @@ package ru.fcl.sdd.gui
         public function set currValue(value:int):void
         {
             _currValue = value;
-            trace("currValue",_currValue);
             updateBar();
         }
         

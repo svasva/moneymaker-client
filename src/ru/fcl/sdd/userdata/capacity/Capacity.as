@@ -26,7 +26,7 @@ package ru.fcl.sdd.userdata.capacity
         public function set capacity(value:Number):void 
         {
             _capacity = value;
-            trace("CapacityUpdateSignal");
+        
             updater.dispatch();
         }
         

@@ -5,7 +5,11 @@
  */
 package ru.fcl.sdd.gui.ingame.shop
 {
+import de.polygonal.ds.HashMap;
+import flash.display.SimpleButton;
 import flash.events.MouseEvent;
+import ru.fcl.sdd.item.ShopItemRoom;
+import ru.fcl.sdd.item.ShopModel;
 
 import org.osflash.signals.ISignal;
 
@@ -29,7 +33,21 @@ public class ShopViewMediator extends Mediator
     public var itemCatalog:ItemCatalog;
     [Inject(name="buy_item")]
     public var buyItem:ISignal;
-    private var _collectChunker:CollectChunker;
+     [Inject]
+    public var clickedSignal:ShopItemRoomSignal;
+     [Inject]
+     public var shopMdl:ShopModel;
+     
+     [Inject]
+     public var updatedCategory:ShopModelCategoryUpdatedSignal;
+     [Inject]
+     public var updatedTabe:ShopModelTabUpdatedSignal;    
+    
+     private var _collectChunker:CollectChunker;
+     
+     private var currentSelectedTabBtn:SimpleButton;
+     
+     private var btnVec:Vector.<SimpleButton> = new Vector.<SimpleButton>();
 
     override public function onRegister():void
     {
@@ -37,11 +55,124 @@ public class ShopViewMediator extends Mediator
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
         shopView.addEventListener(ItemEvent.ITEM_CLICKED, shopItemClickHandler);
-
-        _collectChunker = new CollectChunker(itemCatalog, 6);
+        shopView.addEventListener(ItemEvent.ITEM_OVERED, shopView_itemOvered);
+        shopView.addEventListener(ItemEvent.ITEM_MOUSE_OUT, shopView_itemMouseOut);
+        
+        shopView.roomsShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
+        shopView.storeShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
+        shopView.moneyShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
+        shopView.specialShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
+        
+         clickedSignal.add(itemClicked);
+          var tempShopRoomItm:HashMap = shopMdl.get("main") as HashMap;
+          var tempShopRooms:ShopItemRoom = tempShopRoomItm.get("50fd35a25dae91f8b1000001") as ShopItemRoom;
+        
+        _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
         checkItemsBtnVisible();
+   
+        updatedTabe.add(setTab);
+        updatedCategory.add(setCategory);
+        
+        btnVec.push(shopView.roomsShopBtn);
+        btnVec.push(shopView.storeShopBtn);
+        btnVec.push(shopView.specialShopBtn);
+        btnVec.push(shopView.moneyShopBtn);
+        currentSelectedTabBtn = shopView.roomsShopBtn;
+        
+        setSelectetTab(ShopModel.SHOP_TAB_MAIN);
+      
+    }
+    
+    
+    
+   
+    
+    private function setTab():void 
+    {
+        setSelectetTab(shopMdl.selectedTab);
+    }
+    
+    private function tabBtnClick(e:MouseEvent):void 
+    {
+        currentSelectedTabBtn.x = e.target.x;
+        currentSelectedTabBtn.y = e.target.y;
+        currentSelectedTabBtn.visible = true;
+        
+        currentSelectedTabBtn = e.target as SimpleButton;
+        currentSelectedTabBtn.visible = false;
+        shopMdl.selectedTab = e.target.name as String;
+        setSelectetTab(e.target.name);
+    }
+    private function setSelectetTab(tabNam:String):void
+    {
+          shopView.clearIcon();
+         
+        if (tabNam == ShopModel.SHOP_TAB_MAIN)
+        {          
+           shopView.iconSprite.addChild(shopView.iconVec[0])
+           btnVec[0].visible = false;
+           addOperationRoom();
+        }
+        else if (tabNam == ShopModel.SHOP_TAB_WAREHOUSE)
+        {
+            shopView.iconSprite.addChild(shopView.iconVec[1])
+            btnVec[1].visible = false;
+            addWarehouseShopItems();
+        }
+        else if (tabNam == ShopModel.SHOP_TAB_BONUS)
+        {
+             shopView.iconSprite.addChild(shopView.iconVec[2])
+              btnVec[2].visible = false;
+        }
+         else if (tabNam == ShopModel.SHOP_TAB_PREMIUM)
+        {
+             shopView.iconSprite.addChild(shopView.iconVec[3])
+              btnVec[3].visible = false;
+        }
+    }
+    private function addOperationRoom():void
+    {
+         //shopMdl.setCategory(0)
+        _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6);
+        _collectChunker.reset();
+        shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
+    }
+    
+    
+    private function addWarehouseShopItems():void
+    {
+        _collectChunker = new CollectChunker(shopMdl.wareHouse, 6);
+        _collectChunker.reset();
+        shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
+    }
+    
+    private function setCategory():void 
+    {
+          _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6) 
+          _collectChunker.reset();
+          shopView.items = _collectChunker.next();
+          checkItemsBtnVisible();
+    }
+    
+    private function itemClicked(id:String):void 
+    {
+       
+        var tempShopRoomItm:HashMap = shopMdl.get("main") as HashMap;
+        
+        var tempShopRooms:ShopItemRoom = tempShopRoomItm.get(id) as ShopItemRoom;
+      
+        if (tempShopRooms)
+        {
+            _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6) 
+            _collectChunker.reset();
+            shopView.items = _collectChunker.next();
+            checkItemsBtnVisible();
+        }
+        
     }
 
     override public function onRemove():void
@@ -78,7 +209,17 @@ public class ShopViewMediator extends Mediator
 
     private function shopItemClickHandler(event:ItemEvent):void
     {
-        buyItem.dispatch(event.item);
+       // buyItem.dispatch(event.item);
+       shopMdl.selectedShopItem = event.item;
+       
+    }
+    private function shopView_itemOvered(e:ItemEvent):void 
+    {
+        shopMdl.overedShopItem = e.item;
+    }
+    private function shopView_itemMouseOut(e:ItemEvent):void 
+    {
+         shopMdl.overedShopItem = null;
     }
 }
 }

@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.parser
 {
 import org.robotlegs.mvcs.Command;
+import ru.fcl.sdd.tools.PrintJSON;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.IsoConfig;
@@ -31,6 +32,7 @@ public class ParseItemsCatalogCommand extends Command
     {
         logger.log(this, "parse item list...");
         var itemsArray:Array = itemListObject.response;
+       //  PrintJSON.deepTrace(itemListObject.response);
         itemsArray.forEach(parseItem);
         logger.log(this, "item list parsed.");
     }
@@ -45,6 +47,9 @@ public class ParseItemsCatalogCommand extends Command
         item.key = object._id;
         item.item_name = object.name;
         item.skinUrl = contentUrl;
+        item.requirementLevel = object.requirements.level; 
+        item.description = object.desc; 
+        
         if (object.operations)
         {
             for (var i:int = 0; i < object.operations.length; i++)
@@ -56,8 +61,9 @@ public class ParseItemsCatalogCommand extends Command
             }
         }
         item.gameMoneyPrice = object.coins_cost as int;
+        item.money_cost = object.money_cost;
         item.iconUrl = flashVars.content_url + object.icon_url;
-        item.isoWidth = object.size_x * IsoConfig.CELL_SIZE;
+        item.isoWidth =  object.size_x * IsoConfig.CELL_SIZE;
         item.isoLength = object.size_y * IsoConfig.CELL_SIZE;
         item.isoHeight = object.height * IsoConfig.CELL_SIZE;
         if (object.service_speed)

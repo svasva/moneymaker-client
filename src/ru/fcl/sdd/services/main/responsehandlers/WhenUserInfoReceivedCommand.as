@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.responsehandlers
 {
     import org.robotlegs.mvcs.Command;
+    import ru.fcl.sdd.gui.ingame.shop.GetShopObjectCommand;
     import ru.fcl.sdd.tools.PrintJSON;
     
     import ru.fcl.sdd.buildapplication.init.InitCompeteCommand;
@@ -32,13 +33,14 @@ package ru.fcl.sdd.services.main.responsehandlers
         {
            
            
-           PrintJSON.o(userObject.response);
+          
          
             commandMap.execute(ParseUserDataCommand, userObject);
             
             logger.log(this, "socket server authorization completed.");
             
-            commandMap.execute(InitCompeteCommand);
+            commandMap.execute(GetShopObjectCommand);
+            //commandMap.execute(InitCompeteCommand);
         }
         
         private function traceObject(o:Object):void

@@ -6,6 +6,7 @@
 package ru.fcl.sdd.gui.main
 {
 import ru.fcl.sdd.gui.*;
+import ru.fcl.sdd.gui.main.popup.BuyShopItemDialog;
 import ru.fcl.sdd.services.shared.FriendBarVisModel;
 import ru.fcl.sdd.services.shared.FriendBarVisModelUpdateCommand;
 import ru.fcl.sdd.services.shared.FriendBarVisModelUpdatedSignal;
@@ -47,6 +48,8 @@ public class BuildMainGUICommand extends SignalCommand
         injector.mapSingleton(FriendBarVisModel);      
         mediatorMap.mapView(MainInterfaceView, MainInterfaceMediator);
         injector.mapSingleton(MainInterfaceView);        
+        
+      
         
         var mainInterfaceView:MainInterfaceView = injector.getInstance(MainInterfaceView);
       

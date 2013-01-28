@@ -137,7 +137,7 @@ public class ClientusIsoViewMediator extends Mediator
     {
         if (!isStart)
         {
-            homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
+             homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
             _path.shift();
         }
         if ((_path[1]) && (!homusPathGrid.getNode(_path[1].x, _path[1].y).walkable))

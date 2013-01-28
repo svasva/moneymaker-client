@@ -16,6 +16,11 @@ package ru.fcl.sdd.gui.main
     import org.aswing.Icon;
     import org.aswing.JToggleButton;
     import org.aswing.plaf.DefaultEmptyDecoraterResource;
+    import ru.fcl.sdd.config.FlashVarsModel;
+    import ru.fcl.sdd.gui.main.popup.BuyShopItemDialog;
+    import ru.fcl.sdd.gui.main.popup.CantBuyPopUpDialog;
+    import ru.fcl.sdd.gui.main.tooltip.ShopToolTip;
+    import ru.fcl.sdd.item.ShopModel;
     import ru.fcl.sdd.rsl.GuiRsl;
      
     public class MainInterfaceView extends Sprite
@@ -24,7 +29,16 @@ package ru.fcl.sdd.gui.main
         [Inject]
         public var rsl:GuiRsl;
         
+         [Inject]
+        public var flashVars:FlashVarsModel;
+        
         private var _friendBarVisBtn:JToggleButton;
+      
+        private var _popUpDialog:BuyShopItemDialog;
+        
+        private var _cantBuyDialog:CantBuyPopUpDialog;
+        
+        private var _shopItemToolTip:ShopToolTip;
          
         [PostConstruct]
         public function init():void
@@ -43,7 +57,18 @@ package ru.fcl.sdd.gui.main
             _friendBarVisBtn.setRollOverSelectedIcon( new AssetIcon( getAsset("ButtonShowOverArt")));
             _friendBarVisBtn.setDisabledIcon( new AssetIcon( getAsset("ButtonHideDisableArt")));
             _friendBarVisBtn.setDisabledSelectedIcon( new AssetIcon( getAsset("ButtonShowNoActiveArt")));
-            _friendBarVisBtn.buttonMode = true
+            _friendBarVisBtn.buttonMode = true;
+            
+          
+            _popUpDialog = new BuyShopItemDialog(rsl,flashVars.app_width,flashVars.app_height);            
+            addChild(_popUpDialog);
+            
+            _cantBuyDialog = new CantBuyPopUpDialog(rsl, flashVars.app_width, flashVars.app_height);
+            addChild(_cantBuyDialog);
+            
+            _shopItemToolTip = new ShopToolTip(rsl, flashVars.app_width, flashVars.app_height);
+            addChild(_shopItemToolTip);
+            
             
         }
         
@@ -56,9 +81,45 @@ package ru.fcl.sdd.gui.main
         {
             _friendBarVisBtn = value;
         }
-         private function getAsset(value:String):DisplayObject
+        
+        public function get popUpDialog():BuyShopItemDialog 
+        {
+            return _popUpDialog;
+        }
+        
+        public function set popUpDialog(value:BuyShopItemDialog):void 
+        {
+            _popUpDialog = value;
+        }
+        
+        
+        
+        public function get cantBuyDialog():CantBuyPopUpDialog 
+        {
+            return _cantBuyDialog;
+        }
+        
+        public function set cantBuyDialog(value:CantBuyPopUpDialog):void 
+        {
+            _cantBuyDialog = value;
+        }
+        
+        public function get shopItemToolTip():ShopToolTip 
+        {
+            return _shopItemToolTip;
+        }
+        
+        public function set shopItemToolTip(value:ShopToolTip):void 
+        {
+            _shopItemToolTip = value;
+        }
+        private function getAsset(value:String):DisplayObject
         {
             return rsl.getAsset("gui.FriendBar."+value);
+        }
+        private function getAsset1(value:String):DisplayObject
+        {
+            return rsl.getAsset("gui.ingame.shop."+value);
         }
 
       

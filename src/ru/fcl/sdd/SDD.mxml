@@ -4,6 +4,7 @@
                frameRate="24" xmlns:containers="mx.containers.*" xmlns:core="mx.core.*"
                preloader="ru.fcl.sdd.preloader.Preloader" addedToStage="addedToStage()" maxWidth="830" maxHeight="760">
     <fx:Script><![CDATA[
+        import flash.events.Event;
         import flash.Lib;
 
         import org.aswing.AsWingManager;

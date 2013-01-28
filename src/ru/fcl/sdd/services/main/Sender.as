@@ -21,7 +21,7 @@ public class Sender implements ISender
     {
         var key:String = callHashMap.addResponseHandler(responseHandleCommand);
         value.requestId = key;
-        serverProxy.sendData(JSON.encode(value));
+        serverProxy.sendData(com.adobe.serialization.json.JSON.encode(value));
     }
 
 }

@@ -21,7 +21,7 @@ public class StatisticNumberTextField extends TextField
         selectable = false;
 //        maxChars = 7;
         multiline=false;
-		autoSize = TextFieldAutoSize.RIGHT;
+		//autoSize = TextFieldAutoSize.RIGHT;
 
         //***effects*****
         filters = [new GlowFilter(0x733923,1,4,4,5)];

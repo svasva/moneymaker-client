@@ -19,7 +19,7 @@ public class ItemShopViewMediator  extends Mediator
 
     override public function onRemove():void
     {
-
+        
     }
 }
 }

@@ -12,6 +12,8 @@ import ru.fcl.sdd.item.Item;
 public class ItemEvent extends Event
 {
     public static const ITEM_CLICKED:String = "item_clicked";
+    public static const ITEM_OVERED:String = "item_overed";
+    public static const ITEM_MOUSE_OUT:String = "item_mouse_out";
     public var item:Item;
 
     public function ItemEvent(type:String,item:Item,bubbles:Boolean = false,cancelable:Boolean = false):void

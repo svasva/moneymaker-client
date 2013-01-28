@@ -5,6 +5,7 @@
  */
 package ru.fcl.sdd.buildapplication.init
 {
+import ru.fcl.sdd.buildapplication.LoadRSLCommand_3;
 import ru.fcl.sdd.services.main.*;
 
 import org.robotlegs.mvcs.SignalCommand;

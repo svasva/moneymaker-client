@@ -3,7 +3,7 @@
  * Date: 20.11.12
  * Time: 11:45
  */
-package ru.fcl.sdd.buildapplication.init
+package ru.fcl.sdd.buildapplication
 {
 import org.robotlegs.mvcs.SignalCommand;
 

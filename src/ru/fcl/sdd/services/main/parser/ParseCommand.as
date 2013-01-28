@@ -30,7 +30,7 @@ public class ParseCommand extends SignalCommand
     {
         if (response.substr(0, 1) == "{")
         {
-            var decodedObject:Object = JSON.decode(response);
+            var decodedObject:Object = com.adobe.serialization.json.JSON.decode(response);
             logger.log(this, "decode value: " + decodedObject);
 
             if (decodedObject.response)

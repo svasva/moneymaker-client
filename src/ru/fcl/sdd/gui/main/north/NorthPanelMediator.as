@@ -38,9 +38,6 @@ package ru.fcl.sdd.gui.main.north
         [Inject]
         public var expMdl:IExperience;
         
-        
-        
-        
         override public function onRegister():void
         {
             gameMoneyUpdate.add(setGameMoney);
@@ -60,12 +57,10 @@ package ru.fcl.sdd.gui.main.north
             view.reputationBtn.addEventListener(MouseEvent.CLICK, reputation_clickHandler);
         }
         
-        private function setCapacity():void 
+        private function setCapacity():void
         {
-         
-              view.gameMoneyBar.currValue = gameMoneyModel.count /capacity.capacity  * 100;    
-             
-             trace(view.gameMoneyBar.currValue);
+            view.gameMoneyBar.currValue = gameMoneyModel.count /capacity.capacity  * 100;             
+        
         }
         
         override public function onRemove():void
@@ -77,7 +72,7 @@ package ru.fcl.sdd.gui.main.north
         }
         
         private function setGameMoney():void
-        {  
+        {
             view.gameMoney = gameMoneyModel.count;
         }
         
@@ -111,18 +106,12 @@ package ru.fcl.sdd.gui.main.north
             else
             {
                 if (percent >= 75 && percent < 100)
-                     view.reputationLevel = 2;
+                    view.reputationLevel = 2;
                 else if (percent >= 50 && percent < 75)
                     view.reputationLevel = 1;
                 else if(percent<50)
                     view.reputationLevel = 0;
             }
-            
-           
-            
-            
-            
-           
         }
         
         private function gameMoney_clickHandler(event:MouseEvent):void
