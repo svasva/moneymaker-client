@@ -20,7 +20,7 @@ package ru.fcl.sdd.services.main.parser
         override public function execute():void 
         {
             capMdl.capacity = capacityRaw as Number;
-            trace( "capMdl.capacity : " + capMdl.capacity );
+           
             
         }
         

@@ -1,6 +1,8 @@
 package ru.fcl.sdd.item 
 {
     import de.polygonal.ds.HashMap;
+    import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
+    import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.ShopModelTabUpdatedSignal;
 	/**
@@ -24,10 +26,19 @@ package ru.fcl.sdd.item
        
        [Inject]
        public var updateCategory:ShopModelCategoryUpdatedSignal;
-        
+       
+       [Inject]
+       public var  selectedItemUpdated:SelectedShopItemUpdatedSignal;
+       
+       [Inject]
+       public var overedItemUpdated:OveredShopItemUpdatedSignal;
+       
        private var m_selectedTab:String = ShopModel.SHOP_TAB_MAIN;
        private var m_selectedCategory:String;
        private var _wareHouse:HashMap = new HashMap();
+       
+       private var _selectedShopItem:Item;
+       private var _overedShopItem:Item;
        
        public function getWareHouse():HashMap
        {
@@ -71,7 +82,7 @@ package ru.fcl.sdd.item
        public function set selectedCategory(value:String):void 
        {
            m_selectedCategory = value;
-         //  updateCategory.dispatch();
+        
        }
        
        public function get curentSelectedShopItemRoom():ShopItemRoom 
@@ -87,6 +98,29 @@ package ru.fcl.sdd.item
        public function set wareHouse(value:HashMap):void 
        {
            _wareHouse = value;
+       }
+       
+       public function get selectedShopItem():Item 
+       {
+           return _selectedShopItem;
+       }
+       
+       public function set selectedShopItem(value:Item):void 
+       {
+           _selectedShopItem = value;
+           selectedItemUpdated.dispatch();
+           
+       }
+       
+       public function get overedShopItem():Item 
+       {
+           return _overedShopItem;
+       }
+       
+       public function set overedShopItem(value:Item):void 
+       {
+           _overedShopItem = value;
+           overedItemUpdated.dispatch();
        }
         
     }

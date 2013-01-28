@@ -20,7 +20,7 @@ public class GameMoney implements IMoney
     {
         if (count != value)
         {
-           trace("GameMoney");
+         
             _count = value;
             updated.dispatch();
         }

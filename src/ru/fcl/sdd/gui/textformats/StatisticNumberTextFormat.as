@@ -15,7 +15,7 @@ public class StatisticNumberTextFormat extends TextFormat
 
     public function StatisticNumberTextFormat():void
     {
-        align = TextFormatAlign.RIGHT;
+        align = TextFormatAlign.CENTER;
         color = 0xe2e8b9;
         font = "a_AvanteLdb";
         size = 16;

@@ -21,6 +21,7 @@ package ru.fcl.sdd.services.main.parser
             expMdl.count = expObj.exp;
             expMdl.levelNumer = expObj.levelNuber;
             expMdl.nextLevel = expObj.nextLv;
+          
         }
     }
 }

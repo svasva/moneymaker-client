@@ -6,6 +6,8 @@
 package ru.fcl.sdd.buildapplication
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
+import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelTabUpdatedSignal;
 import ru.fcl.sdd.item.ShopModel;
@@ -32,6 +34,9 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(UserDataModel);
         injector.mapSingleton(UserRoomList);
         injector.mapSingleton(RoomCatalog);
+        
+        injector.mapSingleton(SelectedShopItemUpdatedSignal);
+        injector.mapSingleton(OveredShopItemUpdatedSignal);
         injector.mapSingleton(ShopModelCategoryUpdatedSignal);
         injector.mapSingleton(ShopModelTabUpdatedSignal);
         injector.mapSingleton(ShopModel);

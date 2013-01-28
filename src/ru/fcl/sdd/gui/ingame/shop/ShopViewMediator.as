@@ -55,6 +55,9 @@ public class ShopViewMediator extends Mediator
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
         shopView.addEventListener(ItemEvent.ITEM_CLICKED, shopItemClickHandler);
+        shopView.addEventListener(ItemEvent.ITEM_OVERED, shopView_itemOvered);
+        shopView.addEventListener(ItemEvent.ITEM_MOUSE_OUT, shopView_itemMouseOut);
+        
         shopView.roomsShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
         shopView.storeShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
         shopView.moneyShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
@@ -79,7 +82,12 @@ public class ShopViewMediator extends Mediator
         currentSelectedTabBtn = shopView.roomsShopBtn;
         
         setSelectetTab(ShopModel.SHOP_TAB_MAIN);
+      
     }
+    
+    
+    
+   
     
     private function setTab():void 
     {
@@ -201,7 +209,17 @@ public class ShopViewMediator extends Mediator
 
     private function shopItemClickHandler(event:ItemEvent):void
     {
-        buyItem.dispatch(event.item);
+       // buyItem.dispatch(event.item);
+       shopMdl.selectedShopItem = event.item;
+       
+    }
+    private function shopView_itemOvered(e:ItemEvent):void 
+    {
+        shopMdl.overedShopItem = e.item;
+    }
+    private function shopView_itemMouseOut(e:ItemEvent):void 
+    {
+         shopMdl.overedShopItem = null;
     }
 }
 }

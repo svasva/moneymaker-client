@@ -137,12 +137,19 @@ public class ShopView extends JPanel
         {
             var item:Item = value[i] as Item;
             item.addEventListener(MouseEvent.CLICK, itemClickHandler);
+            item.addEventListener(MouseEvent.MOUSE_OVER, itemOverHnd);
+            item.addEventListener(MouseEvent.MOUSE_OUT, item_mouseOut);
             item.buttonMode = true;
             item.useHandCursor = true;
+            item.mouseChildren = false;
             _itemsJPanel.append(value[i] as Item);
         }
         _itemsJPanel.validate();
     }
+    
+  
+    
+  
 
     private function getAsset(value:String):DisplayObject
     {
@@ -232,6 +239,14 @@ public class ShopView extends JPanel
     private function itemClickHandler(event:MouseEvent):void
     {
         this.dispatchEvent(new ItemEvent(ItemEvent.ITEM_CLICKED,event.currentTarget as Item));
+    }
+    private function itemOverHnd(e:MouseEvent):void 
+    {
+         this.dispatchEvent(new ItemEvent(ItemEvent.ITEM_OVERED,e.currentTarget as Item));
+    }
+      private function item_mouseOut(e:MouseEvent):void 
+    {
+          this.dispatchEvent(new ItemEvent(ItemEvent.ITEM_MOUSE_OUT,e.currentTarget as Item));
     }
 }
 }

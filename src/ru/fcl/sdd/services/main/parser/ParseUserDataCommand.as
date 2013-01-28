@@ -22,7 +22,7 @@ public class ParseUserDataCommand extends Command
     {
         userData.bank_name = userObject.response.bank_name;
 
-        PrintJSON.deepTrace(userObject);
+       
         
         var rooms:Array = userObject.response.rooms;
         if(!rooms)

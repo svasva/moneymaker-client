@@ -9,6 +9,9 @@ package ru.fcl.sdd.gui.main.north
     import flash.display.SimpleButton;
     import flash.display.Sprite;
     import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
+    import flash.text.TextFormatAlign;
+    import ru.fcl.sdd.gui.textformats.StatisticNumberTextFormatLeft;
     
     import org.aswing.JLabel;
     
@@ -77,32 +80,49 @@ package ru.fcl.sdd.gui.main.north
             addChild(_levelIcon);
             
             _gameMoneyTextField = new StatisticNumberTextField();
-            _gameMoneyTextField.x=126;
+         
+                               
+           
+            
+            
+            _gameMoneyTextField.x=90;
             _gameMoneyTextField.y=15;
             _gameMoneyTextField.textColor = 0x93CDA8;
             this.addChild(_gameMoneyTextField);
+            _gameMoneyTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
+            _gameMoneyTextField.setTextFormat(new StatisticNumberTextFormatLeft());
+           // _gameMoneyTextField.autoSize =  TextFieldAutoSize.CENTER;
+            _gameMoneyTextField.width = 30;
             
+               
             this.addChild(_bucksIcon);
             
             _realMoneyTextField = new StatisticNumberTextField();
-            _realMoneyTextField.x=288;
+            _realMoneyTextField.x=190;
             _realMoneyTextField.y=15;
             _realMoneyTextField.textColor = 0xFFFA66;
+            _realMoneyTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
+            _realMoneyTextField.setTextFormat(new StatisticNumberTextFormatLeft());
             this.addChild(_realMoneyTextField);
             
             _experienceTextField = new StatisticNumberTextField();
-            _experienceTextField.x=640;
+            _experienceTextField.x=550;
             _experienceTextField.y=15;
             _experienceTextField.textColor = 0x93CDA8;
-            _experienceTextField.autoSize = TextFieldAutoSize.CENTER;
+         
+            _experienceTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
+            _experienceTextField.setTextFormat(new StatisticNumberTextFormatLeft());
             
             this.addChild(_experienceTextField);
             
             _reputationTextField = new StatisticNumberTextField();
-            _reputationTextField.x=584;
+            _reputationTextField.x=400;
             _reputationTextField.y = 15;
+            _reputationTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
+            _reputationTextField.setTextFormat(new StatisticNumberTextFormatLeft());
             
-            this.addChild(_reputationTextField);
+            
+           // this.addChild(_reputationTextField);
             
             addChild(_smileLayerSp);
             _smileLayerSp.x = 509;

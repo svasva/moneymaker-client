@@ -46,9 +46,7 @@ package ru.fcl.sdd.gui.ingame.shop
         
         override public function execute():void 
         {
-            trace("ConstructShopViewFromModel");
-            
-        
+          
            var mainPanel:JPanel = new JPanel();
            
         /*   var iconY:Number =72;

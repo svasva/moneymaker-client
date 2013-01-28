@@ -23,6 +23,8 @@ public class Item extends ItemShopView
     private var _isoHeight:int;
     private var _operations:Array;
     private var _serviceSpeed:int;
+    private var _requirementLevel:int;
+    private var _description:String;
 
     public function get key():String
     {
@@ -42,6 +44,7 @@ public class Item extends ItemShopView
     public function set item_name(value:String):void
     {
         _item_name = value;
+        itemNameTf.text = _item_name;
     }
 
     public function get item_type():String
@@ -62,6 +65,14 @@ public class Item extends ItemShopView
     public function set money_cost(value:String):void
     {
         _money_cost = value;
+         
+        if (value == null)
+        {
+            _money_cost = "";
+            this.realMoneySp.visible = false;
+        }
+        else             
+            realMoneyPriceTextField.text = _money_cost;
     }
 
     public function get gameMoneyPrice():int
@@ -189,6 +200,37 @@ public class Item extends ItemShopView
     public function set serviceSpeed(value:int):void
     {
         _serviceSpeed = value;
+       
+    }
+    
+    public function get requirementLevel():int 
+    {
+        return _requirementLevel;
+    }
+    
+    public function set requirementLevel(value:int):void 
+    {
+        _requirementLevel = value;
+        if (_requirementLevel == 0)
+            blockedSp.visible = false;
+        else
+        {
+             this.levelNeeded.text = "Уровень " + _requirementLevel.toString();
+            realMoneySp.visible = false;
+            gameMoneyContainer.visible = false; 
+        }
+        
+      
+    }
+    
+    public function get description():String 
+    {
+        return _description;
+    }
+    
+    public function set description(value:String):void 
+    {
+        _description = value;
     }
 }
 }
