@@ -53,6 +53,7 @@ public class ItemShopView extends JPanel
     private var _blockedSp:Sprite;
     private var _levelNeeded:StatisticNumberTextField;
     private var _gameMoneyContainer:Sprite = new Sprite();
+   
     
 
 

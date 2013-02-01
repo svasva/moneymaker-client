@@ -25,6 +25,7 @@ public class Item extends ItemShopView
     private var _serviceSpeed:int;
     private var _requirementLevel:int;
     private var _description:String;
+    private var _currentUserLevel:int;
 
     public function get key():String
     {
@@ -231,6 +232,23 @@ public class Item extends ItemShopView
     public function set description(value:String):void 
     {
         _description = value;
+    }
+    
+    public function get currentUserLevel():int 
+    {
+        return _currentUserLevel;
+    }
+    
+    public function set currentUserLevel(value:int):void 
+    {
+        _currentUserLevel = value;
+        if (_currentUserLevel >= _requirementLevel)
+            blockedSp.visible = false;
+        else{
+             this.levelNeeded.text = "Уровень " + _requirementLevel.toString();
+            realMoneySp.visible = false;
+            gameMoneyContainer.visible = false; 
+        }
     }
 }
 }

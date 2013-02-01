@@ -1,6 +1,7 @@
 package ru.fcl.sdd.item 
 {
     import de.polygonal.ds.HashMap;
+    import ru.fcl.sdd.gui.ingame.shop.ForPurshRoomIdUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
@@ -20,6 +21,14 @@ package ru.fcl.sdd.item
         private var tempHash:HashMap;
         private var tempVec:Vector.<Object>;
         private var _curentSelectedShopItemRoom:ShopItemRoom;
+        private var _mainSortedShopObj:HashMap;
+        private var _forPurshRoomId:String;
+        
+        private var _outputMainShop:HashMap = new HashMap();
+        private var _outputPremium:HashMap = new HashMap();
+        private var _outputBonus:HashMap = new HashMap();
+        private var _outputWarehouse:HashMap = new HashMap();
+         
         
        [Inject]
        public var updateTab:ShopModelTabUpdatedSignal;
@@ -33,12 +42,17 @@ package ru.fcl.sdd.item
        [Inject]
        public var overedItemUpdated:OveredShopItemUpdatedSignal;
        
+       [Inject]
+       public var forPurshRoomIdUpdated:ForPurshRoomIdUpdatedSignal;
+       
        private var m_selectedTab:String = ShopModel.SHOP_TAB_MAIN;
        private var m_selectedCategory:String;
        private var _wareHouse:HashMap = new HashMap();
        
        private var _selectedShopItem:Item;
        private var _overedShopItem:Item;
+       
+       
        
        public function getWareHouse():HashMap
        {
@@ -121,6 +135,57 @@ package ru.fcl.sdd.item
        {
            _overedShopItem = value;
            overedItemUpdated.dispatch();
+       }
+       
+       public function get outputMainShop():HashMap 
+       {
+           return _outputMainShop;
+       }
+       
+       public function set outputMainShop(value:HashMap):void 
+       {
+           _outputMainShop = value;
+       }
+       
+       public function get outputPremium():HashMap 
+       {
+           return _outputPremium;
+       }
+       
+       public function set outputPremium(value:HashMap):void 
+       {
+           _outputPremium = value;
+       }
+       
+       public function get outputBonus():HashMap 
+       {
+           return _outputBonus;
+       }
+       
+       public function set outputBonus(value:HashMap):void 
+       {
+           _outputBonus = value;
+       }
+       
+       public function get outputWarehouse():HashMap 
+       {
+           return _outputWarehouse;
+       }
+       
+       public function set outputWarehouse(value:HashMap):void 
+       {
+           _outputWarehouse = value;
+       }
+       
+       public function get forPurshRoomId():String 
+       {
+           return _forPurshRoomId;
+       }
+       
+       public function set forPurshRoomId(value:String):void 
+       {
+           _forPurshRoomId = value;
+           forPurshRoomIdUpdated.dispatch();
        }
         
     }

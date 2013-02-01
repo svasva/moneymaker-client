@@ -18,15 +18,23 @@ public class BuildShopCommand extends SignalCommand
 {
     [Inject]
     public var flashVars:FlashVarsModel;
+    
+      [Inject]
+      public var buyRoomSig:BuyRoomToServerCommandSignal;
 
     override public function execute():void
     {
        
        
+        
+        
+        signalCommandMap.mapSignal(buyRoomSig,BuyRoomToServerCommand)
+        
+        
         injector.mapSingleton(ShopItemRoomSignal);
         var buyItemSignal:ISignal = new AboutItemSignal();
         injector.mapValue(ISignal, buyItemSignal, "buy_item");
-    
+        
         signalCommandMap.mapSignal(buyItemSignal,SendServerBuyItemCommand);
 
         injector.mapSingleton(ShopView);

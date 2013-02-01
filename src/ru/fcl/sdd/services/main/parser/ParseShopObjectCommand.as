@@ -31,7 +31,7 @@ package ru.fcl.sdd.services.main.parser
         {
            //trace("ParseShopObjectCommand");
            
-           //PrintJSON.deepTrace(shopObj.response);
+           PrintJSON.deepTrace(shopObj.response);
            
            var mainShopHash:HashMap = new HashMap();
          //  var wareHouseHash:HashMap = new HashMap();
@@ -56,8 +56,10 @@ package ru.fcl.sdd.services.main.parser
                shopItemRoom.id = item._id;
                shopItemRoom.item_name = item.name;
                shopItemRoom.order =  int(item.order);
+            
                
-               mainShopHash.set( shopItemRoom.id,shopItemRoom);
+               mainShopHash.set( shopItemRoom.id, shopItemRoom);
+               shopMdl.outputMainShop.set( shopItemRoom.id, shopItemRoom);
                
                roomItemId = [];
                roomItemId = item.ref_items as Array;
@@ -72,16 +74,7 @@ package ru.fcl.sdd.services.main.parser
                     }                   
                }
            }
-         //  var tempItemCatalog:Vector.<Object> = itemCatalog.toVector();
-           
-          /* for each (var item1:Object in tempItemCatalog) 
-           {
-               if (item1.room_id == "null")
-               {
-                   trace("item1.item_name" +item1.item_name);
-               }
-           }
-           */
+        
            
          
            commandMap.execute(ConstructShopViewFromModel);

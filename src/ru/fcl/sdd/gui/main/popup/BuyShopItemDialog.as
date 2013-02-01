@@ -73,8 +73,7 @@ package ru.fcl.sdd.gui.main.popup
          _goldPriceTf.text = "";
          this.visible = false;
          _contentSp.addChild(_loadidPanel);
-         _loadidPanel.setSizeWH(155, 155);
-         
+         _loadidPanel.setSizeWH(155, 155);         
          _bg.x = app_w / 2 - _bg.width / 2;
          _bg.y = 200;
          

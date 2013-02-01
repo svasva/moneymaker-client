@@ -39,6 +39,10 @@ package ru.fcl.sdd.gui.main
         private var _cantBuyDialog:CantBuyPopUpDialog;
         
         private var _shopItemToolTip:ShopToolTip;
+        
+        private var _buyRoomDialog:BuyShopItemDialog;
+        
+        
          
         [PostConstruct]
         public function init():void
@@ -68,6 +72,9 @@ package ru.fcl.sdd.gui.main
             
             _shopItemToolTip = new ShopToolTip(rsl, flashVars.app_width, flashVars.app_height);
             addChild(_shopItemToolTip);
+            
+            _buyRoomDialog = new BuyShopItemDialog(rsl, flashVars.app_width, flashVars.app_height);
+          
             
             
         }
@@ -112,6 +119,16 @@ package ru.fcl.sdd.gui.main
         public function set shopItemToolTip(value:ShopToolTip):void 
         {
             _shopItemToolTip = value;
+        }
+        
+        public function get buyRoomDialog():BuyShopItemDialog 
+        {
+            return _buyRoomDialog;
+        }
+        
+        public function set buyRoomDialog(value:BuyShopItemDialog):void 
+        {
+            _buyRoomDialog = value;
         }
         private function getAsset(value:String):DisplayObject
         {

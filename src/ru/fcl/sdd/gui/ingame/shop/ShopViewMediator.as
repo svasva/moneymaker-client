@@ -42,6 +42,7 @@ public class ShopViewMediator extends Mediator
      public var updatedCategory:ShopModelCategoryUpdatedSignal;
      [Inject]
      public var updatedTabe:ShopModelTabUpdatedSignal;    
+     
     
      private var _collectChunker:CollectChunker;
      
@@ -64,14 +65,18 @@ public class ShopViewMediator extends Mediator
         shopView.specialShopBtn.addEventListener(MouseEvent.CLICK, tabBtnClick);
         
          clickedSignal.add(itemClicked);
-          var tempShopRoomItm:HashMap = shopMdl.get("main") as HashMap;
+          var tempShopRoomItm:HashMap = shopMdl.outputMainShop;
           var tempShopRooms:ShopItemRoom = tempShopRoomItm.get("50fd35a25dae91f8b1000001") as ShopItemRoom;
         
-        _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6);
-        _collectChunker.reset();
-        shopView.items = _collectChunker.next();
+        if (tempShopRooms)
+        {
+            _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6);
+            _collectChunker.reset();
+            shopView.items = _collectChunker.next();
+           
+        }
+        
         checkItemsBtnVisible();
-   
         updatedTabe.add(setTab);
         updatedCategory.add(setCategory);
         
@@ -83,12 +88,7 @@ public class ShopViewMediator extends Mediator
         
         setSelectetTab(ShopModel.SHOP_TAB_MAIN);
       
-    }
-    
-    
-    
-   
-    
+    }   
     private function setTab():void 
     {
         setSelectetTab(shopMdl.selectedTab);
@@ -135,6 +135,9 @@ public class ShopViewMediator extends Mediator
     private function addOperationRoom():void
     {
          //shopMdl.setCategory(0)
+         if(!shopMdl.curentSelectedShopItemRoom)
+         return;
+         
         _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
@@ -144,6 +147,9 @@ public class ShopViewMediator extends Mediator
     
     private function addWarehouseShopItems():void
     {
+        if (!shopMdl.wareHouse)
+        return
+        
         _collectChunker = new CollectChunker(shopMdl.wareHouse, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
@@ -152,15 +158,28 @@ public class ShopViewMediator extends Mediator
     
     private function setCategory():void 
     {
-          _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6) 
-          _collectChunker.reset();
-          shopView.items = _collectChunker.next();
-          checkItemsBtnVisible();
+          if (shopMdl.curentSelectedShopItemRoom.isPurshed)
+          {
+             _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6) 
+             _collectChunker.reset();
+             shopView.items = _collectChunker.next();
+             checkItemsBtnVisible();
+          }
+          else
+          {
+             shopView.clearItems();
+             shopView.itemsJPanel.append(shopMdl.curentSelectedShopItemRoom.shopItemRoomView);
+             _collectChunker = null;
+             checkItemsBtnVisible();
+          }
+          
+       
     }
     
     private function itemClicked(id:String):void 
     {
        
+        trace("itemClicked");
         var tempShopRoomItm:HashMap = shopMdl.get("main") as HashMap;
         
         var tempShopRooms:ShopItemRoom = tempShopRoomItm.get(id) as ShopItemRoom;
@@ -170,8 +189,9 @@ public class ShopViewMediator extends Mediator
             _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6) 
             _collectChunker.reset();
             shopView.items = _collectChunker.next();
-            checkItemsBtnVisible();
+           
         }
+        
         
     }
 
@@ -203,8 +223,16 @@ public class ShopViewMediator extends Mediator
 
     private function checkItemsBtnVisible():void
     {
-        shopView.prevItemsBtn.visible = _collectChunker.hasPrev();
-        shopView.nextItemsBtn.visible = _collectChunker.hasNext();
+        if (_collectChunker)
+        {
+            shopView.prevItemsBtn.visible = _collectChunker.hasPrev();
+            shopView.nextItemsBtn.visible = _collectChunker.hasNext();
+        }
+        else
+        {
+            shopView.prevItemsBtn.visible  = false;
+            shopView.nextItemsBtn.visible = false;
+        }
     }
 
     private function shopItemClickHandler(event:ItemEvent):void

@@ -1,6 +1,9 @@
 package ru.fcl.sdd.item 
 {
     import de.polygonal.ds.HashMap;
+    import org.aswing.JButton;
+    import org.aswing.JToggleButton;
+    import ru.fcl.sdd.rsl.GuiRsl;
      
 	/**
      * ...
@@ -15,16 +18,17 @@ package ru.fcl.sdd.item
         private var _room_type_id:String;
         private var _desc:String;
         private var _order:int;
+        private var _btnView:JToggleButton;
+        private var _disBtnView:JToggleButton;
+        private var _isPurshed:Boolean = false;
+        private var _avalibleItems:HashMap = new HashMap();
+        private var _shopItemRoomView:ShopItemRoomView;
         
-        
-        public function ShopItemRoom() 
-        {
-            
-        }
+       
         public function setValue():void
         {
             
-        }
+        } 
         
         public function get icon_filename():String 
         {
@@ -94,6 +98,36 @@ package ru.fcl.sdd.item
         public function set order(value:int):void 
         {
             _order = value;
+        }
+        
+        public function get btnView():JToggleButton 
+        {
+            return _btnView;
+        }
+        
+        public function set btnView(value:JToggleButton):void 
+        {
+            _btnView = value;
+        }
+        
+        public function get shopItemRoomView():ShopItemRoomView 
+        {
+            return _shopItemRoomView;
+        }
+        
+        public function set shopItemRoomView(value:ShopItemRoomView):void 
+        {
+            _shopItemRoomView = value;
+        }
+        
+        public function get isPurshed():Boolean 
+        {
+            return _isPurshed;
+        }
+        
+        public function set isPurshed(value:Boolean):void 
+        {
+            _isPurshed = value;
         }
         
         

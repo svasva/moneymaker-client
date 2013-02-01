@@ -7,12 +7,16 @@ package ru.fcl.sdd.gui.main
     import org.robotlegs.mvcs.Mediator;
     import ru.fcl.sdd.config.FlashVarsModel;
     import ru.fcl.sdd.gui.ingame.InGameGuiView;
+    import ru.fcl.sdd.gui.ingame.shop.BuyRoomToServerCommandSignal;
+    import ru.fcl.sdd.gui.ingame.shop.ForPurshRoomIdUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
     import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
     import ru.fcl.sdd.gui.main.friendbar.FriendBarView;
     import ru.fcl.sdd.gui.main.MainInterfaceView;
     import ru.fcl.sdd.gui.main.popup.WindowsLayerView;
     import ru.fcl.sdd.item.ShopModel;
+    import ru.fcl.sdd.location.room.Room;
+    import ru.fcl.sdd.location.room.RoomCatalog;
     import ru.fcl.sdd.log.ILogger;
     import ru.fcl.sdd.services.shared.FriendBarVisModel;
     import ru.fcl.sdd.services.shared.FriendBarVisModelUpdatedSignal;
@@ -67,6 +71,14 @@ package ru.fcl.sdd.gui.main
          [Inject]
         public var windowsLayer:WindowsLayerView;
         
+        [Inject]
+        public var forPurshRoomIdUpdated:ForPurshRoomIdUpdatedSignal;
+        
+         [Inject]
+        public var roomCatalog:RoomCatalog;
+        
+        [Inject]
+        public var buyRoomSig:BuyRoomToServerCommandSignal;
         
         
         /**
@@ -92,11 +104,13 @@ package ru.fcl.sdd.gui.main
             view.addChild(view.friendBarVisBtn);
             selectedShopItemUpdatedSignal.add(onSelectedShopItemUpdated);
             overedShopItemUpdatedSignal.add(onOveredShopItemUpdatedSignal);
+            forPurshRoomIdUpdated.add(onForPurshRoomIdUpdated);
             
             view.popUpDialog.yesBtn.addEventListener(MouseEvent.CLICK, yesBtn_click);
             view.popUpDialog.noBtn.addEventListener(MouseEvent.CLICK, noBtn_click);
             view.cantBuyDialog.noBtn.addEventListener(MouseEvent.CLICK, noBtn_click);
-            
+            view.buyRoomDialog.noBtn.addEventListener(MouseEvent.CLICK, noBuyRoomBtn_click);
+            view.buyRoomDialog.yesBtn.addEventListener(MouseEvent.CLICK, onBuyRoom);            
             
             
            // view.popUpDialog.x = flashVars.app_width/2 - view.popUpDialog.width/2;
@@ -106,6 +120,33 @@ package ru.fcl.sdd.gui.main
               windowsLayer.addChild(view.popUpDialog);
               windowsLayer.addChild(view.cantBuyDialog);
               windowsLayer.addChild(view.shopItemToolTip);
+              windowsLayer.addChild(view.buyRoomDialog);
+        }
+        
+        private function onBuyRoom(e:MouseEvent):void 
+        {
+             view.buyRoomDialog.hide();
+             buyRoomSig.dispatch();
+        }
+        
+        private function noBuyRoomBtn_click(e:MouseEvent):void 
+        {
+              view.buyRoomDialog.hide();
+        }
+        
+        private function onForPurshRoomIdUpdated():void 
+        {
+           view.buyRoomDialog.show();
+           var room:Room =  roomCatalog.get(shopMdl.forPurshRoomId) as Room;
+           view.buyRoomDialog.itemName = room.name;
+           view.buyRoomDialog.itemDesc = room.decription;
+           view.buyRoomDialog.url = room.icon_url;
+           view.buyRoomDialog.gameMoneyPrise = room.coins_cost.toString();
+           view.buyRoomDialog.goldPrice = room.money_cost.toString();
+           
+           
+            
+            
         }
         
         private function noBtn_click(e:MouseEvent):void 

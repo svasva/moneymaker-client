@@ -85,14 +85,14 @@ package ru.fcl.sdd.gui.main.north
            
             
             
-            _gameMoneyTextField.x=90;
+            _gameMoneyTextField.x=30;
             _gameMoneyTextField.y=15;
             _gameMoneyTextField.textColor = 0x93CDA8;
             this.addChild(_gameMoneyTextField);
             _gameMoneyTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
             _gameMoneyTextField.setTextFormat(new StatisticNumberTextFormatLeft());
            // _gameMoneyTextField.autoSize =  TextFieldAutoSize.CENTER;
-            _gameMoneyTextField.width = 30;
+            _gameMoneyTextField.width = 100;
             
                
             this.addChild(_bucksIcon);
@@ -116,7 +116,7 @@ package ru.fcl.sdd.gui.main.north
             this.addChild(_experienceTextField);
             
             _reputationTextField = new StatisticNumberTextField();
-            _reputationTextField.x=400;
+            _reputationTextField.x=300;
             _reputationTextField.y = 15;
             _reputationTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
             _reputationTextField.setTextFormat(new StatisticNumberTextFormatLeft());

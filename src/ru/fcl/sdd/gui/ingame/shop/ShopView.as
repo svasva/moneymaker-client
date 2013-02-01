@@ -66,6 +66,8 @@ public class ShopView extends JPanel
         _itemsJPanel.setSize(new IntDimension(650, 526));
         _itemsJPanel.x = 60;
         _itemsJPanel.y = 165;
+        _itemsJPanel.setClipMasked(false);
+        
         this.append(_itemsJPanel);
 
         _nextItemsBtn = new SimpleButton(getAsset("RightArrowBtnBigUpArt"),getAsset("RightArrowBtnBigOverArt"),getAsset("RightArrowBtnBigDownArt"),getAsset("RightArrowBtnBigDownArt"));
@@ -128,11 +130,8 @@ public class ShopView extends JPanel
 
     internal function set items(value:Array):void
     {
-        while(_itemsJPanel.getComponentCount())
-        {
-            (_itemsJPanel.getComponent(0)).removeEventListener(MouseEvent.CLICK, itemClickHandler);
-            _itemsJPanel.removeAt(0);
-        }
+        clearItems();
+        
         for (var i:int = 0; i < value.length; i++)
         {
             var item:Item = value[i] as Item;
@@ -145,6 +144,14 @@ public class ShopView extends JPanel
             _itemsJPanel.append(value[i] as Item);
         }
         _itemsJPanel.validate();
+    }
+    public function clearItems():void
+    {
+         while(_itemsJPanel.getComponentCount())
+        {
+            (_itemsJPanel.getComponent(0)).removeEventListener(MouseEvent.CLICK, itemClickHandler);
+            _itemsJPanel.removeAt(0);
+        }
     }
     
   
