@@ -90,6 +90,8 @@ public class ClientusIsoViewMediator extends Mediator
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
         clientusView.addEventListener(MouseEvent.MOUSE_OUT, clientusView_mouseOutHandler);
         nextStep(true);
+        
+        
     }
 
     private function nextStep(isStart:Boolean = false):void

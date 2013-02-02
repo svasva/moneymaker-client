@@ -8,6 +8,7 @@ package ru.fcl.sdd.item
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.iso.AboutIsoItemSignal;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 
 import ru.fcl.sdd.item.iso.PlaceMovedItemCommand;
 
@@ -17,7 +18,10 @@ public class BuildItemsCommand extends SignalCommand
     {
         var placeMovedItem:ISignal = new AboutIsoItemSignal();
         injector.mapValue(ISignal,placeMovedItem,"place_moved_item");
-        signalCommandMap.mapSignal(placeMovedItem,PlaceMovedItemCommand);
+        signalCommandMap.mapSignal(placeMovedItem, PlaceMovedItemCommand);
+       // mediatorMap.mapView(ItemIsoView, ItemMediator);
+     //   trace("----===   mediatorMap.mapView(ItemIsoView, ItemMediator);===----")
+        
 
     }
 }

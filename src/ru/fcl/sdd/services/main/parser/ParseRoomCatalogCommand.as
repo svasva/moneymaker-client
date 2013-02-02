@@ -30,7 +30,7 @@ public class ParseRoomCatalogCommand extends Command
     {
         logger.log(this, "parse room list...");
         var roomsArray:Array = roomListObject.response;
-        PrintJSON.deepTrace( roomListObject.response);
+      //  PrintJSON.deepTrace( roomListObject.response);
         roomsArray.forEach(add2List);
         logger.log(this, "item list parsed.");
     }

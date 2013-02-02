@@ -21,8 +21,17 @@ public class PlaceItemCommand extends SignalCommand
 
     override public function execute():void
     {
+        floor.addChild(iso.isoBox);
         floor.addChild(iso);
+        iso.isoBox.x = iso.x;
+        iso.isoBox.y = iso.y;
+        iso.isoBox.z = 150;
+        
+       
+        iso.isoBox.render(false); 
+        
         iso.render();
+    
         floor.render();
     }
 }
