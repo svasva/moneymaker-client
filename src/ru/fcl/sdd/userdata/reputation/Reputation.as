@@ -2,7 +2,7 @@ package ru.fcl.sdd.userdata.reputation
 {
 	/**
      * ...
-     * @author atuzov
+     * @author 
      */
     public class Reputation implements IReputation
     {

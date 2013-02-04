@@ -5,8 +5,6 @@
  */
 package ru.fcl.sdd.item.iso
 {
-import flash.display.DisplayObject;
-import flash.filters.GlowFilter;
 import ru.fcl.sdd.item.*;
 
 import as3isolib.core.ClassFactory;
@@ -51,8 +49,6 @@ public class ItemIsoViewMoveMediator extends Mediator
     public var pathGrid:ItemsPathGrid;
     [Inject]
     public var changeState:ChangeStateSignal;
-    
-     private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
 
     override public function onRegister():void
     {
@@ -70,23 +66,6 @@ public class ItemIsoViewMoveMediator extends Mediator
         checkPlaceable();
         cursor.render();
         floor.render();
-        //clientusView.y = 1 * IsoConfig.CELL_SIZE;
-        
-        
-       // cursor.proxy.addEventListener(MouseEvent.MOUSE_OVER, itemView_mouseOverHandler);
-       // cursor.proxy.addEventListener(MouseEvent.MOUSE_OUT, itemView_mouseOutHandler);
-        
-    }
-    
-    private function itemView_mouseOutHandler(e:Event):void 
-    {
-        
-          DisplayObject(cursor.sprites[0]).filters = [];
-    }
-    
-    private function itemView_mouseOverHandler(e:Event):void 
-    {
-           DisplayObject(cursor.sprites[0]).filters = [_selectFilter]; 
     }
 
     private function onEscKeyDown(event:KeyboardEvent):void

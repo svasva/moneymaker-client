@@ -1,7 +1,9 @@
 package ru.fcl.sdd.gui.main
 {
+    import com.bit101.components.PushButton;
     import flash.events.Event;
     import flash.events.MouseEvent;
+    import flash.utils.ByteArray;
     import org.aswing.event.InteractiveEvent;
     import org.osflash.signals.ISignal;
     import org.robotlegs.mvcs.Mediator;
@@ -18,10 +20,12 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.location.room.Room;
     import ru.fcl.sdd.location.room.RoomCatalog;
     import ru.fcl.sdd.log.ILogger;
+    import ru.fcl.sdd.services.main.ISender;
     import ru.fcl.sdd.services.shared.FriendBarVisModel;
     import ru.fcl.sdd.services.shared.FriendBarVisModelUpdatedSignal;
     import ru.fcl.sdd.services.shared.FriendBarVisServiceUpdatedSignal;
     import ru.fcl.sdd.services.shared.ISharedGameDataService;
+    import ru.fcl.sdd.tempFloorView.MapLayer;
     import ru.fcl.sdd.userdata.experience.IExperience;
     
       
@@ -80,6 +84,31 @@ package ru.fcl.sdd.gui.main
         [Inject]
         public var buyRoomSig:BuyRoomToServerCommandSignal;
         
+        private var resetGame:PushButton;
+        
+        private var addBankomatRoom:PushButton;
+                
+        private var seciurityRoom:PushButton;
+        
+        private var investRoom:PushButton;
+        
+        [Inject]
+        public  var layer:MapLayer;
+        
+         [Inject]
+          public var sender:ISender;
+        
+        
+     
+		[Embed(source = "../../../../../../art/bin/Room5.xml" , mimeType = "application/octet-stream")]
+        private var ROOM5:Class;
+      
+        [Embed(source = "../../../../../../art/bin/Room6.xml" , mimeType = "application/octet-stream")]
+        private var ROOM6:Class;
+        
+          [Embed(source = "../../../../../../art/bin/Room7.xml" , mimeType = "application/octet-stream")]
+        private var ROOM7:Class;
+        
         
         /**
          * Constructor
@@ -96,10 +125,7 @@ package ru.fcl.sdd.gui.main
         {
             view.friendBarVisBtn.addEventListener(MouseEvent.CLICK, onCloseFriendBarSelected);
             friendBarModelUpdatedSignal.add(onFriendBarVisModelUpdated);
-            sharedGameDataSrv.friendBarVisState = sharedGameDataSrv.friendBarVisState;
-            
-            
-          
+            sharedGameDataSrv.friendBarVisState = sharedGameDataSrv.friendBarVisState;   
             
             view.addChild(view.friendBarVisBtn);
             selectedShopItemUpdatedSignal.add(onSelectedShopItemUpdated);
@@ -121,6 +147,50 @@ package ru.fcl.sdd.gui.main
               windowsLayer.addChild(view.cantBuyDialog);
               windowsLayer.addChild(view.shopItemToolTip);
               windowsLayer.addChild(view.buyRoomDialog);
+              
+              addBankomatRoom = new PushButton(windowsLayer, 50, 50, "Bankomat Room", addBankomatRoomHnd);
+              seciurityRoom   = new PushButton(windowsLayer, 50, 80, "Security Room",addseciurityRoom);
+              investRoom      = new PushButton(windowsLayer, 50, 110, "Invest Room",addinvestRoom);
+              resetGame       = new PushButton(windowsLayer, 650, 50, "Reset Game",resetGameHnd);
+              
+        }
+        private function addBankomatRoomHnd(e:Event):void
+        {
+            trace("addBankomatRoom");
+          
+               var bytes:ByteArray ; 
+                 bytes = new ROOM5();
+            var xml:XML;         
+          
+            xml  = new XML(bytes.readUTFBytes(bytes.length));  
+            layer.isoFlor.loadRooms(xml.floors.rooms);
+        }
+        private function addseciurityRoom(e:Event):void
+        {
+            trace("addBankomatRoom");
+                var bytes:ByteArray ; 
+                 bytes = new ROOM6();
+            var xml:XML;         
+          
+            xml  = new XML(bytes.readUTFBytes(bytes.length));  
+            layer.isoFlor.loadRooms(xml.floors.rooms);
+        }
+          private function addinvestRoom(e:Event):void
+        {
+            trace("addBankomatRoom");
+              var bytes:ByteArray ; 
+                 bytes = new ROOM7();
+            var xml:XML;         
+          
+            xml  = new XML(bytes.readUTFBytes(bytes.length));  
+            layer.isoFlor.loadRooms(xml.floors.rooms);
+            
+        }
+          private function  resetGameHnd(e:Event):void
+        {
+            trace("addBankomatRoom");
+            
+               sender.send({command: "resetGame"});
         }
         
         private function onBuyRoom(e:MouseEvent):void 

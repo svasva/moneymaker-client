@@ -116,13 +116,13 @@ package ru.fcl.sdd.gui.main.north
             this.addChild(_experienceTextField);
             
             _reputationTextField = new StatisticNumberTextField();
-            _reputationTextField.x=300;
+            _reputationTextField.x=480;
             _reputationTextField.y = 15;
             _reputationTextField.defaultTextFormat = new StatisticNumberTextFormatLeft();
             _reputationTextField.setTextFormat(new StatisticNumberTextFormatLeft());
             
             
-           // this.addChild(_reputationTextField);
+            this.addChild(_reputationTextField);
             
             addChild(_smileLayerSp);
             _smileLayerSp.x = 509;

@@ -6,13 +6,7 @@
 package ru.fcl.sdd.item.iso
 {
 import as3isolib.display.IsoSprite;
-import as3isolib.display.primitive.IsoBox;
-import as3isolib.display.primitive.IsoPrimitive;
 import as3isolib.geom.Pt;
-import eDpLib.events.ProxyEvent;
-import flash.display.DisplayObject;
-import flash.events.MouseEvent;
-import flash.filters.GlowFilter;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -41,10 +35,6 @@ public class ItemIsoView extends IsoSprite
     private var _originalDirectionSize:Point;
     private var _clientStack:Vector.<Node>;
     private var _cashMoney:int;
-    private var _isoX:int;
-    private var _isoY:int;
-    private var _isoBox:IsoBox = new IsoBox(); 
-    private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
 
     public function ItemIsoView():void
     {
@@ -54,20 +44,6 @@ public class ItemIsoView extends IsoSprite
         _skinSwf = new Loader();
         _isCorrectEnterPoint = false;
         super();
-        this.proxy.addEventListener(MouseEvent.MOUSE_OVER, proxy_mouseOver);
-        this.proxy.addEventListener(MouseEvent.MOUSE_OUT, proxy_mouseOut);
-    }
-    
-    private function proxy_mouseOut(e:ProxyEvent):void 
-    {
-          DisplayObject(this.sprites[0]).filters = [];
-    }
-    
-    private function proxy_mouseOver(e:ProxyEvent):void 
-    {
-        trace("proxy_mouseOver");
-          DisplayObject(this.sprites[0]).filters = [_selectFilter];
-          
     }
 
     /**
@@ -130,7 +106,6 @@ public class ItemIsoView extends IsoSprite
         MovieClip(_skinSwf.content).gotoAndStop(direction + 1);
         this.sprites = [_skinSwf.content];
         this.render();
-        this._isoBox.render();
     }
 
     private function ioErrorHandler(event:IOErrorEvent):void
@@ -233,36 +208,6 @@ public class ItemIsoView extends IsoSprite
     public function set cashMoney(value:int):void
     {
         _cashMoney = value;
-    }
-    
-    public function get isoX():int 
-    {
-        return _isoX;
-    }
-    
-    public function set isoX(value:int):void 
-    {
-        _isoX = value;
-    }
-    
-    public function get isoY():int 
-    {
-        return _isoY;
-    }
-    
-    public function set isoY(value:int):void 
-    {
-        _isoY = value;
-    }
-    
-    public function get isoBox():IsoBox 
-    {
-        return _isoBox;
-    }
-    
-    public function set isoBox(value:IsoBox):void 
-    {
-        _isoBox = value;
     }
 }
 }

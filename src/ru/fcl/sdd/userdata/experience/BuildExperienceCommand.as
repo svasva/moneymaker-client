@@ -4,7 +4,7 @@ package ru.fcl.sdd.userdata.experience
 	
 	/**
      * ...
-     * @author atuzov
+     * @author 
      */
     public class BuildExperienceCommand extends SignalCommand 
     {

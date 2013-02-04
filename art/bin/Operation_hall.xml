@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+<floors>
+		
+	<rooms sid = "1">
+		<item r_id= "1" x="0" y="0">
+			
+		<walls>			
+		<item sid="8" x="0" y="0" back="true"> </item>		
+		
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>		
+		</grounds>
+		
+		<objects>	
+		
+		
+	
+		</objects>
+		
+		
+		</item>
+		<item r_id= "3" x="15" y="0">
+		<walls>
+		<item sid="13" x="11" y="0"> </item>
+		</walls>	
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>		
+		
+		</item>
+		
+		
+		<item r_id = "4"  x="15" y="11">
+		
+		<walls>			
+		<item sid="9" x="0" y="0"> </item>		
+		<item sid="14" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+	
+		
+			
+		</item>
+		
+		</rooms>
+	
+	
+		
+		
+
+</floors>
+</data>

@@ -3,7 +3,7 @@ package ru.fcl.sdd.userdata.reputation
     
     /**
      * ...
-     * @author atuzov
+     * @author 
      */
     public interface IReputation 
     {

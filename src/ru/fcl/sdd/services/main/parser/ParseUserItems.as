@@ -54,8 +54,7 @@ package ru.fcl.sdd.services.main.parser
                 item.direction = object.rotation;
                 item.x = object.x * IsoConfig.CELL_SIZE;
                 item.y = object.y * IsoConfig.CELL_SIZE;
-                item.isoX = object.x;
-                item.isoY = object.y;
+              
                 item.skin = catalogItem.skinUrl;
                 if (object.cash)
                 {

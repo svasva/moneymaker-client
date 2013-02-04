@@ -3,7 +3,7 @@ package ru.fcl.sdd.userdata.capacity
     
     /**
      * ...
-     * @author atuzov
+     * @author
      */
     public interface ICapacity 
     {

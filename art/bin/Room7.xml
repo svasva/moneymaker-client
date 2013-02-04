@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+<floors>
+		
+	<rooms sid = "1">
+		
+		<item  r_id = "7" x="0" y="33">
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>		
+		<item sid="19" x="11" y="11"> </item>		
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>	
+		<item sid="2" x="11" y="33"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="8" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+			
+		
+		</rooms>
+	
+		
+		
+
+</floors>
+</data>

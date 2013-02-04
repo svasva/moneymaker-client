@@ -2,7 +2,7 @@ package ru.fcl.sdd.userdata.capacity
 {
 	/**
      * ...
-     * @author atuzov
+     * @author 
      */
     public class Capacity implements ICapacity
     {

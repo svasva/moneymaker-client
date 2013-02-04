@@ -22,7 +22,7 @@ public class EnterBuyItemCommand extends SignalCommand
     override public function execute():void
     {
         Mouse.hide();
-       // mediatorMap.mapView(item, ItemIsoViewMoveMediator);
+        mediatorMap.mapView(item, ItemIsoViewMoveMediator);
         commandMap.execute(PlaceItemCommand,item);
         mediatorMap.createMediator(item);
     }

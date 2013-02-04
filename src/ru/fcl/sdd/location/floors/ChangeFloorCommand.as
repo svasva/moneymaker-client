@@ -5,93 +5,112 @@
  */
 package ru.fcl.sdd.location.floors
 {
-import as3isolib.display.scene.IIsoScene;
-import as3isolib.geom.Pt;
-
-import flash.display.DisplayObject;
-
-import org.robotlegs.mvcs.SignalCommand;
-
-import ru.fcl.sdd.scenes.MainIsoView;
-
-public class ChangeFloorCommand extends SignalCommand
-{
-    [Inject]
-    public var floorNumber:int;
-
-    [Embed(source="./art/floor0.jpg")]
-    private var floor0BgArt:Class;
-    [Embed(source="./art/floor1.jpg")]
-    private var floor1BgArt:Class;
-
-    [Embed(source="./art/floor2.jpg")]
-    private var floor2BgArt:Class;
-
-    [Embed(source="./art/floor3.jpg")]
-    private var floor3BgArt:Class;
-
-    [Embed(source="./art/floor4.jpg")]
-    private var floor4BgArt:Class;
-    [Inject]
-    public var floor1Scene:Floor1Scene;
-
-    override public function execute():void
+    import as3isolib.display.scene.IIsoScene;
+    import as3isolib.geom.Pt;
+    
+    import flash.display.DisplayObject;
+    
+    import org.robotlegs.mvcs.SignalCommand;
+    
+    import ru.fcl.sdd.scenes.MainIsoView;
+    
+    public class ChangeFloorCommand extends SignalCommand
     {
-        var mainIsoView:MainIsoView = injector.getInstance(MainIsoView);
-        var _bg:DisplayObject;
-        mainIsoView.currentFloorNumber = floorNumber;
-        switch (floorNumber)
+        [Inject]
+        public var floorNumber:int;
+        
+        [Embed(source="./art/floor0.jpg")]
+        private var floor0BgArt:Class;
+        [Embed(source="./art/floor1.jpg")]
+        private var floor1BgArt:Class;
+        
+        [Embed(source="./art/floor2.jpg")]
+        private var floor2BgArt:Class;
+        
+        [Embed(source="./art/floor3.jpg")]
+        private var floor3BgArt:Class;
+        
+        [Embed(source="./art/floor4.jpg")]
+        private var floor4BgArt:Class;
+        [Inject]
+        public var floor1Scene:Floor1Scene;
+        
+        override public function execute():void
         {
-            case 0:
+            var mainIsoView:MainIsoView = injector.getInstance(MainIsoView);
+            var _bg:DisplayObject;
+            var pt:Pt;
+            pt = new Pt(-2763, -897);
+            mainIsoView.currentFloorNumber = floorNumber;
+            
+            switch (floorNumber)
             {
-                mainIsoView.currentFloor = null;
-                _bg = new floor0BgArt() as DisplayObject;
-                break;
+                case 0:
+                {
+                    mainIsoView.currentFloor = null;
+                    _bg = new floor0BgArt() as DisplayObject;
+                    _bg.width = 4621;
+                    _bg.height = 3093;
+                    pt = new Pt(-2763, -897);
+                    _bg.x = pt.x;
+                    _bg.y = pt.y;
+                    break;
+                }
+                case 1:
+                {
+                    mainIsoView.currentFloor = floor1Scene;
+                    // _bg = new floor1BgArt() as DisplayObject;
+                    _bg =new floor_back_mc();
+                    break;
+                }
+                case 2:
+                {
+                    mainIsoView.currentFloor = null;
+                    _bg = new floor2BgArt() as DisplayObject;
+                    _bg.width = 4621;
+                    _bg.height = 3093;
+                    pt = new Pt(-2763, -897);
+                    _bg.x = pt.x;
+                    _bg.y = pt.y;
+                    break;
+                }
+                case 3:
+                {
+                    mainIsoView.currentFloor = null;
+                    _bg = new floor3BgArt() as DisplayObject;
+                    _bg.width = 4621;
+                    _bg.height = 3093;
+                    pt = new Pt(-2763, -897);
+                    ;
+                    _bg.x = pt.x;
+                    _bg.y = pt.y;
+                    break;
+                }
+                case 4:
+                {
+                    mainIsoView.currentFloor = null;
+                    _bg = new floor4BgArt() as DisplayObject;
+                    _bg.width = 4621;
+                    _bg.height = 3093;
+                    pt = new Pt(-2763, -897);
+                    _bg.x = pt.x;
+                    _bg.y = pt.y;
+                    break;
+                }
+                default:
+                {
+                    mainIsoView.currentFloorNumber = 1;
+                    _bg =new floor_back_mc();
+                    break;
+                }
             }
-            case 1:
+            
+            while (mainIsoView.backgroundContainer.numChildren)
             {
-                mainIsoView.currentFloor = floor1Scene;
-                _bg = new floor1BgArt() as DisplayObject;
-                break;
+                mainIsoView.backgroundContainer.removeChildAt(0);
             }
-            case 2:
-            {
-                mainIsoView.currentFloor = null;
-                _bg = new floor2BgArt() as DisplayObject;
-                break;
-            }
-            case 3:
-            {
-                mainIsoView.currentFloor = null;
-                _bg = new floor3BgArt() as DisplayObject;
-                break;
-            }
-            case 4:
-            {
-                mainIsoView.currentFloor = null;
-                _bg = new floor4BgArt() as DisplayObject;
-                break;
-            }
-            default:
-            {
-                mainIsoView.currentFloorNumber = 1;
-                _bg = new floor1BgArt() as DisplayObject;
-                break;
-            }
+            mainIsoView.backgroundContainer.addChild(_bg);
+            mainIsoView.rangeOfMotionTarget = _bg;
         }
-
-        _bg.width = 4621;
-        _bg.height = 3093;
-        var pt:Pt = new Pt(-2763, -897);
-        _bg.x = pt.x;
-        _bg.y = pt.y;
-
-        while (mainIsoView.backgroundContainer.numChildren)
-        {
-            mainIsoView.backgroundContainer.removeChildAt(0);
-        }
-        mainIsoView.backgroundContainer.addChild(_bg);
-        mainIsoView.rangeOfMotionTarget = _bg;
     }
-}
 }

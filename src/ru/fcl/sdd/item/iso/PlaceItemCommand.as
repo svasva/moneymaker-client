@@ -7,6 +7,7 @@ package ru.fcl.sdd.item.iso
 {
 
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.tempFloorView.MapLayer;
 
 import ru.fcl.sdd.item.iso.ItemIsoView;
 
@@ -18,18 +19,17 @@ public class PlaceItemCommand extends SignalCommand
     public var iso:ItemIsoView;
     [Inject]
     public var floor:Floor1Scene;
+    [Inject] 
+    public var map:MapLayer;
 
     override public function execute():void
     {
-        floor.addChild(iso.isoBox);
+     
         floor.addChild(iso);
-        iso.isoBox.x = iso.x;
-        iso.isoBox.y = iso.y;
-        iso.isoBox.z = 150;
-        
+       // map.isoFlor.addChild(iso);
+       // map.addChild();
        
-        iso.isoBox.render(false); 
-        
+      
         iso.render();
     
         floor.render();

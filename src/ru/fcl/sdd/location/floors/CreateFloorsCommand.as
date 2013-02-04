@@ -6,6 +6,7 @@
 package ru.fcl.sdd.location.floors
 {
 import de.polygonal.ds.HashMapValIterator;
+import ru.fcl.sdd.tempFloorView.MapLayer;
 
 import org.osflash.signals.ISignal;
 
@@ -24,11 +25,14 @@ public class CreateFloorsCommand extends SignalCommand
     override public function execute():void
     {
         injector.mapSingleton(Floor1Scene);
+        injector.mapSingleton(MapLayer);
 
         var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
         commandMap.execute(ChangeFloorCommand,1);
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
+        
+         commandMap.execute(PlaceDefaultRoomCommand);
 
         while(iterator.hasNext())
         {
