@@ -8,6 +8,8 @@ package ru.fcl.sdd.location
 import org.osflash.signals.AboutInt;
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
+import ru.fcl.sdd.item.iso.ItemClickedSignal;
 import ru.fcl.sdd.tempFloorView.MapLayer;
 
 import ru.fcl.sdd.location.floors.ChangeFloorCommand;
@@ -19,12 +21,15 @@ public class BuildLocation extends SignalCommand
 
     override public function execute():void
     {
+       
+        
         var changeFloor:ISignal = new AboutInt();
      
         
         injector.mapValue(ISignal, changeFloor, "change_floor");
         signalCommandMap.mapSignal(changeFloor, ChangeFloorCommand);
         
+       
      
         //TODO: Запилить логику этажей, когда сервер начнет их слать.
         commandMap.execute(CreateFloorsCommand);

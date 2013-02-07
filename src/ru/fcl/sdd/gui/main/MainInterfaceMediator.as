@@ -72,7 +72,7 @@ package ru.fcl.sdd.gui.main
         [Inject]
         public var expMdl:IExperience;
         
-         [Inject]
+        [Inject]
         public var windowsLayer:WindowsLayerView;
         
         [Inject]

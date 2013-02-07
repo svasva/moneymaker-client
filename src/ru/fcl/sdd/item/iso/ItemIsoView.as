@@ -7,6 +7,8 @@ package ru.fcl.sdd.item.iso
 {
 import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;
+import eDpLib.events.ProxyEvent;
+import flash.events.MouseEvent;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -24,6 +26,8 @@ public class ItemIsoView extends IsoSprite
     public static const EAST:int = 1;
     public static const SOUTH:int = 2;
     public static const WEST:int = 3;
+    
+   
 
     private var _skinSwf:Loader;
     private var _direction:int;
@@ -35,7 +39,10 @@ public class ItemIsoView extends IsoSprite
     private var _originalDirectionSize:Point;
     private var _clientStack:Vector.<Node>;
     private var _cashMoney:int;
-
+    private var _status:String;
+    private var _capacity:int;
+    
+    
     public function ItemIsoView():void
     {
         _clientStack = new Vector.<Node>();
@@ -44,6 +51,12 @@ public class ItemIsoView extends IsoSprite
         _skinSwf = new Loader();
         _isCorrectEnterPoint = false;
         super();
+        this.proxy.addEventListener(MouseEvent.CLICK, proxy_click);
+    }
+    
+    private function proxy_click(e:ProxyEvent):void 
+    {
+        trace("_key " + _key);
     }
 
     /**
@@ -104,8 +117,10 @@ public class ItemIsoView extends IsoSprite
     private function completeHandler(event:Event):void
     {
         MovieClip(_skinSwf.content).gotoAndStop(direction + 1);
+        
         this.sprites = [_skinSwf.content];
         this.render();
+        
     }
 
     private function ioErrorHandler(event:IOErrorEvent):void
@@ -208,6 +223,26 @@ public class ItemIsoView extends IsoSprite
     public function set cashMoney(value:int):void
     {
         _cashMoney = value;
+    }
+    
+    public function get status():String 
+    {
+        return _status;
+    }
+    
+    public function set status(value:String):void 
+    {
+        _status = value;
+    }
+    
+    public function get capacity():int 
+    {
+        return _capacity;
+    }
+    
+    public function set capacity(value:int):void 
+    {
+        _capacity = value;
     }
 }
 }

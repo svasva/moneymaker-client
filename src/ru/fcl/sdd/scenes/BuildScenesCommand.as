@@ -8,6 +8,8 @@ package ru.fcl.sdd.scenes
 import org.osflash.signals.AboutInt;
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
+import ru.fcl.sdd.item.iso.ItemClickedSignal;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.location.floors.ChangeFloorCommand;
@@ -23,7 +25,7 @@ public class BuildScenesCommand extends SignalCommand
     {
 
 
-
+       
 //        var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
 
         injector.mapSingleton(SceneGrid);

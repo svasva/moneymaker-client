@@ -31,7 +31,7 @@ package ru.fcl.sdd.services.main.parser
         {
            //trace("ParseShopObjectCommand");
            
-           PrintJSON.deepTrace(shopObj.response);
+          // PrintJSON.deepTrace(shopObj.response);
            
            var mainShopHash:HashMap = new HashMap();
          //  var wareHouseHash:HashMap = new HashMap();

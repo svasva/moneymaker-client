@@ -13,6 +13,8 @@ import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelTabUpdatedSignal;
 import ru.fcl.sdd.item.ShopModel;
+import ru.fcl.sdd.location.room.RoomModel;
+import ru.fcl.sdd.location.room.SelectedItemUpdated;
 import ru.fcl.sdd.rsl.BuildRslCommand;
 import ru.fcl.sdd.services.shared.SharedGameDataService;
 import ru.fcl.sdd.userdata.capacity.BuildCapacityCommand;
@@ -42,10 +44,12 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(OveredShopItemUpdatedSignal);
         injector.mapSingleton(ShopModelCategoryUpdatedSignal);
         injector.mapSingleton(ShopModelTabUpdatedSignal);
-         injector.mapSingleton(BuyRoomToServerCommandSignal);
+        injector.mapSingleton(BuyRoomToServerCommandSignal);
+        injector.mapSingleton(SelectedItemUpdated); 
       
        
         injector.mapSingleton(ShopModel);
+        injector.mapSingleton(RoomModel)
        
         injector.mapSingleton(ActiveUserItemList);
         injector.mapSingleton(PlatformModel);

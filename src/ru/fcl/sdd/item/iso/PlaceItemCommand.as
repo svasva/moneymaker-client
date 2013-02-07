@@ -6,6 +6,8 @@
 package ru.fcl.sdd.item.iso
 {
 
+import eDpLib.events.ProxyEvent;
+import flash.events.MouseEvent;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.tempFloorView.MapLayer;
 
@@ -21,18 +23,25 @@ public class PlaceItemCommand extends SignalCommand
     public var floor:Floor1Scene;
     [Inject] 
     public var map:MapLayer;
+    
+     [Inject]
+    public var clickedSignal:ItemClickedSignal;
 
     override public function execute():void
     {
      
         floor.addChild(iso);
-       // map.isoFlor.addChild(iso);
-       // map.addChild();
-       
+        iso.addEventListener(MouseEvent.CLICK, iso_mouseevent);
       
         iso.render();
     
         floor.render();
+    }
+    
+    private function iso_mouseevent(e:ProxyEvent):void 
+    {
+      
+        clickedSignal.dispatch(e.target as ItemIsoView);
     }
 }
 }

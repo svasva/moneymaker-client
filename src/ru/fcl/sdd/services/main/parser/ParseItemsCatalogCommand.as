@@ -32,7 +32,7 @@ public class ParseItemsCatalogCommand extends Command
     {
         logger.log(this, "parse item list...");
         var itemsArray:Array = itemListObject.response;
-        PrintJSON.deepTrace(itemListObject.response);
+      //  PrintJSON.deepTrace(itemListObject.response);
         itemsArray.forEach(parseItem);
         logger.log(this, "item list parsed.");
     }

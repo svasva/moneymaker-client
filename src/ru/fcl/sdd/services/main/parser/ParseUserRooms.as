@@ -44,7 +44,7 @@ public class ParseUserRooms extends SignalCommand
         room.size = Room(roomList.get(room.catalogId)).size;
         room.name = Room(roomList.get(room.catalogId)).name;
         room.room_type_id = object.room_type_id;
-        trace("room.room_type_id" + room.room_type_id);
+       
         userRoomList.set(room.id,room);
     }
 }

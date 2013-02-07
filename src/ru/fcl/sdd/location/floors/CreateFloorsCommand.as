@@ -6,6 +6,10 @@
 package ru.fcl.sdd.location.floors
 {
 import de.polygonal.ds.HashMapValIterator;
+import eDpLib.events.ProxyEvent;
+import flash.events.MouseEvent;
+import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
+import ru.fcl.sdd.item.iso.ItemClickedSignal;
 import ru.fcl.sdd.tempFloorView.MapLayer;
 
 import org.osflash.signals.ISignal;
@@ -24,6 +28,9 @@ public class CreateFloorsCommand extends SignalCommand
 
     override public function execute():void
     {
+        injector.mapSingleton(ItemClickedSignal);
+        signalCommandMap.mapSignalClass(ItemClickedSignal,ItemClickedHndCommand);
+        
         injector.mapSingleton(Floor1Scene);
         injector.mapSingleton(MapLayer);
 
@@ -31,6 +38,8 @@ public class CreateFloorsCommand extends SignalCommand
         commandMap.execute(ChangeFloorCommand,1);
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
+        
+        mainIsoScene.addEventListener(MouseEvent.CLICK, mainIsoScene_click);
         
          commandMap.execute(PlaceDefaultRoomCommand);
 
@@ -41,6 +50,11 @@ public class CreateFloorsCommand extends SignalCommand
             commandMap.execute(PlacePathGridItemCommand,item);
         }
 
+    }
+    
+    private function mainIsoScene_click(e:ProxyEvent):void 
+    {
+        trace("mainIsoScene");
     }
 }
 }
