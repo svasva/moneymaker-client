@@ -12,14 +12,15 @@ package ru.fcl.sdd.gui.ingame.shop
     public class GetShopObjectCommand extends SignalCommand 
     {
         
-         [Inject]
+        [Inject]
         public var sender:ISender;
         
         override public function execute():void 
         {
               sender.send( { command:"getShopCatalog"}, ParseShopObjectCommand);
               
-              commandMap.execute(InitCompeteCommand);
+             // commandMap.execute(InitCompeteCommand);
+              commandMap.execute(GetMarketingCatalog);
         }
         
     }

@@ -26,6 +26,7 @@ package ru.fcl.sdd.userdata.reputation
         public function set countValue(value:int):void 
         {
             _countValue = value;
+          
             updater.dispatch();
         }
         

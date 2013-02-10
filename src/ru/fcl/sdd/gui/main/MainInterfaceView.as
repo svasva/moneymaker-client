@@ -42,6 +42,8 @@ package ru.fcl.sdd.gui.main
         
         private var _buyRoomDialog:BuyShopItemDialog;
         
+        private var _itemControl:ItemPanelSp = new ItemPanelSp();
+        
         
          
         [PostConstruct]
@@ -129,6 +131,16 @@ package ru.fcl.sdd.gui.main
         public function set buyRoomDialog(value:BuyShopItemDialog):void 
         {
             _buyRoomDialog = value;
+        }
+        
+        public function get itemControl():ItemPanelSp 
+        {
+            return _itemControl;
+        }
+        
+        public function set itemControl(value:ItemPanelSp):void 
+        {
+            _itemControl = value;
         }
         private function getAsset(value:String):DisplayObject
         {

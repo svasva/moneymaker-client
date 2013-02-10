@@ -9,6 +9,7 @@ public class StateModel implements IStateHolder
 {
     private var _currentState:GameStates;
     private var _stateOutCommand:Class;
+    private var _currenSubState:String = "shop";
 
     [PostConstruct]
     public function init():void
@@ -33,6 +34,16 @@ public class StateModel implements IStateHolder
     public function set stateOutCommand(value:Class):void
     {
         _stateOutCommand = value;
+    }
+    
+    public function get currenSubState():String 
+    {
+        return _currenSubState;
+    }
+    
+    public function set currenSubState(value:String):void 
+    {
+        _currenSubState = value;
     }
 }
 }

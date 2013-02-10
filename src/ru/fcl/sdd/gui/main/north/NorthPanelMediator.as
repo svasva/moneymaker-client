@@ -99,6 +99,7 @@ package ru.fcl.sdd.gui.main.north
             var percent:Number;
             
             view.reputation = reputation;
+          
             percent = reputation / minReputation * 100;
             
             if (reputation >= minReputation)

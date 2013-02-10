@@ -38,12 +38,12 @@ package ru.fcl.sdd.location.floors
         {
            // layer = new MapLayer(floor, null);
              layer.scene = floor;
-            floor.addChild(layer);
+          //  floor.addChild(layer);
            layer.loadMap(HMap1);
             var event:Uni_event = new Uni_event(IsoFloor.PLACE_ROOM);
                 var bytes:ByteArray = new OPERATION_HALL();            
             var xml:XML = new XML(bytes.readUTFBytes(bytes.length));            
-            layer.isoFlor.loadRooms(xml.floors.rooms);
+           // layer.isoFlor.loadRooms(xml.floors.rooms);
             
             bytes = new DIRECTOR(); 
             xml  = new XML(bytes.readUTFBytes(bytes.length));  

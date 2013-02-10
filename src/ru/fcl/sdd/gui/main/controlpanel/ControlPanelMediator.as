@@ -8,6 +8,11 @@ package ru.fcl.sdd.gui.main.controlpanel
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.ui.Keyboard;
+import ru.fcl.sdd.gui.ingame.shop.InvestSelectedSignal;
+import ru.fcl.sdd.gui.ingame.shop.MarketingSelectedSignal;
+import ru.fcl.sdd.gui.ingame.shop.ShopSelectedSignal;
+import ru.fcl.sdd.states.IStateHolder;
+import ru.fcl.sdd.states.StateModel;
 
 import org.osflash.signals.ISignal;
 
@@ -37,6 +42,15 @@ public class ControlPanelMediator extends Mediator
 
     [Inject(name="change_floor")]
     public var floorChange:ISignal;
+    [Inject]
+    public var shopSelSig:ShopSelectedSignal;
+    [Inject]
+    public var investSelSig:InvestSelectedSignal;
+    [Inject]
+    public var marketingSelSig:MarketingSelectedSignal;
+    
+    [Inject]
+    public var gameStates:IStateHolder;
 
     override public function onRegister():void
     {
@@ -53,6 +67,7 @@ public class ControlPanelMediator extends Mediator
 		view.missionBtn.addEventListener(MouseEvent.CLICK, mission_clickHandler);
 		view.postBtn.addEventListener(MouseEvent.CLICK, post_clickHandler);
 		view.rateBtn.addEventListener(MouseEvent.CLICK, rate_clickHandler);
+        
     }
 
     override public function onRemove():void
@@ -73,7 +88,10 @@ public class ControlPanelMediator extends Mediator
 
     private function shopBtn_clickHandler(event:MouseEvent):void
     {
+         shopSelSig.dispatch();
+         gameStates.currenSubState = "shop";
         changeState.dispatch(GameStates.IN_SHOP);
+      
     }
 
 
@@ -129,10 +147,17 @@ public class ControlPanelMediator extends Mediator
 	
 	private function post_clickHandler(event:MouseEvent):void
 	{
+         gameStates.currenSubState = "adv";
+        changeState.dispatch(GameStates.IN_SHOP);
 	}
 	
 	private function rate_clickHandler(event:MouseEvent):void
 	{
+       
+        investSelSig.dispatch();   
+         gameStates.currenSubState = "invest";
+        changeState.dispatch(GameStates.IN_SHOP);
+           
 	}
 	
 	private function fullscreen_clickHandler(event:MouseEvent):void

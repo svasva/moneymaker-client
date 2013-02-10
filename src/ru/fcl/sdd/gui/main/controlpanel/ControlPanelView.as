@@ -94,13 +94,13 @@ public class ControlPanelView extends Sprite
 		_postBtn = createExtendedButton( "ButtonPost" );
 		_postBtn.x = 152;
 		_postBtn.y = 102;
-		_postBtn.locked = true;
+		//_postBtn.locked = true;
 		this.addChild(_postBtn);
 		
 		_rateBtn = createExtendedButton( "ButtonRate" );
 		_rateBtn.x = 152;
 		_rateBtn.y = 45;
-		_rateBtn.locked = true;
+	//	_rateBtn.locked = true;
 		this.addChild(_rateBtn);
     }
 	

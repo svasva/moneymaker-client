@@ -9,6 +9,7 @@ import as3isolib.display.IsoSprite;
 import as3isolib.geom.Pt;
 import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
+import flash.filters.GlowFilter;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -41,6 +42,12 @@ public class ItemIsoView extends IsoSprite
     private var _cashMoney:int;
     private var _status:String;
     private var _capacity:int;
+    private var _takeMoney:MovieClip=new MoneyBoxTakeAnimation();
+    private var _giveMoney:MovieClip = new MoneyBoxGiveAnimation();;
+    private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
+    private var _takeMoneyIso:IsoSprite = new IsoSprite();
+    private var _giveMoneyIso:IsoSprite = new IsoSprite();
+    private var _onClickFun:Function;
     
     
     public function ItemIsoView():void
@@ -51,12 +58,30 @@ public class ItemIsoView extends IsoSprite
         _skinSwf = new Loader();
         _isCorrectEnterPoint = false;
         super();
-        this.proxy.addEventListener(MouseEvent.CLICK, proxy_click);
+   //     this.proxy.addEventListener(MouseEvent.CLICK, proxy_click);
+        this.proxy.addEventListener(MouseEvent.MOUSE_OVER, proxy_mouseOver);
+        this.proxy.addEventListener(MouseEvent.MOUSE_OUT, proxy_mouseOut);
+        _takeMoneyIso.sprites = [_takeMoney];
+        _takeMoneyIso.render();
+        _giveMoneyIso.sprites = [_giveMoney];
+        _giveMoneyIso.render();
+      
+        
+    }
+    
+    private function proxy_mouseOut(e:ProxyEvent):void 
+    {
+        this.sprites[0].filters = [];
+    }
+    
+    private function proxy_mouseOver(e:ProxyEvent):void 
+    {
+         this.sprites[0].filters = [_selectFilter];
     }
     
     private function proxy_click(e:ProxyEvent):void 
     {
-        trace("_key " + _key);
+     //   trace("_key " + _key);
     }
 
     /**
@@ -244,5 +269,58 @@ public class ItemIsoView extends IsoSprite
     {
         _capacity = value;
     }
+    
+    public function get takeMoney():MovieClip 
+    {
+        return _takeMoney;
+    }
+    
+    public function set takeMoney(value:MovieClip):void 
+    {
+        _takeMoney = value;
+    }
+    
+  
+    public function get giveMoney():MovieClip 
+    {
+        return _giveMoney;
+    }
+    
+    public function set giveMoney(value:MovieClip):void 
+    {
+        _giveMoney = value;
+    }
+    
+    public function get takeMoneyIso():IsoSprite 
+    {
+        return _takeMoneyIso;
+    }
+    
+    public function set takeMoneyIso(value:IsoSprite):void 
+    {
+        _takeMoneyIso = value;
+    }
+    
+    public function get giveMoneyIso():IsoSprite 
+    {
+        return _giveMoneyIso;
+    }
+    
+    public function set giveMoneyIso(value:IsoSprite):void 
+    {
+        _giveMoneyIso = value;
+    }
+    
+    public function get onClickFun():Function 
+    {
+        return _onClickFun;
+    }
+    
+    public function set onClickFun(value:Function):void 
+    {
+        _onClickFun = value;
+    }
+    
+ 
 }
 }

@@ -15,6 +15,8 @@ public class RegisterListenersCommand extends SignalCommand
     override public function execute():void
     {
          callHashMap.addResponseHandler(IncomingClientusListen,"-3");
+         callHashMap.addResponseHandler(ChangeUserModelFromServer,"-1");
+         callHashMap.addResponseHandler(ChangeItemStateCommand,"-2");
     }
 }
 }

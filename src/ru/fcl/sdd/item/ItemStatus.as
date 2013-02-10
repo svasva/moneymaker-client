@@ -6,9 +6,9 @@ package ru.fcl.sdd.item
      */
     public class ItemStatus 
     {
-        public static const STANDBY:String = "STANDBY";
-        public static const FULL:String = "FULL";
-        public static const EMPTY:String = "EMPTY";
+        public static const STANDBY:String = "standby";
+        public static const FULL:String = "full";
+        public static const EMPTY:String = "empty";
         
         public function ItemStatus() 
         {

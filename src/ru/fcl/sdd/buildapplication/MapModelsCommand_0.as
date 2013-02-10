@@ -12,6 +12,9 @@ import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelTabUpdatedSignal;
+import ru.fcl.sdd.item.AdvertsCatalog;
+import ru.fcl.sdd.item.MarketingCatalog;
+import ru.fcl.sdd.item.SellItemSignal;
 import ru.fcl.sdd.item.ShopModel;
 import ru.fcl.sdd.location.room.RoomModel;
 import ru.fcl.sdd.location.room.SelectedItemUpdated;
@@ -46,6 +49,7 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(ShopModelTabUpdatedSignal);
         injector.mapSingleton(BuyRoomToServerCommandSignal);
         injector.mapSingleton(SelectedItemUpdated); 
+        injector.mapSingleton(SellItemSignal); 
       
        
         injector.mapSingleton(ShopModel);
@@ -54,6 +58,8 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(ActiveUserItemList);
         injector.mapSingleton(PlatformModel);
         injector.mapSingleton(ItemCatalog);
+        injector.mapSingleton(AdvertsCatalog);
+        injector.mapSingleton(MarketingCatalog);
         
         commandMap.execute(BuildMoneyCommand);
         commandMap.execute(BuildCapacityCommand);

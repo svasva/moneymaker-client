@@ -10,6 +10,9 @@ import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
 import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
 import ru.fcl.sdd.item.iso.ItemClickedSignal;
+import ru.fcl.sdd.item.SellItemCommand;
+import ru.fcl.sdd.item.SellItemSignal;
+import ru.fcl.sdd.location.room.RoomModel;
 import ru.fcl.sdd.tempFloorView.MapLayer;
 
 import org.osflash.signals.ISignal;
@@ -25,11 +28,15 @@ public class CreateFloorsCommand extends SignalCommand
 {
     [Inject]
     public var userItems:ActiveUserItemList;
+    
+    [Inject] 
+    public var roomMdl:RoomModel;
 
     override public function execute():void
     {
         injector.mapSingleton(ItemClickedSignal);
         signalCommandMap.mapSignalClass(ItemClickedSignal,ItemClickedHndCommand);
+        signalCommandMap.mapSignalClass(SellItemSignal,SellItemCommand);
         
         injector.mapSingleton(Floor1Scene);
         injector.mapSingleton(MapLayer);
@@ -39,7 +46,7 @@ public class CreateFloorsCommand extends SignalCommand
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
         
-        mainIsoScene.addEventListener(MouseEvent.CLICK, mainIsoScene_click);
+      //  mainIsoScene.addEventListener(MouseEvent.CLICK, mainIsoScene_click);
         
          commandMap.execute(PlaceDefaultRoomCommand);
 
@@ -55,6 +62,8 @@ public class CreateFloorsCommand extends SignalCommand
     private function mainIsoScene_click(e:ProxyEvent):void 
     {
         trace("mainIsoScene");
+        roomMdl.selectedItemId = null;
+        roomMdl.selectedItem = null;
     }
 }
 }

@@ -86,26 +86,26 @@ public class ShopView extends JPanel
         _storeShopBtn.x = 158;
         _storeShopBtn.y = 4;
         _storeShopBtn.name = ShopModel.SHOP_TAB_WAREHOUSE;
-        uiJpanel.addChild(_storeShopBtn);
+    //    uiJpanel.addChild(_storeShopBtn);
         
         _roomsShopBtn = new SimpleButton(getAsset("ButtonRoomsUpArt"),getAsset("ButtonRoomsOverArt"),getAsset("ButtonRoomsDownArt"),getAsset("ButtonRoomsDownArt"));
         _roomsShopBtn.visible = false;
         _roomsShopBtn.name = ShopModel.SHOP_TAB_MAIN;
         
-        uiJpanel.addChild(_roomsShopBtn);
+       // uiJpanel.addChild(_roomsShopBtn);
         
         _specialShopBtn = new SimpleButton(getAsset("ButtonSpecialUpArt"),getAsset("ButtonSpecialOverArt"),getAsset("ButtonSpecialDownArt"),getAsset("ButtonSpecialUpArt"));
         _specialShopBtn.x  = 284;
         _specialShopBtn.y  = 4;
         _specialShopBtn.name = ShopModel.SHOP_TAB_BONUS;
-        uiJpanel.addChild(_specialShopBtn);
+    //    uiJpanel.addChild(_specialShopBtn);
         
         _moneyShopBtn = new SimpleButton(getAsset("ButtonMoneyUpArt"),getAsset("ButtonMoneyOverArt"),getAsset("ButtonMoneyDownArt"),getAsset("ButtonMoneyUpArt"));
         _moneyShopBtn.x = 400; 
         _moneyShopBtn.y = 4;
         _moneyShopBtn.name = ShopModel.SHOP_TAB_PREMIUM;
-        uiJpanel.addChild(_moneyShopBtn);
-        uiJpanel.setClipMasked(false);
+       // uiJpanel.addChild(_moneyShopBtn);
+       // uiJpanel.setClipMasked(false);
         
         
         uiJpanel.addChild(_iconSprite);

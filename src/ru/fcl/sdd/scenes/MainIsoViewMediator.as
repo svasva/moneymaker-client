@@ -9,6 +9,7 @@ import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.ui.Keyboard;
+import ru.fcl.sdd.gui.main.MainInterfaceView;
 
 import org.osflash.signals.ISignal;
 
@@ -25,6 +26,9 @@ public class MainIsoViewMediator extends Mediator
     public var zoomInSignal:ISignal;
     [Inject(name="zoom_out")]
     public var zoomOutSignal:ISignal;
+    
+    [Inject]
+    public var viewMain:MainInterfaceView;
 
     private var panPoint:Point;
     private var zoom:Number = 0.75;
@@ -50,13 +54,16 @@ public class MainIsoViewMediator extends Mediator
 
     private function viewMouseDown(e:MouseEvent):void
     {
+       
         panPoint = new Point(view.stage.mouseX, view.stage.mouseY);
         view.stage.addEventListener(MouseEvent.MOUSE_MOVE, viewPan);
         view.stage.addEventListener(MouseEvent.MOUSE_UP, viewMouseUp);
+        
     }
 
     private function viewPan(event:MouseEvent):void
     {
+        viewMain.itemControl.visible = false;
         view.panBy(panPoint.x - view.stage.mouseX, panPoint.y - view.stage.mouseY);
         panPoint.x = view.stage.mouseX;
         panPoint.y = view.stage.mouseY;

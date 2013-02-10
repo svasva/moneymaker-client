@@ -17,8 +17,9 @@ package ru.fcl.sdd.services.main.parser
         
         override public function execute():void
         {
-            repMdl.min_rep = repObj.reputation;
-            repMdl.countValue = repObj.min_rep;
+           // repMdl.min_rep = repObj.reputation;
+           // repMdl.countValue = repObj.min_rep;
+          
         }
     }
 

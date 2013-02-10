@@ -70,7 +70,7 @@ package ru.fcl.sdd.tempFloorView.Nodes
 		
 		public function loadRooms(rooms:XMLList):void
 		{
-			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
+		
             
             for each (var room:XML in rooms.item)
 			{

@@ -6,10 +6,12 @@ package ru.fcl.sdd.item.iso
     import flash.geom.Point;
 	import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.gui.main.popup.WindowsLayerView;
+    import ru.fcl.sdd.item.ItemStatus;
     import ru.fcl.sdd.location.room.Room;
     import ru.fcl.sdd.location.room.RoomModel;
     import ru.fcl.sdd.location.room.UserRoomList;
     import ru.fcl.sdd.scenes.MainIsoView;
+    import ru.fcl.sdd.services.main.ISender;
 	
 	/**
      * ...
@@ -20,8 +22,7 @@ package ru.fcl.sdd.item.iso
         [Inject]
         public var isoItem:ItemIsoView;
         
-        [Inject]
-        public var mainIso:MainIsoView;
+      
         
         [Inject]
         public var windowsLayer:WindowsLayerView;
@@ -31,6 +32,9 @@ package ru.fcl.sdd.item.iso
         
         [Inject]
         public var userRoomList:UserRoomList;
+        
+        [Inject]
+        public var sender:ISender;
         
         private var shape:Shape;
         
@@ -45,6 +49,16 @@ package ru.fcl.sdd.item.iso
             
          //   var room:Room =  userRoomList.get(roomMdl.selectedItemId);
            // trace("room "+room.)
+           
+           if (roomMdl.selectedItem.status == ItemStatus.EMPTY)
+           {
+                sender.send( { command:"itemEncashment", args:[roomMdl.selectedItem.key] } );
+               
+           }
+           else if (roomMdl.selectedItem.status == ItemStatus.FULL)
+           {
+                sender.send( { command:"itemEncashment", args:[roomMdl.selectedItem.key] } );
+           }
             
            
             

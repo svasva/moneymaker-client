@@ -12,5 +12,8 @@ public interface IStateHolder
 
     function set stateOutCommand(value:Class):void
     function get stateOutCommand():Class
+    
+    function get currenSubState():String 
+     function set currenSubState(value:String):void 
 }
 }

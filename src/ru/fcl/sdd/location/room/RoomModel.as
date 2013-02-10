@@ -9,6 +9,7 @@ package ru.fcl.sdd.location.room
     {
         private var _selectedItemId:String;
         private var _selectedItem:ItemIsoView;
+        private var _buyingItem:ItemIsoView;
         
         [Inject]
         public var updatedSig:SelectedItemUpdated;
@@ -41,6 +42,16 @@ package ru.fcl.sdd.location.room
         public function set selectedItemId(value:String):void 
         {
             _selectedItemId = value;
+        }
+        
+        public function get buyingItem():ItemIsoView 
+        {
+            return _buyingItem;
+        }
+        
+        public function set buyingItem(value:ItemIsoView):void 
+        {
+            _buyingItem = value;
         }
         
     }

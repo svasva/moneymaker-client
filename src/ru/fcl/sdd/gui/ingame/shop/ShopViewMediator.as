@@ -8,8 +8,12 @@ package ru.fcl.sdd.gui.ingame.shop
 import de.polygonal.ds.HashMap;
 import flash.display.SimpleButton;
 import flash.events.MouseEvent;
+import ru.fcl.sdd.item.AdvertsCatalog;
+import ru.fcl.sdd.item.MarketingCatalog;
 import ru.fcl.sdd.item.ShopItemRoom;
 import ru.fcl.sdd.item.ShopModel;
+import ru.fcl.sdd.states.IStateHolder;
+import ru.fcl.sdd.states.StateModel;
 
 import org.osflash.signals.ISignal;
 
@@ -41,7 +45,23 @@ public class ShopViewMediator extends Mediator
      [Inject]
      public var updatedCategory:ShopModelCategoryUpdatedSignal;
      [Inject]
-     public var updatedTabe:ShopModelTabUpdatedSignal;    
+     public var updatedTabe:ShopModelTabUpdatedSignal;   
+     
+     [Inject]
+     public var marketingCat:MarketingCatalog;
+     
+     [Inject]
+      public var advCat:AdvertsCatalog;
+     
+      [Inject]
+    public var shopSelSig:ShopSelectedSignal;
+    [Inject]
+    public var investSelSig:InvestSelectedSignal;
+    [Inject]
+    public var marketingSelSig:MarketingSelectedSignal;
+    
+     [Inject]
+    public var gameStates:IStateHolder;
      
     
      private var _collectChunker:CollectChunker;
@@ -49,6 +69,7 @@ public class ShopViewMediator extends Mediator
      private var currentSelectedTabBtn:SimpleButton;
      
      private var btnVec:Vector.<SimpleButton> = new Vector.<SimpleButton>();
+  
 
     override public function onRegister():void
     {
@@ -71,6 +92,7 @@ public class ShopViewMediator extends Mediator
         if (tempShopRooms)
         {
             _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6);
+          //  _collectChunker = new CollectChunker(marketingCat, 6);
             _collectChunker.reset();
             shopView.items = _collectChunker.next();
            
@@ -84,11 +106,48 @@ public class ShopViewMediator extends Mediator
         btnVec.push(shopView.storeShopBtn);
         btnVec.push(shopView.specialShopBtn);
         btnVec.push(shopView.moneyShopBtn);
-        currentSelectedTabBtn = shopView.roomsShopBtn;
+       
         
         setSelectetTab(ShopModel.SHOP_TAB_MAIN);
+        
+       // marketingSelSig.add(setMarketing);
+        //shopSelSig.add(addOperationRoom);
+        
+        
+        
+        if (gameStates.currenSubState == "shop")
+        {
+             currentSelectedTabBtn = shopView.roomsShopBtn;
+        }
+        else if (gameStates.currenSubState == "invest")
+        {
+            setMarketing();
+        }
+        else if (gameStates.currenSubState == "adv")
+        {
+            setAdv();
+        }
       
     }   
+    
+     private function setAdv():void 
+    {
+        _collectChunker = new CollectChunker(advCat, 6);
+        _collectChunker.reset();
+        shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
+        shopView.uiJpanel.setVisible(false);
+    }
+    
+    private function setMarketing():void 
+    {
+      
+        _collectChunker = new CollectChunker(marketingCat, 6);
+        _collectChunker.reset();
+        shopView.items = _collectChunker.next();
+        checkItemsBtnVisible();
+         shopView.uiJpanel.setVisible(false);
+    }
     private function setTab():void 
     {
         setSelectetTab(shopMdl.selectedTab);
@@ -134,11 +193,14 @@ public class ShopViewMediator extends Mediator
     }
     private function addOperationRoom():void
     {
-         //shopMdl.setCategory(0)
+        
+         shopView.uiJpanel.setVisible(true);
+        //shopMdl.setCategory(0)
          if(!shopMdl.curentSelectedShopItemRoom)
          return;
          
         _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6);
+       // _collectChunker = new CollectChunker(marketingCat, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
         checkItemsBtnVisible();
@@ -179,7 +241,7 @@ public class ShopViewMediator extends Mediator
     private function itemClicked(id:String):void 
     {
        
-        trace("itemClicked");
+      
         var tempShopRoomItm:HashMap = shopMdl.get("main") as HashMap;
         
         var tempShopRooms:ShopItemRoom = tempShopRoomItm.get(id) as ShopItemRoom;

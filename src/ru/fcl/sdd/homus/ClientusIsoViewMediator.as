@@ -6,6 +6,7 @@
 package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
+import ru.fcl.sdd.services.main.ISender;
 
 import de.polygonal.ds.HashMapValIterator;
 
@@ -58,6 +59,8 @@ public class ClientusIsoViewMediator extends Mediator
     public var operationSuccessSignal:OperationSuccessSignal;
 //    [Inject]
 //    public var operationFailedSignal:OperationFailedSignal;
+    [Inject]
+    public var sender:ISender;
 
 
     private var _path:Array;
@@ -72,7 +75,8 @@ public class ClientusIsoViewMediator extends Mediator
     private var _inStack:Boolean = false;
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
-    private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80,1,4,4,2,1);
+    private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
+   
 
 
 
@@ -200,6 +204,8 @@ public class ClientusIsoViewMediator extends Mediator
 
                     if (clientusView.operations.length)
                     {
+                         trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
+                        sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
                         setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
@@ -228,6 +234,8 @@ public class ClientusIsoViewMediator extends Mediator
 
                     if (clientusView.operations.length)
                     {
+                         trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
+                        sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
                         setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else

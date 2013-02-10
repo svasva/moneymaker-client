@@ -7,6 +7,7 @@ package ru.fcl.sdd.services.main.parser
 {
     
     import org.robotlegs.mvcs.SignalCommand;
+    import ru.fcl.sdd.item.ItemStatus;
     import ru.fcl.sdd.item.ShopModel;
     
     import ru.fcl.sdd.config.IsoConfig;
@@ -55,8 +56,13 @@ package ru.fcl.sdd.services.main.parser
                 item.x = object.x * IsoConfig.CELL_SIZE;
                 item.y = object.y * IsoConfig.CELL_SIZE;
                 
-                if(object.state)
-                item.status =  object.state;
+                if (object.state)
+                {
+                   item.status =  object.state;
+                   if (item.status == ItemStatus.EMPTY)
+                   item.sprites.push(item.giveMoney);
+                }
+                
                 
                 if (object.capacity)
                 item.capacity = object.capacity;

@@ -7,6 +7,7 @@ package ru.fcl.sdd.services.main.parser
 {
 import org.robotlegs.mvcs.Command;
 import ru.fcl.sdd.tools.PrintJSON;
+import ru.fcl.sdd.userdata.reputation.IReputation;
 
 import ru.fcl.sdd.user.UserDataModel;
 
@@ -16,6 +17,9 @@ public class ParseUserDataCommand extends Command
     public var userData:UserDataModel;
     [Inject]
     public var userObject:Object;
+    
+      [Inject]
+      public var repMdl:IReputation;
 
 
     override public function execute():void
@@ -45,7 +49,11 @@ public class ParseUserDataCommand extends Command
         var capacity:int = userObject.response.capacity;
         commandMap.execute(ParseCapasityCommand, capacity);
         
+      
         var reputation:Object = {reputation:userObject.response.reputation, minReputation:userObject.response.min_rep};
+        repMdl.countValue = userObject.response.reputation;
+        repMdl.min_rep = userObject.response.min_rep;
+        
         commandMap.execute(ParseReputationCommand, reputation);
         
         var exp:Object = { exp:   userObject.response.experience,

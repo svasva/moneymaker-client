@@ -24,6 +24,7 @@ public class PlacePathGridItemCommand extends SignalCommand
             for (var i:int = 0; i < iso.width / IsoConfig.CELL_SIZE; i++)
             {
                 pathGreed.setWalkable(i + iso.x / IsoConfig.CELL_SIZE, j + iso.y / IsoConfig.CELL_SIZE, false);
+                
             }
         }
     }
