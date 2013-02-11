@@ -39,22 +39,22 @@ package ru.fcl.sdd.gui.main.friendbar
             this.addChild(_bgLine);
             this.addChild(_bg);
             
-            _bg.removeChildAt(0);
+           // _bg.removeChildAt(0);
             
-            Config.init(Config.VKONTAKTE);
-			SocialClient.forceInit = true;
-			SocialClient.init(tier2);
+           // Config.init(Config.VKONTAKTE);
+			//SocialClient.forceInit = true;
+			//SocialClient.init(tier2);
         
         }
         
         private function init1(e:Event = null):void
         {
             
-            Friends.init();
-            friendPanel = new FriendPanel();
-            Main.friendPanel = friendPanel;
+         //   Friends.init();
+         //   friendPanel = new FriendPanel();
+          //  Main.friendPanel = friendPanel;
            // friendPanel.y = 340;
-           _bg.addChild(friendPanel);
+         //  _bg.addChild(friendPanel);
             
         }
         

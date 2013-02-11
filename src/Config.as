@@ -169,7 +169,7 @@ package
 			return FlexGlobals.topLevelApplication.flashVars
 		}
 		
-		public static const VK_DUMMY_VIEWER_ID:Number = 180820330;	//= ???;
+		public static const VK_DUMMY_VIEWER_ID:Number //= 180820330;	//= ???;
 		public static const MM_DUMMY_VIEWER_ID:Number	//= ???;
 	 	public static const OK_DUMMY_VIEWER_ID:Number	//= ???;
 	}

@@ -49,7 +49,7 @@ package
 		
 		public function init0(e:Event = null):void
 		{
-			Config.init(Config.LOCAL);
+			Config.init(Config.VKONTAKTE);
 			SocialClient.forceInit = true;
 			SocialClient.init(tier2);
 		}

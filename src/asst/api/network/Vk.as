@@ -106,10 +106,13 @@ package asst.api.network
 				var data:URLVariables = new URLVariables();
 				
 				var request:URLRequest = new URLRequest();
-				request.url    = Config.VK_API_URL + '?m='+method;
+                trace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				request.url    = Config.VK_API_URL + '?m=' + method;
+                trace("request.url " + request.url);
+                trace("request.data" + request.data);
 				request.method = URLRequestMethod.POST;
 				request.data   = data;
-				
+				 trace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				var loader:URLLoader = new URLLoader();
 				loader.dataFormat = URLLoaderDataFormat.TEXT;
 				
