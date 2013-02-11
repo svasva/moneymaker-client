@@ -132,6 +132,8 @@ public class ShopViewMediator extends Mediator
     
      private function setAdv():void 
     {
+           shopView.clearIcon();
+         shopView.iconSprite.addChild( shopView.iconVec[2])
         _collectChunker = new CollectChunker(advCat, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
@@ -141,7 +143,8 @@ public class ShopViewMediator extends Mediator
     
     private function setMarketing():void 
     {
-      
+         shopView.clearIcon();
+         shopView.iconSprite.addChild( shopView.iconVec[1])
         _collectChunker = new CollectChunker(marketingCat, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
@@ -170,7 +173,7 @@ public class ShopViewMediator extends Mediator
          
         if (tabNam == ShopModel.SHOP_TAB_MAIN)
         {          
-           shopView.iconSprite.addChild(shopView.iconVec[0])
+          // shopView.iconSprite.addChild(shopView.iconVec[0])
            btnVec[0].visible = false;
            addOperationRoom();
         }
@@ -193,7 +196,8 @@ public class ShopViewMediator extends Mediator
     }
     private function addOperationRoom():void
     {
-        
+           shopView.clearIcon();
+         shopView.iconSprite.addChild( shopView.iconVec[0])
          shopView.uiJpanel.setVisible(true);
         //shopMdl.setCategory(0)
          if(!shopMdl.curentSelectedShopItemRoom)

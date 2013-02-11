@@ -26,7 +26,7 @@ package ru.fcl.sdd.services.main.parser
         
         override public function execute():void 
         {
-            PrintJSON.deepTrace(marketObj);
+           // PrintJSON.deepTrace(marketObj);
             
           
              var itemsArray:Array = marketObj.response;     

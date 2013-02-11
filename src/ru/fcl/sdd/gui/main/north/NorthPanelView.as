@@ -163,7 +163,7 @@ package ru.fcl.sdd.gui.main.north
         
         public function set experience(value:int):void
         {
-            _experienceTextField.text = Tools.FormatMoneyString(value, true);
+            _experienceTextField.text = value.toString();
         }
         
         public function set reputation(value:int):void

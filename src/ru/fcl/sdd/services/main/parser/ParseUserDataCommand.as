@@ -26,8 +26,8 @@ public class ParseUserDataCommand extends Command
     {
         userData.bank_name = userObject.response.bank_name;
 
-        trace("ParseUserDataCommand");
-        PrintJSON.deepTrace(userObject.response.items);
+     //   trace("ParseUserDataCommand");
+     //   PrintJSON.deepTrace(userObject.response.items);
         var rooms:Array = userObject.response.rooms;
         if(!rooms)
         {

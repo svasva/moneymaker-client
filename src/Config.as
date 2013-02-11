@@ -49,8 +49,8 @@ package
 		
 		public static var BACKEND_API_URL:String	= '';
 		
-		public static var VK_API_URL:String 		= "";
-		public static var VK_API_ID:String  		= "";
+		public static var VK_API_URL:String 		= "http://api.vkontakte.ru/api.php";
+		public static var VK_API_ID:String  		= "3227016";
 		
 		//for facebook
 		public static var APP_URL:String            = '';
@@ -92,12 +92,12 @@ package
 				STAGE				= "live"; // dev / live
 				NETWORK           	= 'vk'; // vk / mm / ok
 			
-				STATIC_URL 			= '';
+				STATIC_URL 			= 'http://mm.so14.org/';
 				STATIC_PATH 		= STATIC_URL + 'assets/';
 				STATIC_PATH_HASHED 	= STATIC_URL + 'hashed/';
 				STATIC_HASHED 		= false;
 			
-				SERVER_DOMAIN       = '????.ru';
+				SERVER_DOMAIN       = 'http://api.vkontakte.ru';
 				SERVER_URL          = 'api.php';
 			
 				BACKEND_API_URL		= 'url/api.php';
@@ -165,6 +165,7 @@ package
 		public static function get parameters():Object
 		{
 			if (social == LOCAL) 			return FlexGlobals.topLevelApplication.flashVars;
+			//return FlexGlobals.topLevelApplication.flashVars
 			return FlexGlobals.topLevelApplication.flashVars
 		}
 		

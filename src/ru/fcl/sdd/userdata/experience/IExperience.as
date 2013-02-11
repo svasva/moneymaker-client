@@ -13,6 +13,8 @@ package ru.fcl.sdd.userdata.experience
         function set nextLevel(value:int):void;
         function get levelNumer():int;
         function set levelNumer(value:int):void;
+        function get isLevelUdated():Boolean;
+        function set isLevelUdated(value:Boolean):void 
     }
     
 }

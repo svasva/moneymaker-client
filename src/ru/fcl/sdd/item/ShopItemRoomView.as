@@ -98,7 +98,7 @@ package ru.fcl.sdd.item
         public function set iconUrl(value:String):void 
         {
             _iconUrl = value;
-            trace(" _iconUrl  "+ _iconUrl);
+           
             _loadPan.load(new URLRequest(_iconUrl));
         }
         

@@ -17,6 +17,7 @@ package ru.fcl.sdd.gui.main
     import org.aswing.JToggleButton;
     import org.aswing.plaf.DefaultEmptyDecoraterResource;
     import ru.fcl.sdd.config.FlashVarsModel;
+    import ru.fcl.sdd.gui.main.dialogs.NewLevelSmallDialog;
     import ru.fcl.sdd.gui.main.popup.BuyShopItemDialog;
     import ru.fcl.sdd.gui.main.popup.CantBuyPopUpDialog;
     import ru.fcl.sdd.gui.main.tooltip.ShopToolTip;
@@ -43,6 +44,8 @@ package ru.fcl.sdd.gui.main
         private var _buyRoomDialog:BuyShopItemDialog;
         
         private var _itemControl:ItemPanelSp = new ItemPanelSp();
+        
+        private var _newLevelSmallDialog:NewLevelSmallDialog;
         
         
          
@@ -77,7 +80,7 @@ package ru.fcl.sdd.gui.main
             
             _buyRoomDialog = new BuyShopItemDialog(rsl, flashVars.app_width, flashVars.app_height);
           
-            
+            _newLevelSmallDialog = new NewLevelSmallDialog(rsl, flashVars.app_width, flashVars.app_height);
             
         }
         
@@ -141,6 +144,16 @@ package ru.fcl.sdd.gui.main
         public function set itemControl(value:ItemPanelSp):void 
         {
             _itemControl = value;
+        }
+        
+        public function get newLevelSmallDialog():NewLevelSmallDialog 
+        {
+            return _newLevelSmallDialog;
+        }
+        
+        public function set newLevelSmallDialog(value:NewLevelSmallDialog):void 
+        {
+            _newLevelSmallDialog = value;
         }
         private function getAsset(value:String):DisplayObject
         {

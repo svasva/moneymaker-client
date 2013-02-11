@@ -108,12 +108,12 @@ public class ShopView extends JPanel
        // uiJpanel.setClipMasked(false);
         
         
-        uiJpanel.addChild(_iconSprite);
+         addChild(_iconSprite);
         _iconSprite.x = 18;
         _iconSprite.y = 19;
         _iconVec.push(getAsset("IconRoomsBigArt"));       
-        _iconVec.push(getAsset("IconStorageBigArt"));
-        _iconVec.push(getAsset("IconSpecialBigArt"));
+        _iconVec.push(getAsset("InvestIconBig"));
+        _iconVec.push(getAsset("PRIconBig"));
         _iconVec.push(getAsset("IconMoneyBigArt"));
         _iconSprite.addChild(_iconVec[1]);
         

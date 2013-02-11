@@ -84,12 +84,12 @@ package ru.fcl.sdd.gui.main.north
         private function setExperience():void
         {
             
-            view.experience = expMdl.levelNumer;
-            
+            view.experience = expMdl.levelNumer;            
             var exp:int = expMdl.count;
             var nextLvExp:int = expMdl.nextLevel;            
             var percent:Number = exp / nextLvExp * 100;         
             view.experienceBar.currValue = percent;
+            
         }
         
         private function setReputation():void
