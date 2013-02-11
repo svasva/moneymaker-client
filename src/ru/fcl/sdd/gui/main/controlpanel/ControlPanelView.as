@@ -66,11 +66,11 @@ public class ControlPanelView extends Sprite
 		_configBtn.x = 104;
 		_configBtn.y = 146;
 		_configBtn.locked = true;
-		this.addChild(_configBtn);
+		//this.addChild(_configBtn);
 		
 		_missionBtn = createExtendedButton( "ButtonMission" );
 		_missionBtn.x = 47;
-		_missionBtn.locked = true;
+	//	_missionBtn.locked = true;
 		this.addChild(_missionBtn);
 		
 		_fullscreenBtn = createExtendedButton( "ButtonFullscreen" );
@@ -89,7 +89,7 @@ public class ControlPanelView extends Sprite
 		_mapBtn.x = 110;
 		_mapBtn.y = 1;
 		_mapBtn.locked = true;
-		this.addChild(_mapBtn);
+	//	this.addChild(_mapBtn);
 		
 		_postBtn = createExtendedButton( "ButtonPost" );
 		_postBtn.x = 152;

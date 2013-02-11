@@ -13,6 +13,7 @@ package ru.fcl.sdd.tempFloorView.Nodes
     import ru.fcl.sdd.tempFloorView.GroundCreator;
     import ru.fcl.sdd.tempFloorView.ObjectCreator;
     import ru.fcl.sdd.tempFloorView.WallCreator;
+	import ru.fcl.sdd.tempFloorView.WindowCreator;
 
 
 	/**
@@ -22,11 +23,13 @@ package ru.fcl.sdd.tempFloorView.Nodes
 	public class IsoRoom extends IsoDisplayObject 
 	{
 		
-		protected var vobjects:Vector.<INode>;
-		protected var back_layer:IsoSprite = new IsoSprite();
-		protected var wall_layer:IsoSprite =  new IsoSprite();
-		protected var object_layer:IsoSprite =  new IsoSprite();
-		protected var ground_layer:IsoSprite =  new IsoSprite();
+		private var vobjects:Vector.<INode>;
+		private var back_layer:IsoSprite = new IsoSprite();
+		private var wall_layer:IsoSprite =  new IsoSprite();
+		private var object_layer:IsoSprite =  new IsoSprite();
+		private var ground_layer:IsoSprite =  new IsoSprite();
+		private var corridor_object_alyer:IsoSprite = new IsoSprite();
+		private var window_layer:IsoSprite = new IsoSprite();
 		protected var grid:IsoGrid = new IsoGrid();
 		
 		protected const CELL:int = 50;
@@ -45,10 +48,13 @@ package ru.fcl.sdd.tempFloorView.Nodes
 			
 			
 			//addChild(grid);
-			addChild(back_layer);
 			addChild(ground_layer);
+			addChild(back_layer);
+			addChild(window_layer);
+			
 			addChild(object_layer);
 			addChild(wall_layer);
+			addChild(corridor_object_alyer);
 		//	addEventListener(Event.ADDED_TO_STAGE, init);
 		//	addEventListener(Event.RENDER, _render);
 			addEventListener(Event.REMOVED_FROM_STAGE, clear);
@@ -59,6 +65,9 @@ package ru.fcl.sdd.tempFloorView.Nodes
 			removeChild(ground_layer);
 			removeChild(wall_layer);
 			removeChild(object_layer);
+			removeChild(back_layer);
+			removeChild(window_layer);
+			
 		}
 		
 		private var dragObject:IsoDisplayObject;
@@ -122,6 +131,26 @@ package ru.fcl.sdd.tempFloorView.Nodes
 				(node as IsoSprite).render();				
 			}
 		}
+		
+		public function loadWindow(windows:XMLList):void
+		{
+			
+			for each (var item:XML in windows.item)
+			{
+				//var item:Room = new Room();
+				var factory:WindowCreator = new WindowCreator();
+				trace (item.@sid);
+				var node:INode = factory.createWindow(item.@sid);
+				//addChild(node);
+				(node as IsoSprite).x = item.@x * CELL;
+				(node as IsoSprite).y = item.@y  * CELL;
+				window_layer.addChild(node);
+				(node as IsoSprite).render();
+							
+			}
+			
+		}
+		
 		public function loadWall(walls:XMLList):void
 		{
 			
@@ -157,7 +186,11 @@ package ru.fcl.sdd.tempFloorView.Nodes
 				(node as IsoSprite).y = item.@y  * CELL;
 			//	(node as IsoSprite).z = 50;
 				(node as IsoSprite).render();
-				object_layer.addChild(node);
+				if (item.@corridor && item.@corridor == "true")
+					corridor_object_alyer.addChild(node);
+				else				
+					object_layer.addChild(node);
+				
 				vobjects.push(node);				
 			//	(node as IsoSprite).proxy.addEventListener(MouseEvent.MOUSE_DOWN, onPickup);
 			}

@@ -48,6 +48,8 @@ public class ControlPanelMediator extends Mediator
     public var investSelSig:InvestSelectedSignal;
     [Inject]
     public var marketingSelSig:MarketingSelectedSignal;
+    [Inject]
+    public var showTurorial:ShowTutorialSignal;
     
     [Inject]
     public var gameStates:IStateHolder;
@@ -143,6 +145,7 @@ public class ControlPanelMediator extends Mediator
 	
 	private function mission_clickHandler(event:MouseEvent):void
 	{
+        showTurorial.dispatch();
 	}
 	
 	private function post_clickHandler(event:MouseEvent):void

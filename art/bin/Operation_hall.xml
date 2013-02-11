@@ -2,11 +2,19 @@
 <data>
 <floors>
 		
-	<rooms sid = "1">
+	<rooms>
 		<item r_id= "1" x="0" y="0">
-			
+		
+
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		
 		<walls>			
-		<item sid="8" x="0" y="0" back="true"> </item>		
+		<item sid="8" x="0" y="0" back="true"> </item>
+
+		
 		
 		</walls>		
 			
@@ -17,13 +25,17 @@
 		
 		<objects>	
 		
-		
+		<item sid="3" x="4" y="5"> </item>
+		<item sid="2" x="6" y="2"> </item>
 	
 		</objects>
 		
 		
 		</item>
 		<item r_id= "3" x="15" y="0">
+		<windows>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
 		<walls>
 		<item sid="13" x="11" y="0"> </item>
 		</walls>	

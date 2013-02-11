@@ -5,6 +5,7 @@ package ru.fcl.sdd.tempFloorView.Nodes
 	import as3isolib.display.IsoSprite;
 	import as3isolib.display.IsoView;
 	import flash.events.Event;
+	import ru.fcl.sdd.location.room.Room;
 
     import ru.fcl.sdd.tempFloorView.controllers.Uni_controller;
     import ru.fcl.sdd.tempFloorView.controllers.Uni_event;
@@ -52,6 +53,11 @@ package ru.fcl.sdd.tempFloorView.Nodes
 			removeEventListener(Event.REMOVED_FROM_STAGE, clear);
 			Uni_controller.getInstance().removeEventListener(PLACE_ROOM, PlaceRoomHandler);
 			
+			for each ( var item:IsoRoom in vrooms)
+			removeChild(item);
+			
+			vrooms.length = 0;
+			
 		}
 		
 		private  function init(e:Event):void
@@ -70,7 +76,7 @@ package ru.fcl.sdd.tempFloorView.Nodes
 		
 		public function loadRooms(rooms:XMLList):void
 		{
-		
+			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
             
             for each (var room:XML in rooms.item)
 			{
@@ -86,6 +92,7 @@ package ru.fcl.sdd.tempFloorView.Nodes
 				rooms_layer.setChildIndex(item, i);
 				item.loadGround(room.grounds);
 				item.loadWall(room.walls);
+				item.loadWindow(room.windows);
 				item.loadObject(room.objects);
 			}
 			

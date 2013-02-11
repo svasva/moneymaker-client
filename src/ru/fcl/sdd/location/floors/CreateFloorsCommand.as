@@ -48,7 +48,7 @@ public class CreateFloorsCommand extends SignalCommand
         
       //  mainIsoScene.addEventListener(MouseEvent.CLICK, mainIsoScene_click);
         
-         commandMap.execute(PlaceDefaultRoomCommand);
+         commandMap.execute(PlaceDefaultRoomCommand,1);
 
         while(iterator.hasNext())
         {

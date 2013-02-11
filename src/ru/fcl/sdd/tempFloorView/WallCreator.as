@@ -29,7 +29,15 @@ package ru.fcl.sdd.tempFloorView
 		private const WALL_BOTTOM1C:int = 16;
 		private const WALL_TOP2A:int = 18;
 		private const WALL_TOP1B:int = 19;
-		
+		private const PEREGORODKA:int = 20;
+		private const WALL_TOP_SINGLE:int = 21;
+		private const OPERATION_WALL2:int = 22;
+		private const OPERATION_WALL3:int = 23;
+		private const C_PEREGORODKA5:int = 24;
+		private const WALL_TOP1A:int = 26;
+		private const BIG_WALL1:int = 25;
+		private const BIG_WALL2:int = 27;
+		private const WALL_TOP3:int = 28;
 		public function WallCreator() 
 		{
 			
@@ -104,6 +112,34 @@ package ru.fcl.sdd.tempFloorView
 				break;
 				case WALL_TOP1B:
 				target = new wall_top1b_mc();					
+				break;
+				case PEREGORODKA:
+				target = new peregorodka1_mc();					
+				break;
+				case WALL_TOP_SINGLE:
+				target = new wall_top_single_mc();					
+				break;
+				case OPERATION_WALL2:
+				target = new operation_wall2_mc();					
+				break;
+				case OPERATION_WALL3:
+				target = new operation_wall3_mc();					
+				break;
+				case C_PEREGORODKA5:
+				target = new cperegorodka5_mc();					
+				break;
+			
+				case WALL_TOP1A:
+				target = new wall_top1a_mc();					
+				break;
+				case BIG_WALL1:
+				target = new big_wall_mc();					
+				break;
+				case BIG_WALL2:
+				target = new big_wall2_mc();					
+				break;
+				case WALL_TOP3:
+				target = new walltop3_mc();					
 				break;
 				
 			}

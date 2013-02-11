@@ -6,6 +6,10 @@
 package ru.fcl.sdd.services.main.parser
 {
 import org.robotlegs.mvcs.Command;
+import ru.fcl.sdd.location.room.UserRoomList;
+import ru.fcl.sdd.scenes.MainIsoView;
+import ru.fcl.sdd.tempFloorView.FloorManager;
+import ru.fcl.sdd.tempFloorView.MapLayer;
 import ru.fcl.sdd.tools.PrintJSON;
 import ru.fcl.sdd.userdata.reputation.IReputation;
 
@@ -20,6 +24,8 @@ public class ParseUserDataCommand extends Command
     
       [Inject]
       public var repMdl:IReputation;
+      
+
 
 
     override public function execute():void
@@ -60,9 +66,22 @@ public class ParseUserDataCommand extends Command
                            nextLv:userObject.response.nextlevel,
                            levelNuber:userObject.response.levelnumber};
                            
-         commandMap.execute(ParseExperienceCommand,exp);
-       
+         commandMap.execute(ParseExperienceCommand, exp);
+         
+         
+       /* var len:int = userRoomList.toArray().length -2;
         
+         	var xml:XML; 
+          
+          //  xml  = FloorManager.get_Instance().Next();
+            
+        
+        for (var i:int = 0; i <len ; i++) 
+        {
+             xml  = FloorManager.get_Instance().Next();
+            layer.isoFlor.loadRooms(xml.floors.item[mainIsoView.currentFloorNumber].rooms);
+        }
+        */
         
     }
 }

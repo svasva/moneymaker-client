@@ -11,15 +11,17 @@ package ru.fcl.sdd.tempFloorView
 	public class ObjectCreator 
 	{
 		
-		const CHAIR1:int = 1;
-		const CHAIR2:int = 2;
-		const BANK:int = 3;
-		const DIVAN:int = 4;
-		const DIRECTOR:int = 5;
-		const BANKOMATS:int = 6;
-		const SEQURITY:int = 7;
-		const MARKETING:int = 8;
-		
+		private const CHAIR1:int = 1;
+		private const CHAIR2:int = 2;
+		private const BANK:int = 3;
+		private const DIVAN:int = 4;
+		private const DIRECTOR:int = 5;
+		private const BANKOMATS:int = 6;
+		private const SEQURITY:int = 7;
+		private const MARKETING:int = 8;
+		private const FILIALS:int = 9;
+		private const SAFE:int = 10;
+		private const LIFT:int = 11;
 		
 		public function ObjectCreator() 
 		{
@@ -63,7 +65,15 @@ package ru.fcl.sdd.tempFloorView
 				case MARKETING:
 				target = new marketing_obj_mc();
 				break;
-							
+				case FILIALS:
+				target = new filials_obj();
+				break;
+				case SAFE:
+				target = new shraniliche_obj_mc();
+				break;
+				case LIFT:
+				target = new lift_mc();
+				break;		
 				
 			}
 			node.sprites = [target];

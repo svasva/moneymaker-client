@@ -9,6 +9,7 @@ import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.gui.ingame.shop.InvestSelectedSignal;
 import ru.fcl.sdd.gui.ingame.shop.MarketingSelectedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopSelectedSignal;
+import ru.fcl.sdd.gui.main.controlpanel.ShowTutorialSignal;
 
 public class BuildGameStatesCommand extends SignalCommand
 {
@@ -19,6 +20,7 @@ public class BuildGameStatesCommand extends SignalCommand
         injector.mapSingleton(ShopSelectedSignal);
         injector.mapSingleton(MarketingSelectedSignal);
         injector.mapSingleton(InvestSelectedSignal);
+        injector.mapSingleton(ShowTutorialSignal);
         
         signalCommandMap.mapSignalClass(ChangeStateSignal,ChangeStateCommand);
     }

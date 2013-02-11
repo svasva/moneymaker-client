@@ -19,24 +19,39 @@ package ru.fcl.sdd.tempFloorView
 			
         public var isoFlor:IsoFloor;
 	
+	
 		public function MapLayer() 
 		{
 		/*	this.scene = _scene;
 			this.view = view;		*/
-			addEventListener(Event.ADDED_TO_STAGE, init);
-			addEventListener(Event.REMOVED_FROM_STAGE, clear);			
+		//	addEventListener(Event.ADDED_TO_STAGE, init);
+			//addEventListener(Event.REMOVED_FROM_STAGE, clear);			
 			
 		
 		}
-		private function clear(e:Event):void
+		
+		private function clear():void
 		{
+			if (isoFlor)
+			{
+				removeChild(isoFlor);
+			}
 			
 		
 		}
-		private function init(e:Event):void
+	
+		public function init():void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-		
+			clear();
+			var bg_design:MovieClip = new floor_back_mc();
+			var Bg:IsoSprite = new IsoSprite();
+			Bg.sprites = [bg_design];
+		//	addChild(Bg);
+		//	if (!isoFlor)
+			var item:INode = new IsoFloor(view);
+                isoFlor = item as IsoFloor;
+				addChild(item);
+			
 		}
 		
 		
