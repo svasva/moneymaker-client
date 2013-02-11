@@ -43,7 +43,10 @@ package ru.fcl.sdd.services.main.listen
             }
             else if (response.response.levelnumber)
             {
+                trace("response.response.levelnumber "+response.response.levelnumber);
                 exp.levelNumer = response.response.levelnumber;
+                exp.isLevelUdated = false;
+               
             }
             
             

@@ -9,9 +9,11 @@ package ru.fcl.sdd.userdata.experience
         private var _count:int;
         private var _nextLevel:int;
         private var _levelNumer:int;
+        private var _isLevelUdated:Boolean = true;
         
         [Inject]
         public var updater:UpdateExperienceSignal;
+       
         
         public function Experience() 
         {
@@ -47,6 +49,17 @@ package ru.fcl.sdd.userdata.experience
         public function set levelNumer(value:int):void 
         {
             _levelNumer = value;
+           // updaterLevel.dispatch();
+        }
+        
+        public function get isLevelUdated():Boolean 
+        {
+            return _isLevelUdated;
+        }
+        
+        public function set isLevelUdated(value:Boolean):void 
+        {
+            _isLevelUdated = value;
         }
         
     }

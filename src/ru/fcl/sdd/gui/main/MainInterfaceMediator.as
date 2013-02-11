@@ -33,6 +33,7 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.services.shared.ISharedGameDataService;
     import ru.fcl.sdd.tempFloorView.MapLayer;
     import ru.fcl.sdd.userdata.experience.IExperience;
+    import ru.fcl.sdd.userdata.experience.UpdateLevelSignal;
     
     public class MainInterfaceMediator extends Mediator
     {
@@ -122,7 +123,12 @@ package ru.fcl.sdd.gui.main
         private var ROOM7:Class;
         
         [Inject]
-        public var sellSignal:SellItemSignal
+        public var sellSignal:SellItemSignal;
+        
+          [Inject]
+        public var updaterLevel:UpdateLevelSignal;
+        
+     
         
         
         /**
@@ -149,6 +155,9 @@ package ru.fcl.sdd.gui.main
             
             selectedRoomItemUpdated.add(onSelectedRoomItemUpdateds);
             
+            updaterLevel.add(showNewLevelDialog);
+            
+            
             view.popUpDialog.yesBtn.addEventListener(MouseEvent.CLICK, yesBtn_click);
             view.popUpDialog.noBtn.addEventListener(MouseEvent.CLICK, noBtn_click);
             view.cantBuyDialog.noBtn.addEventListener(MouseEvent.CLICK, noBtn_click);
@@ -166,13 +175,30 @@ package ru.fcl.sdd.gui.main
             windowsLayer.addChild(view.cantBuyDialog);
             windowsLayer.addChild(view.shopItemToolTip);
             windowsLayer.addChild(view.buyRoomDialog);
-            windowsLayer.addChild(view.itemControl)
+            windowsLayer.addChild(view.itemControl);
+            
+            windowsLayer.addChild(view.newLevelSmallDialog);
+            
+            view.newLevelSmallDialog.visible = false;
+            
+            view.newLevelSmallDialog.okBtn.addEventListener(MouseEvent.CLICK, okBtn_click);
             
             addBankomatRoom = new PushButton(windowsLayer, 50, 50, "Bankomat Room", addBankomatRoomHnd);
             seciurityRoom   = new PushButton(windowsLayer, 50, 80, "Security Room", addseciurityRoom);
             investRoom      = new PushButton(windowsLayer, 50, 110, "Invest Room", addinvestRoom);
             resetGame       = new PushButton(windowsLayer, 650, 50, "Reset Game", resetGameHnd);
         
+        }
+        
+        private function showNewLevelDialog():void 
+        {
+             view.newLevelSmallDialog.visible = true;
+             view.newLevelSmallDialog.levelTf.text = expMdl.levelNumer.toString();
+        }
+        
+        private function okBtn_click(e:MouseEvent):void 
+        {
+            view.newLevelSmallDialog.visible = false;
         }
         
         private function sell_click(e:MouseEvent):void 

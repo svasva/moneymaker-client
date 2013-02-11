@@ -41,7 +41,7 @@ package ru.fcl.sdd.gui.main.friendbar
             
             _bg.removeChildAt(0);
             
-            Config.init(Config.LOCAL);
+            Config.init(Config.VKONTAKTE);
 			SocialClient.forceInit = true;
 			SocialClient.init(tier2);
         

@@ -3,6 +3,7 @@ package asst.api.network
 	import com.adobe.images.JPGEncoder;
 	import com.adobe.images.PNGEncoder;
 	import com.adobe.serialization.json.JSON;
+    import ru.fcl.sdd.tools.PrintJSON;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -48,6 +49,8 @@ package asst.api.network
 		{
 			if (Config.STAGE == 'live') {
 				Vk.init(Config.parameters);
+                trace("PRINT JSON");
+                PrintJSON.deepTrace(Config.parameters);
 				callback();
 			} else if (Config.STAGE == 'dev') {
 				Vk.init({

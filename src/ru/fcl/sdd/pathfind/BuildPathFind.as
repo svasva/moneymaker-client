@@ -18,7 +18,7 @@ public class BuildPathFind extends SignalCommand
         injector.mapSingleton(ItemsPathGrid);
         var itemsPathGrid:ItemsPathGrid = injector.getInstance(ItemsPathGrid);
         //fixme: вынести размеры сетки в конфиг.
-        itemsPathGrid.init(26,11);
+        itemsPathGrid.init(26,44);
     }
 }
 }

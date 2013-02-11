@@ -12,6 +12,7 @@ package ru.fcl.sdd.userdata.experience
         override public function execute():void
         {
             injector.mapSingleton(UpdateExperienceSignal);
+            injector.mapSingleton(UpdateLevelSignal);
             injector.mapSingletonOf(IExperience, Experience);
         }
         
