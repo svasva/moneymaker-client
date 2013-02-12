@@ -4,8 +4,10 @@ package ru.fcl.sdd.gui.main
     import com.bit101.components.PushButton;
     import flash.events.Event;
     import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
     import flash.geom.Point;
     import flash.utils.ByteArray;
+    import flash.utils.Timer;
     import org.aswing.event.InteractiveEvent;
     import org.osflash.signals.ISignal;
     import org.robotlegs.mvcs.Mediator;
@@ -144,6 +146,8 @@ package ru.fcl.sdd.gui.main
         [Inject]
 		public var mainIsoView:MainIsoView;
         
+        private var timer:Timer = new Timer(1000, 1);
+        
         
         
         /**
@@ -202,18 +206,31 @@ package ru.fcl.sdd.gui.main
            /* addBankomatRoom = new PushButton(windowsLayer, 50, 50, "Bankomat Room", addBankomatRoomHnd);
             seciurityRoom   = new PushButton(windowsLayer, 50, 80, "Security Room", addseciurityRoom);
             investRoom      = new PushButton(windowsLayer, 50, 110, "Invest Room", addinvestRoom);*/
-            resetGame       = new PushButton(windowsLayer, 650, 50, "Reset Game", resetGameHnd);
+          //  resetGame       = new PushButton(windowsLayer, 650, 50, "Reset Game", resetGameHnd);
             
-            nextRoom = new PushButton (windowsLayer, 50, 80, "NextRoom " + String(1), nextRoomHhd);
-		    prevRoom = new PushButton (windowsLayer, 50, 100, "PrevRoom " + String(0), prevRoomHhd);
+          //  nextRoom = new PushButton (windowsLayer, 50, 80, "NextRoom " + String(1), nextRoomHhd);
+		   // prevRoom = new PushButton (windowsLayer, 50, 100, "PrevRoom " + String(0), prevRoomHhd);
             
               tutorial = new TutorialView();
 			  windowsLayer.addChild(tutorial);
 			  tutorial.x = windowsLayer.width / 2 - tutorial.width / 2; 
 			   tutorial.y = windowsLayer.height / 2 - tutorial.height / 2; 
-			  
+			  tutorial.visible = false;
+              timer.addEventListener(TimerEvent.TIMER, timer_timer);
           
         
+        }
+        
+        private function timer_timer(e:TimerEvent):void 
+        {
+             view.shopItemToolTip.show();
+                view.shopItemToolTip.itemName = shopMdl.overedShopItem.item_name;
+                view.shopItemToolTip.itemDesc = shopMdl.overedShopItem.description;                
+                if (shopMdl.overedShopItem.money_cost);
+                view.shopItemToolTip.goldPrice = shopMdl.overedShopItem.money_cost.toString();
+                view.shopItemToolTip.gameMoneyPrise = shopMdl.overedShopItem.gameMoneyPrice.toString();
+                if( shopMdl.overedShopItem.iconUrl)
+                view.shopItemToolTip.url = shopMdl.overedShopItem.iconUrl;    
         }
         
         private function showTutor():void 
@@ -391,18 +408,13 @@ package ru.fcl.sdd.gui.main
             
             if (shopMdl.overedShopItem)
             {
-                view.shopItemToolTip.show();
-                view.shopItemToolTip.itemName = shopMdl.overedShopItem.item_name;
-                view.shopItemToolTip.itemDesc = shopMdl.overedShopItem.description;                
-                if (shopMdl.overedShopItem.money_cost);
-                view.shopItemToolTip.goldPrice = shopMdl.overedShopItem.money_cost.toString();
-                view.shopItemToolTip.gameMoneyPrise = shopMdl.overedShopItem.gameMoneyPrice.toString();
-                if( shopMdl.overedShopItem.iconUrl)
-                view.shopItemToolTip.url = shopMdl.overedShopItem.iconUrl;        
+                   timer.start();
             }
             else
             {
                 view.shopItemToolTip.hide();
+                 timer.stop();
+                 timer.reset();
             }
         }
         
