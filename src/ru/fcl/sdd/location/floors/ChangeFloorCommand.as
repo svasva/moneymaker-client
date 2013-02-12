@@ -38,6 +38,8 @@ package ru.fcl.sdd.location.floors
         private var floor4BgArt:Class;
         [Inject]
         public var floor1Scene:Floor1Scene;
+          [Inject]
+        public var floor:FloorItemScene;
         
         override public function execute():void
         {
@@ -46,6 +48,7 @@ package ru.fcl.sdd.location.floors
             var pt:Pt;
             pt = new Pt(-2763, -897);
             mainIsoView.currentFloorNumber = floorNumber;
+           
             
             switch (floorNumber)
             {
@@ -58,14 +61,16 @@ package ru.fcl.sdd.location.floors
                  //   pt = new Pt(-2763, -897);
                 //    _bg.x = pt.x;
                 //    _bg.y = pt.y;
-					 _bg =new floor_back_mc();
+					 _bg = new floor_back_mc();
+                     mainIsoView.removeScene(floor);
                     break;
                 }
                 case 1:
                 {
                     mainIsoView.currentFloor = floor1Scene;
                    //  _bg = new floor1BgArt() as DisplayObject;
-                   _bg =new floor_back_mc();
+                   _bg = new floor_back_mc();
+                     mainIsoView.addScene(floor);
                     break;
                 }
                 case 2:
@@ -77,7 +82,8 @@ package ru.fcl.sdd.location.floors
                  //   pt = new Pt(-2763, -897);
                  //  _bg.x = pt.x;
                  //   _bg.y = pt.y;
-					 _bg =new floor_back_mc();
+					 _bg = new floor_back_mc();
+                       mainIsoView.removeScene(floor);
                     break;
                 }
                 case 3:
@@ -90,7 +96,8 @@ package ru.fcl.sdd.location.floors
                 ///    ;
                 ///    _bg.x = pt.x;
                  //  _bg.y = pt.y;
-					 _bg =new floor_back_mc();
+					 _bg = new floor_back_mc();
+                      mainIsoView.removeScene(floor);
                     break;
                 }
                 case 4:
@@ -102,7 +109,8 @@ package ru.fcl.sdd.location.floors
                 //    pt = new Pt(-2763, -897);
                 //   _bg.x = pt.x;
                 //   _bg.y = pt.y;
-					 _bg =new floor_back_mc();
+					 _bg = new floor_back_mc();
+                       mainIsoView.removeScene(floor);
                     break;
                 }
                 default:
@@ -121,7 +129,9 @@ package ru.fcl.sdd.location.floors
             mainIsoView.rangeOfMotionTarget = _bg;
 			
 			//FloorManager.get_Instance().reset();
-			commandMap.execute(PlaceDefaultRoomCommand,floorNumber);
+			commandMap.execute(PlaceDefaultRoomCommand, floorNumber);
+            
+          
         }
     }
 }

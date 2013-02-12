@@ -6,6 +6,7 @@
 package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
+import ru.fcl.sdd.location.floors.FloorItemScene;
 import ru.fcl.sdd.services.main.ISender;
 
 import de.polygonal.ds.HashMapValIterator;
@@ -46,7 +47,7 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var clientusView:ClientusIsoView;
     [Inject]
-    public var floor:Floor1Scene;
+    public var floor:FloorItemScene;
     [Inject]
     public var outOfScheduleSignal:OutOfScheduleSignal;
 

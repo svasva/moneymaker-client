@@ -20,6 +20,7 @@ package ru.fcl.sdd.location.floors
        
         [Inject]
         public var floor:Floor1Scene;
+      
         
         [Inject]
         public  var layer:MapLayer;

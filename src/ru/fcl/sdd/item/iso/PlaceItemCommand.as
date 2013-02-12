@@ -10,6 +10,7 @@ import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.ItemStatus;
+import ru.fcl.sdd.location.floors.FloorItemScene;
 import ru.fcl.sdd.states.GameStates;
 import ru.fcl.sdd.states.IStateHolder;
 import ru.fcl.sdd.tempFloorView.MapLayer;
@@ -22,8 +23,12 @@ public class PlaceItemCommand extends SignalCommand
 {
     [Inject]
     public var iso:ItemIsoView;
-    [Inject]
-    public var floor:Floor1Scene;
+   /* [Inject]
+    public var floor:Floor1Scene;*/
+    
+     [Inject]
+     public var floor:FloorItemScene;
+    
     [Inject] 
     public var map:MapLayer;
     

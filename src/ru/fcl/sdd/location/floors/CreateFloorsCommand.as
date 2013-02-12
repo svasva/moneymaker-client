@@ -39,9 +39,12 @@ public class CreateFloorsCommand extends SignalCommand
         signalCommandMap.mapSignalClass(SellItemSignal,SellItemCommand);
         
         injector.mapSingleton(Floor1Scene);
+        injector.mapSingleton(FloorItemScene);
         injector.mapSingleton(MapLayer);
 
         var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
+      //  var itemFoor:FloorItemScene = injector.getInstance.(FloorItemScene);
+        
         commandMap.execute(ChangeFloorCommand,1);
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
