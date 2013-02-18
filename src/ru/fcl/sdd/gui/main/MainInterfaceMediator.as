@@ -35,8 +35,7 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.services.shared.FriendBarVisModelUpdatedSignal;
     import ru.fcl.sdd.services.shared.FriendBarVisServiceUpdatedSignal;
     import ru.fcl.sdd.services.shared.ISharedGameDataService;
-    import ru.fcl.sdd.tempFloorView.FloorManager;
-    import ru.fcl.sdd.tempFloorView.MapLayer;
+  
     import ru.fcl.sdd.userdata.experience.IExperience;
     import ru.fcl.sdd.userdata.experience.UpdateLevelSignal;
     
@@ -103,8 +102,7 @@ package ru.fcl.sdd.gui.main
         
         private var investRoom:PushButton;
         
-        [Inject]
-        public  var layer:MapLayer;
+       
         
         [Inject]
         public var sender:ISender;
@@ -118,14 +116,7 @@ package ru.fcl.sdd.gui.main
         public var mainIso:MainIsoView;
         
         
-        [Embed(source = "../../../../../../art/bin/Room5.xml" , mimeType = "application/octet-stream")]
-        private var ROOM5:Class;
-        
-        [Embed(source = "../../../../../../art/bin/Room6.xml" , mimeType = "application/octet-stream")]
-        private var ROOM6:Class;
-        
-        [Embed(source = "../../../../../../art/bin/Room7.xml" , mimeType = "application/octet-stream")]
-        private var ROOM7:Class;
+      
         
         [Inject]
         public var sellSignal:SellItemSignal;
@@ -137,8 +128,7 @@ package ru.fcl.sdd.gui.main
         public var showTurorial:ShowTutorialSignal
         
          
-		private var nextRoom:PushButton;
-		private var prevRoom:PushButton;
+		
 		
 		private var tutorial:TutorialView;
       
@@ -203,13 +193,7 @@ package ru.fcl.sdd.gui.main
             
             view.newLevelSmallDialog.okBtn.addEventListener(MouseEvent.CLICK, okBtn_click);
             
-           /* addBankomatRoom = new PushButton(windowsLayer, 50, 50, "Bankomat Room", addBankomatRoomHnd);
-            seciurityRoom   = new PushButton(windowsLayer, 50, 80, "Security Room", addseciurityRoom);
-            investRoom      = new PushButton(windowsLayer, 50, 110, "Invest Room", addinvestRoom);*/
-          //  resetGame       = new PushButton(windowsLayer, 650, 50, "Reset Game", resetGameHnd);
-            
-          //  nextRoom = new PushButton (windowsLayer, 50, 80, "NextRoom " + String(1), nextRoomHhd);
-		   // prevRoom = new PushButton (windowsLayer, 50, 100, "PrevRoom " + String(0), prevRoomHhd);
+          
             
               tutorial = new TutorialView();
 			  windowsLayer.addChild(tutorial);
@@ -238,27 +222,8 @@ package ru.fcl.sdd.gui.main
             tutorial.visible = true;
         }
         
-        private function nextRoomHhd(e:Event):void
-        {
-            trace("nextRoom");           
-			var xml:XML; 
-          
-          //  xml  = FloorManager.get_Instance().Next();
-             xml  = FloorManager.get_Instance().Next();
-            layer.isoFlor.loadRooms(xml.floors.item[mainIsoView.currentFloorNumber].rooms);
-			nextRoom.label = "NextRoom " + String(FloorManager.get_Instance().STATE+1); 
-			prevRoom.label = "PrevRoom " + String(FloorManager.get_Instance().STATE-1); 
-        }
+       
 		
-			private function prevRoomHhd(e:Event):void
-        {
-            trace("prevRoom");           
-			var xml:XML;           
-            xml  = FloorManager.get_Instance().Prev();  
-            layer.isoFlor.loadRooms(xml.floors.item[mainIsoView.currentFloorNumber].rooms);
-			nextRoom.label = "NextRoom " + String(FloorManager.get_Instance().STATE+1); 
-			prevRoom.label = "PrevRoom " + String(FloorManager.get_Instance().STATE-1); 
-        }
         
         private function showNewLevelDialog():void 
         {
@@ -324,40 +289,7 @@ package ru.fcl.sdd.gui.main
         
         
         }
-        private function addBankomatRoomHnd(e:Event):void
-        {
-            trace("addBankomatRoom");
-            
-            var bytes:ByteArray ; 
-            bytes = new ROOM5();
-            var xml:XML;         
-            
-            xml  = new XML(bytes.readUTFBytes(bytes.length));
-            layer.isoFlor.loadRooms(xml.floors.rooms);
-        }
-        
-        private function addseciurityRoom(e:Event):void
-        {
-            trace("addBankomatRoom");
-            var bytes:ByteArray ; 
-            bytes = new ROOM6();
-            var xml:XML;         
-            
-            xml  = new XML(bytes.readUTFBytes(bytes.length));
-            layer.isoFlor.loadRooms(xml.floors.rooms);
-        }
-        
-        private function addinvestRoom(e:Event):void
-        {
-            trace("addBankomatRoom");
-            var bytes:ByteArray ; 
-            bytes = new ROOM7();
-            var xml:XML;         
-            
-            xml  = new XML(bytes.readUTFBytes(bytes.length));
-            layer.isoFlor.loadRooms(xml.floors.rooms);
-        
-        }
+       
         
         private function resetGameHnd(e:Event):void
         {

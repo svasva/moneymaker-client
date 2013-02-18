@@ -10,7 +10,7 @@ import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
 import ru.fcl.sdd.item.iso.ItemClickedSignal;
-import ru.fcl.sdd.tempFloorView.MapLayer;
+
 
 import ru.fcl.sdd.location.floors.ChangeFloorCommand;
 

@@ -34,6 +34,7 @@ public class MainIsoView extends IsoView
     {
         if (_currentFloor)
         {
+		
             removeScene(_currentFloor);
 //            _currentFloor.render();
 //            _currentFloor.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);

@@ -8,8 +8,7 @@ package ru.fcl.sdd.services.main.parser
 import org.robotlegs.mvcs.Command;
 import ru.fcl.sdd.location.room.UserRoomList;
 import ru.fcl.sdd.scenes.MainIsoView;
-import ru.fcl.sdd.tempFloorView.FloorManager;
-import ru.fcl.sdd.tempFloorView.MapLayer;
+
 import ru.fcl.sdd.tools.PrintJSON;
 import ru.fcl.sdd.userdata.reputation.IReputation;
 

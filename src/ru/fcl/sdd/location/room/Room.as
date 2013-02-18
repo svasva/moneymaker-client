@@ -20,17 +20,38 @@ public class Room
     private var _coins_cost:int;
     private var _money_cost:int;
     private var _icon_url:String;
-    
-
-
-    public function get offset():Point
+    private var _order:int;
+	private var _floor:int;
+	
+	public function get order():int
     {
-        return _offset;
+        return _order;
+    }
+
+    public function set order(value:int):void
+    {
+        _order = value;
+    }
+
+	
+
+    public function set floor(value:int):void
+    {
+        _floor = value;
+    }
+	
+    public function get floor():int
+    {
+        return _floor;
     }
 
     public function set offset(value:Point):void
     {
         _offset = value;
+    }
+	public function get offset():Point
+    {
+       return  _offset;
     }
 
     public function get size():Point
