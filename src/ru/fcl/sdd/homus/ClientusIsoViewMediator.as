@@ -208,7 +208,7 @@ public class ClientusIsoViewMediator extends Mediator
                     if (clientusView.operations.length)
                     {
                          trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
-                        sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
+                      sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
                         setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else

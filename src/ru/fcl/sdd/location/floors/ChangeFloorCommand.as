@@ -149,7 +149,8 @@ package ru.fcl.sdd.location.floors
 		 while(itrooms.hasNext())
 		{
 		  var room:Room = itrooms.next() as Room;
-		  if (room.floor == floorNumber)
+		  room.floor = floorNumber;
+		 // if (room.floor == floorNumber)
 		  commandMap.execute(PlaceRoomCommand, room);
 		}
             

@@ -71,7 +71,8 @@ public class CreateFloorsCommand extends SignalCommand
 		 while(itrooms.hasNext())
 		{
 		  var room:Room = itrooms.next() as Room;
-		  if (room.floor == 1)
+		  room.floor = 1;
+		  //if (room.floor == 1)
 		  commandMap.execute(PlaceRoomCommand, room);
 		}
         

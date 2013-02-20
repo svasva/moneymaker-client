@@ -2,6 +2,8 @@ package ru.fcl.sdd.gui.ingame.shop
 {
 	import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.item.ShopModel;
+	import ru.fcl.sdd.location.floors.PlaceRoomCommand;
+	import ru.fcl.sdd.location.room.Room;
     import ru.fcl.sdd.scenes.MainIsoView;
     import ru.fcl.sdd.services.main.ISender;
   

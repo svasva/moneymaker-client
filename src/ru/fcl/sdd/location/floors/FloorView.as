@@ -77,28 +77,10 @@ package ru.fcl.sdd.location.floors
 		}
 		
 		
-		public function loadMap(map:Class):void
-		{
-			var bytes:ByteArray = new map;
-			var xml:XML = new XML(bytes.readUTFBytes(bytes.length));
-			var bg_design:MovieClip = new floor_back_mc();
-			var Bg:IsoSprite = new IsoSprite();
-			Bg.sprites = [bg_design];
-			addChild(Bg);
-			
-			for each (var floor:XML in xml..floors.item)
-			{
-				var item:INode = new IsoFloor(view);
-                  isoFlor = item as IsoFloor;
-				addChild(item);
-				(item as IsoFloor).loadHall(floor.halls);
-				(item as IsoFloor).loadRooms(floor.rooms);
-				
-			}
+		
 		
 			
-		}
-	
+		
 	}
 
 }

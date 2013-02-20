@@ -66,8 +66,6 @@ package ru.fcl.sdd.location.floors.Nodes
 			
 		}
 		
-		
-		
 		public function loadRooms(rooms:XMLList):void
 		{
 			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
@@ -82,6 +80,33 @@ package ru.fcl.sdd.location.floors.Nodes
 				
 				
 				addRoom(room.@x, room.@y, item);
+				//addRoom(x, y, item);
+				if (i > -1)
+				rooms_layer.setChildIndex(item, i);
+				item.loadGround(room.grounds);
+				item.loadWall(room.walls);
+				item.loadWindow(room.windows);
+				item.loadObject(room.objects);
+				item.loadDoor(room.doors);
+			}
+			
+		}
+		
+		public function loadRoom(rooms:XMLList, x:Number, y:Number):void
+		{
+			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
+            
+            for each (var room:XML in rooms.item)
+			{
+				var i:int = -1;
+				if (vrooms.length >0)
+				 i = romoveRoom(int(room.@r_id));
+				var item:IsoRoom = new IsoRoom(view);
+				item.Room_id = int(room.@r_id);
+				
+				
+				//addRoom(room.@x, room.@y, item);
+				addRoom(x, y, item);
 				if (i > -1)
 				rooms_layer.setChildIndex(item, i);
 				item.loadGround(room.grounds);
@@ -99,6 +124,16 @@ package ru.fcl.sdd.location.floors.Nodes
 			hall.y = y * CELL;
 		//	(room as IsoDisplayObject).
 			//rooms.push(room);
+		}
+		
+		public function findByCoord(x:Number,y:Number):IsoRoom
+		{
+			
+			for each (var room:IsoRoom in vrooms)
+			if (room.x == x && room.y == y) return room;
+			
+			return null;
+			
 		}
 		public function findById(id:int):IsoRoom
 		{

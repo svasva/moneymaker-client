@@ -19,22 +19,26 @@ package ru.fcl.sdd.location.floors
 		
 		[Inject]
 		public var room:Room;
+		
 		[Inject]
 		 public var floorsList:FloorsList;		
 		
 		override public function execute():void
 		{
-			var scene:FloorItemScene = floorsList.toArray()[room.floor];
-			if (scene)
+			var xml:XML  = XML(new ROOMS);
+			if (xml.rooms.item[room.order].@floor == room.floor)
 			{
-				var xml:XML  = XML(new ROOMS)
-				if (room.order > 2) return;
-				
-				scene.Floor.isoFlor.loadRooms(xml.rooms.item[room.order].sections);
-			}
-		
-		}
+				var scene:FloorItemScene = floorsList.toArray()[room.floor];
+				if (scene)
+				{
 	
+					
+					scene.Floor.isoFlor.loadRooms(xml.rooms.item[room.order].sections);
+				}
+		
+			}
+	
+	}
 	}
 
 }
