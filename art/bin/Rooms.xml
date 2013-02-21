@@ -113,7 +113,7 @@
 		</item>
 			</sections>
 		</item>
-	<item order = "3" floor = "1" reloc_odrer = "8"  caption = "SEQURITY1">
+	<item order = "3" floor = "1" reloc_order = "8"  caption = "SEQURITY1">
 		
 		<sections>
 		
@@ -170,7 +170,7 @@
 		</item>
 		</sections2>
 		</item>
-	<item order = "4" floor = "1" caption = "FILIALS1">	
+	<item order = "4" floor = "1" reloc_order ="8" caption = "FILIALS1">	
 	<sections>
 	<item r_id = "6" x="15" y="22">
 			
@@ -192,7 +192,32 @@
 			
 		</item>
 	</sections>
-	</item>
+	<sections2 floor = "2">
+	 <item r_id = "8" x="15" y="33">
+			
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		<item sid="9" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+		<item  r_id = "9" x="11" y="44">		
+		<objects>		
+		<item sid="11" x="0" y="0"> </item>
+		</objects>	
+			
+		</item>
+		
+	</sections2>
+		</item>
 	<item order ="5"  floor = "1"  caption = "DIRECTOR2">	
 	<sections>
 		<item  r_id = "7" x="0" y="33">
@@ -321,7 +346,7 @@
 		</item>
 	</sections>
 		</item>
-	<item order = "7" floor = "0" caption = "SEIF1">
+	<item order = "7" floor = "0" reloc_order = "9" caption = "SEIF1">
 	<sections>
 	 <item r_id = "8" x="15" y="33">
 			
@@ -340,7 +365,45 @@
 			
 		</item>
 	</sections>
-	</item>
+	<sections2 floor = "0">
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="10" x="0" y="0"> </item>	
+		</objects>	
+			
+		</item>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	</sections2>
+		</item>
 	<item order = "8" floor = "1" caption = "BANKOMATS2">	
 	<sections>
 	<item  r_id = "5" x="0" y="22">
@@ -536,7 +599,7 @@
 		</item>
 	</sections>	
 	</item>
-	<item order = "13" floor = "2" caption = "INVETITION1">
+	<item order = "13" floor = "2" reloc_order = "15" caption = "INVETITION1">
 	<sections>
 	<item r_id = "6" x="15" y="22">
 			
@@ -553,6 +616,20 @@
 			
 		</item>
 	</sections>	
+	<sections2 floor = "2">
+	<item r_id = "4" x="15" y="11">
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>
+	</sections2>
 	</item>
 	<item order = "14" floor = "0" caption = "INCASATION2">
 	<sections>
