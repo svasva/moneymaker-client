@@ -1,9 +1,10 @@
 package ru.fcl.sdd.item 
 {
 	import org.robotlegs.mvcs.SignalCommand;
-    import ru.fcl.sdd.location.floors.Floor1Scene;
+   
     import ru.fcl.sdd.location.room.RoomModel;
     import ru.fcl.sdd.pathfind.DeletePathGreedItemCommand;
+	import ru.fcl.sdd.scenes.MainIsoView;
     import ru.fcl.sdd.services.main.ISender;
 	
 	/**
@@ -20,14 +21,14 @@ package ru.fcl.sdd.item
         public var roomMdl:RoomModel;
         
         [Inject]
-        public var floor:Floor1Scene;
+        public var mainIsoView:MainIsoView;
         
       override public function execute():void
         {
             trace("SellItemCommand");
-            floor.removeChild(roomMdl.selectedItem);
+            mainIsoView.currentFloor.removeChild(roomMdl.selectedItem);
             commandMap.execute(DeletePathGreedItemCommand, roomMdl.selectedItem);
-            floor.render();
+            mainIsoView.currentFloor.render();
             sender.send( { command:"sellContent", args:[roomMdl.selectedItem.key] } );
             
         }

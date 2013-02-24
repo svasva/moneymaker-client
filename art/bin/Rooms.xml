@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	
+<rooms>
+	
+	<item order = "0" floor = "1" caption ="OPERATIONZAL1">
+		
+	<sections>
+		<item r_id= "1" x="0" y="0">
+		
+		<doors>
+		<item sid= "1" x="11" y="0"></item>
+		
+		</doors>
+		
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		
+		<walls>			
+		<item sid="8" x="0" y="0" back="true"> </item>
+
+		
+		
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>		
+		</grounds>
+		
+		<objects>
+		</objects>
+		
+		
+		</item>
+		<item r_id= "3" x="15" y="0">
+		<windows>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		<walls>
+		<item sid="13" x="11" y="0"> </item>
+		</walls>	
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>		
+		
+		</item>
+		
+		
+		
+		</sections>
+		
+		</item>
+	<item order = "1" floor = "1" caption = "DIRECTOR1">
+		<sections>
+			<item r_id= "2" x="0" y="11">
+	
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		<doors>
+		<item sid= "2" x="11" y="7" corridor = "true" ></item>
+		
+		</doors>
+		<walls>			
+		<item sid="11" x="0" y="0" back="true"> </item>		
+		<item sid="12" x="11" y="11"> </item>
+		<item sid="20" x="11" y="11"> </item>
+		</walls>		
+			
+		<grounds>			
+		<item sid="5" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>
+			
+		</grounds>	
+		
+		<objects>	
+		
+		<item sid="5" x="0" y="0"> </item>
+		
+	
+		</objects>		
+		
+		</item>		
+			</sections>
+		</item>
+	<item order = "2" floor = "1" caption = "BANKOMATS1">
+		<sections>
+			<item r_id = "4"  x="15" y="11">
+		<doors>				
+		<item sid= "2" x="0" y="6" corridor = "true"></item>
+		
+		</doors>
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>			
+		</grounds>
+		
+		<objects>	
+		
+		<item sid="6" x="0" y="11"> </item>
+		
+	
+		</objects>	
+		
+			
+		</item>
+			</sections>
+		</item>
+	<item order = "3" floor = "1" reloc_order = "8"  caption = "SEQURITY1">
+		
+		<sections>
+		
+			<item  r_id = "5" x="0" y="22">
+		
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>		
+		<item sid="19" x="11" y="11"> </item>
+		<item sid="20" x="11" y="11"> </item>
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="7" x="0" y="10"> </item>	
+		</objects>	
+		<doors>
+		<item sid= "2" x="11" y="7" corridor = "true" ></item>
+		
+		</doors>
+		
+		
+			
+		</item>
+		
+		</sections>
+		<sections2 floor = "0">
+		<item  r_id = "7" x="0" y="33">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>		
+		<item sid="19" x="11" y="11"> </item>
+		<item sid="20" x="11" y="0"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="7" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+		</sections2>
+		</item>
+	<item order = "4" floor = "1" reloc_order ="8" caption = "FILIALS1">	
+	<sections>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		<doors>				
+		<item sid= "2" x="0" y="6" corridor = "true"></item>
+		
+		</doors>
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		<item sid="9" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+	</sections>
+	<sections2 floor = "2">
+	 <item r_id = "8" x="15" y="33">
+			
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		<item sid="9" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+		<item  r_id = "9" x="11" y="44">		
+		<objects>		
+		<item sid="11" x="0" y="0"> </item>
+		</objects>	
+			
+		</item>
+		
+	</sections2>
+		</item>
+	<item order ="5"  floor = "1"  caption = "DIRECTOR2">	
+	<sections>
+		<item  r_id = "7" x="0" y="33">
+		
+		<doors>				
+		<item sid= "3" x="12" y="0" corridor = "true"></item>
+		
+		</doors>	
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="21" x="0" y="11"> </item>				
+				
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="5" x="0" y="0" back ="true"> </item>	
+		<item sid="5" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+			<item r_id = "8" x="15" y="33">
+			
+		<walls>	
+		<item sid="15" x="11" y="11"> </item>	
+			
+		</walls>
+		
+		<grounds>			
+		<item sid="5" x="0" y="0"> </item>
+				
+		</grounds>
+	
+			
+		</item>
+	</sections>
+	</item>
+	<item order = "6" floor = "1" caption ="OPERATIONZAL2">
+		
+	<sections>
+	<item r_id= "1" x="0" y="0">
+		
+
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		
+		<walls>			
+		<item sid="8" x="0" y="0" back="true"> </item>
+
+		
+		
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>		
+		</grounds>
+		
+		<objects>	
+		</objects>
+		
+		
+		</item>		
+		
+		<item r_id= "2" x="0" y="11">
+	
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		
+		<walls>
+		
+		<item sid="22" x="0" y="0" back ="true"> </item>
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>
+			
+		</grounds>	
+		
+		<objects>	
+		
+	
+		</objects>		
+		
+		</item>
+		
+		<item r_id= "3" x="15" y="0">
+		<windows>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		<walls>
+		<item sid="13" x="11" y="0"> </item>
+		</walls>	
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>		
+		
+		</item>	
+		
+		<item r_id = "4"  x="15" y="11">
+		
+		<walls>			
+	
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>
+		
+		<objects>	
+		
+		
+	
+		</objects>	
+		
+			
+		</item>
+	</sections>
+		</item>
+	<item order = "7" floor = "0" reloc_order = "9" caption = "SEIF1">
+	<sections>
+	 <item r_id = "8" x="15" y="33">
+			
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		<item sid="10" x="0" y="0"> </item>	
+		</objects>	
+			
+		</item>
+	</sections>
+	<sections2 floor = "0">
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="10" x="0" y="0"> </item>	
+		</objects>	
+			
+		</item>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	</sections2>
+		</item>
+	<item order = "8" floor = "1" caption = "BANKOMATS2">	
+	<sections>
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>		
+		<item sid="21" x="0" y="11"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>	
+		<item sid="9" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="6" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+		<item sid="21" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>				
+		</grounds>
+		
+	
+			
+		</item>
+	</sections>	
+	</item>
+	<item order = "9" floor = "0" caption = "SEQURITY2">
+	<sections>
+		<item  r_id = "7" x="0" y="33">
+		
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+					
+				
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="5" x="0" y="0" back ="true"> </item>	
+		<item sid="5" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		<item r_id = "8" x="15" y="33">
+			
+		<walls>	
+		<item sid="15" x="11" y="11"> </item>	
+			
+		</walls>
+		
+		<grounds>			
+		<item sid="5" x="0" y="0"> </item>
+				
+		</grounds>
+	
+			
+		</item>
+		
+		
+	</sections>	
+	</item>
+	<item order = "10" floor = "0" caption = "INCASATION1">
+	<sections>
+	<item r_id = "2" x="0" y="11">
+		<windows>
+		
+		
+		</windows>
+		
+		<walls>			
+		<item sid="27" x="0" y="0" back = "true"> </item>		
+		
+		
+		
+		</walls>
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>
+		<item sid="1" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+		<item r_id = "3"  x="15" y="0">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="7" x="1" y="1" back ="true"> </item>		
+		<item sid="14" x="11" y="11"> </item>		
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		<item r_id = "4" x="15" y="11">
+		<walls>			
+		<item sid="21" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+	</sections>	
+	</item>
+	<item order = "11" floor = "2" caption = "FILIALS2">
+	<sections>
+		<item  r_id = "7" x="0" y="33">
+			<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="21" x="0" y="11"> </item>				
+		<item sid="20" x="0" y="11"> </item>	
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="7" x="0" y="0" back ="true"> </item>	
+		<item sid="7" x="11" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>
+	<item r_id = "8" x="15" y="33">
+			
+		<walls>			
+		<item sid="21" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		<item sid="9" x="0" y="10"> </item>	
+		</objects>	
+			
+		</item>
+	</sections>
+	</item>
+	<item order = "12" floor = "2" caption = "RECLAMS1">
+	<sections>
+		<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>		
+		<item sid="19" x="11" y="11"> </item>	
+		<item sid="20" x="11" y="0"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		<item sid="8" x="0" y="10"> </item>		
+		</objects>
+		
+			
+		</item>
+	</sections>	
+	</item>
+	<item order = "13" floor = "2" reloc_order = "15" caption = "INVETITION1">
+	<sections>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+	</sections>	
+	<sections2 floor = "2">
+	<item r_id = "4" x="15" y="11">
+		<walls>			
+		<item sid="16" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>
+	</sections2>
+	</item>
+	<item order = "14" floor = "0" caption = "INCASATION2">
+	<sections>
+	<item r_id= "1" x="0" y="0">
+		
+		<windows>
+		
+		</windows>
+			
+		<walls>			
+			<item sid = "25" x="0" y="0" back ="true"> </item>
+		
+			
+		</walls>		
+			
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>
+		<item sid="2" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+		
+		</item>
+		
+		<item r_id = "2" x="0" y="11">
+		
+		<windows>
+		
+		
+		</windows>
+		
+		<walls>			
+		<item sid="28" x="0" y="0" back = "true"> </item>		
+		</walls>
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>
+		<item sid="2" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+		<item r_id = "3"  x="15" y="0">
+		<windows>
+	
+		</windows>
+		<walls>			
+			
+		<item sid="13" x="11" y="0"> </item>		
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		<item r_id = "4" x="15" y="11">
+		<walls>	
+		<item sid="15" x="11" y="11"> </item>		
+			
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="1" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	</sections>	
+	</item>
+	<item order = "15" floor = "2" caption = "RECLAMS2">
+	<sections>
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>		
+			
+					
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>	
+		<item sid="6" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		<item sid="8" x="0" y="10"> </item>		
+		</objects>
+		
+			
+		</item>
+			<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+		<item sid="21" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	</sections>
+	</item>
+	<item order = "16" floor = "0" caption = "SEIF2">
+	<sections>
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="10" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="10" x="0" y="0"> </item>	
+		</objects>	
+			
+		</item>
+			<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+			
+	
+		<item sid="15" x="11" y="11"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	</sections>	
+	</item>
+	<item order = "17" floor = "2" caption = "INVETITION2">
+	<sections>
+		<item r_id = "2" x="0" y="11">
+		
+	<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>		
+			
+					
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>	
+		<item sid="8" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		</objects>
+			
+		</item>		
+		
+		<item r_id = "4" x="15" y="11">
+		<walls>			
+		<item sid="21" x="0" y="0" back="true"> </item>		
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>	
+	</sections>
+	</item>
+	<item order = "18" floor = "3" caption = "DIRECTOR3">
+	<sections>
+	<item r_id= "1" x="0" y="0">
+		
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+			
+		<walls>			
+		<item sid= "25" x="0" y="0"back = "true"></item>
+		</walls>		
+			
+		<grounds>			
+		<item sid="5" x="0" y="0"> </item>
+		<item sid="5" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+		
+		</item>
+		
+		<item r_id = "2" x="0" y="11">
+		
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+						
+			
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="6" x="0" y="0" back ="true"> </item>	
+		<item sid="6" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		
+			</objects>
+		
+		
+			
+		</item>
+		</sections>
+	</item>
+	<item order = "19" floor = "1" caption = "OPERATIONZAL3">
+	<sections>
+		<item r_id= "1" x="0" y="0">
+		
+
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		
+		<walls>			
+		<item sid="8" x="0" y="0" back="true"> </item>
+
+		
+		
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>		
+		</grounds>
+		
+		<objects>	
+		
+		<item sid="3" x="4" y="5"> </item>
+		<item sid="2" x="6" y="2"> </item>
+	
+		</objects>
+		
+		
+		</item>		
+		
+		<item r_id= "2" x="0" y="11">
+	
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		
+		<walls>
+		
+		<item sid="22" x="0" y="0" back ="true"> </item>
+		</walls>		
+			
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>
+		<item sid="4" x="11" y="0"> </item>
+			
+		</grounds>	
+		
+		<objects>	
+		
+	
+		</objects>		
+		
+		</item>
+		
+		<item r_id= "3" x="15" y="0">
+		<windows>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+		<walls>
+		<item sid="13" x="11" y="0"> </item>
+		</walls>	
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>		
+		
+		</item>	
+		
+		<item r_id = "4"  x="15" y="11">
+		
+		<walls>			
+	
+		<item sid="13" x="11" y="0"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>			
+		</grounds>
+		
+		<objects>	
+		
+		
+	
+		</objects>	
+		
+			
+		</item>
+		
+		
+		
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		</windows>
+		<walls>			
+		<item sid="22" x="0" y="0" back ="true"> </item>		
+		
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>	
+		<item sid="4" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		
+		</objects>	
+			
+		</item>
+		
+		 <item r_id = "6" x="15" y="22">
+			
+		<walls>			
+		
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="3" x="0" y="0"> </item>				
+		</grounds>
+		
+	
+			
+		</item>
+	</sections>
+	</item>
+	<item order = "20" floor = "2" caption  = "BANKOMATS3">
+	<sections>
+	<item r_id= "1" x="0" y="0">
+		
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		<item sid= "2" x="8" y="0"></item>
+		</windows>
+			
+		<walls>			
+		
+		</walls>		
+			
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>
+		<item sid="9" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+		
+		</item>
+		
+		<item r_id = "2" x="0" y="11">
+		
+	<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>		
+			
+					
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>	
+		<item sid="9" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		<item sid="6" x="0" y="10"> </item>	
+		</objects>
+			
+		</item>
+		
+		<item r_id = "3"  x="15" y="0">
+		<windows>
+		<item sid= "1" x="8" y="0"></item>
+		</windows>
+		<walls>			
+		
+		<item sid="13" x="11" y="0"> </item>		
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		<item r_id = "4" x="15" y="11">
+		<walls>			
+			
+		<item sid="15" x="11" y="11"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="9" x="0" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>
+		
+	</sections>	
+	</item>
+	<item order = "21" floor = "2" caption = "FILIALS3">
+	<sections>
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>		
+			
+					
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>	
+		<item sid="7" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		<item sid="9" x="0" y="10"> </item>		
+		</objects>
+		
+			
+		</item>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+			
+		<item sid="13" x="11" y="0" back ="true"> </item>			
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>			
+		</grounds>
+		<objects>
+		
+		</objects>
+		
+			
+		</item>
+	<item  r_id = "7" x="0" y="33">
+			<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="21" x="0" y="11" > </item>				
+		<item sid="20" x="0" y="11"> </item>	
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="7" x="0" y="0" > </item>	
+		<item sid="7" x="11" y="0"> </item>			
+		</grounds>
+		
+			
+		</item>
+	<item r_id = "8" x="15" y="33">
+			
+		<walls>			
+		
+		<item sid="15" x="11" y="11" back="true"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="7" x="0" y="0"> </item>				
+		</grounds>
+		<objects>
+		
+		</objects>	
+			
+		</item>
+		
+	</sections>	
+	</item>
+	<item order = "22" floor = "1" caption = "SEQURITY3">	
+	<sections>
+	<item  r_id = "7" x="0" y="33">
+		
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="21" x="0" y="11" back ="true"> </item>		
+				
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="10" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		
+		</objects>
+		
+			
+		</item>
+	<item r_id = "8" x="15" y="33">
+			
+		<walls>	
+		<item sid="15" x="11" y="11"> </item>	
+			
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>
+				
+		</grounds>
+	
+			
+		</item>
+	</sections>	
+	</item>
+	<item order = "23" floor = "3" caption = "INVESTITION3">
+	<sections>
+	<item  r_id = "7" x="0" y="33">
+			<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="21" x="0" y="11"> </item>				
+			
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="8" x="0" y="0" back ="true"> </item>	
+		<item sid="8" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		
+			</objects>
+		</item>
+	<item r_id = "8" x="15" y="33">
+			
+		<walls>			
+	
+		<item sid="15" x="11" y="11" > </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="8" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		
+		</objects>	
+			
+		</item>	
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="19" x="11" y="11"> </item>
+		<item sid="20" x="11" y="0"> </item>		
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>	
+		<item sid="8" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+	</sections>
+	</item>
+	<item order = "24" floor = "0" caption = "INCASATION3">
+	<sections>
+		
+	</sections>		
+	</item>
+	<item order = "25" floor = "3" caption = "RECLAMS3">
+	<sections>
+		<item r_id = "2" x="0" y="11">
+		
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+						
+			
+		</walls>
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+		
+		</windows>
+		<grounds>			
+		<item sid="6" x="0" y="0" back ="true"> </item>	
+		<item sid="6" x="11" y="0"> </item>			
+		</grounds>
+		<objects>
+		
+			</objects>
+		
+		
+			
+		</item>
+		
+		<item r_id = "3"  x="15" y="0">
+		<windows>
+		<item sid= "4" x="8" y="0"></item>
+		</windows>
+		<walls>			
+		<item sid="13" x="11" y="0" back ="true"> </item>		
+				
+		</walls>
+		
+		<grounds>			
+		<item sid="5" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		<item r_id = "4" x="15" y="11">
+		<walls>			
+			
+		
+		<item sid="15" x="11" y="11" > </item>
+		<item sid="21" x="0" y="0" back= "true" > </item>
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+		
+			
+		</item>
+			<item  r_id = "5" x="0" y="22">
+		<windows>
+		<item sid= "1" x="0" y="3"></item>
+	
+		</windows>
+			
+		<walls>			
+		<item sid="18" x="0" y="0" back ="true"> </item>
+		<item sid="19" x="11" y="11"> </item>
+		<item sid="20" x="11" y="0"> </item>		
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="6" x="0" y="0"> </item>	
+		<item sid="8" x="11" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+	</sections>
+	</item>
+	<item order = "26" floor = "0" caption = "SEIF3">
+	<sections>	
+	<item  r_id = "5" x="0" y="22">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="18" x="0" y="0" back = "true"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="10" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+		<item sid="10" x="0" y="0"> </item>	
+		</objects>	
+			
+		</item>
+	<item r_id = "6" x="15" y="22">
+			
+		<walls>			
+			
+	
+		<item sid="13" x="11" y="0"> </item>
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>			
+		</grounds>
+		
+		
+			
+		</item>
+		
+	<item  r_id = "7" x="0" y="33">
+		<windows>
+	
+		</windows>
+		<walls>			
+		<item sid="28" x="0" y="0" back = "true"> </item>		
+		<item sid="21" x="0" y="11"> </item>
+		
+		
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>	
+		<item sid="10" x="11" y="0"> </item>			
+		</grounds>
+		
+		<objects>
+	
+		</objects>	
+			
+		</item>
+	<item r_id = "8" x="15" y="33">
+			
+		<walls>			
+			
+		<item sid="15" x="11" y="11"> </item>	
+		</walls>
+		
+		<grounds>			
+		<item sid="10" x="0" y="0"> </item>				
+		</grounds>
+		
+		<objects>
+		
+		</objects>	
+			
+		</item>
+	</sections>	
+	</item>
+	</rooms>		
+
+</data>

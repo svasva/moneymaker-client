@@ -1,69 +1,50 @@
-package ru.fcl.sdd.location.floors 
+package ru.fcl.sdd.location.floors
 {
-    import flash.utils.ByteArray;
+	import as3isolib.display.scene.IsoScene;
+	import de.polygonal.ds.Map;
+	import flash.utils.ByteArray;
 	import org.robotlegs.mvcs.SignalCommand;
-    import ru.fcl.sdd.item.iso.ItemIsoView;
-    import ru.fcl.sdd.location.room.UserRoomList;
-    import ru.fcl.sdd.scenes.MainIsoView;
-    import ru.fcl.sdd.tempFloorView.controllers.Uni_controller;
-    import ru.fcl.sdd.tempFloorView.controllers.Uni_event;
-	import ru.fcl.sdd.tempFloorView.FloorManager;
-    import ru.fcl.sdd.tempFloorView.MapLayer;
-    import ru.fcl.sdd.tempFloorView.Nodes.IsoFloor;
+	import ru.fcl.sdd.item.iso.ItemIsoView;
+	import ru.fcl.sdd.location.room.UserRoomList;
+	import ru.fcl.sdd.scenes.MainIsoView;
 	
 	/**
-     * ...
-     * @author atuzov
-     */
-    public class PlaceDefaultRoomCommand extends SignalCommand 
-    {   
-       
-        [Inject]
-        public var floor:Floor1Scene;
-      
-        
-        [Inject]
-        public  var layer:MapLayer;
-       
-       [Inject]
-        public var floorNumber:int;    
-        
-                [Inject]
-    public var userRoomList:UserRoomList;
-    
-  
-        
-           [Inject]
-		public var mainIsoView:MainIsoView;
-        
-       
-        
-        override public function execute():void 
-        {
-           // layer = new MapLayer(floor, null);
-             layer.scene = floor;
-			 if (!floor.contains(layer))
-				floor.addChild(layer);
-      //     layer.loadMap(HMap1);
-         //   var event:Uni_event = new Uni_event(IsoFloor.PLACE_ROOM);
-         //       var bytes:ByteArray = new OPERATION_HALL();            
-         //   var xml:XML = new XML(bytes.readUTFBytes(bytes.length));            
-         //   layer.isoFlor.loadRooms(xml.floors.rooms);
-            
-				layer.init();
-			
-			var xml:XML = FloorManager.get_Instance().Current();           
-			layer.isoFlor.loadRooms(xml.floors.item[floorNumber].rooms);  
-          
-			 
-        
-         	
-         
-        }
-            
-        
-     
-        
-    }
+	 * ...
+	 * @author atuzov
+	 */
+	public class PlaceDefaultRoomCommand extends SignalCommand
+	{
+		[Embed(source = "../../../../../../art/bin/DefaultMap.xml",  mimeType="application/octet-stream")] private const MAP:Class;
+		[Inject]
+		public var floorNumber:int;
+		
+		[Inject]
+		 public var floorsList:FloorsList;		
+		
+		override public function execute():void
+		{
+			var scene:FloorItemScene = floorsList.toArray()[floorNumber];
+			if (scene)
+			{
+				var xml:XML  = XML(new MAP)
+				switch(floorNumber)
+				{
+				case 0:
+					scene.Floor.isoFlor.loadRooms(xml.floors.item[0].rooms);
+				break;
+				case 4:
+				scene.Floor.isoFlor.loadRooms(xml.floors.item[2].rooms);
+				
+				break;
+				default:
+				scene.Floor.isoFlor.loadRooms(xml.floors.item[1].rooms);
+				
+				
+				}
+			}
+		
+		}
+	
+	}
 
 }

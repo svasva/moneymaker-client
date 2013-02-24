@@ -5,11 +5,13 @@
  */
 package ru.fcl.sdd.gui.main.friendbar
 {
-    import asst.api.SocialClient;
+  
+	import classes.FriendsPanel;
     import flash.display.DisplayObject;
     import flash.display.Sprite;
     import flash.events.Event;
-    import head.FriendPanel;
+	import mx.core.FlexGlobals;
+   
     import org.aswing.event.InteractiveEvent;
     import org.aswing.JButton;
     import org.aswing.JToggleButton;
@@ -27,18 +29,22 @@ package ru.fcl.sdd.gui.main.friendbar
         
         private var _bgLine:Sprite;
         
-        public static var friendPanel:FriendPanel;
+		private var friendBar:FriendsPanel;
+        
         
         [PostConstruct]
         public function init():void
         {
-            _bg = rsl.getFriendBarBarArtInstance;
-            _bg.y = 57;
+            _bg = new Sprite(); //rsl.getFriendBarBarArtInstance;
+          //  _bg.y = 57;
             _bgLine = getAsset("Background") as Sprite;
             _bgLine.y = 230;
             this.addChild(_bgLine);
             this.addChild(_bg);
-            
+            friendBar = new FriendsPanel(FlexGlobals.topLevelApplication.flashVars);
+			_bg.addChild(friendBar);
+			friendBar.x = 50;
+			friendBar.y = 136;
            // _bg.removeChildAt(0);
             
            // Config.init(Config.VKONTAKTE);
@@ -47,25 +53,7 @@ package ru.fcl.sdd.gui.main.friendbar
         
         }
         
-        private function init1(e:Event = null):void
-        {
-            
-         //   Friends.init();
-         //   friendPanel = new FriendPanel();
-          //  Main.friendPanel = friendPanel;
-           // friendPanel.y = 340;
-         //  _bg.addChild(friendPanel);
-            
-        }
-        
-        public function tier2():void
-        {
-            SocialClient.adapter.startupCheck(tier3);
-        }
-        public function tier3():void
-		{
-			init1();
-		}
+       
         
         public function get vis():Boolean
         {

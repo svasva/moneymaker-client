@@ -7,6 +7,7 @@ package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
 import ru.fcl.sdd.location.floors.FloorItemScene;
+import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.services.main.ISender;
 
 import de.polygonal.ds.HashMapValIterator;
@@ -29,7 +30,7 @@ import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.iso.ItemIsoView;
-import ru.fcl.sdd.location.floors.Floor1Scene;
+
 import ru.fcl.sdd.pathfind.AStar;
 import ru.fcl.sdd.pathfind.HomusPathGrid;
 import ru.fcl.sdd.pathfind.ItemsPathGrid;
@@ -46,8 +47,7 @@ public class ClientusIsoViewMediator extends Mediator
     public var itemCatalog:ItemCatalog;
     [Inject]
     public var clientusView:ClientusIsoView;
-    [Inject]
-    public var floor:FloorItemScene;
+   
     [Inject]
     public var outOfScheduleSignal:OutOfScheduleSignal;
 
@@ -63,7 +63,9 @@ public class ClientusIsoViewMediator extends Mediator
     [Inject]
     public var sender:ISender;
 
-
+ [Inject]
+    public var mainisoView:MainIsoView;
+	
     private var _path:Array;
     private var _aStar:AStar;
     private var _target:ItemIsoView;
@@ -206,7 +208,7 @@ public class ClientusIsoViewMediator extends Mediator
                     if (clientusView.operations.length)
                     {
                          trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
-                        sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
+                      sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
                         setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
@@ -410,7 +412,7 @@ public class ClientusIsoViewMediator extends Mediator
             }
         }
         _path.shift();
-        floor.removeChild(clientusView);
+        mainisoView.currentFloor.removeChild(clientusView);
         if (_isOutOfSchedule)
         {
             outOfScheduleSignal.dispatch();

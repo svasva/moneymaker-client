@@ -36,15 +36,15 @@ public class ParseUserRooms extends SignalCommand
     {
         
         
-        
-        var room:Room = new Room();
+         var room:Room = new Room();
         room.id = object._id;
         room.catalogId = object.reference_id;
         room.offset = new Point(object.x,object.y);
         room.size = Room(roomList.get(room.catalogId)).size;
         room.name = Room(roomList.get(room.catalogId)).name;
         room.room_type_id = object.room_type_id;
-       
+		room.order = object.order;
+		room.floor = object.floor;
         userRoomList.set(room.id,room);
     }
 }

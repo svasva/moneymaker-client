@@ -5,15 +5,20 @@
  */
 package ru.fcl.sdd.location.floors
 {
+import de.polygonal.ds.HashMap;
 import de.polygonal.ds.HashMapValIterator;
 import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
+
 import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
 import ru.fcl.sdd.item.iso.ItemClickedSignal;
 import ru.fcl.sdd.item.SellItemCommand;
 import ru.fcl.sdd.item.SellItemSignal;
+import ru.fcl.sdd.location.room.Room;
+import ru.fcl.sdd.location.room.RoomCatalog;
 import ru.fcl.sdd.location.room.RoomModel;
-import ru.fcl.sdd.tempFloorView.MapLayer;
+import ru.fcl.sdd.location.room.UserRoomList;
+
 
 import org.osflash.signals.ISignal;
 
@@ -28,30 +33,52 @@ public class CreateFloorsCommand extends SignalCommand
 {
     [Inject]
     public var userItems:ActiveUserItemList;
+	 [Inject]
+    public var userRooms:UserRoomList;
+	
+	 [Inject]
+    public var catalogRooms:RoomCatalog;
     
     [Inject] 
     public var roomMdl:RoomModel;
-
+	
+	public var floorList:FloorsList;
+	
+	
     override public function execute():void
     {
         injector.mapSingleton(ItemClickedSignal);
         signalCommandMap.mapSignalClass(ItemClickedSignal,ItemClickedHndCommand);
         signalCommandMap.mapSignalClass(SellItemSignal,SellItemCommand);
         
-        injector.mapSingleton(Floor1Scene);
-        injector.mapSingleton(FloorItemScene);
-        injector.mapSingleton(MapLayer);
-
-        var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
+      //  injector.mapSingleton(Floor1Scene);
+		injector.mapSingleton(FloorsList);
+       /// injector.mapSingleton(MapLayer);
+		
+		commandMap.execute(BuildFloorsCommand);
+		
+   //     var mainIsoScene:Floor1Scene = injector.getInstance(Floor1Scene);
       //  var itemFoor:FloorItemScene = injector.getInstance.(FloorItemScene);
         
         commandMap.execute(ChangeFloorCommand,1);
         var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
         iterator.reset();
+		
+		 var itrooms:HashMapValIterator = userRooms.iterator() as HashMapValIterator;
+        itrooms.reset();	
+       
+		
+		 while(itrooms.hasNext())
+		{
+		  var room:Room = itrooms.next() as Room;
+		  room.floor = 1;
+		  //if (room.floor == 1)
+		  commandMap.execute(PlaceRoomCommand, room);
+		}
         
       //  mainIsoScene.addEventListener(MouseEvent.CLICK, mainIsoScene_click);
         
-         commandMap.execute(PlaceDefaultRoomCommand,1);
+       //  commandMap.execute(PlaceDefaultRoomCommand,1);
 
         while(iterator.hasNext())
         {

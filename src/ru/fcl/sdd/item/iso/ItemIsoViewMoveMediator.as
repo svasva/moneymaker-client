@@ -5,7 +5,10 @@
  */
 package ru.fcl.sdd.item.iso
 {
+import as3isolib.display.scene.IsoScene;
 import ru.fcl.sdd.item.*;
+import ru.fcl.sdd.location.floors.FloorsList;
+import ru.fcl.sdd.pathfind.RoomsPathGrid;
 
 import as3isolib.core.ClassFactory;
 import as3isolib.display.renderers.DefaultShadowRenderer;
@@ -24,7 +27,7 @@ import org.robotlegs.mvcs.Mediator;
 
 import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.pathfind.ItemsPathGrid;
-import ru.fcl.sdd.location.floors.Floor1Scene;
+
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.states.ChangeStateSignal;
 import ru.fcl.sdd.states.GameStates;
@@ -32,8 +35,7 @@ import ru.fcl.sdd.states.GameStates;
 
 public class ItemIsoViewMoveMediator extends Mediator
 {
-    [Inject]
-    public var floor:Floor1Scene;
+   
     [Inject(name="item_for_move")]
     public var cursor:ItemIsoView;
     [Inject]
@@ -47,9 +49,12 @@ public class ItemIsoViewMoveMediator extends Mediator
     private var _dragPt:Pt;
     [Inject]
     public var pathGrid:ItemsPathGrid;
+	 [Inject]
+    public var roomGrid:RoomsPathGrid;
     [Inject]
     public var changeState:ChangeStateSignal;
-
+	
+	
     override public function onRegister():void
     {
         contextView.stage.addEventListener(MouseEvent.CLICK, onDrop);
@@ -61,18 +66,18 @@ public class ItemIsoViewMoveMediator extends Mediator
         _dragPt.x = contextView.stage.mouseX;
         _dragPt.y = contextView.stage.mouseY;
         cursor.moveBy(0, 0, 25);
-        floor.stylingEnabled = true;
+        (mainIsoView.currentFloor as IsoScene).stylingEnabled = true;
         shadowFactory = new ClassFactory(DefaultShadowRenderer);
         checkPlaceable();
         cursor.render();
-        floor.render();
+        mainIsoView.currentFloor.render();
     }
 
     private function onEscKeyDown(event:KeyboardEvent):void
     {
         if (event.charCode == Keyboard.ESCAPE)
         {
-            floor.removeChild(cursor);
+             mainIsoView.currentFloor.removeChild(cursor);
             changeState.dispatch(GameStates.VIEW);
         }
     }
@@ -113,7 +118,7 @@ public class ItemIsoViewMoveMediator extends Mediator
                 {
                     if (pathGrid.getNode(j, i))
                     {
-                        if (!pathGrid.getNode(j, i).walkable)
+                        if (!pathGrid.getNode(j, i).walkable || !roomGrid.getNode(j,i).walkable)
                         {
                             shadowFactory.properties = {shadowColor: 0xD43C3C, shadowAlpha: 0.5, drawAll: false};
                             isPlaceable = false;
@@ -127,7 +132,7 @@ public class ItemIsoViewMoveMediator extends Mediator
                 }
             }
         }
-        floor.styleRenderers = [shadowFactory];
+         (mainIsoView.currentFloor as IsoScene).styleRenderers = [shadowFactory];
         return isPlaceable;
     }
 
@@ -164,7 +169,7 @@ public class ItemIsoViewMoveMediator extends Mediator
         {
             cursor.moveTo(Math.floor(pt.x / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.x*/, Math.floor(pt.y / IsoConfig.CELL_SIZE) * IsoConfig.CELL_SIZE /*- _dragPt.y*/, cursor.z);
             cursor.render();
-            floor.render();
+            mainIsoView.currentFloor.render();
             e.updateAfterEvent();
             checkPlaceable();
         }

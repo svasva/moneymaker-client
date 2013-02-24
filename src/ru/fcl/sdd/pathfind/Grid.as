@@ -8,9 +8,9 @@ public class Grid
 {
     private var _startNode:Node;
     private var _endNode:Node;
-    private var _nodes:Array;
-    private var _numCols:int;
-    private var _numRows:int;
+    protected var _nodes:Array;
+    protected var _numCols:int;
+    protected var _numRows:int;
 
     /**
      * Constructor.

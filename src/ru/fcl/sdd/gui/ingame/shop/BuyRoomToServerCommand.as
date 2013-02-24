@@ -2,10 +2,11 @@ package ru.fcl.sdd.gui.ingame.shop
 {
 	import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.item.ShopModel;
+	import ru.fcl.sdd.location.floors.PlaceRoomCommand;
+	import ru.fcl.sdd.location.room.Room;
     import ru.fcl.sdd.scenes.MainIsoView;
     import ru.fcl.sdd.services.main.ISender;
-    import ru.fcl.sdd.tempFloorView.FloorManager;
-    import ru.fcl.sdd.tempFloorView.MapLayer;
+  
 	
 	/**
      * ...
@@ -18,10 +19,8 @@ package ru.fcl.sdd.gui.ingame.shop
         public var sender:ISender;
         
         [Inject]
-        public var shopMdl:ShopModel;
-        
-        [Inject]
-        public  var layer:MapLayer;
+        public var shopMdl:ShopModel;  
+      
         
           [Inject]
 		public var mainIsoView:MainIsoView;
@@ -33,11 +32,11 @@ package ru.fcl.sdd.gui.ingame.shop
              
               sender.send( { command:"buyContent", args:[/*item_id:*/shopMdl.forPurshRoomId,/*currency:*/"coins"] }, BuyRoomHnd);
               
-              	var xml:XML; 
+              ///	var xml:XML; 
           
           //  xml  = FloorManager.get_Instance().Next();
-             xml  = FloorManager.get_Instance().Next();
-            layer.isoFlor.loadRooms(xml.floors.item[mainIsoView.currentFloorNumber].rooms);
+          //   xml  = FloorManager.get_Instance().Next();
+         //   layer.isoFlor.loadRooms(xml.floors.item[mainIsoView.currentFloorNumber].rooms);
               
         }
         
