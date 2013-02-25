@@ -15,17 +15,22 @@ public class BuildPathFind extends SignalCommand
         var humansPathGrid:HomusPathGrid = injector.getInstance(HomusPathGrid);
         humansPathGrid.init(26,11);
 
-        injector.mapSingleton(ItemsPathGrid);
-        var itemsPathGrid:ItemsPathGrid = injector.getInstance(ItemsPathGrid);
+        injector.mapSingleton(FloorPathGridItemList);
+		var floorsPathGrid:FloorPathGridItemList = injector.getInstance(FloorPathGridItemList);
+		for (var i:int = 0; i < 5; i++)
+		{
+			var itemgrid:ItemsPathGrid = new ItemsPathGrid();
+			itemgrid.init(26,44);
+			floorsPathGrid.set(int(i), itemgrid);
+			
+		} 
 		
 		injector.mapSingleton(RoomsPathGrid);
         var roomsPathGrid:RoomsPathGrid = injector.getInstance(RoomsPathGrid);
 		
 		roomsPathGrid.init(26, 44);
-		
-		
-        //fixme: вынести размеры сетки в конфиг.
-        itemsPathGrid.init(26,44);
+       
+        
     }
 }
 }

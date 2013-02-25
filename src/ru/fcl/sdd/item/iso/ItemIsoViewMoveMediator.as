@@ -8,6 +8,7 @@ package ru.fcl.sdd.item.iso
 import as3isolib.display.scene.IsoScene;
 import ru.fcl.sdd.item.*;
 import ru.fcl.sdd.location.floors.FloorsList;
+import ru.fcl.sdd.pathfind.FloorPathGridItemList;
 import ru.fcl.sdd.pathfind.RoomsPathGrid;
 
 import as3isolib.core.ClassFactory;
@@ -47,9 +48,9 @@ public class ItemIsoViewMoveMediator extends Mediator
     private var inThisFrame:Boolean;
     private var shadowFactory:ClassFactory;
     private var _dragPt:Pt;
-    [Inject]
-    public var pathGrid:ItemsPathGrid;
-	 [Inject]
+   [Inject]
+    public var pathGrids:FloorPathGridItemList;
+	[Inject]
     public var roomGrid:RoomsPathGrid;
     [Inject]
     public var changeState:ChangeStateSignal;
@@ -94,7 +95,9 @@ public class ItemIsoViewMoveMediator extends Mediator
 
     private function checkPlaceable():Boolean
     {
-        var cursorX:int = cursor.x / IsoConfig.CELL_SIZE;
+		var pathGrid:ItemsPathGrid = pathGrids.get(mainIsoView.currentFloorNumber) as ItemsPathGrid;
+       
+		var cursorX:int = cursor.x / IsoConfig.CELL_SIZE;
         var cursorY:int = cursor.y / IsoConfig.CELL_SIZE;
         var cursorWidth:int = (cursor.width + cursor.x) / IsoConfig.CELL_SIZE;
         var cursorLength:int = (cursor.length + cursor.y) / IsoConfig.CELL_SIZE;

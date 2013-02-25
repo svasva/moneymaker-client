@@ -6,11 +6,18 @@
 package ru.fcl.sdd.item.iso
 {
 
+import as3isolib.display.scene.IsoScene;
 import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.item.Item;
+import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemStatus;
 import ru.fcl.sdd.location.floors.FloorItemScene;
+import ru.fcl.sdd.location.floors.FloorsList;
+import ru.fcl.sdd.location.room.Room;
+import ru.fcl.sdd.location.room.UserRoomList;
+import ru.fcl.sdd.location.room.XmlRoomModel;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.states.GameStates;
 import ru.fcl.sdd.states.IStateHolder;
@@ -28,14 +35,21 @@ public class PlaceItemCommand extends SignalCommand
     public var floor:Floor1Scene;*/
     [Inject]
     public var mainIsoView:MainIsoView
-    
-   
+    [Inject]
+    public var userRoomList:UserRoomList;
+   [Inject]
+    public var floorList:FloorsList;
     
      [Inject]
     public var clickedSignal:ItemClickedSignal;
     
     [Inject]
     public var gameState:IStateHolder;
+	
+	 [Inject]
+        public var itemCatalog:ItemCatalog;
+	  [Inject]
+     public var xmlRoomModel:XmlRoomModel;
 
     override public function execute():void
     {
@@ -59,10 +73,22 @@ public class PlaceItemCommand extends SignalCommand
                 iso.giveMoney.visible = true;
            else if (iso.status == ItemStatus.FULL)
                  iso.takeMoney.visible = true;
-                 
-        mainIsoView.currentFloor.addChild(iso.takeMoneyIso);
-        mainIsoView.currentFloor.addChild(iso.giveMoneyIso);
-        mainIsoView.currentFloor.addChild(iso);
+		var floor:int;
+		if (iso.catalogKey)
+		{
+			var item:Item = itemCatalog.get(iso.catalogKey) as Item;
+			var room:Room =  userRoomList.get(item.room_id) as Room;
+      
+		 floor = xmlRoomModel.floorByOrder(room.order);
+		}
+		else
+			floor = mainIsoView.currentFloorNumber;
+		var floorScene:IsoScene =  floorList.get(floor) as IsoScene;
+			
+	   
+       floorScene.addChild(iso.takeMoneyIso);
+       floorScene.addChild(iso.giveMoneyIso);
+       floorScene.addChild(iso);
         
       //  if(gameState.currentState == GameStates.VIEW)
      //   iso.addEventListener(MouseEvent.CLICK, iso_mouseevent);      
@@ -70,7 +96,7 @@ public class PlaceItemCommand extends SignalCommand
         iso.render();
         iso.giveMoneyIso.render();
         iso.takeMoneyIso.render();
-         mainIsoView.currentFloor.render();
+       floorScene.render();
     }
     
     private function iso_mouseevent(e:ProxyEvent):void 

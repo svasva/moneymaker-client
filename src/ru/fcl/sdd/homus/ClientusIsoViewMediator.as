@@ -7,6 +7,7 @@ package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
 import ru.fcl.sdd.location.floors.FloorItemScene;
+import ru.fcl.sdd.pathfind.FloorPathGridItemList;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.services.main.ISender;
 
@@ -38,7 +39,7 @@ import ru.fcl.sdd.pathfind.ItemsPathGrid;
 public class ClientusIsoViewMediator extends Mediator
 {
     [Inject]
-    public var itemPathGrid:ItemsPathGrid;
+    public var pathGrids:FloorPathGridItemList;
     [Inject]
     public var homusPathGrid:HomusPathGrid;
     [Inject]
@@ -79,13 +80,14 @@ public class ClientusIsoViewMediator extends Mediator
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
     private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
-   
+	private var itemPathGrid:ItemsPathGrid;
 
 
 
 
     override public function onRegister():void
     {
+		itemPathGrid =  pathGrids.get(1) as ItemsPathGrid;
         _freeCellWaitTime = Math.random() * 2000 + 1000;
         Tweensy.refreshType = Tweensy.FRAME;
         Tweensy.secondsPerFrame = 1 / 24;
