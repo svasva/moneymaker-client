@@ -12,6 +12,7 @@ import ru.fcl.sdd.gui.ingame.shop.OveredShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.SelectedShopItemUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelCategoryUpdatedSignal;
 import ru.fcl.sdd.gui.ingame.shop.ShopModelTabUpdatedSignal;
+import ru.fcl.sdd.homus.HomusCounterModel;
 import ru.fcl.sdd.item.AdvertsCatalog;
 import ru.fcl.sdd.item.MarketingCatalog;
 import ru.fcl.sdd.item.SellItemSignal;
@@ -61,11 +62,14 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(ItemCatalog);
         injector.mapSingleton(AdvertsCatalog);
         injector.mapSingleton(MarketingCatalog);
+		injector.mapSingleton(HomusCounterModel);
         
         commandMap.execute(BuildMoneyCommand);
         commandMap.execute(BuildCapacityCommand);
         commandMap.execute(BuildReputationCommand);
         commandMap.execute(BuildExperienceCommand);
+		
+		
     }
 }
 }

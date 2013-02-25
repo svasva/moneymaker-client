@@ -41,13 +41,16 @@ public class ParseCommand extends SignalCommand
                 }
                 else if (callHashMap.get((decodedObject.requestId)))
                 {
-                        commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
+                    trace("decodedObject.requestId "+decodedObject.requestId);   
+					commandMap.execute(Class(callHashMap.get(decodedObject.requestId)), decodedObject);
                 }
             }
             if ((int(decodedObject.requestId)) >= 0)
             {
-                callHashMap.remove(callHashMap.get(decodedObject.requestId));
+                // trace("!!!decodedObject.requestId!!!!! "+decodedObject.requestId);   
+				callHashMap.remove(callHashMap.get(decodedObject.requestId));
                 callHashMap.remove(callHashMap.get(decodedObject.requestId + "_error"));
+				commandMap.execute(ParseItemStateCommand, decodedObject);
             }
         }
         else

@@ -19,13 +19,20 @@ public class AddClientusCommand extends SignalCommand
     [Inject]
     public var clientusIsoView:ClientusIsoView;
     
-   [Inject]
-    public var mainIsoView:MainIsoView;
+    [Inject]
+    public var mainIsoView:MainIsoView; 
+	
+	[Inject]
+    public var homusCounter:HomusCounterModel;
+	
+	
 
     override public function execute():void
     {
 //        clientusList.set(clientusIsoView.key,clientusIsoView);
-        mediatorMap.createMediator(clientusIsoView);
+        clientusIsoView.localId = homusCounter.count;
+		homusCounter.count++
+		mediatorMap.createMediator(clientusIsoView);
         mainIsoView.currentFloor.addChild(clientusIsoView);
         mainIsoView.currentFloor.render();
     }

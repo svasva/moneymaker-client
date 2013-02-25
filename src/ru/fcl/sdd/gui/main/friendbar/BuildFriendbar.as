@@ -12,7 +12,9 @@ public class BuildFriendbar extends SignalCommand
     override public function execute():void
     {
         injector.mapSingleton(FriendBarView);
-        mediatorMap.mapView(FriendBarView,FriendBarMediator);
+        mediatorMap.mapView(FriendBarView, FriendBarMediator);
+		
+		
     }
 }
 }

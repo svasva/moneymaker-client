@@ -6,6 +6,7 @@
 package ru.fcl.sdd.homus
 {
 import as3isolib.display.IsoSprite;
+import ru.fcl.sdd.item.iso.ItemIsoView;
 
 import flash.display.Loader;
 import flash.display.MovieClip;
@@ -28,6 +29,8 @@ public class ClientusIsoView extends IsoSprite
     private var _maxWaiTime:int;
     private var _leaveTimer:Timer;
     private var _reputation:int;
+	private var _localId:int;
+	private var _target:ItemIsoView;
 
     public static const NORTH:int = 1;
     public static const EAST:int = 2;
@@ -36,6 +39,7 @@ public class ClientusIsoView extends IsoSprite
 
     public static const WALK:int = 0;
     public static const STOP:int = 1;
+	
 
     public function ClientusIsoView()
     {
@@ -53,6 +57,11 @@ public class ClientusIsoView extends IsoSprite
     {
         leaveTimer.start();
     }
+	public function noService():void
+	{
+		trace("clientus " + localId + " no service");
+		dispatchEvent(new HomusEvent(HomusEvent.NO_SERVICE));
+	}
 
     public function setDirection(direction:int, state:int):void
     {
@@ -170,5 +179,27 @@ public class ClientusIsoView extends IsoSprite
     {
         _reputation = value;
     }
+	
+	public function get localId():int 
+	{
+		return _localId;
+	}
+	
+	public function set localId(value:int):void 
+	{
+		_localId = value;
+	}
+	
+	public function get target():ItemIsoView 
+	{
+		return _target;
+	}
+	
+	public function set target(value:ItemIsoView):void 
+	{
+		_target = value;
+	}
+	
+	
 }
 }
