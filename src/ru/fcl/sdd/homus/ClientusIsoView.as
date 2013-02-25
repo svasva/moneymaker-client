@@ -62,6 +62,11 @@ public class ClientusIsoView extends IsoSprite
 		trace("clientus " + localId + " no service");
 		dispatchEvent(new HomusEvent(HomusEvent.NO_SERVICE));
 	}
+	public function endOperation():void
+	{
+		dispatchEvent(new HomusEvent(HomusEvent.END_OPERATION));
+		trace("clientus " + localId + " end Operation");
+	}
 
     public function setDirection(direction:int, state:int):void
     {

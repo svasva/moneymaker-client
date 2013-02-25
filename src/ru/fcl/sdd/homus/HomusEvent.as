@@ -10,6 +10,7 @@ package ru.fcl.sdd.homus
 	{
 		
 		public static const NO_SERVICE:String = "no_service";
+		public static const END_OPERATION:String = "end_operation";
 		
 		public function HomusEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) 
 		{ 

@@ -83,6 +83,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
     private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
+	private var _isServing:Boolean = false;
 	
     override public function onRegister():void
     {
@@ -97,13 +98,21 @@ public class ClientusIsoViewMediator extends Mediator
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
         clientusView.addEventListener(MouseEvent.MOUSE_OUT, clientusView_mouseOutHandler);
 		clientusView.addEventListener(HomusEvent.NO_SERVICE, clientusView_noService);
+		clientusView.addEventListener(HomusEvent.END_OPERATION, clientusView_endOperation);
         nextStep(true);
         
         
     }
 	
+	private function clientusView_endOperation(e:HomusEvent):void 
+	{
+		_isServing  = false;
+		completeOperation();
+	}
+	
 	private function clientusView_noService(e:HomusEvent):void 
 	{
+		_isServing  = false;
 		nextStep();
 	}
 
@@ -150,13 +159,18 @@ public class ClientusIsoViewMediator extends Mediator
         }
         tryGoToNextCell(isStart);
     }
-
+    /**
+     * переход на следующую игровую клетку. 
+     * @param	isStart
+     */
     private function tryGoToNextCell(isStart:Boolean = false):void
     {
         if (!isStart)
         {
-             homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
-            _path.shift();
+            //если начали движение берём  первую ячейку пути и закрашиваем.  
+			homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
+           //удаляем первый элемент массива - первую ячейку. 
+			_path.shift();
         }
         if ((_path[1]) && (!homusPathGrid.getNode(_path[1].x, _path[1].y).walkable))
         {
@@ -194,7 +208,8 @@ public class ClientusIsoViewMediator extends Mediator
                 }
                 case true:
                 {
-                    setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
+                    //Если в очереди, то ждём своей очереди. 
+					setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
                 }
             }
         }
@@ -220,18 +235,29 @@ public class ClientusIsoViewMediator extends Mediator
 						 startServiceSig.dispatch(clientusView);
 						 sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
                         //setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
+						_isServing = true;
                     }
                     else
                     {
-                        if (!_isEndOfSequence)
-                        {
-                            _isEndOfSequence = true;
-                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
-                        }
-                        else
-                        {
+                        if (!_isServing)
+						{
+							
+					
+							if (!_isEndOfSequence)
+							{
+								//trace(" case 1 Гипс снимают клиент уезжает");
+								 trace("case 1 НАЧАЛО ОБСЛУЖИВАНИЯ");
+								_isEndOfSequence = true;
+								 startServiceSig.dispatch(clientusView);
+								sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
+                        
+								//setTimeout(nextStep, _freeCellWaitTime);
+							}
+							else
+							{
                                 setTimeout(removeClientus, 1000);
-                        }
+							}
+						}
                     }
                     break;
                 }
@@ -250,19 +276,26 @@ public class ClientusIsoViewMediator extends Mediator
                          trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
 						startServiceSig.dispatch(clientusView);
                         sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
-                       // setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
+                        _isServing = true;
+						// setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
-                        if (!_isEndOfSequence)
-                        {
-                            _isEndOfSequence = true;
-                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
-                        }
-                        else
-                        {
+                        if (!_isServing)
+						{
+							
+					
+							if (!_isEndOfSequence)
+							{
+								trace(" case 0 Гипс снимают клиент уезжает");
+								_isEndOfSequence = true;
+								setTimeout(nextStep, _freeCellWaitTime);
+							}
+							else
+							{
                                 setTimeout(removeClientus, 1000);
-                        }
+							}
+						}
                     }
                     break;
                 }
@@ -282,7 +315,7 @@ public class ClientusIsoViewMediator extends Mediator
     private function completeOperation():void
     {
         operationSuccessSignal.dispatch(clientusView);
-        _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
+//        _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
         nextStep();
     }
     // ищем банкомат или кассу. 

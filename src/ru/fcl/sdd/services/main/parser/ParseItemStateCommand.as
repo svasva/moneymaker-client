@@ -29,7 +29,7 @@ package ru.fcl.sdd.services.main.parser
 			if (response.response.no_service)
 			{
 				key = new String( response.response.item_id );
-				trace("key "+key);
+				
 				clientus =  homusMdl.clientusByTargetKey.get(key) as ClientusIsoView;
 				if (clientus)
 				{
