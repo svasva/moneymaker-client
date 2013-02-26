@@ -40,9 +40,11 @@ package ru.fcl.sdd.location.floors
 		private function update_grid(rooms:XMLList):void
 		{
 			
-			for each (var room:XML in rooms.item)
+			for each (var item:XML in rooms.item)
 			{
-				commandMap.execute(PlacePathGridRoomCommand, room);
+				var ro:Object = { "x" : item.@x, "y": item.@y, "id" : room.id }; 
+			
+				commandMap.execute(PlacePathGridRoomCommand, ro);
 			}
 		}
 		

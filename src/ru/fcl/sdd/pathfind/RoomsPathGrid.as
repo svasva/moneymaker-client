@@ -9,6 +9,7 @@ package ru.fcl.sdd.pathfind
 public class RoomsPathGrid extends Grid
 {
 
+	
 
 
 public override function init(numCols:int, numRows:int):void
@@ -24,6 +25,7 @@ public override function init(numCols:int, numRows:int):void
             {
                 _nodes[i][j] = new Node(i, j);
 				 _nodes[i][j].walkable = false;
+				  _nodes[i][j].data = -1;
             }
         }
     }
