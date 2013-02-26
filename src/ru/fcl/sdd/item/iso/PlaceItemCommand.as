@@ -90,8 +90,8 @@ public class PlaceItemCommand extends SignalCommand
        floorScene.addChild(iso.giveMoneyIso);
        floorScene.addChild(iso);
         
-      //  if(gameState.currentState == GameStates.VIEW)
-     //   iso.addEventListener(MouseEvent.CLICK, iso_mouseevent);      
+        if(gameState.currentState == GameStates.VIEW)
+        iso.addEventListener(MouseEvent.CLICK, iso_mouseevent);      
         
         iso.render();
         iso.giveMoneyIso.render();
