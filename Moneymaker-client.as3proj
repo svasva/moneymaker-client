@@ -8,8 +8,8 @@
     <movie fps="30" />
     <movie width="800" />
     <movie height="800" />
-    <movie version="11" />
-    <movie minorVersion="1" />
+    <movie version="10" />
+    <movie minorVersion="2" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
   </output>
@@ -60,11 +60,11 @@
     <element path="lib\bin\TweensyOriginalCS4.swc" />
     <element path="art\bin\homus_icons.swc" />
     <element path="lib\bin\MinimalComps_0_9_10.swc" />
-    <element path="lib\bin\resource.swc" />
     <element path="lib\bin\library.swc" />
     <element path="art\bin\itemIcon.swc" />
     <element path="lib\bin\vk_api_connector.swc" />
     <element path="lib\bin\vk_lib.swc" />
+    <element path="lib\bin\resource.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
