@@ -67,7 +67,7 @@
 		<walls>			
 		<item sid="11" x="0" y="0" back="true"> </item>		
 		<item sid="12" x="11" y="11"> </item>
-		<item sid="20" x="11" y="11"> </item>
+		
 		</walls>		
 			
 		<grounds>			
@@ -124,8 +124,7 @@
 		</windows>
 		<walls>			
 		<item sid="18" x="0" y="0" back = "true"> </item>		
-		<item sid="19" x="11" y="11"> </item>
-		<item sid="20" x="11" y="11"> </item>
+		<item sid="19" x="11" y="11"> </item>		
 		</walls>
 		
 		<grounds>			

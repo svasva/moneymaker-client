@@ -31,6 +31,9 @@ package ru.fcl.sdd.services.main.parser
         
         override public function execute():void
         {
+			 if (!userItems.isEmpty)
+				userItems.clear();
+		
             items.forEach(parseItems);
         }
         

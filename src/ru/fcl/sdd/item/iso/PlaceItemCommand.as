@@ -10,11 +10,13 @@ import as3isolib.display.scene.IsoScene;
 import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemStatus;
 import ru.fcl.sdd.location.floors.FloorItemScene;
 import ru.fcl.sdd.location.floors.FloorsList;
+import ru.fcl.sdd.location.floors.Nodes.IsoRoom;
 import ru.fcl.sdd.location.room.Room;
 import ru.fcl.sdd.location.room.UserRoomList;
 import ru.fcl.sdd.location.room.XmlRoomModel;
@@ -83,12 +85,20 @@ public class PlaceItemCommand extends SignalCommand
 		}
 		else
 			floor = mainIsoView.currentFloorNumber;
-		var floorScene:IsoScene =  floorList.get(floor) as IsoScene;
-			
+		var floorScene:FloorItemScene =  floorList.get(floor) as FloorItemScene;
 	   
-       floorScene.addChild(iso.takeMoneyIso);
-       floorScene.addChild(iso.giveMoneyIso);
-       floorScene.addChild(iso);
+	//   var isoroom:IsoRoom = floorScene.Floor.isoFlor.findByCoord(iso.x / IsoConfig.CELL_SIZE, iso.y / IsoConfig.CELL_SIZE) as IsoRoom;
+		//iso.x-= isoroom.x;
+	//	iso.y -= isoroom.y;
+	   
+	 //  isoroom.objects_layer.addChild (iso.takeMoneyIso);
+	 
+	 //   isoroom.objects_layer.addChild (iso.giveMoneyIso);
+	
+		// isoroom.objects_layer.addChild (iso);
+		floorScene.addChild(iso.takeMoneyIso);
+		floorScene.addChild(iso.giveMoneyIso);
+		floorScene.addChild(iso);
         
         if(gameState.currentState == GameStates.VIEW)
         iso.addEventListener(MouseEvent.CLICK, iso_mouseevent);      

@@ -67,6 +67,11 @@ package ru.fcl.sdd.location.floors.Nodes
 			addEventListener(Event.REMOVED_FROM_STAGE, clear);
 		}
 		
+		public function get objects_layer():IsoSprite
+		{
+			return object_layer;
+		}
+		
 		private function clear(e:Event):void
 		{
 			removeChild(ground_layer);

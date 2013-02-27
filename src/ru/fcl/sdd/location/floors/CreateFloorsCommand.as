@@ -83,8 +83,9 @@ public class CreateFloorsCommand extends SignalCommand
         while(iterator.hasNext())
         {
             var item:ItemIsoView = iterator.next() as ItemIsoView;
+			 commandMap.execute(PlacePathGridItemCommand,item);
             commandMap.execute(PlaceItemCommand,item);
-            commandMap.execute(PlacePathGridItemCommand,item);
+           
         }
 
     }
