@@ -1,4 +1,4 @@
-/**
+﻿/**
  * User: Jessie
  * Date: 17.12.12
  * Time: 16:21
@@ -59,12 +59,16 @@ public class ClientusIsoViewMediator extends Mediator
 
     [Inject]
     public var operationSuccessSignal:OperationSuccessSignal;
+	
+	[Inject]
+	public var startServiceSig:StartServiceSignal;
+	
 //    [Inject]
 //    public var operationFailedSignal:OperationFailedSignal;
     [Inject]
     public var sender:ISender;
 
- [Inject]
+    [Inject]
     public var mainisoView:MainIsoView;
 	
     private var _path:Array;
@@ -80,10 +84,10 @@ public class ClientusIsoViewMediator extends Mediator
     private var _isOutOfSchedule:Boolean = false;
     private var _isEndOfSequence:Boolean = false;
     private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
+
 	private var itemPathGrid:ItemsPathGrid;
-
-
-
+	private var _isServing:Boolean = false;
+	
 
     override public function onRegister():void
     {
@@ -98,15 +102,30 @@ public class ClientusIsoViewMediator extends Mediator
         clientusView.y = 1 * IsoConfig.CELL_SIZE;
         clientusView.addEventListener(MouseEvent.MOUSE_OVER, clientusView_mouseOverHandler);
         clientusView.addEventListener(MouseEvent.MOUSE_OUT, clientusView_mouseOutHandler);
+		clientusView.addEventListener(HomusEvent.NO_SERVICE, clientusView_noService);
+		clientusView.addEventListener(HomusEvent.END_OPERATION, clientusView_endOperation);
         nextStep(true);
         
         
     }
+	
+	private function clientusView_endOperation(e:HomusEvent):void 
+	{
+		_isServing  = false;
+		completeOperation();
+	}
+	
+	private function clientusView_noService(e:HomusEvent):void 
+	{
+		_isServing  = false;
+		nextStep();
+	}
 
     private function nextStep(isStart:Boolean = false):void
     {
         _inStack = false;
-        if (!isStart)
+        //проверка на первый шаг
+		if (!isStart)
         {
             for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
             {
@@ -121,7 +140,9 @@ public class ClientusIsoViewMediator extends Mediator
         var startX:int = clientusView.x / IsoConfig.CELL_SIZE;
         var startY:int = clientusView.y / IsoConfig.CELL_SIZE;
 
-        _target = selectTarget();
+        //ищем банкомат или кассу.
+		_target = selectTarget();
+		clientusView.target = _target;
 
         if (_target)
         {
@@ -143,13 +164,18 @@ public class ClientusIsoViewMediator extends Mediator
         }
         tryGoToNextCell(isStart);
     }
-
+    /**
+     * переход на следующую игровую клетку. 
+     * @param	isStart
+     */
     private function tryGoToNextCell(isStart:Boolean = false):void
     {
         if (!isStart && _path)
         {
-             homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
-            _path.shift();
+            //если начали движение берём  первую ячейку пути и закрашиваем.  
+			homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
+           //удаляем первый элемент массива - первую ячейку. 
+			_path.shift();
         }
         if ((_path[1]) && (!homusPathGrid.getNode(_path[1].x, _path[1].y).walkable))
         {
@@ -187,7 +213,8 @@ public class ClientusIsoViewMediator extends Mediator
                 }
                 case true:
                 {
-                    setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
+                    //Если в очереди, то ждём своей очереди. 
+					setTimeout(tryGoToNextCell, _freeCellWaitTime, true);
                 }
             }
         }
@@ -210,20 +237,32 @@ public class ClientusIsoViewMediator extends Mediator
                     if (clientusView.operations.length)
                     {
                          trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
-                      sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
-                        setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
+						 startServiceSig.dispatch(clientusView);
+						 sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
+                        //setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
+						_isServing = true;
                     }
                     else
                     {
-                        if (!_isEndOfSequence)
-                        {
-                            _isEndOfSequence = true;
-                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
-                        }
-                        else
-                        {
+                        if (!_isServing)
+						{
+							
+					
+							if (!_isEndOfSequence)
+							{
+								//trace(" case 1 Гипс снимают клиент уезжает");
+								 trace("case 1 НАЧАЛО ОБСЛУЖИВАНИЯ");
+								_isEndOfSequence = true;
+								 startServiceSig.dispatch(clientusView);
+								sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
+                        
+								//setTimeout(nextStep, _freeCellWaitTime);
+							}
+							else
+							{
                                 setTimeout(removeClientus, 1000);
-                        }
+							}
+						}
                     }
                     break;
                 }
@@ -240,20 +279,28 @@ public class ClientusIsoViewMediator extends Mediator
                     if (clientusView.operations.length)
                     {
                          trace("НАЧАЛО ОБСЛУЖИВАНИЯ");
+						startServiceSig.dispatch(clientusView);
                         sender.send( {command:"startClientService",args:[_target.key,clientusView.key,_currentOperation.id] } )
-                        setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
+                        _isServing = true;
+						// setTimeout(completeOperation, _targetCatalogItem.serviceSpeed);
                     }
                     else
                     {
-                        if (!_isEndOfSequence)
-                        {
-                            _isEndOfSequence = true;
-                            setTimeout(nextStep, _targetCatalogItem.serviceSpeed);
-                        }
-                        else
-                        {
+                        if (!_isServing)
+						{
+							
+					
+							if (!_isEndOfSequence)
+							{
+								trace(" case 0 Гипс снимают клиент уезжает");
+								_isEndOfSequence = true;
+								setTimeout(nextStep, _freeCellWaitTime);
+							}
+							else
+							{
                                 setTimeout(removeClientus, 1000);
-                        }
+							}
+						}
                     }
                     break;
                 }
@@ -273,45 +320,60 @@ public class ClientusIsoViewMediator extends Mediator
     private function completeOperation():void
     {
         operationSuccessSignal.dispatch(clientusView);
-        _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
+//        _target.cashMoney += _currentOperation.money; //fixme:Перепупырить это в сигнал и ловить в медиаторе айтема.
         nextStep();
     }
-
+    // ищем банкомат или кассу. 
     private function selectTarget():ItemIsoView
     {
         var target:ItemIsoView;
+		//проверяем айдишники операций у клиента. 
         if (clientusView.operations.length)
         {
-            _currentOperation = clientusView.operations.shift();
-            var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
+            //берём первую операцию 
+			_currentOperation = clientusView.operations.shift();
+			
+            //итератор предметов пользователя. 
+			var iterator:HashMapValIterator = userItems.iterator() as HashMapValIterator;
             var item:Item;
             var itemIsoView:ItemIsoView;
             var avaibleItems:Array = [];
             iterator.reset();
 
-            while (iterator.hasNext())
+            //перебираем все предметы пользователя в цикле.
+			while (iterator.hasNext())
             {
-                itemIsoView = iterator.next() as ItemIsoView;
-                item = itemCatalog.get(itemIsoView.catalogKey) as Item;
+                //излюражение текущего предмета
+				itemIsoView = iterator.next() as ItemIsoView;
+                
+				//ищем в каталоге предметов спецификацию текущего предмета.
+				item = itemCatalog.get(itemIsoView.catalogKey) as Item;
+				//если предмет найден
                 if (item)
                 {
-                    if (item.operations)
+                    //смотрим текущие операции над предметами.
+					if (item.operations)
                     {
-                        for (var i:int = 0; i < item.operations.length; i++)
+                        //перебираем все операции которые доступны у текущего предмета.
+						for (var i:int = 0; i < item.operations.length; i++)
                         {
-                            if (item.operations[i] == _currentOperation.id)
+                            //если текущая операция есть есть у данного предмета
+							if (item.operations[i] == _currentOperation.id)
                             {
-                                avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
+                                //то добавляем его в массив
+								avaibleItems[avaibleItems.length] = {iso: itemIsoView, catalogItem: item};
                             }
                         }
                     }
                 }
             }
+			//мы составили список предметов с нужными нам операциями. 
             if (avaibleItems.length > 0)
-            {
+            {//если есть нужные нам предметы
                 var moreFreer:int;
                 var minTime:int;
-                minTime = ItemIsoView(avaibleItems[length - 1].iso).clientStack.length * Item(avaibleItems[length - 1].catalogItem).serviceSpeed;
+                //ищем наименьшее время обслуживания 
+				minTime = ItemIsoView(avaibleItems[length - 1].iso).clientStack.length * Item(avaibleItems[length - 1].catalogItem).serviceSpeed;
                 for (var i:int = avaibleItems.length - 2; i >= 0; i--)
                 {
                     if ((ItemIsoView(avaibleItems[i].iso).clientStack.length * Item(avaibleItems[i].catalogItem).serviceSpeed) < minTime)
@@ -320,6 +382,7 @@ public class ClientusIsoViewMediator extends Mediator
                         moreFreer = i;
                     }
                 }
+				//выбрали 
                 target = avaibleItems[moreFreer].iso;
                 _targetCatalogItem = avaibleItems[moreFreer].catalogItem;
             }

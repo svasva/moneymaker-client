@@ -1,6 +1,8 @@
 package ru.fcl.sdd.services.main.listen 
 {
 	import org.robotlegs.mvcs.SignalCommand;
+	import ru.fcl.sdd.homus.ClientusIsoView;
+	import ru.fcl.sdd.homus.HomusCounterModel;
     import ru.fcl.sdd.item.ActiveUserItemList;
     import ru.fcl.sdd.item.iso.ItemIsoView;
     import ru.fcl.sdd.item.ItemStatus;
@@ -17,20 +19,38 @@ package ru.fcl.sdd.services.main.listen
         
          [Inject]
         public var userItems:ActiveUserItemList;
+		
+		[Inject]
+		public var homusMdl:HomusCounterModel;
+		
+		private var key:String;
+		
+		private var clientus:ClientusIsoView;
         
         override public function execute():void
         {
             var item:ItemIsoView =  userItems.get(response.response.id) as ItemIsoView;
             
             
-            trace(item.status);
-               trace("response.changes " +response.response.changes)
+          
             if (response.response.changes)
             {
-                trace("response.changes " +response.response.changes)
+                
+				if (response.response.changes.cash)
+				{
+					key = new String( response.response.id );
+				
+					clientus =  homusMdl.clientusByTargetKey.get(key) as ClientusIsoView;
+					if (clientus)
+					{
+						clientus.endOperation();
+					}
+				}
+				
+				
                 if (response.response.changes.state)
                 {
-                     trace("response.changes.state" +response.response.changes.state)
+                   
                     if (response.response.changes.state == ItemStatus.EMPTY)
                     {
                         
@@ -57,7 +77,7 @@ package ru.fcl.sdd.services.main.listen
                 }
              
             }
-               trace(item.status);
+             
             
            // {"requestId":"-2","response":{"id":"51179a5e5dae91a0d9000004","changes":{"cash":"0","client_id":"","operation_id":"","state":"empty","updated_at":"2013-02-10 13:57:50 UTC"}}} 
 

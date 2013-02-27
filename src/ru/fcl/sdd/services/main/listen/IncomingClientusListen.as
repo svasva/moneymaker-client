@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.listen
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.homus.HomusCounterModel;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.config.IsoConfig;
@@ -20,8 +21,8 @@ public class IncomingClientusListen extends SignalCommand
     [Inject]
     public var flashVars:FlashVarsModel;
     override public function execute():void
-    {
-        var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
+    {	
+		var clientusIsoView:ClientusIsoView = injector.getInstance(ClientusIsoView);
         clientusIsoView.skin = flashVars.content_url+"/"+response.response.swf_url;
         clientusIsoView.setSize(IsoConfig.CELL_SIZE,IsoConfig.CELL_SIZE,response.response.height*IsoConfig.CELL_SIZE);
         clientusIsoView.maxWaiTime = response.response.wait_time*1000;
@@ -36,7 +37,7 @@ public class IncomingClientusListen extends SignalCommand
             operation.money = temp[i+1];
             clientusIsoView.operations.push(operation);
         }
-
+		//назначать внутрисессионные айдишники клиентам. при удалении 
         clientusIsoView.key = response.response._id;
         commandMap.execute(AddClientusCommand,clientusIsoView);
     }
