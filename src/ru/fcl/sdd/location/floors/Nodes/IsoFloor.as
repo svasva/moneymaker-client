@@ -128,9 +128,42 @@ package ru.fcl.sdd.location.floors.Nodes
 		
 		public function findByCoord(x:Number,y:Number):IsoRoom
 		{
+			if (x < 14)
+			{
+				
+					if( y < 11)
+					return findById(1) as IsoRoom;
+					
+					if ( y < 22)
+					return findById(2) as IsoRoom;;
+					
+					if( y < 33)
+					return findById(5) as IsoRoom;;
+					
+					if (y < 44)
+					return findById(6) as IsoRoom;;
+					
+				
+			}
+			else
+			{
+				
+					if( y < 11)
+					return findById(3) as IsoRoom;;
+					
+					if( y < 22)
+					return findById(4) as IsoRoom;;
+					
+					if( y < 33)
+					return findById(7) as IsoRoom;;
+				
+					if ( y < 44)
+					return findById(8) as IsoRoom;;
+					
+				
+			}
 			
-			for each (var room:IsoRoom in vrooms)
-			if (room.x == x && room.y == y) return room;
+			
 			
 			return null;
 			
@@ -161,6 +194,7 @@ package ru.fcl.sdd.location.floors.Nodes
 			rooms_layer.addChild(room);
 			room.x = x*CELL;
 			room.y = y * CELL;
+			
 		//	(room as IsoDisplayObject).
 			vrooms.push(room);
 		}

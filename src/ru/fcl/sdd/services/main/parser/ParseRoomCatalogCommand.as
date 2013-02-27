@@ -43,7 +43,7 @@ public class ParseRoomCatalogCommand extends Command
         room.name = object.name;
         room.decription = object.desc;
         room.icon_url =flashVars.content_url+ object.icon_url
-        
+        room.order = object.order;
         
         if(object.money_cost)
         room.money_cost = int(object.money_cost);

@@ -25,9 +25,10 @@ public class ParseUserRooms extends SignalCommand
     public var roomList:RoomCatalog;
 
     override public function execute():void
-    {
-     
-        
+    {     
+        if (!userRoomList.isEmpty)
+        userRoomList.clear();
+		
         rooms.forEach(parseRooms);
         
     }
@@ -35,6 +36,7 @@ public class ParseUserRooms extends SignalCommand
     private function parseRooms(object:Object,index:int, array:Array):void
     {
         
+		
         
          var room:Room = new Room();
         room.id = object._id;

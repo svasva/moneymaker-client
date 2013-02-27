@@ -6,6 +6,7 @@
 package ru.fcl.sdd.item.iso
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.pathfind.RoomsPathGrid;
 
 import ru.fcl.sdd.config.IsoConfig;
 import ru.fcl.sdd.item.iso.ItemIsoView;
@@ -28,6 +29,8 @@ public class PlaceMovedItemCommand extends SignalCommand
     [Inject]
     public var userRoomList:UserRoomList;
 
+	 [Inject]
+    public var roomsPathGrid:RoomsPathGrid;
     [Inject]
     public var changeState:ChangeStateSignal;
 
@@ -36,9 +39,11 @@ public class PlaceMovedItemCommand extends SignalCommand
 
     override public function execute():void
     {
-        var room:Room = userRoomList.iterator().next() as Room;
+       /// var room:Room = userRoomList.iterator().next() as Room;
         changeState.dispatch(GameStates.VIEW);
-        sender.send({command:"placeItem", args:[room.id,item.key,item.x/IsoConfig.CELL_SIZE, item.y/IsoConfig.CELL_SIZE,item.direction]},LogServerResponseCommand);
+		var room_id:String = String(roomsPathGrid.getNode(item.x / IsoConfig.CELL_SIZE, item.y / IsoConfig.CELL_SIZE).data);
+  
+		sender.send({command:"placeItem", args:[room_id,item.key,item.x/IsoConfig.CELL_SIZE, item.y/IsoConfig.CELL_SIZE,item.direction]},LogServerResponseCommand);
         commandMap.execute(PlacePathGridItemCommand,item);
     }
 }

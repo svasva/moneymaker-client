@@ -13,6 +13,7 @@ package ru.fcl.sdd.location.floors
 	import ru.fcl.sdd.item.iso.ItemIsoView;
 	import ru.fcl.sdd.location.room.Room;
 	import ru.fcl.sdd.location.room.UserRoomList;
+	import ru.fcl.sdd.pathfind.ClearPathGridRoomCommand;
 	
 	
     
@@ -145,7 +146,7 @@ package ru.fcl.sdd.location.floors
 			var itrooms:HashMapValIterator = userRooms.iterator() as HashMapValIterator;
        // itrooms.reset();	
        
-		
+		commandMap.execute(ClearPathGridRoomCommand);
 		 while(itrooms.hasNext())
 		{
 		  var room:Room = itrooms.next() as Room;

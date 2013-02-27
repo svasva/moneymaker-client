@@ -61,10 +61,10 @@ public class ParseUserDataCommand extends Command
         
         commandMap.execute(ParseReputationCommand, reputation);
         
-        var exp:Object = { exp:   userObject.response.experience,
-                           nextLv:userObject.response.nextlevel,
+      var exp:Object = { exp:   userObject.response.experience,
+                          nextLv:userObject.response.nextlevel,
                            levelNuber:userObject.response.levelnumber};
-                           
+                       
          commandMap.execute(ParseExperienceCommand, exp);
          
          

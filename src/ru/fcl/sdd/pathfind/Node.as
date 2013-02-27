@@ -14,7 +14,7 @@ public class Node
     public var parent:Node;
     public var costMultiplier:Number = 1.0;
     public var direction:int;
-
+    public var data:*;
     public function Node(x:int, y:int)
     {
         this.x = x;

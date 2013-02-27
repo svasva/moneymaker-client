@@ -1,9 +1,13 @@
 package ru.fcl.sdd.gui.ingame.shop 
 {
 	import org.robotlegs.mvcs.SignalCommand;
+	import ru.fcl.sdd.buildapplication.init.GetUserInitInfoCommand_6;
 	import ru.fcl.sdd.item.ShopModel;
 	import ru.fcl.sdd.location.floors.PlaceRoomCommand;
 	import ru.fcl.sdd.location.room.Room;
+	import ru.fcl.sdd.location.room.RoomCatalog;
+	import ru.fcl.sdd.location.room.UserRoomList;
+	import ru.fcl.sdd.location.room.XmlRoomModel;
 	import ru.fcl.sdd.scenes.MainIsoView;
 	
 	/**
@@ -18,13 +22,19 @@ package ru.fcl.sdd.gui.ingame.shop
         
           [Inject]
 		public var mainIsoView:MainIsoView;
-         
+		 [Inject]
+		public var userRooms:UserRoomList;		
+		 [Inject]
+		public var xmlRoomModel:XmlRoomModel;
+          [Inject]
+		public var roomCatalog:RoomCatalog;
+		
         override public function execute():void
         {
-           var room:Room = new Room();
-			  room.order = int(shopMdl.forPurshRoomId);
-			  room.floor = mainIsoView.currentFloorNumber;
-			  commandMap.execute(PlaceRoomCommand, room);
+		
+			 commandMap.execute(GetUserInitInfoCommand_6);			 
+			var room:Room =  roomCatalog.get(shopMdl.forPurshRoomId) as Room;		 
+			commandMap.execute(PlaceRoomCommand, room);
         }
         
     }

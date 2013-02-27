@@ -8,6 +8,9 @@ package ru.fcl.sdd.location.floors
 	import ru.fcl.sdd.item.iso.ItemIsoView;
 	import ru.fcl.sdd.location.room.Room;
 	import ru.fcl.sdd.location.room.UserRoomList;
+	import ru.fcl.sdd.location.room.XmlRoomModel;
+	import ru.fcl.sdd.pathfind.ClearPathGridRoomCommand;
+	import ru.fcl.sdd.pathfind.PlacePathGridRoomCommand;
 	import ru.fcl.sdd.scenes.MainIsoView;
 	
 	/**
@@ -16,7 +19,6 @@ package ru.fcl.sdd.location.floors
 	 */
 	public class PlaceRoomCommand extends SignalCommand
 	{
-		[Embed(source="../../../../../../art/bin/Rooms.xml",  mimeType = "application/octet-stream")] private const ROOMS:Class;
 		
 		[Inject]
 		public var room:Room;
@@ -27,35 +29,54 @@ package ru.fcl.sdd.location.floors
 		 [Inject]
 		public var userRooms:UserRoomList;
 		
+		 [Inject]
+		public var xmlRoomModel:XmlRoomModel;
+		
 		private function placeRoom():void
 		{
 			
 		}
 		
+		private function update_grid(rooms:XMLList):void
+		{
+			
+			for each (var item:XML in rooms.item)
+			{
+				var ro:Object = { "x" : item.@x, "y": item.@y, "id" : room.id }; 
+			
+				commandMap.execute(PlacePathGridRoomCommand, ro);
+			}
+		}
+		
 		override public function execute():void
 		{
-			var xml:XML  = XML(new ROOMS);
+	
 			var scene:FloorItemScene = floorsList.toArray()[room.floor];
 			
-			if (xml.rooms.item[room.order].@reloc_odrer>0)
+			if (xmlRoomModel.relocByOrder(room.order)>0)
 			{
 				var iterator:HashMapValIterator = userRooms.iterator() as HashMapValIterator;
 				//iterator.reset();
 				 while(iterator.hasNext())
 				{
 					var room1:Room = iterator.next() as Room;
-					if (room1.order == xml.rooms.item[room.order].@reloc_order)
+					if (room1.order == xmlRoomModel.relocByOrder(room.order))
 					{
-						if (xml.rooms.item[room.order].sections2.@floor == room.floor)
-							scene.Floor.isoFlor.loadRooms(xml.rooms.item[room.order].sections2);
+						if (xmlRoomModel.floorByOrder2(room.order) == room.floor)
+						{
+							scene.Floor.isoFlor.loadRooms(xmlRoomModel.roomByOrder2(room.order));
+							update_grid(xmlRoomModel.roomByOrder2(room.order));
+						}
 						return;
 					}
 				}
 			}
 			
-			if (xml.rooms.item[room.order].@floor == room.floor)
-			scene.Floor.isoFlor.loadRooms(xml.rooms.item[room.order].sections);
-			
+			if (xmlRoomModel.floorByOrder(room.order) == room.floor)
+			{
+				scene.Floor.isoFlor.loadRooms(xmlRoomModel.roomByOrder(room.order));
+				update_grid(xmlRoomModel.roomByOrder(room.order));
+			}			
 	
 	}
 	}
