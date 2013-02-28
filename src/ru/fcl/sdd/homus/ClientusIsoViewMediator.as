@@ -170,6 +170,7 @@ public class ClientusIsoViewMediator extends Mediator
      */
     private function tryGoToNextCell(isStart:Boolean = false):void
     {
+		if (!_path) return;
         if (!isStart && _path)
         {
             //если начали движение берём  первую ячейку пути и закрашиваем.  
