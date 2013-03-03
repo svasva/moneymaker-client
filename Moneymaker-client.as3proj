@@ -65,6 +65,7 @@
     <element path="art\bin\itemIcon.swc" />
     <element path="lib\bin\vk_api_connector.swc" />
     <element path="lib\bin\vk_lib.swc" />
+    <element path="src\ru\fcl\sdd\singlepers\arts\girl03Animations.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

@@ -14,6 +14,7 @@ package ru.fcl.sdd.location.floors
 	import ru.fcl.sdd.location.room.Room;
 	import ru.fcl.sdd.location.room.UserRoomList;
 	import ru.fcl.sdd.pathfind.ClearPathGridRoomCommand;
+	import ru.fcl.sdd.singlepers.ClearSinglePersCommand;
 	
 	
     
@@ -58,7 +59,8 @@ package ru.fcl.sdd.location.floors
             var mainIsoView:MainIsoView = injector.getInstance(MainIsoView);
             var _bg:DisplayObject;
             var pt:Pt;
-            pt = new Pt(-2763, -897);
+            pt = new Pt( -2763, -897);
+			commandMap.execute(ClearSinglePersCommand,mainIsoView.currentFloorNumber);
             mainIsoView.currentFloorNumber = floorNumber;
            
             // mainIsoView.backgroundContainer.removeChildAt(0);
@@ -147,6 +149,7 @@ package ru.fcl.sdd.location.floors
        // itrooms.reset();	
        
 		commandMap.execute(ClearPathGridRoomCommand);
+		
 		 while(itrooms.hasNext())
 		{
 		  var room:Room = itrooms.next() as Room;

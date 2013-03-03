@@ -54,7 +54,11 @@
 		
 		</item>
 	<item order = "1" floor = "1" caption = "DIRECTOR1">
-		<sections>
+	<persons>
+		<item class_name = "pers.gairl03" x ="4" y = "7" direction="4" anim ="true"> </item>
+		<item class_name = "pers.gairl03" x ="5" y = "7" direction="3"> </item>
+		</persons>
+		<sections x="0" y="11">
 			<item r_id= "2" x="0" y="11">
 	
 		<windows>
@@ -169,8 +173,12 @@
 		</item>
 		</sections2>
 		</item>
-	<item order = "4" floor = "1" reloc_order ="8" caption = "FILIALS1">	
-	<sections>
+	<item order = "4" floor = "1" reloc_order ="8" caption = "FILIALS1">
+	<persons>
+		<item class_name = "pers.gairl03" x ="3" y = "7" direction="4"> </item>
+		<item class_name = "pers.gairl03" x ="4" y = "7" direction="3" anim ="true"> </item>
+		</persons>
+	<sections  x ="15" y="22">
 	<item r_id = "6" x="15" y="22">
 			
 		<walls>			
