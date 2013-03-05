@@ -30,7 +30,7 @@ public class ParseRoomCatalogCommand extends Command
     {
         logger.log(this, "parse room list...");
         var roomsArray:Array = roomListObject.response;
-      //  PrintJSON.deepTrace( roomListObject.response);
+        PrintJSON.deepTrace( roomListObject.response);
         roomsArray.forEach(add2List);
         logger.log(this, "item list parsed.");
     }
@@ -50,6 +50,17 @@ public class ParseRoomCatalogCommand extends Command
         
         if(object.coins_cost)
         room.coins_cost = int(object.coins_cost);
+		
+		room.reqExp = int(object.requirements.reputation);
+		room.requirementLevel = int(object.requirements.level);
+		
+		if (object.requirements.rooms)
+		{
+			for  (var items:String in object.requirements.rooms)
+			{
+				room.reqRoom = items;
+			}
+		}		
         
         room.room_type_id = object.room_type_id;
         roomListModel.set(room.id, room);

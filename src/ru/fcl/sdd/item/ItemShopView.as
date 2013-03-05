@@ -49,10 +49,11 @@ public class ItemShopView extends JPanel
     private var _itemNameTf:StatisticNumberTextField;
     private var  highLightFilter:GlowFilter;
     private var  shadowFilter:DropShadowFilter;
-    private var _realMoneySp:Sprite
+    protected var _realMoneySp:Sprite
     private var _blockedSp:Sprite;
     private var _levelNeeded:StatisticNumberTextField;
-    private var _gameMoneyContainer:Sprite = new Sprite();
+    protected var _gameMoneyContainer:Sprite = new Sprite();
+	private var _isLocked:Boolean;
    
     
 
@@ -132,7 +133,7 @@ public class ItemShopView extends JPanel
         _blockedSp.x = 36;
         _blockedSp.y = 70;
         _levelNeeded = new StatisticNumberTextField();
-        _levelNeeded.text = "kfkfk";
+        _levelNeeded.text = " ";
         _levelNeeded.y = 126;
         
         _blockedSp.addChild(_levelNeeded);
@@ -247,6 +248,29 @@ public class ItemShopView extends JPanel
     {
         _gameMoneyContainer = value;
     }
+	
+	public function get isLocked():Boolean 
+	{
+		return _isLocked;
+	}
+	
+	public function set isLocked(value:Boolean):void 
+	{
+		_isLocked = value;
+		
+		if (_isLocked)
+		{
+			gameMoneyContainer.visible = false; 
+			_realMoneySp.visible = false;
+			
+		}
+		else
+		{
+			 gameMoneyContainer.visible = true; 
+			_realMoneySp.visible = true;
+		}
+		
+	}
     
     
 

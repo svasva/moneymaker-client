@@ -1,6 +1,7 @@
 package ru.fcl.sdd.userdata.experience 
 {
 	import org.robotlegs.mvcs.SignalCommand;
+	import ru.fcl.sdd.item.CheckItemFromShopCommand;
 	
 	/**
      * ...
@@ -14,6 +15,7 @@ package ru.fcl.sdd.userdata.experience
             injector.mapSingleton(UpdateExperienceSignal);
             injector.mapSingleton(UpdateLevelSignal);
             injector.mapSingletonOf(IExperience, Experience);
+			
         }
         
     }

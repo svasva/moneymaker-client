@@ -22,6 +22,9 @@ public class Room
     private var _icon_url:String;
     private var _order:int;
 	private var _floor:int;
+	private var _requirementLevel:int;	
+	private var _reqExp:int=NaN;
+	private var _reqRoom:String;
 	
 	public function get order():int
     {
@@ -153,5 +156,35 @@ public class Room
     {
         _icon_url = value;
     }
+	
+	public function get requirementLevel():int 
+	{
+		return _requirementLevel;
+	}
+	
+	public function set requirementLevel(value:int):void 
+	{
+		_requirementLevel = value;
+	}
+	
+	public function get reqExp():int 
+	{
+		return _reqExp;
+	}
+	
+	public function set reqExp(value:int):void 
+	{
+		_reqExp = value;
+	}
+	
+	public function get reqRoom():String 
+	{
+		return _reqRoom;
+	}
+	
+	public function set reqRoom(value:String):void 
+	{
+		_reqRoom = value;
+	}
 }
 }

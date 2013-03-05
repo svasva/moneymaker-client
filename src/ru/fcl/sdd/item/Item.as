@@ -26,6 +26,14 @@ public class Item extends ItemShopView
     private var _requirementLevel:int;
     private var _description:String;
     private var _currentUserLevel:int;
+	private var _reqExp:int=NaN;
+	private var _reqRoom:String;
+	private var _reqRoomName:String;
+	private var _isLock:Boolean = false;
+	private var _sucssiseRep:Boolean = true;
+	private var _sucssiseLvl:Boolean = true;
+	private var _sucssiseRoom:Boolean = true;
+	private var _order:int;
 
     public function get key():String
     {
@@ -66,11 +74,12 @@ public class Item extends ItemShopView
     public function set money_cost(value:String):void
     {
         _money_cost = value;
-         
-        if (value == null)
+        trace("_money_cost " + _money_cost); 
+        if (_money_cost == null)
         {
             _money_cost = "";
             this.realMoneySp.visible = false;
+			realMoneyPriceTextField.visible = false;
         }
         else             
             realMoneyPriceTextField.text = _money_cost;
@@ -213,12 +222,14 @@ public class Item extends ItemShopView
     {
         _requirementLevel = value;
         if (_requirementLevel == 0)
-            blockedSp.visible = false;
+		{
+          //  blockedSp.visible = false;
+		}
         else
         {
              this.levelNeeded.text = "Уровень " + _requirementLevel.toString();
-            realMoneySp.visible = false;
-            gameMoneyContainer.visible = false; 
+          //  realMoneySp.visible = false;
+          //  gameMoneyContainer.visible = false; 
         }
         
       
@@ -243,12 +254,111 @@ public class Item extends ItemShopView
     {
         _currentUserLevel = value;
         if (_currentUserLevel >= _requirementLevel)
-            blockedSp.visible = false;
+		{
+			 // blockedSp.visible = false;
+		}          
         else{
              this.levelNeeded.text = "Уровень " + _requirementLevel.toString();
-            realMoneySp.visible = false;
-            gameMoneyContainer.visible = false; 
+           // realMoneySp.visible = false;
+           // gameMoneyContainer.visible = false; 
         }
     }
+	
+	public function get isLock():Boolean 
+	{
+		return _isLock;
+	}
+	
+	public function set isLock(value:Boolean):void 
+	{
+		_isLock = value;
+		if (_isLock)
+		{
+			  blockedSp.visible = true;
+			  gameMoneyContainer.visible = false; 
+			_realMoneySp.visible = false;
+			 
+		}
+		else
+		{
+			  blockedSp.visible = false;
+			   gameMoneyContainer.visible = true; 
+			if(money_cost)
+			_realMoneySp.visible = true;
+			
+		}
+			
+	}
+	
+	public function get reqExp():int 
+	{
+		return _reqExp;
+	}
+	
+	public function set reqExp(value:int):void 
+	{
+		_reqExp = value;
+	}
+	
+	public function get reqRoom():String 
+	{
+		return _reqRoom;
+	}
+	
+	public function set reqRoom(value:String):void 
+	{
+		_reqRoom = value;
+	
+	}
+	
+	public function get reqRoomName():String 
+	{
+		return _reqRoomName;
+	}
+	
+	public function set reqRoomName(value:String):void 
+	{
+		_reqRoomName = value;
+	}
+	
+	public function get sucssiseRep():Boolean 
+	{
+		return _sucssiseRep;
+	}
+	
+	public function set sucssiseRep(value:Boolean):void 
+	{
+		_sucssiseRep = value;
+	}
+	
+	public function get sucssiseLvl():Boolean 
+	{
+		return _sucssiseLvl;
+	}
+	
+	public function set sucssiseLvl(value:Boolean):void 
+	{
+		_sucssiseLvl = value;
+	}
+	
+	public function get sucssiseRoom():Boolean 
+	{
+		return _sucssiseRoom;
+	}
+	
+	public function set sucssiseRoom(value:Boolean):void 
+	{
+		_sucssiseRoom = value;
+	}
+	
+	public function get order():int 
+	{
+		return _order;
+	}
+	
+	public function set order(value:int):void 
+	{
+		_order = value;
+	}
 }
 }

@@ -117,7 +117,7 @@ package ru.fcl.sdd.location.floors.Nodes
 			{
 				//var item:Room = new Room();
 				var factory:WindowCreator = new WindowCreator();
-				trace (item.@sid);
+			
 				var node:INode = factory.createWindow(item.@sid);
 				//addChild(node);
 				(node as IsoSprite).x = item.@x * CELL;
@@ -135,7 +135,7 @@ package ru.fcl.sdd.location.floors.Nodes
 			{
 				//var item:Room = new Room();
 				var factory:DoorCreator = new DoorCreator();
-				trace (item.@sid);
+			
 				var node:INode = factory.createDoor(item.@sid);
 				//addChild(node);
 				(node as IsoSprite).x = item.@x * CELL;
@@ -157,7 +157,7 @@ package ru.fcl.sdd.location.floors.Nodes
 			{
 				//var item:Room = new Room();
 				var factory:WallCreator = new WallCreator();
-				trace (item.@sid);
+				
 				var node:INode = factory.createWall(item.@sid);
 				//addChild(node);
 				(node as IsoSprite).x = item.@x * CELL;
@@ -178,7 +178,7 @@ package ru.fcl.sdd.location.floors.Nodes
 			{
 				//var item:Room = new Room();
 				var factory:ObjectCreator = new ObjectCreator();
-				trace (item.@sid);
+				
 				var node:INode = factory.createObject(item.@sid);
 				//addChild(node);
 				(node as IsoSprite).x = item.@x * CELL;

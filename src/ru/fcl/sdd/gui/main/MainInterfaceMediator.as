@@ -22,6 +22,7 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.gui.main.MainInterfaceView;
     import ru.fcl.sdd.gui.main.popup.WindowsLayerView;
     import ru.fcl.sdd.gui.main.tutorial.TutorialView;
+	import ru.fcl.sdd.item.ItemVO;
     import ru.fcl.sdd.item.SellItemSignal;
     import ru.fcl.sdd.item.ShopModel;
     import ru.fcl.sdd.location.room.Room;
@@ -100,9 +101,7 @@ package ru.fcl.sdd.gui.main
         
         private var seciurityRoom:PushButton;
         
-        private var investRoom:PushButton;
-        
-       
+        private var investRoom:PushButton;       
         
         [Inject]
         public var sender:ISender;
@@ -113,9 +112,7 @@ package ru.fcl.sdd.gui.main
         public var roomMdl:RoomModel;
         
         [Inject]
-        public var mainIso:MainIsoView;
-        
-        
+        public var mainIso:MainIsoView;       
       
         
         [Inject]
@@ -137,6 +134,8 @@ package ru.fcl.sdd.gui.main
 		public var mainIsoView:MainIsoView;
         
         private var timer:Timer = new Timer(1000, 1);
+		
+		private var tempVO:ItemVO;
         
         
         
@@ -207,14 +206,15 @@ package ru.fcl.sdd.gui.main
         
         private function timer_timer(e:TimerEvent):void 
         {
-             view.shopItemToolTip.show();
-                view.shopItemToolTip.itemName = shopMdl.overedShopItem.item_name;
+            view.shopItemToolTip.addData(shopMdl.overedShopItem);
+			view.shopItemToolTip.show();
+               /* view.shopItemToolTip.itemName = shopMdl.overedShopItem.item_name;
                 view.shopItemToolTip.itemDesc = shopMdl.overedShopItem.description;                
                 if (shopMdl.overedShopItem.money_cost);
                 view.shopItemToolTip.goldPrice = shopMdl.overedShopItem.money_cost.toString();
                 view.shopItemToolTip.gameMoneyPrise = shopMdl.overedShopItem.gameMoneyPrice.toString();
                 if( shopMdl.overedShopItem.iconUrl)
-                view.shopItemToolTip.url = shopMdl.overedShopItem.iconUrl;    
+                view.shopItemToolTip.url = shopMdl.overedShopItem.iconUrl;    */
         }
         
         private function showTutor():void 
@@ -354,27 +354,32 @@ package ru.fcl.sdd.gui.main
         {
             //logger.log(this, "onSelectedShopItemUpdated");
             
-            if (shopMdl.selectedShopItem.requirementLevel <=  expMdl.levelNumer)
+            if (!shopMdl.selectedShopItem.isLock)
             {
-                view.popUpDialog.itemName = shopMdl.selectedShopItem.item_name;
+                /*view.popUpDialog.itemName = shopMdl.selectedShopItem.item_name;
                 view.popUpDialog.itemDesc = shopMdl.selectedShopItem.description;
                 if (shopMdl.selectedShopItem.money_cost);
                 view.popUpDialog.goldPrice = shopMdl.selectedShopItem.money_cost.toString();
                 view.popUpDialog.gameMoneyPrise = shopMdl.selectedShopItem.gameMoneyPrice.toString();
                 if(shopMdl.selectedShopItem.iconUrl)
-                view.popUpDialog.url = shopMdl.selectedShopItem.iconUrl;            
+                view.popUpDialog.url = shopMdl.selectedShopItem.iconUrl;    
+				*/
+				view.popUpDialog.addData(shopMdl.selectedShopItem);
                 view.popUpDialog.show();
             }
             else
             {
-                view.cantBuyDialog.itemName = shopMdl.selectedShopItem.item_name;
+               /* view.cantBuyDialog.itemName = shopMdl.selectedShopItem.item_name;
                 view.cantBuyDialog.itemDesc = shopMdl.selectedShopItem.description;
                 if (shopMdl.selectedShopItem.money_cost);
                 view.cantBuyDialog.goldPrice = shopMdl.selectedShopItem.money_cost.toString();
                 view.cantBuyDialog.gameMoneyPrise = shopMdl.selectedShopItem.gameMoneyPrice.toString();
                 if(shopMdl.selectedShopItem.iconUrl)
-                view.cantBuyDialog.url = shopMdl.selectedShopItem.iconUrl;            
-                view.cantBuyDialog.show();
+                view.cantBuyDialog.url = shopMdl.selectedShopItem.iconUrl;     
+				
+				view.cantBuyDialog.reqRoomTf.text= shopMdl.selectedShopItem.reqRoomName;*/
+                view.cantBuyDialog.addData(shopMdl.selectedShopItem);
+				view.cantBuyDialog.show();
             }
         
         }

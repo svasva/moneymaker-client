@@ -2,7 +2,7 @@ package ru.fcl.sdd.services.main.listen
 {
 	import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.money.IMoney;
-    import ru.fcl.sdd.tools.PrintJSON;
+    
     import ru.fcl.sdd.userdata.experience.IExperience;
     import ru.fcl.sdd.userdata.reputation.IReputation;
 	
@@ -26,8 +26,7 @@ package ru.fcl.sdd.services.main.listen
         
         override public function execute():void
         {
-           // trace("ChangeUserModelFromServer");
-            //PrintJSON.deepTrace(response);
+         
             
             if (response.response.reputation)
             {
@@ -43,7 +42,7 @@ package ru.fcl.sdd.services.main.listen
             }
             else if (response.response.levelnumber)
             {
-                trace("response.response.levelnumber "+response.response.levelnumber);
+             //   trace("response.response.levelnumber "+response.response.levelnumber);
                 exp.levelNumer = response.response.levelnumber;
                 exp.isLevelUdated = false;
                

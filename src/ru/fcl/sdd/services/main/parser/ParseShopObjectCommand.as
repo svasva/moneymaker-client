@@ -47,7 +47,10 @@ package ru.fcl.sdd.services.main.parser
            var lim:int;
            var i:int = 0;
            
-           for each (var item:Object in shopMain) 
+		   
+		   //как проверить
+           
+		   for each (var item:Object in shopMain) 
            {
               // PrintJSON.deepTrace(item, 0);
                shopItemRoom = new ShopItemRoom()

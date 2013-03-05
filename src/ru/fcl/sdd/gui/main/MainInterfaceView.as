@@ -21,6 +21,7 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.gui.main.popup.BuyShopItemDialog;
     import ru.fcl.sdd.gui.main.popup.CantBuyPopUpDialog;
     import ru.fcl.sdd.gui.main.tooltip.ShopToolTip;
+	import ru.fcl.sdd.item.ItemVO;
     import ru.fcl.sdd.item.ShopModel;
     import ru.fcl.sdd.rsl.GuiRsl;
      
@@ -83,6 +84,7 @@ package ru.fcl.sdd.gui.main
             _newLevelSmallDialog = new NewLevelSmallDialog(rsl, flashVars.app_width, flashVars.app_height);
             
         }
+		
         
         public function get friendBarVisBtn():JToggleButton 
         {

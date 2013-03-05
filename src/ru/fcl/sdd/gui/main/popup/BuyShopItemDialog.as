@@ -1,12 +1,15 @@
 package ru.fcl.sdd.gui.main.popup 
 {
     import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
     import flash.net.URLRequest;
     import flash.text.TextField;
     import org.aswing.JButton;
     import org.aswing.JLoadPane;
     import ru.fcl.sdd.config.FlashVarsModel;
+	import ru.fcl.sdd.item.Item;
+	import ru.fcl.sdd.item.ItemVO;
     import ru.fcl.sdd.rsl.GuiRsl;
 	
 	/**
@@ -34,6 +37,22 @@ package ru.fcl.sdd.gui.main.popup
         private var _gameMoneyPrise:String;
         private var _loadidPanel:JLoadPane;
         protected var _back:Sprite;
+		protected var _reqPane:MovieClip;
+		
+		protected var _bankRep:MovieClip;
+		protected var _bankRepTf:TextField;
+		protected var _bankRepCh:MovieClip;
+		
+		protected var _bankLvl:MovieClip;
+		protected var _bankLvlTf:TextField;
+		protected var _bankLvlCh:MovieClip;
+		
+		protected var _reqRoom:MovieClip;
+		protected var _reqRoomTf:TextField;
+		protected var _reqRoomCh:MovieClip;
+		
+		protected var _goldPriceIcon:MovieClip;
+		protected var _gameNoneyIcon:MovieClip;
        
         private var _url:String;
         
@@ -56,10 +75,10 @@ package ru.fcl.sdd.gui.main.popup
           _noBtn = new JButton("Нет");
          _yesBtn.setSizeWH(130, 30);
          _noBtn.setSizeWH(130, 30);
-         _yesBtn.setY(204);
+         _yesBtn.setY(274);
          _yesBtn.setX(230);
          _noBtn.setX(395);
-         _noBtn.setY(204);
+         _noBtn.setY(274);
          _bg.addChild(_yesBtn);
          _bg.addChild(_noBtn);
          
@@ -70,17 +89,112 @@ package ru.fcl.sdd.gui.main.popup
          _goldPriceTf = _bg.getChildByName("goldPriseTf") as TextField; 
          _gamemoneyTf = _bg.getChildByName("gameMoneyPrice") as TextField; 
          _contentSp = _bg.getChildByName("contenSp") as Sprite;
+		 _goldPriceIcon = bg.getChildByName("goldPriceIcon") as MovieClip;
+		 _gameNoneyIcon = bg.getChildByName("gameNoneyIcon") as MovieClip;
+		 
          _goldPriceTf.text = "";
          this.visible = false;
          _contentSp.addChild(_loadidPanel);
          _loadidPanel.setSizeWH(155, 155);         
          _bg.x = app_w / 2 - _bg.width / 2;
          _bg.y = 200;
-         
-        
+		 
+		 _reqPane =  _bg.getChildByName("reqPane") as MovieClip;
+       //  _reqPane.visible = false;
+		 _bankRep = _reqPane.getChildByName("bankRep") as MovieClip;
+		 _bankRepTf = _bankRep.getChildByName("tf") as TextField;
+		 _bankRepCh = _bankRep.getChildByName("check") as MovieClip;
+        _bankRepCh.stop();
+		
+		_bankLvl = _reqPane.getChildByName("bankLvl") as MovieClip;
+		_bankLvlTf = _bankLvl.getChildByName("tf") as TextField;
+		_bankLvlCh = _bankLvl.getChildByName("check") as MovieClip;
+		_bankLvlCh.stop();
+		
+		_reqRoom = _reqPane.getChildByName("reqRoom") as MovieClip;
+		_reqRoomTf = _reqRoom.getChildByName("tf") as TextField;
+	//	_reqRoomTf.visible = false;
+		_reqRoomCh = _reqRoom.getChildByName("check") as MovieClip;
+        _reqRoomCh.stop();
          
         
         }
+		public function addData(vo:Item):void
+		{
+			itemName = vo.item_name;
+			itemDesc = vo.description;
+			
+			if (vo.money_cost)
+			{
+				_goldPriceTf.text = vo.money_cost;
+				_goldPriceTf.visible = true;
+				_goldPriceIcon.visible = true;
+			}
+			else
+			{
+				_goldPriceTf.visible = false;
+				_goldPriceIcon.visible = false;
+			}
+			if (vo.gameMoneyPrice)
+			{
+				_gamemoneyTf.text = vo.gameMoneyPrice.toString();
+				_gameNoneyIcon.visible = true;
+				_gamemoneyTf.visible = true;
+			}
+			else
+			{
+				_gameNoneyIcon.visible = false;
+				_gamemoneyTf.visible = false;
+			}
+			if (vo.iconUrl)
+			_loadidPanel.load(new URLRequest(vo.iconUrl));
+			
+			if (vo.reqExp)
+			{
+				_bankRepTf.text = "Необходимо " + vo.reqExp.toString() + " едениц репутации";
+				_bankRep.visible = true;
+			}
+			else
+			{
+				_bankRep.visible = false;
+			}
+			if (vo.requirementLevel)
+			{
+				_bankLvlTf.text = "Необходим " +vo.requirementLevel.toString() + " уровень банка";
+				bankLvl.visible = true;
+			}
+			else
+			{
+				bankLvl.visible = false;
+			}
+			if (vo.reqRoom)
+			{
+				_reqRoomTf.text = vo.reqRoomName;
+				_reqRoom.visible = true;
+			}
+			else
+			{
+				_reqRoom.visible = false;
+			}
+			if (vo.sucssiseLvl)
+				_bankLvlCh.gotoAndStop(1);
+			else
+				_bankLvlCh.gotoAndStop(2);
+			
+			if (vo.sucssiseRep)
+				_bankRepCh.gotoAndStop(1);
+			else
+				_bankRepCh.gotoAndStop(2);
+			
+			if (vo.sucssiseRoom)
+				_reqRoomCh.gotoAndStop(1);
+			else
+				_reqRoomCh.gotoAndStop(2);
+			
+			
+		
+			
+		}
         public function show():void
         {
             parent.setChildIndex(this, parent.numChildren -1);
@@ -182,6 +296,96 @@ package ru.fcl.sdd.gui.main.popup
         {
             _noBtn = value;
         }
+		
+		public function get bankRep():MovieClip 
+		{
+			return _bankRep;
+		}
+		
+		public function set bankRep(value:MovieClip):void 
+		{
+			_bankRep = value;
+		}
+		
+		public function get bankRepTf():TextField 
+		{
+			return _bankRepTf;
+		}
+		
+		public function set bankRepTf(value:TextField):void 
+		{
+			_bankRepTf = value;
+		}
+		
+		public function get bankRepCh():MovieClip 
+		{
+			return _bankRepCh;
+		}
+		
+		public function set bankRepCh(value:MovieClip):void 
+		{
+			_bankRepCh = value;
+		}
+		
+		public function get bankLvl():MovieClip 
+		{
+			return _bankLvl;
+		}
+		
+		public function set bankLvl(value:MovieClip):void 
+		{
+			_bankLvl = value;
+		}
+		
+		public function get bankLvlTf():TextField 
+		{
+			return _bankLvlTf;
+		}
+		
+		public function set bankLvlTf(value:TextField):void 
+		{
+			_bankLvlTf = value;
+		}
+		
+		public function get bankLvlCh():MovieClip 
+		{
+			return _bankLvlCh;
+		}
+		
+		public function set bankLvlCh(value:MovieClip):void 
+		{
+			_bankLvlCh = value;
+		}
+		
+		public function get reqRoom():MovieClip 
+		{
+			return _reqRoom;
+		}
+		
+		public function set reqRoom(value:MovieClip):void 
+		{
+			_reqRoom = value;
+		}
+		
+		public function get reqRoomTf():TextField 
+		{
+			return _reqRoomTf;
+		}
+		
+		public function set reqRoomTf(value:TextField):void 
+		{
+			_reqRoomTf = value;
+		}
+		
+		public function get reqRoomCh():MovieClip 
+		{
+			return _reqRoomCh;
+		}
+		
+		public function set reqRoomCh(value:MovieClip):void 
+		{
+			_reqRoomCh = value;
+		}
         
         
         
