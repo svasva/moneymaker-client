@@ -68,7 +68,7 @@ package ru.fcl.sdd.location.floors.Nodes
 		
 		public function loadRooms(rooms:XMLList):void
 		{
-			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
+		
             
             for each (var room:XML in rooms.item)
 			{
@@ -94,7 +94,7 @@ package ru.fcl.sdd.location.floors.Nodes
 		
 		public function loadRoom(rooms:XMLList, x:Number, y:Number):void
 		{
-			trace("!!!!!!!!!!!!!!!!!!!loadRoomsloadRoomsloadRoomsloadRoomsloadRoomsloadRooms");
+		
             
             for each (var room:XML in rooms.item)
 			{

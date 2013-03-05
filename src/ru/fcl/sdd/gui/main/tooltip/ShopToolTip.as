@@ -32,9 +32,9 @@ package ru.fcl.sdd.gui.main.tooltip
              _gamemoneySp =  _bg.getChildByName("gameNoneyIcon") as Sprite; 
              _goldPriceSp =  _bg.getChildByName("goldPriceIcon") as Sprite; 
              _backSp =  _bg.getChildByName("backSp") as Sprite; 
-             _backSp.height = 190;
+             _backSp.height = 228;
              
-             //_itemDescTf.y =- 60;
+            
              _itemNameTf.y = 15;
              _itemDescTf.y = 45;
              _contentSp.y  = 20;
@@ -42,6 +42,7 @@ package ru.fcl.sdd.gui.main.tooltip
              _gamemoneyTf.y = 149;
              _goldPriceSp.y = 112;
              _goldPriceTf.y = 118;
+			 _reqPane.y = 105;
            
         }
         

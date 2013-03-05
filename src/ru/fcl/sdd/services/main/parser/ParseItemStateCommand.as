@@ -24,7 +24,7 @@ package ru.fcl.sdd.services.main.parser
 		override public function execute():void 
         {
 			//trace("ParseItemStateCommand");
-			PrintJSON.deepTrace(response);
+		//	PrintJSON.deepTrace(response);
 		
 			if (response.response.no_service)
 			{

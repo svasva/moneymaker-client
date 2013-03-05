@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.parser
 {
 import flash.geom.Point;
+import ru.fcl.sdd.tools.PrintJSON;
 
 import org.robotlegs.mvcs.SignalCommand;
 
@@ -29,15 +30,13 @@ public class ParseUserRooms extends SignalCommand
         if (!userRoomList.isEmpty)
         userRoomList.clear();
 		
+		PrintJSON.deepTrace( rooms);
         rooms.forEach(parseRooms);
         
     }
 
     private function parseRooms(object:Object,index:int, array:Array):void
-    {
-        
-		
-        
+    {       
          var room:Room = new Room();
         room.id = object._id;
         room.catalogId = object.reference_id;

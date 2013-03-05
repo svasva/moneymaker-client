@@ -2,6 +2,7 @@ package ru.fcl.sdd.item
 {
     import de.polygonal.core.fmt.Sprintf;
     import flash.display.DisplayObject;
+	import flash.display.MovieClip;
     import flash.display.SimpleButton;
     import flash.display.Sprite;
     import flash.net.URLRequest;
@@ -33,6 +34,30 @@ package ru.fcl.sdd.item
         private var _loadPan:JLoadPane;
         private var _buyBtn:SimpleButton;
         private var _id:String;
+		
+		protected var _reqPane:MovieClip;
+		
+		protected var _bankRep:MovieClip;
+		protected var _bankRepTf:TextField;
+		protected var _bankRepCh:MovieClip;
+		
+		protected var _bankLvl:MovieClip;
+		protected var _bankLvlTf:TextField;
+		protected var _bankLvlCh:MovieClip;
+		
+		protected var _reqRoomMv:MovieClip;
+		protected var _reqRoomTf:TextField;
+		protected var _reqRoomCh:MovieClip;
+		
+		private var _requirementLevel:int;	
+		private var _currentUserLevel:int;
+		private var _reqExp:int=NaN;
+		private var _reqRoom:String;
+		private var _reqRoomName:String;
+		private var _isLock:Boolean = false;
+		private var _sucssiseRep:Boolean = false;
+		private var _sucssiseLvl:Boolean = false;
+		private var _sucssiseRoom:Boolean = false;
         
         
         public function ShopItemRoomView(src:Sprite=null) 
@@ -64,11 +89,45 @@ package ru.fcl.sdd.item
               this.addChild(_gameMoneyTf);
              
           
-             
+              _reqPane =  src.getChildByName("reqPane") as MovieClip;
+       //  _reqPane.visible = false;
+		 _bankRep = _reqPane.getChildByName("bankRep") as MovieClip;
+		 _bankRepTf = _bankRep.getChildByName("tf") as TextField;
+		 _bankRepCh = _bankRep.getChildByName("check") as MovieClip;
+        _bankRepCh.stop();
+		
+		_bankLvl = _reqPane.getChildByName("bankLvl") as MovieClip;
+		_bankLvlTf = _bankLvl.getChildByName("tf") as TextField;
+		_bankLvlCh = _bankLvl.getChildByName("check") as MovieClip;
+		_bankLvlCh.stop();
+		
+		_reqRoomMv = _reqPane.getChildByName("reqRoom") as MovieClip;
+		_reqRoomTf = _reqRoomMv.getChildByName("tf") as TextField;
+	//	_reqRoomTf.visible = false;
+		_reqRoomCh = _reqRoomMv.getChildByName("check") as MovieClip;
+        _reqRoomCh.stop();
            
            
          
         }
+		public function checkReq():void
+		{
+				if (_sucssiseLvl)
+				_bankLvlCh.gotoAndStop(1);
+			else
+				_bankLvlCh.gotoAndStop(2);
+			
+			if (_sucssiseRep)
+				_bankRepCh.gotoAndStop(1);
+			else
+				_bankLvlCh.gotoAndStop(2);
+			
+			if (_sucssiseRoom)
+				_reqRoomCh.gotoAndStop(1);
+			else
+				_reqRoomCh.gotoAndStop(2);
+				
+		}
         
         public function get title():String 
         {
@@ -127,6 +186,100 @@ package ru.fcl.sdd.item
         {
             _id = value;
         }
+		
+		public function get requirementLevel():int 
+		{
+			return _requirementLevel;
+		}
+		
+		public function set requirementLevel(value:int):void 
+		{
+			_requirementLevel = value;
+			if(_requirementLevel)
+				_bankLvlTf.text = "Необходим " + _requirementLevel.toString() + " уровень банка";
+			else 
+				_bankLvl.visible = false;
+		}
+		
+		public function get reqExp():int 
+		{
+			return _reqExp;
+		}
+		
+		public function set reqExp(value:int):void 
+		{
+			_reqExp = value;
+			if(_reqExp)
+				_bankRepTf.text = "Необходимо " + _reqExp.toString() + " едениц репутации";
+			else
+				_bankRep.visible = false;
+			
+		}
+		
+		public function get reqRoom():String 
+		{
+			return _reqRoom;
+		}
+		
+		public function set reqRoom(value:String):void 
+		{
+			_reqRoom = value;
+		}
+		
+		public function get reqRoomName():String 
+		{
+			return _reqRoomName;
+		}
+		
+		public function set reqRoomName(value:String):void 
+		{
+			_reqRoomName = value;
+			_reqRoomTf.text = _reqRoomName;
+		}
+		
+		public function get isLock():Boolean 
+		{
+			return _isLock;
+		}
+		
+		public function set isLock(value:Boolean):void 
+		{
+			_isLock = value;
+			if (_isLock)
+				buyBtn.visible = false;
+			else 
+				buyBtn.visible = true;
+		}
+		
+		public function get sucssiseRep():Boolean 
+		{
+			return _sucssiseRep;
+		}
+		
+		public function set sucssiseRep(value:Boolean):void 
+		{
+			_sucssiseRep = value;
+		}
+		
+		public function get sucssiseLvl():Boolean 
+		{
+			return _sucssiseLvl;
+		}
+		
+		public function set sucssiseLvl(value:Boolean):void 
+		{
+			_sucssiseLvl = value;
+		}
+		
+		public function get sucssiseRoom():Boolean 
+		{
+			return _sucssiseRoom;
+		}
+		
+		public function set sucssiseRoom(value:Boolean):void 
+		{
+			_sucssiseRoom = value;
+		}
         
        
        

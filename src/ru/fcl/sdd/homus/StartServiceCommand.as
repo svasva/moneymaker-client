@@ -17,9 +17,7 @@ package ru.fcl.sdd.homus
 		
 		override public function execute():void 
 		{
-			trace("StartServiceCommand");
-			trace("idClients "+clientus.localId);
-			trace("idClients " + clientus.target.key);
+			
 			//проверить
 			if (homusCatalog.clientusByTargetKey.hasKey(clientus.target.key))
 			{
@@ -29,7 +27,6 @@ package ru.fcl.sdd.homus
 			{
 				homusCatalog.clientusByTargetKey.set(clientus.target.key,clientus);
 			}
-			
 			
 		}
 		

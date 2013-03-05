@@ -9,6 +9,7 @@ import de.polygonal.ds.HashMap;
 import flash.display.SimpleButton;
 import flash.events.MouseEvent;
 import ru.fcl.sdd.item.AdvertsCatalog;
+import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.MarketingCatalog;
 import ru.fcl.sdd.item.ShopItemRoom;
 import ru.fcl.sdd.item.ShopModel;
@@ -69,11 +70,15 @@ public class ShopViewMediator extends Mediator
      private var currentSelectedTabBtn:SimpleButton;
      
      private var btnVec:Vector.<SimpleButton> = new Vector.<SimpleButton>();
+	 
+	 private var tempHash:HashMap;
   
 
     override public function onRegister():void
     {
-        shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
+        
+		tempHash = new HashMap();
+		shopView.closeButton.addEventListener(MouseEvent.CLICK, closeClickHandler);
         shopView.prevItemsBtn.addEventListener(MouseEvent.CLICK, prevItemsClickHandler);
         shopView.nextItemsBtn.addEventListener(MouseEvent.CLICK, nextItemsClickHandler);
         shopView.addEventListener(ItemEvent.ITEM_CLICKED, shopItemClickHandler);
@@ -88,10 +93,11 @@ public class ShopViewMediator extends Mediator
          clickedSignal.add(itemClicked);
           var tempShopRoomItm:HashMap = shopMdl.outputMainShop;
           var tempShopRooms:ShopItemRoom = tempShopRoomItm.get("50fd35a25dae91f8b1000001") as ShopItemRoom;
-        
+          
         if (tempShopRooms)
         {
-            _collectChunker = new CollectChunker(tempShopRooms.ref_items, 6);
+            convertAndSortHash(tempShopRooms.ref_items);
+			_collectChunker = new CollectChunker(tempHash, 6);
           //  _collectChunker = new CollectChunker(marketingCat, 6);
             _collectChunker.reset();
             shopView.items = _collectChunker.next();
@@ -129,6 +135,43 @@ public class ShopViewMediator extends Mediator
         }
       
     }   
+	private function convertAndSortHash(hash:HashMap):void
+	{
+		var unLoclArr:Array = [];
+		var loclArr:Array = [];
+		var temVec:Vector.<Object> = hash.toVector();
+		var iter:int = 1;
+		tempHash.clear();
+		
+		
+		
+		for each (var item:Item	 in temVec) 
+		{
+			if (item.isLock)
+			{
+				loclArr.push(item)
+				
+			}
+			else
+			{
+				unLoclArr.push(item);
+			}
+			loclArr.sortOn("order");
+			unLoclArr.sortOn("order");
+			
+		}
+		for each (var itemUn:Item in unLoclArr) 
+			{
+				tempHash.set(iter.toString() , itemUn);
+				iter++;
+			}
+			for each (var itemLk:Item in loclArr) 
+			{
+				tempHash.set(iter.toString(), itemLk);
+				iter++;
+			}
+		
+	}
     
      private function setAdv():void 
     {
@@ -203,7 +246,8 @@ public class ShopViewMediator extends Mediator
          if(!shopMdl.curentSelectedShopItemRoom)
          return;
          
-        _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6);
+		 convertAndSortHash(shopMdl.curentSelectedShopItemRoom.ref_items);
+        _collectChunker = new CollectChunker(tempHash, 6);
        // _collectChunker = new CollectChunker(marketingCat, 6);
         _collectChunker.reset();
         shopView.items = _collectChunker.next();
@@ -226,7 +270,8 @@ public class ShopViewMediator extends Mediator
     {
           if (shopMdl.curentSelectedShopItemRoom.isPurshed)
           {
-             _collectChunker = new CollectChunker(shopMdl.curentSelectedShopItemRoom.ref_items, 6) 
+             convertAndSortHash(shopMdl.curentSelectedShopItemRoom.ref_items)
+			 _collectChunker = new CollectChunker(tempHash, 6); 
              _collectChunker.reset();
              shopView.items = _collectChunker.next();
              checkItemsBtnVisible();

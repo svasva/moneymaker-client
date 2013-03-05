@@ -19,6 +19,7 @@ package ru.fcl.sdd.gui.ingame.shop
     import org.aswing.plaf.EmptyLayoutUIResourse;
 	import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.gui.ingame.shop.events.ShopItemRoomEvent;
+	import ru.fcl.sdd.item.CheckItemFromShopCommand;
     import ru.fcl.sdd.item.ItemCatalog;
     import ru.fcl.sdd.item.ShopItemRoom;
     import ru.fcl.sdd.item.ShopItemRoomView;
@@ -306,6 +307,10 @@ package ru.fcl.sdd.gui.ingame.shop
                 item.shopItemRoomView.buyBtn.y = 425;
                 item.shopItemRoomView.buyBtn.addEventListener(MouseEvent.CLICK, buyBtn_click);
                 item.shopItemRoomView.id = room.id;
+				item.shopItemRoomView.reqExp = room.reqExp;
+				item.shopItemRoomView.reqRoom = room.reqRoom;
+				item.shopItemRoomView.requirementLevel = room.requirementLevel;
+				
              }
             
             
@@ -324,20 +329,12 @@ package ru.fcl.sdd.gui.ingame.shop
             }
             
             
-           var lim:int =  itemCatalog.toArray().length;
-           var itemCatalogArr:Array = itemCatalog.toArray();
-           
-           for (var j:int = 0; j < lim; j++) 
-           {
-               itemCatalogArr[i].currentUserLevel = expMdl.levelNumer;
-           }
+			   commandMap.execute(CheckItemFromShopCommand);
         }
         
         private function buyBtn_click(e:MouseEvent):void 
         {
-            trace(e.target);
-            trace(e.target.parent);
-            trace(e.target.parent.id);
+         
             shopMdl.forPurshRoomId = e.target.parent.id as String;
         }
         private function getAsset(value:String):DisplayObject
