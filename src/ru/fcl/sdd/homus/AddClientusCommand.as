@@ -6,6 +6,8 @@
 package ru.fcl.sdd.homus
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.location.floors.FloorItemScene;
+import ru.fcl.sdd.location.floors.FloorsList;
 
 import ru.fcl.sdd.scenes.MainIsoView;
 
@@ -24,7 +26,8 @@ public class AddClientusCommand extends SignalCommand
 	
 	[Inject]
     public var homusCounter:HomusCounterModel;
-	
+	[Inject]
+    public var floorList:FloorsList;
 	
 
     override public function execute():void
@@ -33,8 +36,9 @@ public class AddClientusCommand extends SignalCommand
         clientusIsoView.localId = homusCounter.count;
 		homusCounter.count++
 		mediatorMap.createMediator(clientusIsoView);
-        mainIsoView.currentFloor.addChild(clientusIsoView);
-        mainIsoView.currentFloor.render();
+		var scene:FloorItemScene = floorList.get(1) as FloorItemScene;
+        scene.addChild(clientusIsoView);
+        scene.render();
     }
 }
 }

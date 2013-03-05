@@ -13,7 +13,7 @@ public class BuildPathFind extends SignalCommand
     {
         injector.mapSingleton(HomusPathGrid);
         var humansPathGrid:HomusPathGrid = injector.getInstance(HomusPathGrid);
-        humansPathGrid.init(26,11);
+        humansPathGrid.init(26,14);
 
         injector.mapSingleton(FloorPathGridItemList);
 		var floorsPathGrid:FloorPathGridItemList = injector.getInstance(FloorPathGridItemList);

@@ -12,6 +12,7 @@ package ru.fcl.sdd.location.floors
 	import ru.fcl.sdd.pathfind.ClearPathGridRoomCommand;
 	import ru.fcl.sdd.pathfind.PlacePathGridRoomCommand;
 	import ru.fcl.sdd.scenes.MainIsoView;
+	import ru.fcl.sdd.singlepers.CreateSinglePersCommand;
 	
 	/**
 	 * ...
@@ -46,6 +47,7 @@ package ru.fcl.sdd.location.floors
 			
 				commandMap.execute(PlacePathGridRoomCommand, ro);
 			}
+			commandMap.execute(CreateSinglePersCommand, room);
 		}
 		
 		override public function execute():void

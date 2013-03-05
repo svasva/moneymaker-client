@@ -11,6 +11,7 @@ import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.config.IsoConfig;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.item.Item;
 import ru.fcl.sdd.item.ItemCatalog;
 import ru.fcl.sdd.item.ItemStatus;
@@ -33,6 +34,7 @@ public class PlaceItemCommand extends SignalCommand
 {
     [Inject]
     public var iso:ItemIsoView;
+	
    /* [Inject]
     public var floor:Floor1Scene;*/
     [Inject]
@@ -76,11 +78,11 @@ public class PlaceItemCommand extends SignalCommand
            else if (iso.status == ItemStatus.FULL)
                  iso.takeMoney.visible = true;
 		var floor:int;
-		if (iso.catalogKey)
+		if (iso.room_id)
 		{
-			var item:Item = itemCatalog.get(iso.catalogKey) as Item;
-			var room:Room =  userRoomList.get(item.room_id) as Room;
-      
+			//var item:Item = userItems.get(iso.key) as Item;
+			var room:Room =  userRoomList.get(iso.room_id) as Room;
+			
 		 floor = xmlRoomModel.floorByOrder(room.order);
 		}
 		else

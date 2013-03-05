@@ -58,7 +58,7 @@ package ru.fcl.sdd.services.main.parser
                 item.direction = object.rotation;
                 item.x = object.x * IsoConfig.CELL_SIZE;
                 item.y = object.y * IsoConfig.CELL_SIZE;
-                
+                item.room_id = object.room_id;
                 if (object.state)
                 {
                    item.status =  object.state;

@@ -6,6 +6,7 @@
 package ru.fcl.sdd.buildapplication
 {
     import org.robotlegs.mvcs.SignalCommand;
+	import ru.fcl.sdd.singlepers.BuildSinglePersCommand;
     
     import ru.fcl.sdd.buildapplication.init.InitialiseServerCommand_1;
     import ru.fcl.sdd.config.BuildConfigCommand;
@@ -71,6 +72,10 @@ package ru.fcl.sdd.buildapplication
             //*************INITIALISE**************************
             commandMap.execute(InitialiseServerCommand_1);
             //*************initialise**************************
+			
+			 //***************SINGLEPERS**************************
+            commandMap.execute(BuildSinglePersCommand);
+            //***************clientus**************************
         }
     }
 }

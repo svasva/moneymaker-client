@@ -7,6 +7,7 @@ package ru.fcl.sdd.homus
 {
 import com.flashdynamix.motion.Tweensy;
 import ru.fcl.sdd.location.floors.FloorItemScene;
+import ru.fcl.sdd.location.floors.FloorsList;
 import ru.fcl.sdd.pathfind.FloorPathGridItemList;
 import ru.fcl.sdd.scenes.MainIsoView;
 import ru.fcl.sdd.services.main.ISender;
@@ -70,6 +71,9 @@ public class ClientusIsoViewMediator extends Mediator
 
     [Inject]
     public var mainisoView:MainIsoView;
+	
+	[Inject]
+    public var floorList:FloorsList;
 	
     private var _path:Array;
     private var _aStar:AStar;
@@ -170,6 +174,7 @@ public class ClientusIsoViewMediator extends Mediator
      */
     private function tryGoToNextCell(isStart:Boolean = false):void
     {
+		if (!_path) return;
         if (!isStart && _path)
         {
             //если начали движение берём  первую ячейку пути и закрашиваем.  
@@ -477,7 +482,9 @@ public class ClientusIsoViewMediator extends Mediator
             }
         }
         _path.shift();
-        mainisoView.currentFloor.removeChild(clientusView);
+		
+		var scene:FloorItemScene = floorList.get(1) as FloorItemScene;
+        scene.removeChild(clientusView);
         if (_isOutOfSchedule)
         {
             outOfScheduleSignal.dispatch();
