@@ -8,8 +8,8 @@
     <movie fps="30" />
     <movie width="800" />
     <movie height="800" />
-    <movie version="10" />
-    <movie minorVersion="2" />
+    <movie version="11" />
+    <movie minorVersion="1" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
   </output>
@@ -65,6 +65,7 @@
     <element path="lib\bin\vk_api_connector.swc" />
     <element path="lib\bin\vk_lib.swc" />
     <element path="lib\bin\resource.swc" />
+    <element path="src\ru\fcl\sdd\singlepers\arts\girl03Animations.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

@@ -32,6 +32,8 @@ package ru.fcl.sdd.location.floors
 		
 		 [Inject]
 		public var xmlRoomModel:XmlRoomModel;
+		[Inject]
+		public var mainIsoView:MainIsoView;
 		
 		private function placeRoom():void
 		{
@@ -53,7 +55,7 @@ package ru.fcl.sdd.location.floors
 		override public function execute():void
 		{
 	
-			var scene:FloorItemScene = floorsList.toArray()[room.floor];
+			var scene:FloorItemScene = floorsList.toArray()[mainIsoView.currentFloorNumber];
 			
 			if (xmlRoomModel.relocByOrder(room.order)>0)
 			{
@@ -64,7 +66,7 @@ package ru.fcl.sdd.location.floors
 					var room1:Room = iterator.next() as Room;
 					if (room1.order == xmlRoomModel.relocByOrder(room.order))
 					{
-						if (xmlRoomModel.floorByOrder2(room.order) == room.floor)
+						if (xmlRoomModel.floorByOrder2(room.order) == mainIsoView.currentFloorNumber)
 						{
 							scene.Floor.isoFlor.loadRooms(xmlRoomModel.roomByOrder2(room.order));
 							update_grid(xmlRoomModel.roomByOrder2(room.order));
@@ -74,7 +76,7 @@ package ru.fcl.sdd.location.floors
 				}
 			}
 			
-			if (xmlRoomModel.floorByOrder(room.order) == room.floor)
+			if (xmlRoomModel.floorByOrder(room.order) == mainIsoView.currentFloorNumber)
 			{
 				scene.Floor.isoFlor.loadRooms(xmlRoomModel.roomByOrder(room.order));
 				update_grid(xmlRoomModel.roomByOrder(room.order));

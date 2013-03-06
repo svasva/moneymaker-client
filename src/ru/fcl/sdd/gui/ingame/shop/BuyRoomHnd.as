@@ -32,8 +32,9 @@ package ru.fcl.sdd.gui.ingame.shop
         override public function execute():void
         {
 		
-			 commandMap.execute(GetUserInitInfoCommand_6);			 
-			var room:Room =  roomCatalog.get(shopMdl.forPurshRoomId) as Room;		 
+					 
+			var room:Room =  roomCatalog.get(shopMdl.forPurshRoomId) as Room;
+			userRooms.set(room.id, room);
 			commandMap.execute(PlaceRoomCommand, room);
         }
         
