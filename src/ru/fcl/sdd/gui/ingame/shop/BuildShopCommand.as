@@ -8,6 +8,8 @@ package ru.fcl.sdd.gui.ingame.shop
 import org.osflash.signals.ISignal;
 import org.robotlegs.mvcs.SignalCommand;
 import ru.fcl.sdd.item.ShopModel;
+import ru.fcl.sdd.quest.AcceptQuestCommand;
+import ru.fcl.sdd.quest.AcceptQuestSigCom;
 
 import ru.fcl.sdd.config.FlashVarsModel;
 import ru.fcl.sdd.gui.ingame.shop.SendServerBuyItemCommand;
@@ -21,21 +23,23 @@ public class BuildShopCommand extends SignalCommand
     
       [Inject]
       public var buyRoomSig:BuyRoomToServerCommandSignal;
+	  
+	 // [Inject]
+	 // public var acepdQuestSig:AcceptQuestSigCom;
 
     override public function execute():void
-    {
-       
-       
+    {        
         
+        signalCommandMap.mapSignal(buyRoomSig, BuyRoomToServerCommand);
+      //  signalCommandMap.mapSignal(acepdQuestSig, AcceptQuestCommand);	
         
-        signalCommandMap.mapSignal(buyRoomSig,BuyRoomToServerCommand)
-        
-        
+        injector.mapSingleton(BuyMarketingSig)
         injector.mapSingleton(ShopItemRoomSignal);
         var buyItemSignal:ISignal = new AboutItemSignal();
         injector.mapValue(ISignal, buyItemSignal, "buy_item");
         
         signalCommandMap.mapSignal(buyItemSignal,SendServerBuyItemCommand);
+        signalCommandMap.mapSignalClass(BuyMarketingSig, BuyMarketingCommand);
 
         injector.mapSingleton(ShopView);
         mediatorMap.mapView(ShopView, ShopViewMediator);

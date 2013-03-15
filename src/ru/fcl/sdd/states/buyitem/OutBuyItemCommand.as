@@ -7,6 +7,7 @@ package ru.fcl.sdd.states.buyitem
 {
 import flash.events.MouseEvent;
 import flash.ui.Mouse;
+import ru.fcl.sdd.item.ActiveUserItemList;
 import ru.fcl.sdd.location.room.RoomModel;
 import ru.fcl.sdd.userdata.experience.IExperience;
 import ru.fcl.sdd.userdata.experience.UpdateExperienceSignal;
@@ -31,7 +32,11 @@ public class OutBuyItemCommand extends SignalCommand
         public var updater:UpdateExperienceSignal;
     
     [Inject] 
-     public var roomMdl:RoomModel;
+    public var roomMdl:RoomModel;
+	 
+	[Inject]
+    public var userItems:ActiveUserItemList;
+	 
 
     override public function execute():void
     {
@@ -42,6 +47,8 @@ public class OutBuyItemCommand extends SignalCommand
         mediatorMap.removeMediatorByView(item);
         mediatorMap.unmapView(item);
         
+		
+		
        if (!exp.isLevelUdated)
        {
             updaterLevel.dispatch();

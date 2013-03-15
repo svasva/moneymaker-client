@@ -8,6 +8,7 @@ package ru.fcl.sdd.gui.main
     import com.adobe.air.filesystem.events.FileMonitorEvent;
     import flash.display.DisplayObject;
     import flash.display.Sprite;
+	import flash.events.MouseEvent;
     import org.aswing.AssetIcon;
     import org.aswing.Component;
     import org.aswing.Decorator;
@@ -20,6 +21,7 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.gui.main.dialogs.NewLevelSmallDialog;
     import ru.fcl.sdd.gui.main.popup.BuyShopItemDialog;
     import ru.fcl.sdd.gui.main.popup.CantBuyPopUpDialog;
+	import ru.fcl.sdd.gui.main.questwindow.QuestWindowView;
     import ru.fcl.sdd.gui.main.tooltip.ShopToolTip;
 	import ru.fcl.sdd.item.ItemVO;
     import ru.fcl.sdd.item.ShopModel;
@@ -47,8 +49,10 @@ package ru.fcl.sdd.gui.main
         private var _itemControl:ItemPanelSp = new ItemPanelSp();
         
         private var _newLevelSmallDialog:NewLevelSmallDialog;
-        
-        
+		
+		private var _questBtn:JToggleButton;
+		
+		private var _questWindows:QuestWindowView;
          
         [PostConstruct]
         public function init():void
@@ -68,7 +72,6 @@ package ru.fcl.sdd.gui.main
             _friendBarVisBtn.setDisabledIcon( new AssetIcon( getAsset("ButtonHideDisableArt")));
             _friendBarVisBtn.setDisabledSelectedIcon( new AssetIcon( getAsset("ButtonShowNoActiveArt")));
             _friendBarVisBtn.buttonMode = true;
-            
           
             _popUpDialog = new BuyShopItemDialog(rsl,flashVars.app_width,flashVars.app_height);            
             addChild(_popUpDialog);
@@ -82,9 +85,23 @@ package ru.fcl.sdd.gui.main
             _buyRoomDialog = new BuyShopItemDialog(rsl, flashVars.app_width, flashVars.app_height);
           
             _newLevelSmallDialog = new NewLevelSmallDialog(rsl, flashVars.app_width, flashVars.app_height);
-            
+			
+			_questWindows = new QuestWindowView(rsl, flashVars.app_width, flashVars.app_height);
+			addChild(_questWindows);
+			
+			_questBtn = new JToggleButton("Quest");
+			_questBtn.setSizeWH(82, 89);
+			addChild(_questBtn);
+			_questBtn.x = 20;
+			_questBtn.y = 120;   
+			_questBtn.buttonMode = true;
+		//	_questBtn.setBackgroundDecorator(new DefaultEmptyDecoraterResource());
+		//	_questBtn.setForegroundDecorator(new DefaultEmptyDecoraterResource());
+			
+			
         }
 		
+	
         
         public function get friendBarVisBtn():JToggleButton 
         {
@@ -105,9 +122,6 @@ package ru.fcl.sdd.gui.main
         {
             _popUpDialog = value;
         }
-        
-        
-        
         public function get cantBuyDialog():CantBuyPopUpDialog 
         {
             return _cantBuyDialog;
@@ -157,6 +171,26 @@ package ru.fcl.sdd.gui.main
         {
             _newLevelSmallDialog = value;
         }
+		
+		public function get questBtn():JToggleButton 
+		{
+			return _questBtn;
+		}
+		
+		public function set questBtn(value:JToggleButton):void 
+		{
+			_questBtn = value;
+		}
+		
+		public function get questWindows():QuestWindowView 
+		{
+			return _questWindows;
+		}
+		
+		public function set questWindows(value:QuestWindowView):void 
+		{
+			_questWindows = value;
+		}
         private function getAsset(value:String):DisplayObject
         {
             return rsl.getAsset("gui.FriendBar."+value);

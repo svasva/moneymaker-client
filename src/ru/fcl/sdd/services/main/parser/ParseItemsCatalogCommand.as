@@ -7,6 +7,7 @@ package ru.fcl.sdd.services.main.parser
 {
 import flashx.textLayout.conversion.FormatDescriptor;
 import org.robotlegs.mvcs.Command;
+import ru.fcl.sdd.quest.QuestModel;
 import ru.fcl.sdd.tools.PrintJSON;
 
 import ru.fcl.sdd.config.FlashVarsModel;
@@ -28,6 +29,8 @@ public class ParseItemsCatalogCommand extends Command
     public var flashVars:FlashVarsModel;
     [Inject]
     public var rsl:GuiRsl;
+	[Inject]
+	public var questModel:QuestModel;	
 
     override public function execute():void
     {
@@ -74,6 +77,9 @@ public class ParseItemsCatalogCommand extends Command
         }
         item.gameMoneyPrice = object.coins_cost as int;
         item.money_cost = object.money_cost;
+		
+		if(object.accepted_quests)
+			questModel.curentQuestId = object.accepted_quests;
 	
         item.iconUrl = flashVars.content_url + object.icon_url;
         item.isoWidth =  object.size_x * IsoConfig.CELL_SIZE;

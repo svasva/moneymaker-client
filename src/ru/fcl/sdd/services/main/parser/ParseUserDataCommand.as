@@ -7,6 +7,7 @@ package ru.fcl.sdd.services.main.parser
 {
 import org.robotlegs.mvcs.Command;
 import ru.fcl.sdd.location.room.UserRoomList;
+import ru.fcl.sdd.quest.QuestModel;
 import ru.fcl.sdd.scenes.MainIsoView;
 
 import ru.fcl.sdd.tools.PrintJSON;
@@ -21,8 +22,11 @@ public class ParseUserDataCommand extends Command
     [Inject]
     public var userObject:Object;
     
-      [Inject]
-      public var repMdl:IReputation;
+    [Inject]
+    public var repMdl:IReputation;
+	
+	[Inject]
+	public var questModel:QuestModel;	
       
 
 
@@ -31,8 +35,8 @@ public class ParseUserDataCommand extends Command
     {
         userData.bank_name = userObject.response.bank_name;
 
-     //   trace("ParseUserDataCommand");
-     //   PrintJSON.deepTrace(userObject.response.items);
+        trace("ParseUserDataCommand");
+        PrintJSON.deepTrace(userObject.response);
         var rooms:Array = userObject.response.rooms;
         if(!rooms)
         {
@@ -49,6 +53,9 @@ public class ParseUserDataCommand extends Command
 
         var money:Object = {gameMoney:userObject.response.coins,realMoney:userObject.response.money};
         commandMap.execute(ParseMoneyCommand, money);
+		
+		if (userObject.response.accepted_quests)
+			questModel.curentQuestId = userObject.response.accepted_quests;
         
        
         var capacity:int = userObject.response.capacity;
@@ -61,11 +68,11 @@ public class ParseUserDataCommand extends Command
         
         commandMap.execute(ParseReputationCommand, reputation);
         
-      var exp:Object = { exp:   userObject.response.experience,
+		var exp:Object = { exp:   userObject.response.experience,
                           nextLv:userObject.response.nextlevel,
                            levelNuber:userObject.response.levelnumber};
                        
-         commandMap.execute(ParseExperienceCommand, exp);
+		commandMap.execute(ParseExperienceCommand, exp);
          
          
        /* var len:int = userRoomList.toArray().length -2;

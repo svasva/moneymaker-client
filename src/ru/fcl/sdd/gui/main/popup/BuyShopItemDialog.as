@@ -126,7 +126,7 @@ package ru.fcl.sdd.gui.main.popup
 			
 			if (vo.money_cost)
 			{
-				_goldPriceTf.text = vo.money_cost;
+				_goldPriceTf.text = vo.money_cost.toString();
 				_goldPriceTf.visible = true;
 				_goldPriceIcon.visible = true;
 			}
@@ -169,8 +169,12 @@ package ru.fcl.sdd.gui.main.popup
 			}
 			if (vo.reqRoom)
 			{
-				_reqRoomTf.text = vo.reqRoomName;
-				_reqRoom.visible = true;
+				if (vo.reqRoomName)
+				{
+					_reqRoomTf.text = vo.reqRoomName.toString();
+					_reqRoom.visible = true;
+				}
+				
 			}
 			else
 			{

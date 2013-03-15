@@ -18,7 +18,7 @@ package ru.fcl.sdd.gui.ingame.shop
         {
              sender.send( { command:"getContracts"}, ParseMarketingCommand);
               
-              commandMap.execute(InitCompeteCommand);
+             // commandMap.execute(InitCompeteCommand);
         }
         
     }

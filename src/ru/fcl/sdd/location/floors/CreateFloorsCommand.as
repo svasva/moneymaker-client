@@ -9,6 +9,8 @@ import de.polygonal.ds.HashMap;
 import de.polygonal.ds.HashMapValIterator;
 import eDpLib.events.ProxyEvent;
 import flash.events.MouseEvent;
+import ru.fcl.sdd.quest.AcceptQuestCommand;
+import ru.fcl.sdd.quest.AcceptQuestSigCom;
 
 import ru.fcl.sdd.item.iso.ItemClickedHndCommand;
 import ru.fcl.sdd.item.iso.ItemClickedSignal;
@@ -44,12 +46,21 @@ public class CreateFloorsCommand extends SignalCommand
 	
 	public var floorList:FloorsList;
 	
+
+  
+       
+        
+        
+      
+      
+	
 	
     override public function execute():void
     {
         injector.mapSingleton(ItemClickedSignal);
         signalCommandMap.mapSignalClass(ItemClickedSignal,ItemClickedHndCommand);
-        signalCommandMap.mapSignalClass(SellItemSignal,SellItemCommand);
+        signalCommandMap.mapSignalClass(SellItemSignal, SellItemCommand);
+		signalCommandMap.mapSignalClass(AcceptQuestSigCom, AcceptQuestCommand);
         
       //  injector.mapSingleton(Floor1Scene);
 		injector.mapSingleton(FloorsList);
