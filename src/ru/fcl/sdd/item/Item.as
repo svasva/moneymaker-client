@@ -34,6 +34,8 @@ public class Item extends ItemShopView
 	private var _sucssiseLvl:Boolean = true;
 	private var _sucssiseRoom:Boolean = true;
 	private var _order:int;
+	private var _is_advert:Boolean;
+	private var _nonIsoItems:Boolean = false;
 
     public function get key():String
     {
@@ -359,6 +361,28 @@ public class Item extends ItemShopView
 	public function set order(value:int):void 
 	{
 		_order = value;
+	}
+	
+	public function get is_advert():Boolean 
+	{
+		return _is_advert;
+	}
+	
+	public function set is_advert(value:Boolean):void 
+	{
+		_is_advert = value;
+		blockedSp.visible = false;
+		
+	}
+	
+	public function get nonIsoItems():Boolean 
+	{
+		return _nonIsoItems;
+	}
+	
+	public function set nonIsoItems(value:Boolean):void 
+	{
+		_nonIsoItems = value;
 	}
 }
 }

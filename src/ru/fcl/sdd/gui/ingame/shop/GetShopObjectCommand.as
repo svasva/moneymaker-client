@@ -17,9 +17,8 @@ package ru.fcl.sdd.gui.ingame.shop
         
         override public function execute():void 
         {
-              sender.send( { command:"getShopCatalog"}, ParseShopObjectCommand);
-              
-             // commandMap.execute(InitCompeteCommand);
+              sender.send( { command:"getShopCatalog"}, ParseShopObjectCommand);              
+              commandMap.execute(InitCompeteCommand);
               commandMap.execute(GetMarketingCatalog);
         }
         

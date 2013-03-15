@@ -90,8 +90,7 @@ public class ClientusIsoViewMediator extends Mediator
     private var _selectFilter:GlowFilter = new GlowFilter(0xFFEF80, 1, 4, 4, 2, 1);
 
 	private var itemPathGrid:ItemsPathGrid;
-	private var _isServing:Boolean = false;
-	
+	private var _isServing:Boolean = false;	
 
     override public function onRegister():void
     {
@@ -108,9 +107,7 @@ public class ClientusIsoViewMediator extends Mediator
         clientusView.addEventListener(MouseEvent.MOUSE_OUT, clientusView_mouseOutHandler);
 		clientusView.addEventListener(HomusEvent.NO_SERVICE, clientusView_noService);
 		clientusView.addEventListener(HomusEvent.END_OPERATION, clientusView_endOperation);
-        nextStep(true);
-        
-        
+        nextStep(true);        
     }
 	
 	private function clientusView_endOperation(e:HomusEvent):void 
@@ -131,13 +128,16 @@ public class ClientusIsoViewMediator extends Mediator
         //проверка на первый шаг
 		if (!isStart)
         {
-            for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
-            {
-                if (_target.clientStack[i] == homusPathGrid.getNode(_path[0].x, _path[0].y))
-                {
-                    _target.clientStack.slice(i, 1);
-                }
-            }
+            if(_target)
+			{
+				for (var i:int = _target.clientStack.length - 1; i >= 0; i--)
+				{
+					if (_target.clientStack[i] == homusPathGrid.getNode(_path[0].x, _path[0].y))
+					{
+						_target.clientStack.slice(i, 1);
+					}
+				}
+			}
             homusPathGrid.getNode(_path[0].x, _path[0].y).walkable = true;
             _path.shift();
         }

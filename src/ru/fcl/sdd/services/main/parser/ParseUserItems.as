@@ -9,6 +9,7 @@ package ru.fcl.sdd.services.main.parser
     import org.robotlegs.mvcs.SignalCommand;
     import ru.fcl.sdd.item.ItemStatus;
     import ru.fcl.sdd.item.ShopModel;
+	import ru.fcl.sdd.tools.PrintJSON;
     
     import ru.fcl.sdd.config.IsoConfig;
     import ru.fcl.sdd.item.Item;
@@ -31,7 +32,10 @@ package ru.fcl.sdd.services.main.parser
         
         override public function execute():void
         {
-			 if (!userItems.isEmpty)
+			trace("ParseUserItems");
+			PrintJSON.deepTrace(items);
+			
+			if (!userItems.isEmpty)
 				userItems.clear();
 		
             items.forEach(parseItems);

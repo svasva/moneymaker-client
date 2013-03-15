@@ -20,6 +20,9 @@ import ru.fcl.sdd.item.ShopModel;
 import ru.fcl.sdd.location.room.RoomModel;
 import ru.fcl.sdd.location.room.SelectedItemUpdated;
 import ru.fcl.sdd.location.room.XmlRoomModel;
+import ru.fcl.sdd.quest.AcceptQuestCommand;
+import ru.fcl.sdd.quest.AcceptQuestSigCom;
+import ru.fcl.sdd.quest.BuildQuestCommand;
 import ru.fcl.sdd.rsl.BuildRslCommand;
 import ru.fcl.sdd.services.shared.SharedGameDataService;
 import ru.fcl.sdd.userdata.capacity.BuildCapacityCommand;
@@ -43,13 +46,14 @@ public class MapModelsCommand_0 extends SignalCommand
         injector.mapSingleton(UserDataModel);
         injector.mapSingleton(UserRoomList);
         injector.mapSingleton(RoomCatalog);
-        
+        injector.mapSingleton(AcceptQuestSigCom);
         injector.mapSingleton(ForPurshRoomIdUpdatedSignal);
         injector.mapSingleton(SelectedShopItemUpdatedSignal);
         injector.mapSingleton(OveredShopItemUpdatedSignal);
         injector.mapSingleton(ShopModelCategoryUpdatedSignal);
         injector.mapSingleton(ShopModelTabUpdatedSignal);
         injector.mapSingleton(BuyRoomToServerCommandSignal);
+       
         injector.mapSingleton(SelectedItemUpdated); 
         injector.mapSingleton(SellItemSignal); 
       
@@ -68,6 +72,8 @@ public class MapModelsCommand_0 extends SignalCommand
         commandMap.execute(BuildCapacityCommand);
         commandMap.execute(BuildReputationCommand);
         commandMap.execute(BuildExperienceCommand);
+        commandMap.execute(BuildQuestCommand);
+	   // signalCommandMap.mapSignalClass(AcceptQuestSigCom, AcceptQuestCommand);
 		
 		
     }

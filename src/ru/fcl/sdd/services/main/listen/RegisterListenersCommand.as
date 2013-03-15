@@ -6,6 +6,7 @@
 package ru.fcl.sdd.services.main.listen
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.quest.QuestAcceptedSig;
 
 public class RegisterListenersCommand extends SignalCommand
 {
@@ -14,7 +15,8 @@ public class RegisterListenersCommand extends SignalCommand
 
     override public function execute():void
     {
-         callHashMap.addResponseHandler(IncomingClientusListen,"-3");
+         injector.mapSingleton(QuestAcceptedSig);
+		 callHashMap.addResponseHandler(IncomingClientusListen,"-3");
          callHashMap.addResponseHandler(ChangeUserModelFromServer,"-1");
          callHashMap.addResponseHandler(ChangeItemStateCommand,"-2");
     }

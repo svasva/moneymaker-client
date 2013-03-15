@@ -6,6 +6,7 @@
 package ru.fcl.sdd.gui.ingame.shop
 {
 import org.robotlegs.mvcs.SignalCommand;
+import ru.fcl.sdd.quest.CheckQuestCompleateCommand;
 
 import ru.fcl.sdd.config.IsoConfig;
 
@@ -33,13 +34,17 @@ public class BuyItemCommand extends SignalCommand
     override public function execute():void
     {
         var item:Item = itemCatalog.get(response.response.reference_id) as Item;
-
+		
+		trace("BuyItemCommand");
+		trace("item.item_name " + item.item_name);
+		trace("item.catalog_id "+item.key)
+		
         if (gameMoney.count >= item.gameMoneyPrice)
         {
             gameMoney.count -= item.gameMoneyPrice;
             var itemForMove:ItemIsoView = new ItemIsoView();
             itemForMove.key = response.response._id;
-            itemForMove.catalogKey = item.catalog_id;
+            itemForMove.catalogKey = item.key;
             itemForMove.direction = item.rotation;
             itemForMove.x = item.x * IsoConfig.CELL_SIZE;
             itemForMove.y = item.y * IsoConfig.CELL_SIZE;
@@ -51,7 +56,8 @@ public class BuyItemCommand extends SignalCommand
             userItems.set(itemForMove.key, itemForMove);
 
             injector.mapValue(ItemIsoView, itemForMove, "item_for_move");
-
+			
+			commandMap.execute(CheckQuestCompleateCommand);
             changeState.dispatch(GameStates.BUY_ITEM);
         }
     }

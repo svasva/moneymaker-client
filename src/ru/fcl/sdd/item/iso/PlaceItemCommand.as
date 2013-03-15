@@ -41,19 +41,19 @@ public class PlaceItemCommand extends SignalCommand
     public var mainIsoView:MainIsoView
     [Inject]
     public var userRoomList:UserRoomList;
-   [Inject]
+    [Inject]
     public var floorList:FloorsList;
     
-     [Inject]
+    [Inject]
     public var clickedSignal:ItemClickedSignal;
     
     [Inject]
     public var gameState:IStateHolder;
 	
-	 [Inject]
-        public var itemCatalog:ItemCatalog;
-	  [Inject]
-     public var xmlRoomModel:XmlRoomModel;
+	[Inject]
+    public var itemCatalog:ItemCatalog;
+	[Inject]
+    public var xmlRoomModel:XmlRoomModel;
 
     override public function execute():void
     {

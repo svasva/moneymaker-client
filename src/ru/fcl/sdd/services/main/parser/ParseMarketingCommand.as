@@ -5,6 +5,7 @@ package ru.fcl.sdd.services.main.parser
     import ru.fcl.sdd.item.AdvertsCatalog;
     import ru.fcl.sdd.item.Item;
     import ru.fcl.sdd.item.MarketingCatalog;
+	import ru.fcl.sdd.quest.GetQuestsCommand;
     import ru.fcl.sdd.tools.PrintJSON;
 	
 	/**
@@ -31,6 +32,7 @@ package ru.fcl.sdd.services.main.parser
           
              var itemsArray:Array = marketObj.response;     
             itemsArray.forEach(parseItem);
+			commandMap.execute(GetQuestsCommand);
           
         }
         private function parseItem(object:Object, index:int, array:Array):void
@@ -50,7 +52,9 @@ package ru.fcl.sdd.services.main.parser
             item.money_cost = object.money_cost;
             if(object.icon_url)
             item.iconUrl = flashVars.content_url + object.icon_url;
-            
+            item.is_advert = object.is_advert;
+			item.nonIsoItems = true;
+			
             if(object.is_advert)
                 advObj.set(item.key, item);
             else

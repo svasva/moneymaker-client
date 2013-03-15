@@ -20,6 +20,7 @@ public class BuildGuiCommand extends SignalCommand
         commandMap.execute(BuildMainGUICommand);
         commandMap.execute(BuildInGameGuiCommand);
         commandMap.execute(BuildInfoViewCommand);
+		
     }
 }
 }

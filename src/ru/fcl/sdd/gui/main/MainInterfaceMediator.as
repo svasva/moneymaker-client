@@ -9,6 +9,7 @@ package ru.fcl.sdd.gui.main
     import flash.utils.ByteArray;
     import flash.utils.Timer;
     import org.aswing.event.InteractiveEvent;
+	import org.aswing.LoadIcon;
     import org.osflash.signals.ISignal;
     import org.robotlegs.mvcs.Mediator;
     import ru.fcl.sdd.config.FlashVarsModel;
@@ -30,6 +31,13 @@ package ru.fcl.sdd.gui.main
     import ru.fcl.sdd.location.room.RoomModel;
     import ru.fcl.sdd.location.room.SelectedItemUpdated;
     import ru.fcl.sdd.log.ILogger;
+	import ru.fcl.sdd.quest.AcceptQuestSigCom;
+	import ru.fcl.sdd.quest.CheckQuestSignal;
+	import ru.fcl.sdd.quest.CurrentQuestUpdatedSig;
+	import ru.fcl.sdd.quest.QuestAcceptedSig;
+	import ru.fcl.sdd.quest.QuestCompleateSig;
+	import ru.fcl.sdd.quest.QuestModel;
+	import ru.fcl.sdd.quest.QuestReqSuccessSig;
     import ru.fcl.sdd.scenes.MainIsoView;
     import ru.fcl.sdd.services.main.ISender;
     import ru.fcl.sdd.services.shared.FriendBarVisModel;
@@ -123,22 +131,38 @@ package ru.fcl.sdd.gui.main
         
         [Inject]
         public var showTurorial:ShowTutorialSignal
-        
-         
+		
+		[Inject]
+		public var questUpdateSig:CurrentQuestUpdatedSig;
+		
+		[Inject]
+		public var questModel:QuestModel;    
 		
 		
 		private var tutorial:TutorialView;
+		
+		[Inject]
+		public var questAcept:AcceptQuestSigCom;
       
         
         [Inject]
 		public var mainIsoView:MainIsoView;
+		
+		[Inject]
+		public var checkQuest:CheckQuestSignal;
+		
+		[Inject]
+		public var questReqSuccessSig:QuestReqSuccessSig;
+		
+		[Inject]
+		public var questCompleateSig:QuestCompleateSig;
+		
+		[Inject]
+		public var acceptedQuest:QuestAcceptedSig;
         
         private var timer:Timer = new Timer(1000, 1);
 		
 		private var tempVO:ItemVO;
-        
-        
-        
         /**
          * Constructor
          */
@@ -165,7 +189,8 @@ package ru.fcl.sdd.gui.main
             
             updaterLevel.add(showNewLevelDialog);
             showTurorial.add(showTutor);
-            
+			
+			questUpdateSig.add(questUpdated);
             
             view.popUpDialog.yesBtn.addEventListener(MouseEvent.CLICK, yesBtn_click);
             view.popUpDialog.noBtn.addEventListener(MouseEvent.CLICK, noBtn_click);
@@ -175,11 +200,6 @@ package ru.fcl.sdd.gui.main
             
             view.itemControl.ok.addEventListener(MouseEvent.CLICK, ok_click);
             view.itemControl.sell.addEventListener(MouseEvent.CLICK, sell_click);
-            
-            
-            // view.popUpDialog.x = flashVars.app_width/2 - view.popUpDialog.width/2;
-            // view.popUpDialog.y = 200;
-            
             windowsLayer.addChild(view.popUpDialog);
             windowsLayer.addChild(view.cantBuyDialog);
             windowsLayer.addChild(view.shopItemToolTip);
@@ -191,44 +211,97 @@ package ru.fcl.sdd.gui.main
             view.newLevelSmallDialog.visible = false;
             
             view.newLevelSmallDialog.okBtn.addEventListener(MouseEvent.CLICK, okBtn_click);
-            
-          
-            
-              tutorial = new TutorialView();
-			  windowsLayer.addChild(tutorial);
-			  tutorial.x = windowsLayer.width / 2 - tutorial.width / 2; 
-			   tutorial.y = windowsLayer.height / 2 - tutorial.height / 2; 
-			  tutorial.visible = false;
-              timer.addEventListener(TimerEvent.TIMER, timer_timer);
-          
-        
+            tutorial = new TutorialView();
+			windowsLayer.addChild(tutorial);
+			tutorial.x = windowsLayer.width / 2 - tutorial.width / 2; 
+			tutorial.y = windowsLayer.height / 2 - tutorial.height / 2; 
+			tutorial.visible = false;
+            timer.addEventListener(TimerEvent.TIMER, timer_timer);
+			
+			view.questBtn.addEventListener(MouseEvent.CLICK, questBtn_click);
+			
+			view.questWindows.addData(questModel.currentQuest);
+			windowsLayer.addChild(view.questWindows);
+			view.questWindows.x = windowsLayer.width / 2 - view.questWindows.width / 2; 
+			view.questWindows.y = windowsLayer.height / 2 - view.questWindows.height / 2; 
+			view.questWindows.okBtn.addEventListener(MouseEvent.CLICK, questWindowsOkBtn_click);
+			
+			questReqSuccessSig.add(questReqSuccess)
+			
+			acceptedQuest.add(questAccepted);
+			
+			if(questModel.currentQuest)
+				view.questBtn.setIcon(new LoadIcon(questModel.currentQuest.character_icon,82,89,true));
+			
         }
+		
+		private function questAccepted():void 
+		{
+			questModel.currentQuest.isAccept = true;
+			view.questWindows.okBtn.visible = false;
+		}
+		
+		private function questReqSuccess():void 
+		{
+			view.questWindows.descrS = questModel.currentQuest.complete_text;
+			view.questWindows.okBtn.visible = true;
+		}
+		
+		private function questWindowsOkBtn_click(e:MouseEvent):void 
+		{
+			if (questModel.currentQuest.isCompleated)
+			{
+				
+				questCompleateSig.dispatch();
+				view.questWindows.visible = false;
+			}
+			else
+			{
+				view.questWindows.visible = false;
+				questAcept.dispatch();
+			}
+			
+		}
+		
+		private function questUpdated():void 
+		{
+			
+			view.questWindows.addData(questModel.currentQuest);
+			if(questModel.currentQuest)
+				view.questBtn.setIcon(new LoadIcon(questModel.currentQuest.character_icon,82,89,true));
+		}
+		
+		private function questBtn_click(e:MouseEvent):void 
+		{
+			
+			checkQuest.dispatch();
+			if(view.questBtn.isSelected()) 
+			{
+				view.questWindows.visible = true;
+			}
+			else
+			{
+				view.questWindows.visible = false;
+			}
+		}
         
         private function timer_timer(e:TimerEvent):void 
         {
             view.shopItemToolTip.addData(shopMdl.overedShopItem);
-			view.shopItemToolTip.show();
-               /* view.shopItemToolTip.itemName = shopMdl.overedShopItem.item_name;
-                view.shopItemToolTip.itemDesc = shopMdl.overedShopItem.description;                
-                if (shopMdl.overedShopItem.money_cost);
-                view.shopItemToolTip.goldPrice = shopMdl.overedShopItem.money_cost.toString();
-                view.shopItemToolTip.gameMoneyPrise = shopMdl.overedShopItem.gameMoneyPrice.toString();
-                if( shopMdl.overedShopItem.iconUrl)
-                view.shopItemToolTip.url = shopMdl.overedShopItem.iconUrl;    */
+			view.shopItemToolTip.show();            
         }
         
         private function showTutor():void 
         {
             tutorial.visible = true;
-        }
-        
-       
-		
-        
+        }       
         private function showNewLevelDialog():void 
         {
              view.newLevelSmallDialog.visible = true;
              view.newLevelSmallDialog.levelTf.text = expMdl.levelNumer.toString();
+			 
+			 checkQuest.dispatch();
+			 
         }
         
         private function okBtn_click(e:MouseEvent):void 
@@ -286,24 +359,18 @@ package ru.fcl.sdd.gui.main
             {
                 view.itemControl.visible = false;
             }
-        
-        
         }
-       
-        
         private function resetGameHnd(e:Event):void
         {
             trace("addBankomatRoom");
             
             sender.send({command: "resetGame"});
         }
-        
         private function onBuyRoom(e:MouseEvent):void
         {
             view.buyRoomDialog.hide();
             buyRoomSig.dispatch();
         }
-        
         private function noBuyRoomBtn_click(e:MouseEvent):void
         {
             view.buyRoomDialog.hide();
@@ -318,7 +385,6 @@ package ru.fcl.sdd.gui.main
             view.buyRoomDialog.url = room.icon_url;
             view.buyRoomDialog.gameMoneyPrise = room.coins_cost.toString();
             view.buyRoomDialog.goldPrice = room.money_cost.toString();
-        
         }
         
         private function noBtn_click(e:MouseEvent):void
@@ -329,9 +395,16 @@ package ru.fcl.sdd.gui.main
         
         private function yesBtn_click(e:MouseEvent):void
         {
-            
-            view.popUpDialog.hide();
-            buyItem.dispatch(shopMdl.selectedShopItem);
+            if (shopMdl.selectedShopItem.nonIsoItems)
+			{
+				trace("Это маркетинг чувак");
+			}
+			else
+			{
+				view.popUpDialog.hide();
+				buyItem.dispatch(shopMdl.selectedShopItem);
+			}
+			
         }
         
         private function onOveredShopItemUpdatedSignal():void
@@ -356,47 +429,27 @@ package ru.fcl.sdd.gui.main
             
             if (!shopMdl.selectedShopItem.isLock)
             {
-                /*view.popUpDialog.itemName = shopMdl.selectedShopItem.item_name;
-                view.popUpDialog.itemDesc = shopMdl.selectedShopItem.description;
-                if (shopMdl.selectedShopItem.money_cost);
-                view.popUpDialog.goldPrice = shopMdl.selectedShopItem.money_cost.toString();
-                view.popUpDialog.gameMoneyPrise = shopMdl.selectedShopItem.gameMoneyPrice.toString();
-                if(shopMdl.selectedShopItem.iconUrl)
-                view.popUpDialog.url = shopMdl.selectedShopItem.iconUrl;    
-				*/
 				view.popUpDialog.addData(shopMdl.selectedShopItem);
                 view.popUpDialog.show();
             }
             else
             {
-               /* view.cantBuyDialog.itemName = shopMdl.selectedShopItem.item_name;
-                view.cantBuyDialog.itemDesc = shopMdl.selectedShopItem.description;
-                if (shopMdl.selectedShopItem.money_cost);
-                view.cantBuyDialog.goldPrice = shopMdl.selectedShopItem.money_cost.toString();
-                view.cantBuyDialog.gameMoneyPrise = shopMdl.selectedShopItem.gameMoneyPrice.toString();
-                if(shopMdl.selectedShopItem.iconUrl)
-                view.cantBuyDialog.url = shopMdl.selectedShopItem.iconUrl;     
-				
-				view.cantBuyDialog.reqRoomTf.text= shopMdl.selectedShopItem.reqRoomName;*/
                 view.cantBuyDialog.addData(shopMdl.selectedShopItem);
 				view.cantBuyDialog.show();
             }
-        
         }
-        
         private function onFriendBarVisModelUpdated(value:Boolean):void
         {
-            
-            logger.log(this, "onFriendBarVisModelUpdated", value);
+          
             friendBarView.vis = value;
             if (value)
             {
-                //  view.friendBarVisBtn.setText("Закрыть");
+               
                 view.friendBarVisBtn.setSelected(false);
             }
             else
             {
-                //   view.friendBarVisBtn.setText("Открыть");
+                
                 view.friendBarVisBtn.setSelected(true);
             }
         }
