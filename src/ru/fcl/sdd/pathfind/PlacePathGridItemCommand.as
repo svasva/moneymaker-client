@@ -37,10 +37,14 @@ public class PlacePathGridItemCommand extends SignalCommand
 		var floor:int
 		if (iso.catalogKey)
 		{
+		
 			var item:Item = itemCatalog.get(iso.catalogKey) as Item;
+			
+			
 			var room:Room =  userRoomList.get(item.room_id) as Room;
 	   
-			 floor = xmlRoomModel.floorByOrder(room.order);
+			if(room) 
+			floor = xmlRoomModel.floorByOrder(room.order);
 		}
 		else
 			floor = mainIsoView.currentFloorNumber;

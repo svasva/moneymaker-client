@@ -330,15 +330,15 @@ package ru.fcl.sdd.gui.main
                 view.itemControl.visible = true;
                 
                 
-                if(roomMdl.selectedItem.cashMoney)
-                    view.itemControl.cashTf.text = roomMdl.selectedItem.cashMoney.toString();
+             /*   if(roomMdl.selectedItem.cashMoney)
+             //       view.itemControl.cashTf.text = roomMdl.selectedItem.cashMoney.toString();
                 else
-                    view.itemControl.cashTf.text = " "; 
+//                    view.itemControl.cashTf.text = " "; */
                 
-                if(roomMdl.selectedItem.capacity)
+              /*  if(roomMdl.selectedItem.capacity)
                     view.itemControl.capacityTf.text = roomMdl.selectedItem.capacity.toString();
                 else
-                    view.itemControl.capacityTf.text = " ";
+          //          view.itemControl.capacityTf.text = " ";*/
                 
                 if (roomMdl.selectedItem.status)
                 {

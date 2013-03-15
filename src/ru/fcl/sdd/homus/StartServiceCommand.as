@@ -19,14 +19,17 @@ package ru.fcl.sdd.homus
 		{
 			
 			//проверить
-			if (homusCatalog.clientusByTargetKey.hasKey(clientus.target.key))
-			{
-				homusCatalog.clientusByTargetKey.remap(clientus.target.key,clientus);
-			}
-			else
-			{
-				homusCatalog.clientusByTargetKey.set(clientus.target.key,clientus);
-			}
+			
+				
+			
+				if (homusCatalog.clientusByTargetKey.hasKey(clientus.target.key))
+				{
+					homusCatalog.clientusByTargetKey.remap(clientus.target.key,clientus);
+				}
+				else
+				{
+					homusCatalog.clientusByTargetKey.set(clientus.target.key,clientus);
+				}
 			
 		}
 		

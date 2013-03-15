@@ -1,6 +1,7 @@
 package ru.fcl.sdd.services.main.listen 
 {
 	import org.robotlegs.mvcs.SignalCommand;
+	import ru.fcl.sdd.item.CheckItemFromShopCommand;
     import ru.fcl.sdd.money.IMoney;
 	import ru.fcl.sdd.quest.CheckQuestSignal;
 	import ru.fcl.sdd.quest.GetAvalibleQuestCommand;
@@ -49,10 +50,12 @@ package ru.fcl.sdd.services.main.listen
             {
                 reputationMdl.countValue = response.response.reputation;
 				checkQuest.dispatch();
+				commandMap.execute(CheckItemFromShopCommand);
             }
             else if (response.response.coins)
             {
                 gameMoneyModel.count = response.response.coins;
+				commandMap.execute(CheckItemFromShopCommand);
 				checkQuest.dispatch();
             }
             else if (response.response.experience)
@@ -64,6 +67,7 @@ package ru.fcl.sdd.services.main.listen
              //   trace("response.response.levelnumber "+response.response.levelnumber);
                 exp.levelNumer = response.response.levelnumber;
                 exp.isLevelUdated = false;
+				commandMap.execute(CheckItemFromShopCommand);
                
             }
             

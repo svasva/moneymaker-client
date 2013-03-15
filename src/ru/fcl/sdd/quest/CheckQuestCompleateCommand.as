@@ -162,7 +162,7 @@ package ru.fcl.sdd.quest
 				for each(var userItem:ItemIsoView in userItems.toArray())
 				{	
 					
-					if (reqItem.catalogId == userItem.catalogKey)
+					if (reqItem.catalogId == userItem.keyForCheck)
 					{
 						reqItem.isCheck = true;
 						trace(reqItem.itemName);

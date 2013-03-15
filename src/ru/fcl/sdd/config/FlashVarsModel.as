@@ -9,7 +9,7 @@ public class FlashVarsModel
 {
 
    /// public static const LOCAL_TOKEN:String = "5135a5fd5dae916ee000006a";
-	public static const LOCAL_TOKEN:String = "5136f82c5dae91e3b4000004";
+	public static const LOCAL_TOKEN:String = "514295675dae91f516000119";
     public static const LOCAL_CONTENT_URL:String = "http://app.so14.org";
     public static const LOCAL_SOCKET_URL:String = "ws://ws.so14.org/socket/websocket";
     public static const LOCAL_GREETING:String = "Greeting, dear developer.";

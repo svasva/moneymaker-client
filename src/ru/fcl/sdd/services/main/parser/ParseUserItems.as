@@ -57,6 +57,7 @@ package ru.fcl.sdd.services.main.parser
                 catalogItem.room_id = object.room_id;
                 item.key = object._id;
                 item.catalogKey = object.reference_id;
+				item.keyForCheck = item.catalogKey;
                 item.setSize(catalogItem.isoWidth, catalogItem.isoLength, catalogItem.isoHeight);
                 //set direction only after setSize!
                 item.direction = object.rotation;

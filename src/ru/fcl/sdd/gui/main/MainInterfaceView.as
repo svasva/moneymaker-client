@@ -97,6 +97,7 @@ package ru.fcl.sdd.gui.main
 			_questBtn.buttonMode = true;
 		//	_questBtn.setBackgroundDecorator(new DefaultEmptyDecoraterResource());
 		//	_questBtn.setForegroundDecorator(new DefaultEmptyDecoraterResource());
+		
 			
 			
         }

@@ -73,9 +73,7 @@ package ru.fcl.sdd.item
 			   {
 					
 					if (itemCatalogArr[j].reqRoom)
-					{					
-						
-						
+					{						
 						if (itemCatalogArr[j].reqRoom == item.catalogId)
 						{		
 							itemCatalogArr[j].sucssiseRoom = true;
@@ -116,7 +114,7 @@ package ru.fcl.sdd.item
 				   item1.shopItemRoomView.isLock = false;
 				   item1.shopItemRoomView.sucssiseLvl = true;
 			   }
-			   if (item1.shopItemRoomView.reqExp != NaN)
+			   if (item1.shopItemRoomView.reqExp!= NaN)
 			   {
 				   if (item1.shopItemRoomView.reqExp > repMdl.countValue)
 				   {

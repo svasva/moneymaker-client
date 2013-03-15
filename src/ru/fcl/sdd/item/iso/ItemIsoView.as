@@ -49,6 +49,7 @@ public class ItemIsoView extends IsoSprite
     private var _giveMoneyIso:IsoSprite = new IsoSprite();
     private var _onClickFun:Function;
     private var _room_id:String;
+	private var _keyForCheck:String;
     
     public function ItemIsoView():void
     {
@@ -329,6 +330,16 @@ public class ItemIsoView extends IsoSprite
     {
         _room_id = value;
     }
+	
+	public function get keyForCheck():String 
+	{
+		return _keyForCheck;
+	}
+	
+	public function set keyForCheck(value:String):void 
+	{
+		_keyForCheck = value;
+	}
 	
  
 }
